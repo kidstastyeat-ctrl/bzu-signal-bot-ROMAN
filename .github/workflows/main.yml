@@ -1,0 +1,52 @@
+name: BZU Auto Bot ROMAN
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run bot
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          BOT_DISPLAY_NAME: ${{ vars.BOT_DISPLAY_NAME }}
+          BOT_CLIENT_LABEL: ${{ vars.BOT_CLIENT_LABEL }}
+          TIMEZONE_LABEL: ${{ vars.TIMEZONE_LABEL }}
+          POSITION_LEVERAGE: ${{ vars.POSITION_LEVERAGE }}
+        run: python bot_oneshot.py
+
+      - name: Save signal memory and journal
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add last_signal.json signal_journal.json last_signal.json.bak signal_journal.json.bak || true
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update signal memory"
+            git push
+          fi
