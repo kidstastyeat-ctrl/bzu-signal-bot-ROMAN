@@ -2024,7 +2024,164 @@
           "note": ""
         }
       }
+    },
+    {
+      "time": "2026-06-13T10:31:01.913258+00:00",
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 84.76,
+      "quality": 41,
+      "reason": "ICT: ціна біля equilibrium / середина діапазону — входу немає; чекати sweep high/low або BOS + FVG/OB retest",
+      "plan": null,
+      "confirmations": [],
+      "conflicts": [
+        "ICT: ціна біля equilibrium / середина діапазону — входу немає; чекати sweep high/low або BOS + FVG/OB retest",
+        "Не плутати з відкатом: для входу потрібен вихід з EQ, sweep або BOS + retest"
+      ],
+      "context": {
+        "bias": "NEUTRAL",
+        "tech_score": -51,
+        "total_score": -41,
+        "tf3": {
+          "available": true,
+          "bias": "NEUTRAL",
+          "score": 0,
+          "state": "RANGE",
+          "fast_move_pct": -0.012,
+          "drift_pct": 0.043,
+          "vol_ratio": 0.06,
+          "note": "3m higher lows/closes; 3m lower highs/closes"
+        },
+        "tf15": {
+          "label": "15m",
+          "available": true,
+          "bias": "NEUTRAL",
+          "score": -17,
+          "trend": "NEUTRAL",
+          "close": 84.84,
+          "ema20": 84.8655,
+          "ema50": 85.0734,
+          "rsi": 47.0,
+          "atr": 0.2111,
+          "slope_pct": -0.055,
+          "move_8_pct": -0.047,
+          "range_atr": 3.84,
+          "note": "ціна нижче EMA20/50"
+        },
+        "tf1h": {
+          "label": "1h",
+          "available": true,
+          "bias": "SHORT",
+          "score": -32,
+          "trend": "SHORT",
+          "close": 84.84,
+          "ema20": 85.4261,
+          "ema50": 86.9919,
+          "rsi": 37.0,
+          "atr": 0.6995,
+          "slope_pct": -0.153,
+          "move_8_pct": -0.094,
+          "range_atr": 5.19,
+          "note": "ціна нижче EMA20/50"
+        },
+        "tf4h": {
+          "label": "4h",
+          "available": true,
+          "bias": "SHORT",
+          "score": -56,
+          "trend": "SHORT",
+          "close": 84.84,
+          "ema20": 88.0285,
+          "ema50": 90.6928,
+          "rsi": 28.9,
+          "atr": 1.7706,
+          "slope_pct": -6.066,
+          "move_8_pct": -3.261,
+          "range_atr": 6.78,
+          "note": "ціна нижче EMA20/50; нахил вниз; імпульс вниз"
+        },
+        "structure": {
+          "available": true,
+          "bias": "NEUTRAL",
+          "score": 8,
+          "phase": "RANGE / WAIT",
+          "swing_high": 85.0,
+          "swing_low": 84.67,
+          "recent_high": 85.31,
+          "recent_low": 84.19,
+          "atr": 0.2111,
+          "note": "сильне bullish-закриття"
+        },
+        "flow": {
+          "bias": "NEUTRAL",
+          "score": -6,
+          "trade_delta_pct": -25.6,
+          "book_delta_pct": 28.6,
+          "note": "угоди за продавців; стакан підтримує покупців; підтримка покупців біля 84.48"
+        },
+        "cvd": {
+          "bias": "NEUTRAL",
+          "score": -14,
+          "state": "SELLERS_DOMINATE",
+          "confidence": "HIGH",
+          "confidence_factor": 1.0,
+          "sample_size": 120,
+          "delta": -1947.0,
+          "delta_pct": -25.6,
+          "cvd": 22275.0,
+          "cvd_change_pct": -8.038,
+          "last_trade_ts": 1781346650380,
+          "price_move_pct": 0.035,
+          "note": "CVD падає"
+        },
+        "clusters": {
+          "bias": "SHORT",
+          "score": -5,
+          "state": "LOCAL_SELLER_RESISTANCE",
+          "zones": [
+            {
+              "price": 84.8278,
+              "imbalance_pct": -79.0,
+              "volume": 1892.0
+            }
+          ],
+          "note": "локальний продавець біля 84.8278"
+        },
+        "derivatives": {
+          "bias": "NEUTRAL",
+          "score": 0,
+          "state": "POSITIONING_UNKNOWN",
+          "oi": 59342.55,
+          "oi_change_pct": -0.185,
+          "funding_pct": 0,
+          "price_change_pct": -0.071,
+          "note": "OI ще накопичує історію для порівняння"
+        },
+        "liquidity": {
+          "available": true,
+          "bias": "NEUTRAL",
+          "score": 0,
+          "event": "QUIET",
+          "blocks": [],
+          "vol_ratio": 0.06,
+          "move_1_pct": 0.035,
+          "move_6_pct": -0.012,
+          "note": "ліквідаційного тиску не видно"
+        },
+        "news": {
+          "bias": "LONG",
+          "score": 34,
+          "top": "Poland to end capping fuel prices in summer, PM Tusk says - Reuters",
+          "total": 25
+        },
+        "calendar": {
+          "active": false,
+          "alerts": [],
+          "score": 0,
+          "note": ""
+        }
+      }
     }
   ],
-  "updated_at": "2026-06-13T10:15:52.836835+00:00"
+  "updated_at": "2026-06-13T10:31:01.913792+00:00"
 }
