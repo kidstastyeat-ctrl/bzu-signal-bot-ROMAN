@@ -113,18 +113,26 @@
       "quality": 55,
       "reason": "ICT: ціна біля equilibrium / середина діапазону — входу немає; чекати sweep high/low або BOS + FVG/OB retest",
       "time": "2026-06-13T10:45:44.714986+00:00"
+    },
+    {
+      "type": "WATCH",
+      "side": "SHORT",
+      "price": 84.76,
+      "quality": 55,
+      "reason": "ICT: ціна біля equilibrium / середина діапазону — входу немає; чекати sweep high/low або BOS + FVG/OB retest",
+      "time": "2026-06-13T11:01:12.311357+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-13T10:45:44.715041+00:00",
-    "price": 84.83,
-    "oi": 59318.45,
-    "cvd": 16495.0,
-    "cvd_time": "2026-06-13T10:45:44.715044+00:00",
-    "last_trade_ts": 1781347522483,
+    "time": "2026-06-13T11:01:12.311426+00:00",
+    "price": 84.76,
+    "oi": 59754.5,
+    "cvd": 14468.0,
+    "cvd_time": "2026-06-13T11:01:12.311430+00:00",
+    "last_trade_ts": 1781348462432,
     "bias": "SHORT",
-    "tech_score": -63,
-    "total_score": -55
+    "tech_score": -53,
+    "total_score": -46
   },
-  "updated_at": "2026-06-13T10:45:44.715049+00:00"
+  "updated_at": "2026-06-13T11:01:12.311436+00:00"
 }
