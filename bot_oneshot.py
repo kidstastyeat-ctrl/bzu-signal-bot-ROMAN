@@ -30,11 +30,6 @@ import requests
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
 
-# Display name in Telegram messages. For duplicates, change this through
-# GitHub Variables instead of editing code.
-BOT_DISPLAY_NAME = os.getenv("BOT_DISPLAY_NAME", "BZU SIGNAL BOT PRO")
-BOT_CLIENT_LABEL = os.getenv("BOT_CLIENT_LABEL", "")
-
 OKX_INST_ID = os.getenv("OKX_INST_ID", "BZ-USDT-SWAP")
 STATE_FILE = os.getenv("SIGNAL_MEMORY_FILE", os.path.join(os.getenv("GITHUB_WORKSPACE", os.getcwd()), "last_signal.json"))
 JOURNAL_FILE = os.getenv("SIGNAL_JOURNAL_FILE", os.path.join(os.getenv("GITHUB_WORKSPACE", os.getcwd()), "signal_journal.json"))
@@ -212,6 +207,20 @@ def safe_float(value, default=None):
         return default
 
 
+def clamp(value, lo=0, hi=100):
+    """Clamp a numeric value into [lo, hi].
+
+    This helper is intentionally global because several supervision modules
+    use it, including Adaptive MFE Giveback Guard 2.0. Keeping it global
+    prevents runtime NameError when a branch reaches MFE protection.
+    """
+    try:
+        value = float(value)
+    except Exception:
+        value = float(lo)
+    return max(lo, min(hi, value))
+
+
 def round_price(value):
     if value is None:
         return None
@@ -239,16 +248,6 @@ def side_word(side):
 
 def opposite(side):
     return "SHORT" if side == "LONG" else "LONG"
-
-
-def bot_header_lines():
-    """Header shown at the top of every Telegram message."""
-    title = html.escape(str(BOT_DISPLAY_NAME or "BZU SIGNAL BOT PRO"))
-    lines = [f"<b>{title}</b>"]
-    label = str(BOT_CLIENT_LABEL or "").strip()
-    if label:
-        lines.append(f"<i>{html.escape(label)}</i>")
-    return lines
 
 
 def http_get(url, timeout=REQUEST_TIMEOUT, retries=2):
@@ -7342,7 +7341,8 @@ def build_new_setup_message(context, setup):
     conflicts = _short_list(setup.get("conflicts"), 3)
     confirmations = _short_list(setup.get("confirmations"), 3)
 
-    lines = bot_header_lines() + [
+    lines = [
+        "<b>BZU SIGNAL BOT PRO</b>",
         "",
         f"<b>{_compact_title(setup)}</b>",
         "",
@@ -7392,7 +7392,8 @@ def build_new_setup_message(context, setup):
 
 
 def build_follow_message(context, trade, result):
-    lines = bot_header_lines() + [
+    lines = [
+        "<b>BZU SIGNAL BOT PRO</b>",
         "",
         f"<b>{result['title']}</b>",
         f"{result['recommendation']}",
@@ -7519,7 +7520,7 @@ def update_market_snapshot(state, context):
 
 
 def main():
-    print(f"START {BOT_DISPLAY_NAME}")
+    print("START BZU SIGNAL BOT PRO")
     state = load_state()
     journal = load_journal()
 
