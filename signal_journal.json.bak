@@ -2894,7 +2894,18 @@
           "note": ""
         }
       }
+    },
+    {
+      "time": "2026-06-13T11:45:49.527897+00:00",
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "HOLD",
+      "price": 84.4,
+      "quality": 82,
+      "context_bias": "SHORT",
+      "tech_score": -132,
+      "total_score": -125
     }
   ],
-  "updated_at": "2026-06-13T11:31:02.486332+00:00"
+  "updated_at": "2026-06-13T11:45:49.528800+00:00"
 }
