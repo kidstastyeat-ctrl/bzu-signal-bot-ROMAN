@@ -175,7 +175,166 @@
           "note": ""
         }
       }
+    },
+    {
+      "time": "2026-06-13T07:57:41.884418+00:00",
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 84.89,
+      "quality": 41,
+      "reason": "перевага нечітка, немає професійного входу",
+      "plan": null,
+      "confirmations": [],
+      "conflicts": [],
+      "context": {
+        "bias": "NEUTRAL",
+        "tech_score": -3,
+        "total_score": 2,
+        "tf3": {
+          "available": true,
+          "bias": "LONG",
+          "score": 22,
+          "state": "LONG_STRENGTHENING",
+          "fast_move_pct": 0.106,
+          "drift_pct": 0.039,
+          "vol_ratio": 0.03,
+          "note": "3m higher lows/closes"
+        },
+        "tf15": {
+          "label": "15m",
+          "available": true,
+          "bias": "NEUTRAL",
+          "score": -1,
+          "trend": "NEUTRAL",
+          "close": 84.92,
+          "ema20": 84.8646,
+          "ema50": 85.2125,
+          "rsi": 49.5,
+          "atr": 0.2959,
+          "slope_pct": -0.106,
+          "move_8_pct": 0.177,
+          "range_atr": 3.55,
+          "note": "EMA20 нижче EMA50"
+        },
+        "tf1h": {
+          "label": "1h",
+          "available": true,
+          "bias": "SHORT",
+          "score": -35,
+          "trend": "SHORT",
+          "close": 84.92,
+          "ema20": 85.6267,
+          "ema50": 87.2804,
+          "rsi": 37.8,
+          "atr": 0.8089,
+          "slope_pct": -1.231,
+          "move_8_pct": -0.012,
+          "range_atr": 6.94,
+          "note": "ціна нижче EMA20/50; нахил вниз"
+        },
+        "tf4h": {
+          "label": "4h",
+          "available": true,
+          "bias": "SHORT",
+          "score": -56,
+          "trend": "SHORT",
+          "close": 84.92,
+          "ema20": 88.367,
+          "ema50": 90.9214,
+          "rsi": 29.2,
+          "atr": 1.8814,
+          "slope_pct": -7.176,
+          "move_8_pct": -3.258,
+          "range_atr": 6.38,
+          "note": "ціна нижче EMA20/50; нахил вниз; імпульс вниз"
+        },
+        "structure": {
+          "available": true,
+          "bias": "NEUTRAL",
+          "score": 0,
+          "phase": "RANGE / WAIT",
+          "swing_high": 85.0,
+          "swing_low": 84.19,
+          "recent_high": 85.52,
+          "recent_low": 84.17,
+          "atr": 0.2959,
+          "note": "структура без чистого пробою"
+        },
+        "flow": {
+          "bias": "LONG",
+          "score": 16,
+          "trade_delta_pct": 31.46,
+          "book_delta_pct": 0.76,
+          "note": "угоди за покупців"
+        },
+        "cvd": {
+          "bias": "NEUTRAL",
+          "score": 14,
+          "state": "BUYERS_DOMINATE",
+          "confidence": "HIGH",
+          "confidence_factor": 1.0,
+          "sample_size": 120,
+          "delta": 2635.0,
+          "delta_pct": 31.46,
+          "cvd": 7436.0,
+          "cvd_change_pct": 54.884,
+          "last_trade_ts": 1781337433793,
+          "price_move_pct": 0.082,
+          "note": "CVD росте"
+        },
+        "clusters": {
+          "bias": "LONG",
+          "score": 5,
+          "state": "LOCAL_BUYER_SUPPORT",
+          "zones": [
+            {
+              "price": 84.89,
+              "imbalance_pct": 35.8,
+              "volume": 5271.0
+            },
+            {
+              "price": 84.9579,
+              "imbalance_pct": 24.1,
+              "volume": 3104.0
+            }
+          ],
+          "note": "локальний покупець біля 84.89"
+        },
+        "derivatives": {
+          "bias": "NEUTRAL",
+          "score": 6,
+          "state": "SHORTS_CLOSING",
+          "oi": 62149.29,
+          "oi_change_pct": -1.09,
+          "funding_pct": 0,
+          "price_change_pct": 0.201,
+          "note": "ріст на падінні OI — шорти закриваються, не доганяти без ретесту"
+        },
+        "liquidity": {
+          "available": true,
+          "bias": "NEUTRAL",
+          "score": 0,
+          "event": "QUIET",
+          "blocks": [],
+          "vol_ratio": 0.03,
+          "move_1_pct": -0.012,
+          "move_6_pct": 0.142,
+          "note": "ліквідаційного тиску не видно"
+        },
+        "news": {
+          "bias": "LONG",
+          "score": 21,
+          "top": "MLPT.JK - | Stock Price & Latest News - Reuters",
+          "total": 24
+        },
+        "calendar": {
+          "active": false,
+          "alerts": [],
+          "score": 0,
+          "note": ""
+        }
+      }
     }
   ],
-  "updated_at": "2026-06-13T07:28:58.478213+00:00"
+  "updated_at": "2026-06-13T07:57:41.885125+00:00"
 }
