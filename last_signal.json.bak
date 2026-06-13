@@ -41,18 +41,26 @@
       "quality": 66,
       "reason": "напрям є, але 3M ще не підтвердив; чекати 3M higher low/reclaim для LONG або lower high/rejection для SHORT",
       "time": "2026-06-13T08:31:03.406015+00:00"
+    },
+    {
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 84.85,
+      "quality": 46,
+      "reason": "перевага нечітка, немає професійного входу",
+      "time": "2026-06-13T08:45:48.928301+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-13T08:31:03.406070+00:00",
+    "time": "2026-06-13T08:45:48.928319+00:00",
     "price": 84.85,
-    "oi": 61449.73,
-    "cvd": 9900.0,
-    "cvd_time": "2026-06-13T08:31:03.406073+00:00",
-    "last_trade_ts": 1781339454847,
-    "bias": "SHORT",
-    "tech_score": -112,
-    "total_score": -103
+    "oi": 60782.54,
+    "cvd": 26337.0,
+    "cvd_time": "2026-06-13T08:45:48.928325+00:00",
+    "last_trade_ts": 1781340307287,
+    "bias": "NEUTRAL",
+    "tech_score": -39,
+    "total_score": -30
   },
-  "updated_at": "2026-06-13T08:31:03.406078+00:00"
+  "updated_at": "2026-06-13T08:45:48.928346+00:00"
 }
