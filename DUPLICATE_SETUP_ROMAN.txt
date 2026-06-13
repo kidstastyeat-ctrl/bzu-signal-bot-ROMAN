@@ -1,0 +1,18 @@
+ДУБЛІКАТ БОТА ДЛЯ ROMAN
+
+1) Завантажити всі файли з цієї папки у новий GitHub repository.
+2) У GitHub → Settings → Secrets and variables → Actions → Secrets додати:
+   TELEGRAM_TOKEN
+   TELEGRAM_CHAT_ID
+   CRYPTOPANIC_KEY (якщо є; можна не додавати, якщо бот працює без нього)
+
+3) У Variables додати:
+   BOT_DISPLAY_NAME = BZU SIGNAL BOT ROMAN
+   BOT_CLIENT_LABEL = Roman
+   TIMEZONE_LABEL = Europe/Kyiv
+   POSITION_LEVERAGE = 10
+
+4) Запустити Actions → BZU Auto Bot ROMAN → Run workflow.
+5) Якщо тест прийшов у Telegram, тоді підключити console.cron-job.org на dispatch workflow.
+
+У цьому дублікаті історія last_signal.json і signal_journal.json очищена, щоб Roman мав окрему статистику.
