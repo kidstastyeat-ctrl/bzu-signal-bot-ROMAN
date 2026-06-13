@@ -1,40 +1,6 @@
 {
   "version": "pro-v2-intraday-architecture",
-  "active_trade": {
-    "id": "a2004eda37",
-    "side": "LONG",
-    "opened_at": "2026-06-13T21:15:58.122122+00:00",
-    "entry": 84.23,
-    "stop_initial": 83.5189,
-    "stop_current": 83.5189,
-    "tp1": 85.0302,
-    "tp2": 85.7461,
-    "tp3": 86.8411,
-    "quality": 76,
-    "stop_updated_at": "2026-06-13T21:15:58.122122+00:00",
-    "status": "OPEN",
-    "tp1_hit": false,
-    "tp2_hit": false,
-    "tp3_hit": false,
-    "tp1_stop_locked": false,
-    "tp2_stop_locked": false,
-    "tp1_locked_stop": 0.0,
-    "tp2_locked_stop": 0.0,
-    "best_price": 84.43,
-    "last_action": "EXIT_WARNING",
-    "last_message_key": "a2004eda37:EXIT_WARNING:False:False:False:False:False:83.5189",
-    "entry_integrity_score": 15,
-    "entry_fail_streak": 2,
-    "entry_recovery_checks": 1,
-    "entry_last_state": "🔴 Зламана",
-    "mfe_giveback_streak": 0,
-    "mfe_giveback_last_state": "OK",
-    "notes": [
-      "RISKY_ENTRY",
-      "COUNTERTREND_ENTRY",
-      "ранній ICT/SMC вхід: ICT і структура вже за напрям, не чекаємо повного набору підтверджень"
-    ]
-  },
+  "active_trade": null,
   "history": [
     {
       "type": "WATCH",
@@ -540,18 +506,29 @@
       "result_pct": -0.154,
       "stop_current": 83.5189,
       "time": "2026-06-13T22:01:21.813520+00:00"
+    },
+    {
+      "type": "TRADE_CLOSED",
+      "side": "LONG",
+      "action": "EXIT_ENTRY_POINT_BROKEN",
+      "price": 84.24,
+      "result_pct": 0.012,
+      "mfe_pct": 0.237,
+      "mfe_captured_pct": 5.1,
+      "mfe_giveback_pct": 0.225,
+      "time": "2026-06-13T22:15:51.957410+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-13T22:01:21.813532+00:00",
-    "price": 84.1,
-    "oi": 63798.99,
-    "cvd": 1198.0,
-    "cvd_time": "2026-06-13T22:01:21.813535+00:00",
-    "last_trade_ts": 1781388062359,
+    "time": "2026-06-13T22:15:51.957421+00:00",
+    "price": 84.24,
+    "oi": 63765.94,
+    "cvd": 8174.0,
+    "cvd_time": "2026-06-13T22:15:51.957423+00:00",
+    "last_trade_ts": 1781388931528,
     "bias": "NEUTRAL",
-    "tech_score": 9,
-    "total_score": 3
+    "tech_score": 50,
+    "total_score": 34
   },
-  "updated_at": "2026-06-13T22:01:21.813540+00:00"
+  "updated_at": "2026-06-13T22:15:51.957428+00:00"
 }
