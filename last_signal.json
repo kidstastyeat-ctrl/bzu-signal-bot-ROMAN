@@ -23,10 +23,10 @@
     "best_price": 84.35,
     "last_action": "HOLD",
     "last_message_key": "6ca884525d:HOLD:False:False:False:False:False:85.1197",
-    "entry_integrity_score": 89,
+    "entry_integrity_score": 74,
     "entry_fail_streak": 0,
     "entry_recovery_checks": 0,
-    "entry_last_state": "🟢 Сильна",
+    "entry_last_state": "🟡 Робоча",
     "mfe_giveback_streak": 0,
     "mfe_giveback_last_state": "OK",
     "notes": [
@@ -193,18 +193,27 @@
       "result_pct": 0.177,
       "stop_current": 85.1197,
       "time": "2026-06-13T12:01:09.627163+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "HOLD",
+      "price": 84.35,
+      "result_pct": 0.26,
+      "stop_current": 85.1197,
+      "time": "2026-06-13T12:15:49.567951+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-13T12:01:09.627175+00:00",
-    "price": 84.42,
-    "oi": 59591.82,
-    "cvd": 30576.0,
-    "cvd_time": "2026-06-13T12:01:09.627177+00:00",
-    "last_trade_ts": 1781352008914,
+    "time": "2026-06-13T12:15:49.567961+00:00",
+    "price": 84.35,
+    "oi": 59678.59,
+    "cvd": 33082.0,
+    "cvd_time": "2026-06-13T12:15:49.567964+00:00",
+    "last_trade_ts": 1781352935389,
     "bias": "SHORT",
-    "tech_score": -114,
-    "total_score": -107
+    "tech_score": -70,
+    "total_score": -61
   },
-  "updated_at": "2026-06-13T12:01:09.627181+00:00"
+  "updated_at": "2026-06-13T12:15:49.567969+00:00"
 }
