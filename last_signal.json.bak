@@ -11,7 +11,7 @@
     "tp2": 81.8445,
     "tp3": 79.8728,
     "quality": 63,
-    "stop_updated_at": "",
+    "stop_updated_at": "2026-06-13T14:45:46.148799+00:00",
     "status": "OPEN",
     "tp1_hit": false,
     "tp2_hit": false,
@@ -20,13 +20,13 @@
     "tp2_stop_locked": false,
     "tp1_locked_stop": 0.0,
     "tp2_locked_stop": 0.0,
-    "best_price": 83.9,
-    "last_action": "OPEN",
-    "last_message_key": "",
-    "entry_integrity_score": 100,
-    "entry_fail_streak": 0,
+    "best_price": 83.83,
+    "last_action": "PROTECT_OR_EXIT",
+    "last_message_key": "7100e2f12b:PROTECT_OR_EXIT:False:False:False:False:False:84.6607",
+    "entry_integrity_score": 46,
+    "entry_fail_streak": 1,
     "entry_recovery_checks": 0,
-    "entry_last_state": "СИЛЬНА",
+    "entry_last_state": "🟠 Слабка",
     "mfe_giveback_streak": 0,
     "mfe_giveback_last_state": "OK",
     "notes": [
@@ -286,18 +286,27 @@
       "tp2": 81.8445,
       "tp3": 79.8728,
       "time": "2026-06-13T14:45:46.148887+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "PROTECT_OR_EXIT",
+      "price": 83.96,
+      "result_pct": -0.072,
+      "stop_current": 84.6607,
+      "time": "2026-06-13T15:01:18.890436+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-13T14:45:46.148914+00:00",
-    "price": 83.9,
-    "oi": 59673.9,
-    "cvd": 5982.0,
-    "cvd_time": "2026-06-13T14:45:46.148918+00:00",
-    "last_trade_ts": 1781361924853,
+    "time": "2026-06-13T15:01:18.890447+00:00",
+    "price": 83.96,
+    "oi": 59753.07,
+    "cvd": 6645.0,
+    "cvd_time": "2026-06-13T15:01:18.890450+00:00",
+    "last_trade_ts": 1781362837744,
     "bias": "SHORT",
-    "tech_score": -104,
-    "total_score": -98
+    "tech_score": -132,
+    "total_score": -127
   },
-  "updated_at": "2026-06-13T14:45:46.148922+00:00"
+  "updated_at": "2026-06-13T15:01:18.890455+00:00"
 }
