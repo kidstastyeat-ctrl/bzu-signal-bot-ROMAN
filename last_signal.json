@@ -23,8 +23,8 @@
     "best_price": 84.14,
     "last_action": "EXIT_WARNING",
     "last_message_key": "76c76b02de:EXIT_WARNING:False:False:False:False:False:83.3944",
-    "entry_integrity_score": 14,
-    "entry_fail_streak": 1,
+    "entry_integrity_score": 15,
+    "entry_fail_streak": 2,
     "entry_recovery_checks": 0,
     "entry_last_state": "🔴 Зламана",
     "mfe_giveback_streak": 0,
@@ -36,14 +36,6 @@
     ]
   },
   "history": [
-    {
-      "type": "WATCH",
-      "side": "SHORT",
-      "price": 84.03,
-      "quality": 41,
-      "reason": "напрям є, але входу ще немає: ICT проти напрямку — якість входу нижча",
-      "time": "2026-06-13T16:01:14.748547+00:00"
-    },
     {
       "type": "WATCH",
       "side": "SHORT",
@@ -743,18 +735,27 @@
       "result_pct": 0.0,
       "stop_current": 83.3944,
       "time": "2026-06-14T11:45:47.273263+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "EXIT_WARNING",
+      "price": 83.81,
+      "result_pct": -0.155,
+      "stop_current": 83.3944,
+      "time": "2026-06-14T12:01:20.657867+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-14T11:45:47.273276+00:00",
-    "price": 83.94,
-    "oi": 65549.57,
-    "cvd": 40024.0,
-    "cvd_time": "2026-06-14T11:45:47.273279+00:00",
-    "last_trade_ts": 1781437501668,
+    "time": "2026-06-14T12:01:20.657877+00:00",
+    "price": 83.81,
+    "oi": 65396.56,
+    "cvd": 52648.0,
+    "cvd_time": "2026-06-14T12:01:20.657879+00:00",
+    "last_trade_ts": 1781438461818,
     "bias": "NEUTRAL",
-    "tech_score": -8,
-    "total_score": -3
+    "tech_score": -17,
+    "total_score": -11
   },
-  "updated_at": "2026-06-14T11:45:47.273283+00:00"
+  "updated_at": "2026-06-14T12:01:20.657883+00:00"
 }

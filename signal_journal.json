@@ -13552,7 +13552,18 @@
       "context_bias": "NEUTRAL",
       "tech_score": -8,
       "total_score": -3
+    },
+    {
+      "time": "2026-06-14T12:01:20.657873+00:00",
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "EXIT_WARNING",
+      "price": 83.81,
+      "quality": 76,
+      "context_bias": "NEUTRAL",
+      "tech_score": -17,
+      "total_score": -11
     }
   ],
-  "updated_at": "2026-06-14T11:45:47.275381+00:00"
+  "updated_at": "2026-06-14T12:01:20.659560+00:00"
 }
