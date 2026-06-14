@@ -11,7 +11,7 @@
     "tp2": 85.4509,
     "tp3": 86.5421,
     "quality": 76,
-    "stop_updated_at": "",
+    "stop_updated_at": "2026-06-14T11:01:14.716851+00:00",
     "status": "OPEN",
     "tp1_hit": false,
     "tp2_hit": false,
@@ -20,13 +20,13 @@
     "tp2_stop_locked": false,
     "tp1_locked_stop": 0.0,
     "tp2_locked_stop": 0.0,
-    "best_price": 83.94,
-    "last_action": "OPEN",
-    "last_message_key": "",
-    "entry_integrity_score": 100,
-    "entry_fail_streak": 0,
+    "best_price": 84.08,
+    "last_action": "EXIT_WARNING",
+    "last_message_key": "76c76b02de:EXIT_WARNING:False:False:False:False:False:83.3944",
+    "entry_integrity_score": 34,
+    "entry_fail_streak": 1,
     "entry_recovery_checks": 0,
-    "entry_last_state": "СИЛЬНА",
+    "entry_last_state": "🔴 Зламана",
     "mfe_giveback_streak": 0,
     "mfe_giveback_last_state": "OK",
     "notes": [
@@ -36,17 +36,6 @@
     ]
   },
   "history": [
-    {
-      "type": "TRADE_CLOSED",
-      "side": "SHORT",
-      "action": "EXIT_ENTRY_POINT_BROKEN",
-      "price": 84.07,
-      "result_pct": -0.203,
-      "mfe_pct": 0.083,
-      "mfe_captured_pct": null,
-      "mfe_giveback_pct": null,
-      "time": "2026-06-13T15:15:54.505943+00:00"
-    },
     {
       "type": "WATCH",
       "side": "SHORT",
@@ -743,18 +732,27 @@
       "tp2": 85.4509,
       "tp3": 86.5421,
       "time": "2026-06-14T11:01:14.716934+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "EXIT_WARNING",
+      "price": 83.91,
+      "result_pct": -0.036,
+      "stop_current": 83.3944,
+      "time": "2026-06-14T11:15:47.288201+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-14T11:01:14.716963+00:00",
-    "price": 83.94,
-    "oi": 65666.49,
-    "cvd": 42130.0,
-    "cvd_time": "2026-06-14T11:01:14.716966+00:00",
-    "last_trade_ts": 1781434861882,
-    "bias": "LONG",
-    "tech_score": 62,
-    "total_score": 70
+    "time": "2026-06-14T11:15:47.288213+00:00",
+    "price": 83.91,
+    "oi": 65650.61,
+    "cvd": 36290.0,
+    "cvd_time": "2026-06-14T11:15:47.288215+00:00",
+    "last_trade_ts": 1781435720079,
+    "bias": "NEUTRAL",
+    "tech_score": -40,
+    "total_score": -32
   },
-  "updated_at": "2026-06-14T11:01:14.716971+00:00"
+  "updated_at": "2026-06-14T11:15:47.288220+00:00"
 }
