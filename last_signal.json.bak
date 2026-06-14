@@ -11,7 +11,7 @@
     "tp2": 82.5595,
     "tp3": 81.5091,
     "quality": 73,
-    "stop_updated_at": "",
+    "stop_updated_at": "2026-06-14T03:45:44.671024+00:00",
     "status": "OPEN",
     "tp1_hit": false,
     "tp2_hit": false,
@@ -20,13 +20,13 @@
     "tp2_stop_locked": false,
     "tp1_locked_stop": 0.0,
     "tp2_locked_stop": 0.0,
-    "best_price": 84.03,
-    "last_action": "OPEN",
-    "last_message_key": "",
-    "entry_integrity_score": 100,
-    "entry_fail_streak": 0,
+    "best_price": 83.95,
+    "last_action": "PROTECT_OR_EXIT",
+    "last_message_key": "e22915d4fa:PROTECT_OR_EXIT:False:False:False:False:False:84.5762",
+    "entry_integrity_score": 48,
+    "entry_fail_streak": 1,
     "entry_recovery_checks": 0,
-    "entry_last_state": "СИЛЬНА",
+    "entry_last_state": "🟠 Слабка",
     "mfe_giveback_streak": 0,
     "mfe_giveback_last_state": "OK",
     "notes": [
@@ -35,14 +35,6 @@
     ]
   },
   "history": [
-    {
-      "type": "NO_TRADE",
-      "side": "NEUTRAL",
-      "price": 84.89,
-      "quality": 41,
-      "reason": "перевага нечітка, немає професійного входу",
-      "time": "2026-06-13T07:57:41.884412+00:00"
-    },
     {
       "type": "WATCH",
       "side": "SHORT",
@@ -741,18 +733,27 @@
       "tp2": 82.5595,
       "tp3": 81.5091,
       "time": "2026-06-14T03:45:44.671106+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "PROTECT_OR_EXIT",
+      "price": 83.95,
+      "result_pct": 0.095,
+      "stop_current": 84.5762,
+      "time": "2026-06-14T04:01:08.604681+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-14T03:45:44.671132+00:00",
-    "price": 84.03,
-    "oi": 63648.25,
-    "cvd": -26942.0,
-    "cvd_time": "2026-06-14T03:45:44.671134+00:00",
-    "last_trade_ts": 1781408727052,
+    "time": "2026-06-14T04:01:08.604693+00:00",
+    "price": 83.95,
+    "oi": 63622.05,
+    "cvd": -37682.0,
+    "cvd_time": "2026-06-14T04:01:08.604695+00:00",
+    "last_trade_ts": 1781409661636,
     "bias": "SHORT",
-    "tech_score": -96,
-    "total_score": -101
+    "tech_score": -87,
+    "total_score": -93
   },
-  "updated_at": "2026-06-14T03:45:44.671139+00:00"
+  "updated_at": "2026-06-14T04:01:08.604699+00:00"
 }
