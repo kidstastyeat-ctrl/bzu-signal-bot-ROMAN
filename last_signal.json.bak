@@ -1,48 +1,7 @@
 {
   "version": "pro-v2-intraday-architecture",
-  "active_trade": {
-    "id": "e22915d4fa",
-    "side": "SHORT",
-    "opened_at": "2026-06-14T03:45:44.671024+00:00",
-    "entry": 84.03,
-    "stop_initial": 84.5762,
-    "stop_current": 84.5762,
-    "tp1": 83.2317,
-    "tp2": 82.5595,
-    "tp3": 81.5091,
-    "quality": 73,
-    "stop_updated_at": "2026-06-14T03:45:44.671024+00:00",
-    "status": "OPEN",
-    "tp1_hit": false,
-    "tp2_hit": false,
-    "tp3_hit": false,
-    "tp1_stop_locked": false,
-    "tp2_stop_locked": false,
-    "tp1_locked_stop": 0.0,
-    "tp2_locked_stop": 0.0,
-    "best_price": 83.95,
-    "last_action": "PROTECT_OR_EXIT",
-    "last_message_key": "e22915d4fa:PROTECT_OR_EXIT:False:False:False:False:False:84.5762",
-    "entry_integrity_score": 46,
-    "entry_fail_streak": 2,
-    "entry_recovery_checks": 0,
-    "entry_last_state": "🟠 Слабка",
-    "mfe_giveback_streak": 0,
-    "mfe_giveback_last_state": "OK",
-    "notes": [
-      "RISKY_ENTRY",
-      "ранній ICT/SMC вхід: ICT і структура вже за напрям, не чекаємо повного набору підтверджень"
-    ]
-  },
+  "active_trade": null,
   "history": [
-    {
-      "type": "NO_TRADE",
-      "side": "NEUTRAL",
-      "price": 84.86,
-      "quality": 48,
-      "reason": "перевага нечітка, немає професійного входу",
-      "time": "2026-06-13T08:15:48.627925+00:00"
-    },
     {
       "type": "WATCH",
       "side": "SHORT",
@@ -743,18 +702,29 @@
       "result_pct": -0.024,
       "stop_current": 84.5762,
       "time": "2026-06-14T04:15:47.314794+00:00"
+    },
+    {
+      "type": "TRADE_CLOSED",
+      "side": "SHORT",
+      "action": "EXIT_ENTRY_POINT_BROKEN",
+      "price": 84.03,
+      "result_pct": 0.0,
+      "mfe_pct": 0.095,
+      "mfe_captured_pct": null,
+      "mfe_giveback_pct": null,
+      "time": "2026-06-14T04:30:58.126318+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-14T04:15:47.314806+00:00",
-    "price": 84.05,
-    "oi": 63691.25,
-    "cvd": -31607.0,
-    "cvd_time": "2026-06-14T04:15:47.314809+00:00",
-    "last_trade_ts": 1781410534021,
-    "bias": "SHORT",
-    "tech_score": -58,
-    "total_score": -64
+    "time": "2026-06-14T04:30:58.126330+00:00",
+    "price": 84.03,
+    "oi": 63760.72,
+    "cvd": -40435.0,
+    "cvd_time": "2026-06-14T04:30:58.126332+00:00",
+    "last_trade_ts": 1781411402105,
+    "bias": "NEUTRAL",
+    "tech_score": -35,
+    "total_score": -41
   },
-  "updated_at": "2026-06-14T04:15:47.314813+00:00"
+  "updated_at": "2026-06-14T04:30:58.126337+00:00"
 }
