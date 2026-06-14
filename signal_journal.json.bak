@@ -11726,7 +11726,18 @@
       "context_bias": "SHORT",
       "tech_score": -229,
       "total_score": -227
+    },
+    {
+      "time": "2026-06-14T08:01:18.082295+00:00",
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "TP1_PROTECT",
+      "price": 83.15,
+      "quality": 70,
+      "context_bias": "SHORT",
+      "tech_score": -226,
+      "total_score": -223
     }
   ],
-  "updated_at": "2026-06-14T07:45:58.840127+00:00"
+  "updated_at": "2026-06-14T08:01:18.084354+00:00"
 }

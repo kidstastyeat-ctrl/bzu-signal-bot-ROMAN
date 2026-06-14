@@ -6,23 +6,23 @@
     "opened_at": "2026-06-14T07:15:47.815030+00:00",
     "entry": 83.74,
     "stop_initial": 84.3105,
-    "stop_current": 84.3105,
+    "stop_current": 83.4547,
     "tp1": 83.1695,
     "tp2": 81.6884,
     "tp3": 79.7205,
     "quality": 70,
-    "stop_updated_at": "2026-06-14T07:15:47.815030+00:00",
+    "stop_updated_at": "2026-06-14T08:01:18.081786+00:00",
     "status": "OPEN",
-    "tp1_hit": false,
+    "tp1_hit": true,
     "tp2_hit": false,
     "tp3_hit": false,
-    "tp1_stop_locked": false,
+    "tp1_stop_locked": true,
     "tp2_stop_locked": false,
-    "tp1_locked_stop": 0.0,
+    "tp1_locked_stop": 83.4547,
     "tp2_locked_stop": 0.0,
-    "best_price": 83.54,
-    "last_action": "HOLD",
-    "last_message_key": "b00087ccab:HOLD:False:False:False:False:False:84.3105",
+    "best_price": 83.0,
+    "last_action": "TP1_PROTECT",
+    "last_message_key": "b00087ccab:TP1_PROTECT:True:False:False:True:False:83.4547",
     "entry_integrity_score": 100,
     "entry_fail_streak": 0,
     "entry_recovery_checks": 1,
@@ -35,15 +35,6 @@
     ]
   },
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "SHORT",
-      "action": "HOLD",
-      "price": 84.4,
-      "result_pct": 0.201,
-      "stop_current": 85.1197,
-      "time": "2026-06-13T11:45:49.527892+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "SHORT",
@@ -748,18 +739,27 @@
       "result_pct": 0.239,
       "stop_current": 84.3105,
       "time": "2026-06-14T07:45:58.837972+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "TP1_PROTECT",
+      "price": 83.15,
+      "result_pct": 0.705,
+      "stop_current": 83.4547,
+      "time": "2026-06-14T08:01:18.082282+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-14T07:45:58.837987+00:00",
-    "price": 83.54,
-    "oi": 65230.4,
-    "cvd": 15824.0,
-    "cvd_time": "2026-06-14T07:45:58.837989+00:00",
-    "last_trade_ts": 1781423142298,
+    "time": "2026-06-14T08:01:18.082299+00:00",
+    "price": 83.15,
+    "oi": 66709.28,
+    "cvd": 7437.0,
+    "cvd_time": "2026-06-14T08:01:18.082302+00:00",
+    "last_trade_ts": 1781424064605,
     "bias": "SHORT",
-    "tech_score": -229,
-    "total_score": -227
+    "tech_score": -226,
+    "total_score": -223
   },
-  "updated_at": "2026-06-14T07:45:58.837995+00:00"
+  "updated_at": "2026-06-14T08:01:18.082306+00:00"
 }
