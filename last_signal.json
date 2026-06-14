@@ -3,14 +3,6 @@
   "active_trade": null,
   "history": [
     {
-      "type": "WATCH",
-      "side": "SHORT",
-      "price": 84.85,
-      "quality": 66,
-      "reason": "напрям є, але 3M ще не підтвердив; чекати 3M higher low/reclaim для LONG або lower high/rejection для SHORT",
-      "time": "2026-06-13T09:01:12.549750+00:00"
-    },
-    {
       "type": "NO_TRADE",
       "side": "NEUTRAL",
       "price": 84.91,
@@ -713,18 +705,26 @@
       "quality": 40,
       "reason": "ринок у балансі / ICT-сетап не готовий",
       "time": "2026-06-14T05:01:10.727747+00:00"
+    },
+    {
+      "type": "WATCH",
+      "side": "SHORT",
+      "price": 84.0,
+      "quality": 63,
+      "reason": "напрям є, але входу ще немає: немає повного ICT-сетапу — якість входу обмежена",
+      "time": "2026-06-14T05:15:49.446996+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-14T05:01:10.727761+00:00",
-    "price": 84.03,
-    "oi": 63785.53,
-    "cvd": -10295.0,
-    "cvd_time": "2026-06-14T05:01:10.727764+00:00",
-    "last_trade_ts": 1781413239999,
-    "bias": "NEUTRAL",
-    "tech_score": -8,
-    "total_score": -14
+    "time": "2026-06-14T05:15:49.447055+00:00",
+    "price": 84.0,
+    "oi": 63993.93,
+    "cvd": -38226.0,
+    "cvd_time": "2026-06-14T05:15:49.447059+00:00",
+    "last_trade_ts": 1781414116368,
+    "bias": "SHORT",
+    "tech_score": -71,
+    "total_score": -72
   },
-  "updated_at": "2026-06-14T05:01:10.727769+00:00"
+  "updated_at": "2026-06-14T05:15:49.447064+00:00"
 }
