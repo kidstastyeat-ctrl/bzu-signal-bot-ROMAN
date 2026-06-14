@@ -2742,7 +2742,199 @@
           "note": ""
         }
       }
+    },
+    {
+      "time": "2026-06-14T22:01:19.777363+00:00",
+      "type": "RISKY_ENTRY",
+      "side": "SHORT",
+      "price": 82.93,
+      "quality": 66,
+      "reason": "ранній ICT/SMC вхід: ICT і структура вже за напрям, не чекаємо повного набору підтверджень; 3M ще не ідеальний, тому тільки ризиковий режим",
+      "plan": {
+        "entry": 82.93,
+        "stop": 84.6881,
+        "tp1": 81.1719,
+        "tp2": 79.77,
+        "tp3": 78.5709,
+        "risk_pct": 2.12,
+        "rr1": 1.0,
+        "rr2": 1.8,
+        "rr3": 2.48,
+        "invalidation": "15m закриття вище 84.6881 або злам 3m/структури проти SHORT. Режим: сильний тренд. TP/стоп динамічні; TP1 у тренді ≈1.35 ATR, у боковику ближче."
+      },
+      "confirmations": [
+        "сильний обсяг",
+        "4h фон підтримує",
+        "15m за напрямом",
+        "1h підтримує",
+        "структура підтверджує",
+        "ICT сетап готовий",
+        "REVERSAL: попередня угода зламалась, шукаємо протилежний рух",
+        "15M вже підтримує розворот",
+        "SMC/BOS підтверджує розворот",
+        "ICT дає sweep/reclaim або continuation для розвороту",
+        "Smart Money RR мінімальний: 1.0R",
+        "ранній ICT/SMC: ICT + структура за напрям"
+      ],
+      "conflicts": [
+        "OI/Funding проти",
+        "локальний покупець у стакані",
+        "ціна TV/OKX розходиться — вхід тільки обережно"
+      ],
+      "context": {
+        "bias": "SHORT",
+        "tech_score": -177,
+        "total_score": -169,
+        "tf3": {
+          "available": true,
+          "bias": "NEUTRAL",
+          "score": 16,
+          "state": "RANGE",
+          "fast_move_pct": 0.734,
+          "drift_pct": -0.543,
+          "vol_ratio": 10.85,
+          "note": "3m швидко йде вгору; 3m higher lows/closes; 3m lower highs/closes"
+        },
+        "tf15": {
+          "label": "15m",
+          "available": true,
+          "bias": "SHORT",
+          "score": -56,
+          "trend": "SHORT",
+          "close": 82.47,
+          "ema20": 83.5686,
+          "ema50": 83.9973,
+          "rsi": 39.0,
+          "atr": 0.8882,
+          "slope_pct": -3.922,
+          "move_8_pct": -2.61,
+          "range_atr": 6.25,
+          "note": "ціна нижче EMA20/50; нахил вниз; імпульс вниз"
+        },
+        "tf1h": {
+          "label": "1h",
+          "available": true,
+          "bias": "SHORT",
+          "score": -56,
+          "trend": "SHORT",
+          "close": 82.38,
+          "ema20": 83.8706,
+          "ema50": 84.7103,
+          "rsi": 40.2,
+          "atr": 1.1741,
+          "slope_pct": -2.065,
+          "move_8_pct": -2.162,
+          "range_atr": 4.75,
+          "note": "ціна нижче EMA20/50; нахил вниз; імпульс вниз"
+        },
+        "tf4h": {
+          "label": "4h",
+          "available": true,
+          "bias": "SHORT",
+          "score": -56,
+          "trend": "SHORT",
+          "close": 82.47,
+          "ema20": 85.5528,
+          "ema50": 88.7362,
+          "rsi": 29.0,
+          "atr": 1.7373,
+          "slope_pct": -1.103,
+          "move_8_pct": -1.915,
+          "range_atr": 7.43,
+          "note": "ціна нижче EMA20/50; нахил вниз; імпульс вниз"
+        },
+        "structure": {
+          "available": true,
+          "bias": "SHORT",
+          "score": -32,
+          "phase": "BOS SHORT",
+          "swing_high": 84.81,
+          "swing_low": 83.86,
+          "recent_high": 85.35,
+          "recent_low": 79.77,
+          "atr": 0.8882,
+          "note": "закриття нижче swing low 83.86"
+        },
+        "flow": {
+          "bias": "NEUTRAL",
+          "score": -10,
+          "trade_delta_pct": 3.89,
+          "book_delta_pct": -100.0,
+          "note": "стакан тисне продавцями"
+        },
+        "cvd": {
+          "bias": "NEUTRAL",
+          "score": 0,
+          "state": "BALANCED",
+          "confidence": "HIGH",
+          "confidence_factor": 1.0,
+          "sample_size": 120,
+          "delta": 674.0,
+          "delta_pct": 3.89,
+          "cvd": -129816.0,
+          "cvd_change_pct": 0.517,
+          "last_trade_ts": 1781474473772,
+          "price_move_pct": 1.018,
+          "note": "CVD без явної переваги"
+        },
+        "clusters": {
+          "bias": "LONG",
+          "score": 7,
+          "state": "LOCAL_BUYER_SUPPORT",
+          "zones": [
+            {
+              "price": 82.3992,
+              "imbalance_pct": 41.7,
+              "volume": 7917.0
+            },
+            {
+              "price": 82.3329,
+              "imbalance_pct": -74.7,
+              "volume": 6881.0
+            },
+            {
+              "price": 82.4656,
+              "imbalance_pct": 100.0,
+              "volume": 2510.0
+            }
+          ],
+          "note": "локальний покупець біля 82.3992; bid-стіна 82.38"
+        },
+        "derivatives": {
+          "bias": "LONG",
+          "score": 24,
+          "state": "LONG_BUILDUP",
+          "oi": 66652.27,
+          "oi_change_pct": 2.439,
+          "funding_pct": -0.14713,
+          "price_change_pct": 2.143,
+          "note": "ціна росте + OI росте — нові лонги/попит; funding перегрітий у шорт — шорт не доганяти"
+        },
+        "liquidity": {
+          "available": true,
+          "bias": "NEUTRAL",
+          "score": 0,
+          "event": "QUIET",
+          "blocks": [],
+          "vol_ratio": 9.4,
+          "move_1_pct": 1.83,
+          "move_6_pct": 1.217,
+          "note": "ліквідаційного тиску не видно"
+        },
+        "news": {
+          "bias": "NEUTRAL",
+          "score": -6,
+          "top": "Iran says draft US deal includes oil sanctions waiver, nuclear limits and asset release - Reuters",
+          "total": 22
+        },
+        "calendar": {
+          "active": false,
+          "alerts": [],
+          "score": 0,
+          "note": ""
+        }
+      }
     }
   ],
-  "updated_at": "2026-06-14T21:45:48.584589+00:00"
+  "updated_at": "2026-06-14T22:01:19.778364+00:00"
 }
