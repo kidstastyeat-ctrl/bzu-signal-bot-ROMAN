@@ -2934,7 +2934,18 @@
           "note": ""
         }
       }
+    },
+    {
+      "time": "2026-06-14T22:15:50.568994+00:00",
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "PROTECT",
+      "price": 82.83,
+      "quality": 66,
+      "context_bias": "SHORT",
+      "tech_score": -61,
+      "total_score": -60
     }
   ],
-  "updated_at": "2026-06-14T22:01:19.778364+00:00"
+  "updated_at": "2026-06-14T22:15:50.569810+00:00"
 }
