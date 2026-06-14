@@ -8367,7 +8367,18 @@
       "context_bias": "SHORT",
       "tech_score": -63,
       "total_score": -64
+    },
+    {
+      "time": "2026-06-14T00:31:02.619524+00:00",
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "HOLD",
+      "price": 84.25,
+      "quality": 78,
+      "context_bias": "NEUTRAL",
+      "tech_score": -2,
+      "total_score": -8
     }
   ],
-  "updated_at": "2026-06-14T00:15:56.907092+00:00"
+  "updated_at": "2026-06-14T00:31:02.621368+00:00"
 }
