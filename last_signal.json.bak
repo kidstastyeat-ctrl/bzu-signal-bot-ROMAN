@@ -1,5 +1,26 @@
 {
-  "version": "pro-v2",
+  "version": "pro-v2-intraday-architecture",
   "active_trade": null,
-  "history": []
+  "history": [
+    {
+      "type": "WATCH",
+      "side": "LONG",
+      "price": 84.64,
+      "quality": 41,
+      "reason": "напрям є, але входу ще немає: важлива новина у найближчу годину; локальний продавець у стакані; CVD/дельта поки проти — ранній вхід тільки як ризиковий",
+      "time": "2026-06-14T18:45:52.145499+00:00"
+    }
+  ],
+  "last_market_snapshot": {
+    "time": "2026-06-14T18:45:52.145546+00:00",
+    "price": 84.64,
+    "oi": 63479.96,
+    "cvd": -9213.0,
+    "cvd_time": "2026-06-14T18:45:52.145548+00:00",
+    "last_trade_ts": 1781462713614,
+    "bias": "LONG",
+    "tech_score": 92,
+    "total_score": 84
+  },
+  "updated_at": "2026-06-14T18:45:52.145551+00:00"
 }
