@@ -5,14 +5,6 @@
     {
       "type": "WATCH",
       "side": "SHORT",
-      "price": 84.02,
-      "quality": 30,
-      "reason": "ICT: ціна біля equilibrium / середина діапазону — входу немає; чекати sweep high/low або BOS + FVG/OB retest",
-      "time": "2026-06-13T17:31:01.207843+00:00"
-    },
-    {
-      "type": "WATCH",
-      "side": "SHORT",
       "price": 83.98,
       "quality": 27,
       "reason": "напрям є, але входу ще немає: ICT проти напрямку — якість входу нижча",
@@ -722,18 +714,26 @@
       "mfe_captured_pct": 21.2,
       "mfe_giveback_pct": 0.579,
       "time": "2026-06-14T13:15:48.856950+00:00"
+    },
+    {
+      "type": "WATCH",
+      "side": "LONG",
+      "price": 84.65,
+      "quality": 14,
+      "reason": "вже були повторні входи в цей напрям після слабкого виходу; потрібен новий BOS/reclaim або повний ICT continuation",
+      "time": "2026-06-14T13:31:07.096011+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-14T13:15:48.856963+00:00",
-    "price": 84.36,
-    "oi": 64976.37,
-    "cvd": 58678.0,
-    "cvd_time": "2026-06-14T13:15:48.856965+00:00",
-    "last_trade_ts": 1781442933958,
+    "time": "2026-06-14T13:31:07.096061+00:00",
+    "price": 84.65,
+    "oi": 64896.55,
+    "cvd": 58845.0,
+    "cvd_time": "2026-06-14T13:31:07.096064+00:00",
+    "last_trade_ts": 1781443851855,
     "bias": "LONG",
-    "tech_score": 130,
-    "total_score": 134
+    "tech_score": 111,
+    "total_score": 116
   },
-  "updated_at": "2026-06-14T13:15:48.856970+00:00"
+  "updated_at": "2026-06-14T13:31:07.096068+00:00"
 }
