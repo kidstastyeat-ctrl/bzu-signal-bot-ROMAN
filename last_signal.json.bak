@@ -3,19 +3,6 @@
   "active_trade": null,
   "history": [
     {
-      "type": "ENTRY",
-      "side": "SHORT",
-      "action": "RISKY_ENTRY",
-      "price": 83.46,
-      "quality": 65,
-      "entry": 83.46,
-      "stop": 84.7002,
-      "tp1": 82.2198,
-      "tp2": 81.4152,
-      "tp3": 79.4539,
-      "time": "2026-06-13T18:01:18.041046+00:00"
-    },
-    {
       "type": "FOLLOW",
       "side": "SHORT",
       "action": "PROTECT_OR_EXIT",
@@ -722,18 +709,26 @@
       "quality": 51,
       "reason": "вже були повторні входи в цей напрям після слабкого виходу; потрібен новий BOS/reclaim або повний ICT continuation",
       "time": "2026-06-14T13:45:57.439411+00:00"
+    },
+    {
+      "type": "WATCH",
+      "side": "LONG",
+      "price": 84.59,
+      "quality": 46,
+      "reason": "вже були повторні входи в цей напрям після слабкого виходу; потрібен новий BOS/reclaim або повний ICT continuation",
+      "time": "2026-06-14T14:01:09.837043+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-14T13:45:57.439467+00:00",
-    "price": 84.46,
-    "oi": 64435.63,
-    "cvd": 90912.0,
-    "cvd_time": "2026-06-14T13:45:57.439471+00:00",
-    "last_trade_ts": 1781444738935,
+    "time": "2026-06-14T14:01:09.837103+00:00",
+    "price": 84.59,
+    "oi": 64480.09,
+    "cvd": 88878.0,
+    "cvd_time": "2026-06-14T14:01:09.837107+00:00",
+    "last_trade_ts": 1781445661882,
     "bias": "LONG",
-    "tech_score": 87,
-    "total_score": 91
+    "tech_score": 53,
+    "total_score": 57
   },
-  "updated_at": "2026-06-14T13:45:57.439476+00:00"
+  "updated_at": "2026-06-14T14:01:09.837112+00:00"
 }
