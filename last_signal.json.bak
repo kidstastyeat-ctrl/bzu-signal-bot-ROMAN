@@ -1,15 +1,41 @@
 {
   "version": "pro-v2-intraday-architecture",
-  "active_trade": null,
+  "active_trade": {
+    "id": "58bfde70fe",
+    "side": "LONG",
+    "opened_at": "2026-06-14T12:45:51.107575+00:00",
+    "entry": 84.38,
+    "stop_initial": 83.5787,
+    "stop_current": 83.5787,
+    "tp1": 85.1816,
+    "tp2": 85.8988,
+    "tp3": 86.9958,
+    "quality": 76,
+    "stop_updated_at": "",
+    "status": "OPEN",
+    "tp1_hit": false,
+    "tp2_hit": false,
+    "tp3_hit": false,
+    "tp1_stop_locked": false,
+    "tp2_stop_locked": false,
+    "tp1_locked_stop": 0.0,
+    "tp2_locked_stop": 0.0,
+    "best_price": 84.38,
+    "last_action": "OPEN",
+    "last_message_key": "",
+    "entry_integrity_score": 100,
+    "entry_fail_streak": 0,
+    "entry_recovery_checks": 0,
+    "entry_last_state": "СИЛЬНА",
+    "mfe_giveback_streak": 0,
+    "mfe_giveback_last_state": "OK",
+    "notes": [
+      "RISKY_ENTRY",
+      "COUNTERTREND_ENTRY",
+      "ранній ICT/SMC вхід: ICT і структура вже за напрям, не чекаємо повного набору підтверджень; anti-chase штраф уже врахований (-6)"
+    ]
+  },
   "history": [
-    {
-      "type": "WATCH",
-      "side": "SHORT",
-      "price": 83.96,
-      "quality": 53,
-      "reason": "напрям є, але входу ще немає: ціна TV/OKX розходиться — вхід тільки обережно; ICT проти напрямку — якість входу нижча",
-      "time": "2026-06-13T16:45:48.137519+00:00"
-    },
     {
       "type": "WATCH",
       "side": "SHORT",
@@ -713,18 +739,31 @@
       "quality": 28,
       "reason": "напрям є, але входу ще немає: ICT проти напрямку — якість входу нижча",
       "time": "2026-06-14T12:31:04.309728+00:00"
+    },
+    {
+      "type": "ENTRY",
+      "side": "LONG",
+      "action": "RISKY_ENTRY",
+      "price": 84.38,
+      "quality": 76,
+      "entry": 84.38,
+      "stop": 83.5787,
+      "tp1": 85.1816,
+      "tp2": 85.8988,
+      "tp3": 86.9958,
+      "time": "2026-06-14T12:45:51.107650+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-14T12:31:04.309802+00:00",
-    "price": 83.96,
-    "oi": 65286.69,
-    "cvd": 80490.0,
-    "cvd_time": "2026-06-14T12:31:04.309807+00:00",
-    "last_trade_ts": 1781440207421,
+    "time": "2026-06-14T12:45:51.107673+00:00",
+    "price": 84.38,
+    "oi": 65697.13,
+    "cvd": 84253.0,
+    "cvd_time": "2026-06-14T12:45:51.107675+00:00",
+    "last_trade_ts": 1781441141509,
     "bias": "LONG",
-    "tech_score": 37,
-    "total_score": 42
+    "tech_score": 222,
+    "total_score": 228
   },
-  "updated_at": "2026-06-14T12:31:04.309812+00:00"
+  "updated_at": "2026-06-14T12:45:51.107680+00:00"
 }
