@@ -20,13 +20,13 @@
     "tp2_stop_locked": false,
     "tp1_locked_stop": 0.0,
     "tp2_locked_stop": 0.0,
-    "best_price": 84.08,
-    "last_action": "EXIT_WARNING",
-    "last_message_key": "76c76b02de:EXIT_WARNING:False:False:False:False:False:83.3944",
-    "entry_integrity_score": 34,
-    "entry_fail_streak": 1,
+    "best_price": 84.14,
+    "last_action": "HOLD",
+    "last_message_key": "76c76b02de:HOLD:False:False:False:False:False:83.3944",
+    "entry_integrity_score": 73,
+    "entry_fail_streak": 0,
     "entry_recovery_checks": 0,
-    "entry_last_state": "🔴 Зламана",
+    "entry_last_state": "🟡 Робоча",
     "mfe_giveback_streak": 0,
     "mfe_giveback_last_state": "OK",
     "notes": [
@@ -36,14 +36,6 @@
     ]
   },
   "history": [
-    {
-      "type": "WATCH",
-      "side": "SHORT",
-      "price": 84.05,
-      "quality": 17,
-      "reason": "напрям є, але входу ще немає: 3m локальний відкат; ICT проти напрямку — якість входу нижча",
-      "time": "2026-06-13T15:31:07.483203+00:00"
-    },
     {
       "type": "WATCH",
       "side": "SHORT",
@@ -741,18 +733,27 @@
       "result_pct": -0.036,
       "stop_current": 83.3944,
       "time": "2026-06-14T11:15:47.288201+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "HOLD",
+      "price": 83.98,
+      "result_pct": 0.048,
+      "stop_current": 83.3944,
+      "time": "2026-06-14T11:31:05.062484+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-14T11:15:47.288213+00:00",
-    "price": 83.91,
-    "oi": 65650.61,
-    "cvd": 36290.0,
-    "cvd_time": "2026-06-14T11:15:47.288215+00:00",
-    "last_trade_ts": 1781435720079,
-    "bias": "NEUTRAL",
-    "tech_score": -40,
-    "total_score": -32
+    "time": "2026-06-14T11:31:05.062495+00:00",
+    "price": 83.98,
+    "oi": 65662.6,
+    "cvd": 42831.0,
+    "cvd_time": "2026-06-14T11:31:05.062497+00:00",
+    "last_trade_ts": 1781436630926,
+    "bias": "LONG",
+    "tech_score": 85,
+    "total_score": 91
   },
-  "updated_at": "2026-06-14T11:15:47.288220+00:00"
+  "updated_at": "2026-06-14T11:31:05.062501+00:00"
 }
