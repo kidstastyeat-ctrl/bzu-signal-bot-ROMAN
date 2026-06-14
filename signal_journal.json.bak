@@ -16030,7 +16030,174 @@
           "note": ""
         }
       }
+    },
+    {
+      "time": "2026-06-14T16:45:55.955409+00:00",
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 84.24,
+      "quality": 38,
+      "reason": "ICT: ціна біля equilibrium / середина діапазону — входу немає; чекати sweep high/low або BOS + FVG/OB retest",
+      "plan": null,
+      "confirmations": [],
+      "conflicts": [
+        "ICT: ціна біля equilibrium / середина діапазону — входу немає; чекати sweep high/low або BOS + FVG/OB retest",
+        "Не плутати з відкатом: для входу потрібен вихід з EQ, sweep або BOS + retest"
+      ],
+      "context": {
+        "bias": "NEUTRAL",
+        "tech_score": 32,
+        "total_score": 38,
+        "tf3": {
+          "available": true,
+          "bias": "NEUTRAL",
+          "score": -10,
+          "state": "RANGE",
+          "fast_move_pct": -0.166,
+          "drift_pct": -0.402,
+          "vol_ratio": 0.1,
+          "note": "3m higher lows/closes; 3m lower highs/closes"
+        },
+        "tf15": {
+          "label": "15m",
+          "available": true,
+          "bias": "NEUTRAL",
+          "score": -3,
+          "trend": "NEUTRAL",
+          "close": 84.39,
+          "ema20": 84.4806,
+          "ema50": 84.3039,
+          "rsi": 49.4,
+          "atr": 0.3829,
+          "slope_pct": -0.483,
+          "move_8_pct": 0.226,
+          "range_atr": 4.36,
+          "note": "EMA20 вище EMA50; нахил вниз"
+        },
+        "tf1h": {
+          "label": "1h",
+          "available": true,
+          "bias": "NEUTRAL",
+          "score": 24,
+          "trend": "NEUTRAL",
+          "close": 84.39,
+          "ema20": 84.2784,
+          "ema50": 84.9773,
+          "rsi": 50.2,
+          "atr": 0.6695,
+          "slope_pct": 0.368,
+          "move_8_pct": 1.042,
+          "range_atr": 3.51,
+          "note": "EMA20 нижче EMA50; нахил вгору; імпульс вгору"
+        },
+        "tf4h": {
+          "label": "4h",
+          "available": true,
+          "bias": "SHORT",
+          "score": -42,
+          "trend": "SHORT",
+          "close": 84.39,
+          "ema20": 85.8582,
+          "ema50": 89.0545,
+          "rsi": 35.7,
+          "atr": 1.4576,
+          "slope_pct": -0.986,
+          "move_8_pct": -0.107,
+          "range_atr": 6.72,
+          "note": "ціна нижче EMA20/50; нахил вниз"
+        },
+        "structure": {
+          "available": true,
+          "bias": "NEUTRAL",
+          "score": 8,
+          "phase": "RANGE / WAIT",
+          "swing_high": 85.12,
+          "swing_low": 83.8,
+          "recent_high": 85.35,
+          "recent_low": 83.49,
+          "atr": 0.3829,
+          "note": "сильне bullish-закриття"
+        },
+        "flow": {
+          "bias": "LONG",
+          "score": 26,
+          "trade_delta_pct": 98.92,
+          "book_delta_pct": 33.45,
+          "note": "угоди за покупців; стакан підтримує покупців; підтримка покупців біля 84.02"
+        },
+        "cvd": {
+          "bias": "NEUTRAL",
+          "score": 14,
+          "state": "BUYERS_DOMINATE",
+          "confidence": "HIGH",
+          "confidence_factor": 1.0,
+          "sample_size": 120,
+          "delta": 16532.0,
+          "delta_pct": 98.92,
+          "cvd": 156930.0,
+          "cvd_change_pct": 11.775,
+          "last_trade_ts": 1781455537470,
+          "price_move_pct": -0.319,
+          "note": "CVD росте"
+        },
+        "clusters": {
+          "bias": "NEUTRAL",
+          "score": 3,
+          "state": "LOCAL_BUY_PRESSURE_ABOVE",
+          "zones": [
+            {
+              "price": 84.3074,
+              "imbalance_pct": 100.0,
+              "volume": 12156.0
+            },
+            {
+              "price": 84.3748,
+              "imbalance_pct": 97.9,
+              "volume": 3178.0
+            },
+            {
+              "price": 84.24,
+              "imbalance_pct": 91.7,
+              "volume": 1378.0
+            }
+          ],
+          "note": "локальні покупки вище ціни"
+        },
+        "derivatives": {
+          "bias": "NEUTRAL",
+          "score": 0,
+          "state": "POSITIONING_UNKNOWN",
+          "oi": 64713.16,
+          "oi_change_pct": 0.108,
+          "funding_pct": 0,
+          "price_change_pct": -0.331,
+          "note": "OI ще накопичує історію для порівняння"
+        },
+        "liquidity": {
+          "available": true,
+          "bias": "NEUTRAL",
+          "score": 0,
+          "event": "QUIET",
+          "blocks": [],
+          "vol_ratio": 0.09,
+          "move_1_pct": 0.036,
+          "move_6_pct": -0.307,
+          "note": "ліквідаційного тиску не видно"
+        },
+        "news": {
+          "bias": "NEUTRAL",
+          "score": 9,
+          "top": "HFGG.DE - Reuters",
+          "total": 26
+        },
+        "calendar": {
+          "active": false,
+          "alerts": [],
+          "score": 0,
+          "note": ""
+        }
+      }
     }
   ],
-  "updated_at": "2026-06-14T16:31:12.421004+00:00"
+  "updated_at": "2026-06-14T16:45:55.957500+00:00"
 }
