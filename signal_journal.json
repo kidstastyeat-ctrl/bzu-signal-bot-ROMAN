@@ -13962,7 +13962,18 @@
           "note": ""
         }
       }
+    },
+    {
+      "time": "2026-06-14T13:01:14.368554+00:00",
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "PROTECT",
+      "price": 84.8,
+      "quality": 76,
+      "context_bias": "LONG",
+      "tech_score": 184,
+      "total_score": 175
     }
   ],
-  "updated_at": "2026-06-14T12:45:51.109354+00:00"
+  "updated_at": "2026-06-14T13:01:14.370682+00:00"
 }
