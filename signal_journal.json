@@ -1,6 +1,36 @@
 {
   "version": "pro-v2-intraday-architecture",
-  "trades": [],
+  "trades": [
+    {
+      "id": "9f74ec4896",
+      "opened_at": "2026-06-14T20:31:02.558033+00:00",
+      "closed_at": "2026-06-14T20:46:13.287345+00:00",
+      "side": "LONG",
+      "entry": 84.64,
+      "close_price": 84.0384,
+      "market_close_price": 83.99,
+      "stop_initial": 84.0384,
+      "stop_final": 84.0384,
+      "tp1": 85.5287,
+      "tp2": 86.2905,
+      "tp3": 87.5178,
+      "quality": 64,
+      "result_action": "STOP",
+      "result_pct": -0.711,
+      "leveraged_pct": -7.11,
+      "best_pct": 0.201,
+      "mfe_pct": 0.201,
+      "mfe_captured_pct": -353.7,
+      "mfe_giveback_pct": 0.912,
+      "exit_reason_code": "STOP_BY_HIGH_LOW",
+      "exit_quality": 21,
+      "exit_score": null,
+      "missed_continuation_check": "pending_next_runs",
+      "notes": [
+        "стоп 84.0384 зачеплено по high/low 3M після його встановлення; ринкова ціна 83.99"
+      ]
+    }
+  ],
   "signals": [
     {
       "time": "2026-06-14T18:45:52.145504+00:00",
@@ -1993,7 +2023,18 @@
           "note": ""
         }
       }
+    },
+    {
+      "time": "2026-06-14T20:46:13.287382+00:00",
+      "type": "CLOSE",
+      "side": "LONG",
+      "action": "STOP",
+      "price": 83.99,
+      "quality": 64,
+      "context_bias": "SHORT",
+      "tech_score": -65,
+      "total_score": -68
     }
   ],
-  "updated_at": "2026-06-14T20:31:02.558936+00:00"
+  "updated_at": "2026-06-14T20:46:13.288366+00:00"
 }

@@ -1,39 +1,6 @@
 {
   "version": "pro-v2-intraday-architecture",
-  "active_trade": {
-    "id": "9f74ec4896",
-    "side": "LONG",
-    "opened_at": "2026-06-14T20:31:02.558033+00:00",
-    "entry": 84.64,
-    "stop_initial": 84.0384,
-    "stop_current": 84.0384,
-    "tp1": 85.5287,
-    "tp2": 86.2905,
-    "tp3": 87.5178,
-    "quality": 64,
-    "stop_updated_at": "",
-    "status": "OPEN",
-    "tp1_hit": false,
-    "tp2_hit": false,
-    "tp3_hit": false,
-    "tp1_stop_locked": false,
-    "tp2_stop_locked": false,
-    "tp1_locked_stop": 0.0,
-    "tp2_locked_stop": 0.0,
-    "best_price": 84.64,
-    "last_action": "OPEN",
-    "last_message_key": "",
-    "entry_integrity_score": 100,
-    "entry_fail_streak": 0,
-    "entry_recovery_checks": 0,
-    "entry_last_state": "СИЛЬНА",
-    "mfe_giveback_streak": 0,
-    "mfe_giveback_last_state": "OK",
-    "notes": [
-      "RISKY_ENTRY",
-      "є ранній тригер, але підтверджень ще не максимум: 15m за напрямом | 3m дав тригер | потік підтримує | кластери локально підтримують"
-    ]
-  },
+  "active_trade": null,
   "history": [
     {
       "type": "WATCH",
@@ -127,18 +94,29 @@
       "tp2": 86.2905,
       "tp3": 87.5178,
       "time": "2026-06-14T20:31:02.558121+00:00"
+    },
+    {
+      "type": "TRADE_CLOSED",
+      "side": "LONG",
+      "action": "STOP",
+      "price": 83.99,
+      "result_pct": -0.711,
+      "mfe_pct": 0.201,
+      "mfe_captured_pct": -353.7,
+      "mfe_giveback_pct": 0.912,
+      "time": "2026-06-14T20:46:13.287376+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-14T20:31:02.558148+00:00",
-    "price": 84.64,
-    "oi": 62287.91,
-    "cvd": -93227.0,
-    "cvd_time": "2026-06-14T20:31:02.558151+00:00",
-    "last_trade_ts": 1781469049048,
-    "bias": "LONG",
-    "tech_score": 82,
-    "total_score": 80
+    "time": "2026-06-14T20:46:13.287387+00:00",
+    "price": 83.99,
+    "oi": 62778.2,
+    "cvd": -89146.0,
+    "cvd_time": "2026-06-14T20:46:13.287389+00:00",
+    "last_trade_ts": 1781469953202,
+    "bias": "SHORT",
+    "tech_score": -65,
+    "total_score": -68
   },
-  "updated_at": "2026-06-14T20:31:02.558156+00:00"
+  "updated_at": "2026-06-14T20:46:13.287394+00:00"
 }
