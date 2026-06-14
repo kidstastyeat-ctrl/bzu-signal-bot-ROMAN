@@ -3,14 +3,6 @@
   "active_trade": null,
   "history": [
     {
-      "type": "WATCH",
-      "side": "SHORT",
-      "price": 84.26,
-      "quality": 52,
-      "reason": "напрям формується, але потрібна ціна-тригер: reclaim/ретест на 3M",
-      "time": "2026-06-13T22:45:57.762267+00:00"
-    },
-    {
       "type": "ENTRY",
       "side": "SHORT",
       "action": "ENTRY",
@@ -711,18 +703,26 @@
       "quality": 37,
       "reason": "ICT: ціна біля equilibrium / середина діапазону — входу немає; чекати sweep high/low або BOS + FVG/OB retest",
       "time": "2026-06-14T18:01:15.528769+00:00"
+    },
+    {
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 84.18,
+      "quality": 39,
+      "reason": "ICT: ціна біля equilibrium / середина діапазону — входу немає; чекати sweep high/low або BOS + FVG/OB retest",
+      "time": "2026-06-14T18:15:49.990885+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-14T18:01:15.528784+00:00",
-    "price": 84.12,
-    "oi": 64246.47,
-    "cvd": 179234.0,
-    "cvd_time": "2026-06-14T18:01:15.528787+00:00",
-    "last_trade_ts": 1781460047637,
+    "time": "2026-06-14T18:15:49.990901+00:00",
+    "price": 84.18,
+    "oi": 64169.05,
+    "cvd": 191376.0,
+    "cvd_time": "2026-06-14T18:15:49.990903+00:00",
+    "last_trade_ts": 1781460915112,
     "bias": "NEUTRAL",
-    "tech_score": 32,
-    "total_score": 27
+    "tech_score": -11,
+    "total_score": -17
   },
-  "updated_at": "2026-06-14T18:01:15.528792+00:00"
+  "updated_at": "2026-06-14T18:15:49.990908+00:00"
 }
