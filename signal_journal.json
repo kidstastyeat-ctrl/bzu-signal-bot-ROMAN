@@ -14921,7 +14921,18 @@
           "note": ""
         }
       }
+    },
+    {
+      "time": "2026-06-14T14:45:53.255859+00:00",
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "EXIT_WARNING",
+      "price": 84.58,
+      "quality": 76,
+      "context_bias": "LONG",
+      "tech_score": 70,
+      "total_score": 70
     }
   ],
-  "updated_at": "2026-06-14T14:31:14.736670+00:00"
+  "updated_at": "2026-06-14T14:45:53.258057+00:00"
 }
