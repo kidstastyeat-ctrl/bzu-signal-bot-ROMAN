@@ -8400,7 +8400,18 @@
       "context_bias": "NEUTRAL",
       "tech_score": -18,
       "total_score": -24
+    },
+    {
+      "time": "2026-06-14T01:15:46.263885+00:00",
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "EXIT_WARNING",
+      "price": 84.02,
+      "quality": 78,
+      "context_bias": "SHORT",
+      "tech_score": -78,
+      "total_score": -74
     }
   ],
-  "updated_at": "2026-06-14T01:01:10.144209+00:00"
+  "updated_at": "2026-06-14T01:15:46.265867+00:00"
 }
