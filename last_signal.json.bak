@@ -3,19 +3,6 @@
   "active_trade": null,
   "history": [
     {
-      "type": "ENTRY",
-      "side": "LONG",
-      "action": "RISKY_ENTRY",
-      "price": 84.23,
-      "quality": 76,
-      "entry": 84.23,
-      "stop": 83.5189,
-      "tp1": 85.0302,
-      "tp2": 85.7461,
-      "tp3": 86.8411,
-      "time": "2026-06-13T21:15:58.122212+00:00"
-    },
-    {
       "type": "FOLLOW",
       "side": "LONG",
       "action": "HOLD",
@@ -722,18 +709,26 @@
       "quality": 38,
       "reason": "ICT: ціна біля equilibrium / середина діапазону — входу немає; чекати sweep high/low або BOS + FVG/OB retest",
       "time": "2026-06-14T17:01:14.949091+00:00"
+    },
+    {
+      "type": "WATCH",
+      "side": "SHORT",
+      "price": 84.07,
+      "quality": 55,
+      "reason": "ICT: ціна біля equilibrium / середина діапазону — входу немає; чекати sweep high/low або BOS + FVG/OB retest",
+      "time": "2026-06-14T17:15:53.017705+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-14T17:01:14.949106+00:00",
-    "price": 84.17,
-    "oi": 65269.75,
-    "cvd": 165272.0,
-    "cvd_time": "2026-06-14T17:01:14.949109+00:00",
-    "last_trade_ts": 1781456466809,
-    "bias": "NEUTRAL",
-    "tech_score": -18,
-    "total_score": -24
+    "time": "2026-06-14T17:15:53.017762+00:00",
+    "price": 84.07,
+    "oi": 65185.89,
+    "cvd": 158553.0,
+    "cvd_time": "2026-06-14T17:15:53.017765+00:00",
+    "last_trade_ts": 1781457316041,
+    "bias": "SHORT",
+    "tech_score": -81,
+    "total_score": -88
   },
-  "updated_at": "2026-06-14T17:01:14.949114+00:00"
+  "updated_at": "2026-06-14T17:15:53.017770+00:00"
 }
