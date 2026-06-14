@@ -6,15 +6,6 @@
       "type": "FOLLOW",
       "side": "SHORT",
       "action": "TP1_PROTECT",
-      "price": 83.9,
-      "result_pct": 0.792,
-      "stop_current": 84.1349,
-      "time": "2026-06-13T13:20:54.147587+00:00"
-    },
-    {
-      "type": "FOLLOW",
-      "side": "SHORT",
-      "action": "TP1_PROTECT",
       "price": 84.02,
       "result_pct": 0.65,
       "stop_current": 84.1349,
@@ -715,18 +706,26 @@
       "quality": 53,
       "reason": "попередній SHORT зламано (STOP, 0.341%); шукати LONG тільки після 3M + BOS/reclaim",
       "time": "2026-06-14T09:01:14.747798+00:00"
+    },
+    {
+      "type": "WATCH",
+      "side": "SHORT",
+      "price": 83.67,
+      "quality": 46,
+      "reason": "ICT: ціна біля equilibrium / середина діапазону — входу немає; чекати sweep high/low або BOS + FVG/OB retest",
+      "time": "2026-06-14T09:16:01.537355+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-14T09:01:14.747852+00:00",
-    "price": 83.46,
-    "oi": 66432.95,
-    "cvd": 26268.0,
-    "cvd_time": "2026-06-14T09:01:14.747857+00:00",
-    "last_trade_ts": 1781427661156,
-    "bias": "NEUTRAL",
-    "tech_score": -42,
-    "total_score": -40
+    "time": "2026-06-14T09:16:01.537416+00:00",
+    "price": 83.67,
+    "oi": 66562.47,
+    "cvd": 17174.0,
+    "cvd_time": "2026-06-14T09:16:01.537419+00:00",
+    "last_trade_ts": 1781428525240,
+    "bias": "SHORT",
+    "tech_score": -64,
+    "total_score": -60
   },
-  "updated_at": "2026-06-14T09:01:14.747861+00:00"
+  "updated_at": "2026-06-14T09:16:01.537425+00:00"
 }
