@@ -1,15 +1,40 @@
 {
   "version": "pro-v2-intraday-architecture",
-  "active_trade": null,
+  "active_trade": {
+    "id": "b00087ccab",
+    "side": "SHORT",
+    "opened_at": "2026-06-14T07:15:47.815030+00:00",
+    "entry": 83.74,
+    "stop_initial": 84.3105,
+    "stop_current": 84.3105,
+    "tp1": 83.1695,
+    "tp2": 81.6884,
+    "tp3": 79.7205,
+    "quality": 70,
+    "stop_updated_at": "",
+    "status": "OPEN",
+    "tp1_hit": false,
+    "tp2_hit": false,
+    "tp3_hit": false,
+    "tp1_stop_locked": false,
+    "tp2_stop_locked": false,
+    "tp1_locked_stop": 0.0,
+    "tp2_locked_stop": 0.0,
+    "best_price": 83.74,
+    "last_action": "OPEN",
+    "last_message_key": "",
+    "entry_integrity_score": 100,
+    "entry_fail_streak": 0,
+    "entry_recovery_checks": 0,
+    "entry_last_state": "СИЛЬНА",
+    "mfe_giveback_streak": 0,
+    "mfe_giveback_last_state": "OK",
+    "notes": [
+      "RISKY_ENTRY",
+      "ICT/SMC + 3M дають ранній вхід, але CVD/потік/кластери ще не підтвердили — ризиковий режим"
+    ]
+  },
   "history": [
-    {
-      "type": "WATCH",
-      "side": "SHORT",
-      "price": 84.76,
-      "quality": 55,
-      "reason": "ICT: ціна біля equilibrium / середина діапазону — входу немає; чекати sweep high/low або BOS + FVG/OB retest",
-      "time": "2026-06-13T11:01:12.311357+00:00"
-    },
     {
       "type": "WATCH",
       "side": "SHORT",
@@ -713,18 +738,31 @@
       "quality": 41,
       "reason": "ICT: ціна біля equilibrium / середина діапазону — входу немає; чекати sweep high/low або BOS + FVG/OB retest",
       "time": "2026-06-14T07:01:16.672906+00:00"
+    },
+    {
+      "type": "ENTRY",
+      "side": "SHORT",
+      "action": "RISKY_ENTRY",
+      "price": 83.74,
+      "quality": 70,
+      "entry": 83.74,
+      "stop": 84.3105,
+      "tp1": 83.1695,
+      "tp2": 81.6884,
+      "tp3": 79.7205,
+      "time": "2026-06-14T07:15:47.815120+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-14T07:01:16.672922+00:00",
-    "price": 84.02,
-    "oi": 65249.46,
-    "cvd": 41266.0,
-    "cvd_time": "2026-06-14T07:01:16.672924+00:00",
-    "last_trade_ts": 1781420437317,
-    "bias": "NEUTRAL",
-    "tech_score": -4,
-    "total_score": -5
+    "time": "2026-06-14T07:15:47.815149+00:00",
+    "price": 83.74,
+    "oi": 64386.9,
+    "cvd": 61946.0,
+    "cvd_time": "2026-06-14T07:15:47.815152+00:00",
+    "last_trade_ts": 1781421316523,
+    "bias": "SHORT",
+    "tech_score": -156,
+    "total_score": -155
   },
-  "updated_at": "2026-06-14T07:01:16.672929+00:00"
+  "updated_at": "2026-06-14T07:15:47.815157+00:00"
 }
