@@ -6,12 +6,12 @@
     "opened_at": "2026-06-14T23:31:03.961694+00:00",
     "entry": 82.98,
     "stop_initial": 84.0173,
-    "stop_current": 84.0173,
+    "stop_current": 82.7989,
     "tp1": 81.9428,
     "tp2": 79.77,
     "tp3": 79.1085,
     "quality": 76,
-    "stop_updated_at": "2026-06-14T23:31:03.961694+00:00",
+    "stop_updated_at": "2026-06-15T00:15:49.394628+00:00",
     "status": "OPEN",
     "tp1_hit": false,
     "tp2_hit": false,
@@ -20,13 +20,13 @@
     "tp2_stop_locked": false,
     "tp1_locked_stop": 0.0,
     "tp2_locked_stop": 0.0,
-    "best_price": 82.83,
-    "last_action": "HOLD",
-    "last_message_key": "31f05050b8:HOLD:False:False:False:False:False:84.0173",
-    "entry_integrity_score": 65,
+    "best_price": 82.43,
+    "last_action": "PROTECT",
+    "last_message_key": "31f05050b8:PROTECT:False:False:False:False:False:82.7989",
+    "entry_integrity_score": 100,
     "entry_fail_streak": 0,
     "entry_recovery_checks": 0,
-    "entry_last_state": "🟡 Робоча",
+    "entry_last_state": "🟢 Сильна",
     "mfe_giveback_streak": 0,
     "mfe_giveback_last_state": "OK",
     "notes": [
@@ -258,18 +258,27 @@
       "result_pct": 0.133,
       "stop_current": 84.0173,
       "time": "2026-06-15T00:01:10.102395+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "PROTECT",
+      "price": 82.55,
+      "result_pct": 0.518,
+      "stop_current": 82.7989,
+      "time": "2026-06-15T00:15:49.394883+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-15T00:01:10.102405+00:00",
-    "price": 82.87,
-    "oi": 66601.85,
-    "cvd": -182981.0,
-    "cvd_time": "2026-06-15T00:01:10.102408+00:00",
-    "last_trade_ts": 1781481661125,
+    "time": "2026-06-15T00:15:49.394893+00:00",
+    "price": 82.55,
+    "oi": 66485.14,
+    "cvd": -195863.0,
+    "cvd_time": "2026-06-15T00:15:49.394895+00:00",
+    "last_trade_ts": 1781482538645,
     "bias": "SHORT",
-    "tech_score": -94,
-    "total_score": -81
+    "tech_score": -190,
+    "total_score": -186
   },
-  "updated_at": "2026-06-15T00:01:10.102413+00:00"
+  "updated_at": "2026-06-15T00:15:49.394900+00:00"
 }
