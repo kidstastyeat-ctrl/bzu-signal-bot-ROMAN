@@ -1,6 +1,38 @@
 {
   "version": "pro-v2-intraday-architecture",
-  "active_trade": null,
+  "active_trade": {
+    "id": "0c07d687e4",
+    "side": "SHORT",
+    "opened_at": "2026-06-15T08:31:01.118196+00:00",
+    "entry": 82.24,
+    "stop_initial": 82.9987,
+    "stop_current": 82.9987,
+    "tp1": 81.4813,
+    "tp2": 80.2251,
+    "tp3": 78.2925,
+    "quality": 80,
+    "stop_updated_at": "",
+    "status": "OPEN",
+    "tp1_hit": false,
+    "tp2_hit": false,
+    "tp3_hit": false,
+    "tp1_stop_locked": false,
+    "tp2_stop_locked": false,
+    "tp1_locked_stop": 0.0,
+    "tp2_locked_stop": 0.0,
+    "best_price": 82.24,
+    "last_action": "OPEN",
+    "last_message_key": "",
+    "entry_integrity_score": 100,
+    "entry_fail_streak": 0,
+    "entry_recovery_checks": 0,
+    "entry_last_state": "СИЛЬНА",
+    "mfe_giveback_streak": 0,
+    "mfe_giveback_last_state": "OK",
+    "notes": [
+      "трендовий вхід без повного ICT-сетапу: напрям/структура/3M підтверджують, якість обмежена"
+    ]
+  },
   "history": [
     {
       "type": "WATCH",
@@ -9,18 +41,31 @@
       "quality": 53,
       "reason": "ICT: ціна біля equilibrium / середина діапазону — входу немає; чекати sweep high/low або BOS + FVG/OB retest",
       "time": "2026-06-15T08:29:34.018544+00:00"
+    },
+    {
+      "type": "ENTRY",
+      "side": "SHORT",
+      "action": "ENTRY",
+      "price": 82.24,
+      "quality": 80,
+      "entry": 82.24,
+      "stop": 82.9987,
+      "tp1": 81.4813,
+      "tp2": 80.2251,
+      "tp3": 78.2925,
+      "time": "2026-06-15T08:31:01.118282+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-15T08:29:34.018595+00:00",
-    "price": 82.33,
-    "oi": 64600.78,
-    "cvd": 7385.0,
-    "cvd_time": "2026-06-15T08:29:34.018598+00:00",
-    "last_trade_ts": 1781512162614,
+    "time": "2026-06-15T08:31:01.118308+00:00",
+    "price": 82.24,
+    "oi": 64584.67,
+    "cvd": 4535.0,
+    "cvd_time": "2026-06-15T08:31:01.118311+00:00",
+    "last_trade_ts": 1781512250764,
     "bias": "SHORT",
-    "tech_score": -74,
-    "total_score": -74
+    "tech_score": -150,
+    "total_score": -148
   },
-  "updated_at": "2026-06-15T08:29:34.018601+00:00"
+  "updated_at": "2026-06-15T08:31:01.118316+00:00"
 }
