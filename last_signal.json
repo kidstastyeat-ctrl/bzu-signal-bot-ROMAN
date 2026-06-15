@@ -1486,26 +1486,66 @@
         "previous_regime_type": "NORMAL"
       },
       "time": "2026-06-15T22:31:08.314239+00:00"
+    },
+    {
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 82.79,
+      "quality": 47,
+      "reason": "перевага нечітка, немає професійного входу",
+      "setup_classifier": null,
+      "regime_engine": {
+        "name": "NORMAL",
+        "regime_type": "NORMAL",
+        "label": "звичайний intraday режим",
+        "score": 50,
+        "confidence": 50,
+        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 0,
+        "quality_cap": null,
+        "hard_block": false,
+        "allowed_setups": [],
+        "notes": [],
+        "metrics": {
+          "bias": "LONG",
+          "range_atr": 3.78,
+          "move8_abs_pct": 0.206,
+          "slope15_abs_pct": 0.004,
+          "rsi15": 58.3,
+          "score_total_abs": 33,
+          "participation_same": 0,
+          "late_penalty": 0,
+          "pd": "PREMIUM",
+          "ict_setup": "PREMIUM_FVG_OB_SHORT",
+          "range_edge": false
+        },
+        "stable_count": 4,
+        "pending_count": 0,
+        "is_stable": true,
+        "previous_regime_type": "NORMAL"
+      },
+      "time": "2026-06-15T22:45:49.371114+00:00"
     }
   ],
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 3,
+    "stable_count": 4,
     "pending_count": 0,
-    "updated_at": "2026-06-15T22:31:07.897509+00:00"
+    "updated_at": "2026-06-15T22:45:49.017365+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-15T22:31:08.314255+00:00",
-    "price": 82.76,
-    "oi": 64837.74,
-    "cvd": 169239.0,
-    "cvd_time": "2026-06-15T22:31:08.314259+00:00",
-    "last_trade_ts": 1781562632019,
+    "time": "2026-06-15T22:45:49.371164+00:00",
+    "price": 82.79,
+    "oi": 64625.93,
+    "cvd": 135272.0,
+    "cvd_time": "2026-06-15T22:45:49.371169+00:00",
+    "last_trade_ts": 1781563535149,
     "bias": "NEUTRAL",
-    "tech_score": 35,
+    "tech_score": 36,
     "total_score": 33
   },
-  "updated_at": "2026-06-15T22:31:08.314264+00:00",
+  "updated_at": "2026-06-15T22:45:49.371176+00:00",
   "pending_trigger": null
 }
