@@ -1,5 +1,70 @@
 {
-  "version": "pro-v2",
+  "version": "pro-v2-intraday-architecture",
   "active_trade": null,
-  "history": []
+  "history": [
+    {
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 82.47,
+      "quality": 35,
+      "reason": "ICT: ціна біля equilibrium / середина діапазону — входу немає; чекати sweep high/low або BOS + FVG/OB retest",
+      "setup_classifier": null,
+      "regime_engine": {
+        "name": "RANGE",
+        "regime_type": "RANGE_COMPRESSION",
+        "label": "стискання діапазону",
+        "score": 56,
+        "confidence": 55,
+        "reason": "баланс/EQ: входи тільки після краю діапазону або BOS/reclaim",
+        "entry_action": "WAIT",
+        "entry_quality_adjustment": -2,
+        "quality_cap": 77,
+        "hard_block": false,
+        "allowed_setups": [
+          "RANGE_EDGE_TRADE",
+          "RANGE_COMPRESSION_BREAKOUT",
+          "SWEEP_REVERSAL",
+          "SWEEP_RECLAIM_EARLY_ENTRY"
+        ],
+        "notes": [],
+        "metrics": {
+          "bias": "NEUTRAL",
+          "range_atr": 3.52,
+          "move8_abs_pct": 0.34,
+          "slope15_abs_pct": 0.077,
+          "rsi15": 51.2,
+          "score_total_abs": 8,
+          "participation_same": 0,
+          "late_penalty": 0,
+          "pd": "MIDRANGE",
+          "ict_setup": "BALANCE_MIDRANGE",
+          "range_edge": false
+        },
+        "stable_count": 0,
+        "pending_count": 1,
+        "is_stable": false,
+        "previous_regime_type": ""
+      },
+      "time": "2026-06-15T13:07:33.633562+00:00"
+    }
+  ],
+  "regime_memory": {
+    "type": "",
+    "pending_type": "RANGE_COMPRESSION",
+    "stable_count": 0,
+    "pending_count": 1,
+    "updated_at": "2026-06-15T13:07:33.187992+00:00"
+  },
+  "last_market_snapshot": {
+    "time": "2026-06-15T13:07:33.633577+00:00",
+    "price": 82.47,
+    "oi": 64013.94,
+    "cvd": 1234.0,
+    "cvd_time": "2026-06-15T13:07:33.633580+00:00",
+    "last_trade_ts": 1781528835865,
+    "bias": "NEUTRAL",
+    "tech_score": -10,
+    "total_score": -8
+  },
+  "updated_at": "2026-06-15T13:07:33.633600+00:00"
 }
