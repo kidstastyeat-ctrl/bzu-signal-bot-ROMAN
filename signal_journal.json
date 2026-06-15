@@ -380,7 +380,18 @@
       "context_bias": "SHORT",
       "tech_score": -171,
       "total_score": -169
+    },
+    {
+      "time": "2026-06-15T09:01:21.424556+00:00",
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "PROTECT_OR_EXIT",
+      "price": 82.12,
+      "quality": 80,
+      "context_bias": "SHORT",
+      "tech_score": -131,
+      "total_score": -129
     }
   ],
-  "updated_at": "2026-06-15T08:45:56.615271+00:00"
+  "updated_at": "2026-06-15T09:01:21.425202+00:00"
 }
