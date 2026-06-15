@@ -1,43 +1,6 @@
 {
   "version": "pro-v2-intraday-architecture",
-  "active_trade": {
-    "id": "ff69e3cc1d",
-    "side": "LONG",
-    "opened_at": "2026-06-15T18:15:56.955287+00:00",
-    "entry": 82.19,
-    "stop_initial": 81.516,
-    "stop_current": 82.4953,
-    "tp1": 82.9297,
-    "tp2": 83.505,
-    "tp3": 84.3269,
-    "quality": 75,
-    "stop_updated_at": "2026-06-15T19:45:59.259543+00:00",
-    "status": "OPEN",
-    "tp1_hit": true,
-    "tp2_hit": false,
-    "tp3_hit": false,
-    "tp1_stop_locked": true,
-    "tp2_stop_locked": false,
-    "tp1_locked_stop": 82.4953,
-    "tp2_locked_stop": 0.0,
-    "best_price": 83.07,
-    "last_action": "TP1_PROTECT",
-    "last_message_key": "ff69e3cc1d:TP1_PROTECT:True:False:False:True:False:82.4953",
-    "entry_integrity_score": 47,
-    "entry_fail_streak": 0,
-    "entry_recovery_checks": 0,
-    "entry_last_state": "🟠 Слабка",
-    "mfe_giveback_streak": 0,
-    "mfe_giveback_last_state": "OK",
-    "notes": [
-      "RISKY_ENTRY",
-      "COUNTERTREND_ENTRY",
-      "ENTRY_LEVEL: RISKY_ENTRY",
-      "SETUP_CLASSIFIER: NEWS_IMPULSE",
-      "REGIME_TYPE: NEWS_SHOCK",
-      "ранній 3M-тригер; 15M ще не підтвердив повністю, тому ризик вищий"
-    ]
-  },
+  "active_trade": null,
   "history": [
     {
       "type": "NO_TRADE",
@@ -1265,26 +1228,37 @@
       "result_pct": 0.511,
       "stop_current": 82.4953,
       "time": "2026-06-15T21:01:24.166471+00:00"
+    },
+    {
+      "type": "TRADE_CLOSED",
+      "side": "LONG",
+      "action": "EXIT_MFE_GIVEBACK",
+      "price": 82.54,
+      "result_pct": 0.426,
+      "mfe_pct": 1.071,
+      "mfe_captured_pct": 39.8,
+      "mfe_giveback_pct": 0.645,
+      "time": "2026-06-15T21:15:51.073720+00:00"
     }
   ],
   "regime_memory": {
     "type": "NEWS_SHOCK",
-    "pending_type": "TREND_PULLBACK",
+    "pending_type": "NORMAL",
     "stable_count": 0,
     "pending_count": 1,
-    "updated_at": "2026-06-15T21:01:23.884514+00:00"
+    "updated_at": "2026-06-15T21:15:50.810427+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-15T21:01:24.166490+00:00",
-    "price": 82.61,
-    "oi": 64883.06,
-    "cvd": 186235.0,
-    "cvd_time": "2026-06-15T21:01:24.166493+00:00",
-    "last_trade_ts": 1781557261452,
+    "time": "2026-06-15T21:15:51.073736+00:00",
+    "price": 82.54,
+    "oi": 64919.02,
+    "cvd": 189636.0,
+    "cvd_time": "2026-06-15T21:15:51.073739+00:00",
+    "last_trade_ts": 1781558128250,
     "bias": "NEUTRAL",
-    "tech_score": -35,
-    "total_score": -28
+    "tech_score": 10,
+    "total_score": -4
   },
-  "updated_at": "2026-06-15T21:01:24.166498+00:00",
+  "updated_at": "2026-06-15T21:15:51.073743+00:00",
   "pending_trigger": null
 }

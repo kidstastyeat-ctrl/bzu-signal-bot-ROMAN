@@ -37,6 +37,45 @@
         "ціна повернулась до входу після просадки, але ICT/структура не відновили сетап",
         "слабких перевірок підряд: 1"
       ]
+    },
+    {
+      "id": "ff69e3cc1d",
+      "opened_at": "2026-06-15T18:15:56.955287+00:00",
+      "closed_at": "2026-06-15T21:15:51.073703+00:00",
+      "side": "LONG",
+      "entry_level": "RISKY_ENTRY",
+      "setup_type": "NEWS_IMPULSE",
+      "regime_type": "NEWS_SHOCK",
+      "entry": 82.19,
+      "close_price": 82.54,
+      "market_close_price": 82.54,
+      "stop_initial": 81.516,
+      "stop_final": 82.4953,
+      "tp1": 82.9297,
+      "tp2": 83.505,
+      "tp3": 84.3269,
+      "quality": 75,
+      "result_action": "EXIT_MFE_GIVEBACK",
+      "result_pct": 0.426,
+      "leveraged_pct": 4.26,
+      "best_pct": 1.071,
+      "mfe_pct": 1.071,
+      "mfe_captured_pct": 39.8,
+      "mfe_giveback_pct": 0.645,
+      "trade_phase": null,
+      "phase_status": null,
+      "mae_pct": null,
+      "confirmed_mfe_pct": null,
+      "exit_reason_code": "ADAPTIVE_MFE_GIVEBACK_2_CONFIRMED",
+      "exit_quality": "HARD_ICT_SMC",
+      "exit_score": null,
+      "missed_continuation_check": "pending_next_runs",
+      "notes": [
+        "MFE було +1.071%, зараз 0.426%",
+        "віддано 60.2% руху; ліміт 60.0%",
+        "перевірка 1/2",
+        "ICT/SMC злам підтверджений"
+      ]
     }
   ],
   "signals": [
@@ -6045,43 +6084,102 @@
         "is_stable": false,
         "previous_regime_type": "NEWS_SHOCK"
       }
+    },
+    {
+      "time": "2026-06-15T21:15:51.073727+00:00",
+      "type": "CLOSE",
+      "side": "LONG",
+      "action": "EXIT_MFE_GIVEBACK",
+      "price": 82.54,
+      "quality": 75,
+      "entry_level": "RISKY_ENTRY",
+      "setup_type": "NEWS_IMPULSE",
+      "regime_type": "NEWS_SHOCK",
+      "context_bias": "NEUTRAL",
+      "tech_score": 10,
+      "total_score": -4,
+      "regime_engine": {
+        "name": "NORMAL",
+        "regime_type": "NORMAL",
+        "label": "звичайний intraday режим",
+        "score": 50,
+        "confidence": 50,
+        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 0,
+        "quality_cap": null,
+        "hard_block": false,
+        "allowed_setups": [],
+        "notes": [],
+        "metrics": {
+          "bias": "NEUTRAL",
+          "range_atr": 5.16,
+          "move8_abs_pct": 0.121,
+          "slope15_abs_pct": 0.113,
+          "rsi15": 51.8,
+          "score_total_abs": 4,
+          "participation_same": 0,
+          "late_penalty": 0,
+          "pd": "PREMIUM",
+          "ict_setup": "PREMIUM_FVG_OB_SHORT",
+          "range_edge": false
+        },
+        "stable_count": 0,
+        "pending_count": 1,
+        "is_stable": false,
+        "previous_regime_type": "NEWS_SHOCK"
+      }
     }
   ],
-  "updated_at": "2026-06-15T21:01:24.169961+00:00",
+  "updated_at": "2026-06-15T21:15:51.077257+00:00",
   "outcome_analytics": {
-    "updated_at": "2026-06-15T21:01:24.186893+00:00",
+    "updated_at": "2026-06-15T21:15:51.077783+00:00",
     "lookback_limit": 120,
-    "closed_trades_count": 1,
-    "signals_count": 33,
+    "closed_trades_count": 2,
+    "signals_count": 34,
     "overall": {
-      "trades": 1,
-      "wins": 0,
+      "trades": 2,
+      "wins": 1,
       "losses": 1,
-      "win_rate": 0.0,
-      "expectancy_pct": -0.146,
-      "total_pct": -0.146,
-      "total_leveraged_pct": -1.46,
-      "avg_mfe_pct": 0.511,
-      "avg_mae_pct": 0.329,
-      "avg_mfe_capture_pct": -28.6,
-      "tp1_proxy_rate": 0.0,
-      "stop_or_negative_rate": 100.0
+      "win_rate": 50.0,
+      "expectancy_pct": 0.14,
+      "total_pct": 0.28,
+      "total_leveraged_pct": 2.8,
+      "avg_mfe_pct": 0.791,
+      "avg_mae_pct": 0.165,
+      "avg_mfe_capture_pct": 5.6,
+      "tp1_proxy_rate": 50.0,
+      "stop_or_negative_rate": 50.0
     },
     "today": {
-      "trades": 0,
-      "wins": 0,
+      "trades": 1,
+      "wins": 1,
       "losses": 0,
-      "win_rate": null,
-      "expectancy_pct": 0.0,
-      "total_pct": 0.0,
-      "total_leveraged_pct": 0.0,
-      "avg_mfe_pct": 0.0,
+      "win_rate": 100.0,
+      "expectancy_pct": 0.426,
+      "total_pct": 0.426,
+      "total_leveraged_pct": 4.26,
+      "avg_mfe_pct": 1.071,
       "avg_mae_pct": 0.0,
-      "avg_mfe_capture_pct": null,
-      "tp1_proxy_rate": null,
-      "stop_or_negative_rate": null
+      "avg_mfe_capture_pct": 39.8,
+      "tp1_proxy_rate": 100.0,
+      "stop_or_negative_rate": 0.0
     },
     "by_side": {
+      "LONG": {
+        "trades": 1,
+        "wins": 1,
+        "losses": 0,
+        "win_rate": 100.0,
+        "expectancy_pct": 0.426,
+        "total_pct": 0.426,
+        "total_leveraged_pct": 4.26,
+        "avg_mfe_pct": 1.071,
+        "avg_mae_pct": 0.0,
+        "avg_mfe_capture_pct": 39.8,
+        "tp1_proxy_rate": 100.0,
+        "stop_or_negative_rate": 0.0
+      },
       "SHORT": {
         "trades": 1,
         "wins": 0,
@@ -6098,6 +6196,20 @@
       }
     },
     "by_setup": {
+      "NEWS_IMPULSE": {
+        "trades": 1,
+        "wins": 1,
+        "losses": 0,
+        "win_rate": 100.0,
+        "expectancy_pct": 0.426,
+        "total_pct": 0.426,
+        "total_leveraged_pct": 4.26,
+        "avg_mfe_pct": 1.071,
+        "avg_mae_pct": 0.0,
+        "avg_mfe_capture_pct": 39.8,
+        "tp1_proxy_rate": 100.0,
+        "stop_or_negative_rate": 0.0
+      },
       "TREND_IGNITION_ENTRY": {
         "trades": 1,
         "wins": 0,
@@ -6115,37 +6227,51 @@
     },
     "by_regime": {
       "NEWS_SHOCK": {
-        "trades": 1,
-        "wins": 0,
+        "trades": 2,
+        "wins": 1,
         "losses": 1,
-        "win_rate": 0.0,
-        "expectancy_pct": -0.146,
-        "total_pct": -0.146,
-        "total_leveraged_pct": -1.46,
-        "avg_mfe_pct": 0.511,
-        "avg_mae_pct": 0.329,
-        "avg_mfe_capture_pct": -28.6,
-        "tp1_proxy_rate": 0.0,
-        "stop_or_negative_rate": 100.0
+        "win_rate": 50.0,
+        "expectancy_pct": 0.14,
+        "total_pct": 0.28,
+        "total_leveraged_pct": 2.8,
+        "avg_mfe_pct": 0.791,
+        "avg_mae_pct": 0.165,
+        "avg_mfe_capture_pct": 5.6,
+        "tp1_proxy_rate": 50.0,
+        "stop_or_negative_rate": 50.0
       }
     },
     "by_entry_level": {
       "RISKY_ENTRY": {
-        "trades": 1,
-        "wins": 0,
+        "trades": 2,
+        "wins": 1,
         "losses": 1,
-        "win_rate": 0.0,
-        "expectancy_pct": -0.146,
-        "total_pct": -0.146,
-        "total_leveraged_pct": -1.46,
-        "avg_mfe_pct": 0.511,
-        "avg_mae_pct": 0.329,
-        "avg_mfe_capture_pct": -28.6,
-        "tp1_proxy_rate": 0.0,
-        "stop_or_negative_rate": 100.0
+        "win_rate": 50.0,
+        "expectancy_pct": 0.14,
+        "total_pct": 0.28,
+        "total_leveraged_pct": 2.8,
+        "avg_mfe_pct": 0.791,
+        "avg_mae_pct": 0.165,
+        "avg_mfe_capture_pct": 5.6,
+        "tp1_proxy_rate": 50.0,
+        "stop_or_negative_rate": 50.0
       }
     },
     "by_exit_reason": {
+      "ADAPTIVE_MFE_GIVEBACK_2_CONFIRMED": {
+        "trades": 1,
+        "wins": 1,
+        "losses": 0,
+        "win_rate": 100.0,
+        "expectancy_pct": 0.426,
+        "total_pct": 0.426,
+        "total_leveraged_pct": 4.26,
+        "avg_mfe_pct": 1.071,
+        "avg_mae_pct": 0.0,
+        "avg_mfe_capture_pct": 39.8,
+        "tp1_proxy_rate": 100.0,
+        "stop_or_negative_rate": 0.0
+      },
       "ENTRY_POINT_INTEGRITY_BROKEN": {
         "trades": 1,
         "wins": 0,
@@ -6162,14 +6288,14 @@
       }
     },
     "signals": {
-      "total": 33,
+      "total": 34,
       "entries": 2,
       "full_entries": 0,
       "risky_entries": 2,
       "watch": 10,
       "no_trade": 6,
       "follow": 14,
-      "closed": 1,
+      "closed": 2,
       "pending_trigger_activations": 0
     },
     "signal_counts_by_setup": {
@@ -6178,11 +6304,11 @@
       "NEWS_IMPULSE": 5,
       "NO_CLEAN_SETUP": 3,
       "TREND_IGNITION_ENTRY": 1,
-      "UNKNOWN": 21
+      "UNKNOWN": 22
     },
     "signal_counts_by_regime": {
       "NEWS_SHOCK": 16,
-      "NORMAL": 9,
+      "NORMAL": 10,
       "RANGE_COMPRESSION": 2,
       "REVERSAL_BUILDUP": 1,
       "TREND_EXPANSION": 4,
