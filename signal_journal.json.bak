@@ -1898,7 +1898,18 @@
           "note": ""
         }
       }
+    },
+    {
+      "time": "2026-06-15T12:15:54.379486+00:00",
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "PROTECT_OR_EXIT",
+      "price": 82.36,
+      "quality": 76,
+      "context_bias": "NEUTRAL",
+      "tech_score": 19,
+      "total_score": 25
     }
   ],
-  "updated_at": "2026-06-15T12:01:22.174781+00:00"
+  "updated_at": "2026-06-15T12:15:54.380399+00:00"
 }
