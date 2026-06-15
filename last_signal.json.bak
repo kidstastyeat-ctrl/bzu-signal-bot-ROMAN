@@ -23,8 +23,8 @@
     "best_price": 83.12,
     "last_action": "PROTECT_OR_EXIT",
     "last_message_key": "200aa5cab6:PROTECT_OR_EXIT:False:False:False:False:False:82.1227",
-    "entry_integrity_score": 53,
-    "entry_fail_streak": 1,
+    "entry_integrity_score": 43,
+    "entry_fail_streak": 2,
     "entry_recovery_checks": 0,
     "entry_last_state": "🟠 Слабка",
     "mfe_giveback_streak": 0,
@@ -525,18 +525,27 @@
       "result_pct": 0.157,
       "stop_current": 82.1227,
       "time": "2026-06-15T06:31:02.547068+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "PROTECT_OR_EXIT",
+      "price": 82.66,
+      "result_pct": 0.0,
+      "stop_current": 82.1227,
+      "time": "2026-06-15T06:45:59.794663+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-15T06:31:02.547079+00:00",
-    "price": 82.79,
-    "oi": 64572.34,
-    "cvd": -233362.0,
-    "cvd_time": "2026-06-15T06:31:02.547082+00:00",
-    "last_trade_ts": 1781505053304,
+    "time": "2026-06-15T06:45:59.794675+00:00",
+    "price": 82.66,
+    "oi": 64240.14,
+    "cvd": -221951.0,
+    "cvd_time": "2026-06-15T06:45:59.794677+00:00",
+    "last_trade_ts": 1781505915574,
     "bias": "NEUTRAL",
-    "tech_score": 9,
-    "total_score": 13
+    "tech_score": -24,
+    "total_score": -26
   },
-  "updated_at": "2026-06-15T06:31:02.547087+00:00"
+  "updated_at": "2026-06-15T06:45:59.794682+00:00"
 }
