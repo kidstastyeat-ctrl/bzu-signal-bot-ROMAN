@@ -1495,14 +1495,64 @@
         "is_stable": false,
         "previous_regime_type": "NEWS_SHOCK"
       }
+    },
+    {
+      "time": "2026-06-15T14:31:32.949472+00:00",
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "HOLD",
+      "price": 81.76,
+      "quality": 72,
+      "entry_level": "RISKY_ENTRY",
+      "setup_type": "TREND_IGNITION_ENTRY",
+      "regime_type": "NEWS_SHOCK",
+      "context_bias": "SHORT",
+      "tech_score": -260,
+      "total_score": -249,
+      "regime_engine": {
+        "name": "TREND",
+        "regime_type": "TREND_EXPANSION",
+        "label": "сильне продовження тренду",
+        "score": 82,
+        "confidence": 88,
+        "reason": "сильне продовження: continuation дозволений, TP2/TP3 можна тримати довше, але без доганяння",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 3,
+        "quality_cap": 90,
+        "hard_block": false,
+        "allowed_setups": [
+          "TREND_CONTINUATION",
+          "TREND_IGNITION_ENTRY",
+          "PULLBACK_CONTINUATION",
+          "PULLBACK_CONTINUATION_FAST_ENTRY"
+        ],
+        "notes": [],
+        "metrics": {
+          "bias": "SHORT",
+          "range_atr": 3.34,
+          "move8_abs_pct": 0.595,
+          "slope15_abs_pct": 0.642,
+          "rsi15": 34.6,
+          "score_total_abs": 249,
+          "participation_same": 3,
+          "late_penalty": 11,
+          "pd": "DISCOUNT",
+          "ict_setup": "BOS_SHORT_CONTINUATION_HOLD",
+          "range_edge": false
+        },
+        "stable_count": 1,
+        "pending_count": 1,
+        "is_stable": false,
+        "previous_regime_type": "NEWS_SHOCK"
+      }
     }
   ],
-  "updated_at": "2026-06-15T14:15:58.476474+00:00",
+  "updated_at": "2026-06-15T14:31:32.950914+00:00",
   "outcome_analytics": {
-    "updated_at": "2026-06-15T14:15:58.476538+00:00",
+    "updated_at": "2026-06-15T14:31:32.950965+00:00",
     "lookback_limit": 120,
     "closed_trades_count": 0,
-    "signals_count": 6,
+    "signals_count": 7,
     "overall": {
       "trades": 0,
       "wins": 0,
@@ -1537,13 +1587,13 @@
     "by_entry_level": {},
     "by_exit_reason": {},
     "signals": {
-      "total": 6,
+      "total": 7,
       "entries": 1,
       "full_entries": 0,
       "risky_entries": 1,
       "watch": 2,
       "no_trade": 2,
-      "follow": 1,
+      "follow": 2,
       "closed": 0,
       "pending_trigger_activations": 0
     },
@@ -1551,13 +1601,13 @@
       "COUNTERTREND_SCALP": 1,
       "NO_CLEAN_SETUP": 1,
       "TREND_IGNITION_ENTRY": 1,
-      "UNKNOWN": 3
+      "UNKNOWN": 4
     },
     "signal_counts_by_regime": {
       "NEWS_SHOCK": 1,
       "NORMAL": 2,
       "RANGE_COMPRESSION": 2,
-      "TREND_EXPANSION": 1
+      "TREND_EXPANSION": 2
     }
   }
 }
