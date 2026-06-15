@@ -6,12 +6,12 @@
     "opened_at": "2026-06-15T18:15:56.955287+00:00",
     "entry": 82.19,
     "stop_initial": 81.516,
-    "stop_current": 82.2558,
+    "stop_current": 82.3051,
     "tp1": 82.9297,
     "tp2": 83.505,
     "tp3": 84.3269,
     "quality": 75,
-    "stop_updated_at": "2026-06-15T18:46:00.773946+00:00",
+    "stop_updated_at": "2026-06-15T19:16:08.208695+00:00",
     "status": "OPEN",
     "tp1_hit": false,
     "tp2_hit": false,
@@ -20,9 +20,9 @@
     "tp2_stop_locked": false,
     "tp1_locked_stop": 0.0,
     "tp2_locked_stop": 0.0,
-    "best_price": 82.65,
-    "last_action": "HOLD",
-    "last_message_key": "ff69e3cc1d:HOLD:False:False:False:False:False:82.2558",
+    "best_price": 82.7,
+    "last_action": "PROTECT",
+    "last_message_key": "ff69e3cc1d:PROTECT:False:False:False:False:False:82.3051",
     "entry_integrity_score": 100,
     "entry_fail_streak": 0,
     "entry_recovery_checks": 0,
@@ -1193,26 +1193,35 @@
       "result_pct": 0.389,
       "stop_current": 82.2558,
       "time": "2026-06-15T19:01:29.461247+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "PROTECT",
+      "price": 82.58,
+      "result_pct": 0.475,
+      "stop_current": 82.3051,
+      "time": "2026-06-15T19:16:08.209210+00:00"
     }
   ],
   "regime_memory": {
     "type": "NEWS_SHOCK",
     "pending_type": "",
-    "stable_count": 1,
+    "stable_count": 2,
     "pending_count": 0,
-    "updated_at": "2026-06-15T19:01:29.040356+00:00"
+    "updated_at": "2026-06-15T19:16:07.791089+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-15T19:01:29.461269+00:00",
-    "price": 82.51,
-    "oi": 66328.78,
-    "cvd": 212942.0,
-    "cvd_time": "2026-06-15T19:01:29.461272+00:00",
-    "last_trade_ts": 1781550066043,
+    "time": "2026-06-15T19:16:08.209228+00:00",
+    "price": 82.58,
+    "oi": 65932.84,
+    "cvd": 210422.0,
+    "cvd_time": "2026-06-15T19:16:08.209232+00:00",
+    "last_trade_ts": 1781550908928,
     "bias": "LONG",
-    "tech_score": 103,
-    "total_score": 117
+    "tech_score": 69,
+    "total_score": 83
   },
-  "updated_at": "2026-06-15T19:01:29.461278+00:00",
+  "updated_at": "2026-06-15T19:16:08.209236+00:00",
   "pending_trigger": null
 }
