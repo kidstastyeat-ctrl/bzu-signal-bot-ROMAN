@@ -1,5 +1,26 @@
 {
-  "version": "pro-v2",
+  "version": "pro-v2-intraday-architecture",
   "active_trade": null,
-  "history": []
+  "history": [
+    {
+      "type": "WATCH",
+      "side": "SHORT",
+      "price": 82.25,
+      "quality": 33,
+      "reason": "напрям є, але входу ще немає: ліквідність проти; після зняття ліквідності цей напрям не доганяти; мʼякий anti-chase штраф -3: ліквідність проти: low зняли/дамп викупили, шорт не доганяти",
+      "time": "2026-06-15T12:45:50.380643+00:00"
+    }
+  ],
+  "last_market_snapshot": {
+    "time": "2026-06-15T12:45:50.380699+00:00",
+    "price": 82.25,
+    "oi": 64192.8,
+    "cvd": -31212.0,
+    "cvd_time": "2026-06-15T12:45:50.380702+00:00",
+    "last_trade_ts": 1781527528589,
+    "bias": "SHORT",
+    "tech_score": -48,
+    "total_score": -48
+  },
+  "updated_at": "2026-06-15T12:45:50.380706+00:00"
 }
