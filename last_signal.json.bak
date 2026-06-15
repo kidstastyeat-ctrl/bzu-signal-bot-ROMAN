@@ -9,18 +9,65 @@
       "quality": 33,
       "reason": "напрям є, але входу ще немає: ліквідність проти; після зняття ліквідності цей напрям не доганяти; мʼякий anti-chase штраф -3: ліквідність проти: low зняли/дамп викупили, шорт не доганяти",
       "time": "2026-06-15T12:45:50.380643+00:00"
+    },
+    {
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 82.27,
+      "quality": 45,
+      "reason": "перевага нечітка, немає професійного входу",
+      "setup_classifier": null,
+      "regime_engine": {
+        "name": "NORMAL",
+        "regime_type": "NORMAL",
+        "label": "звичайний intraday режим",
+        "score": 50,
+        "confidence": 50,
+        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 0,
+        "quality_cap": null,
+        "hard_block": false,
+        "allowed_setups": [],
+        "notes": [],
+        "metrics": {
+          "bias": "SHORT",
+          "range_atr": 3.55,
+          "move8_abs_pct": 0.157,
+          "slope15_abs_pct": 0.073,
+          "rsi15": 48.1,
+          "score_total_abs": 31,
+          "participation_same": 0,
+          "late_penalty": 3,
+          "pd": "DISCOUNT",
+          "ict_setup": "DISCOUNT_FVG_OB_LONG",
+          "range_edge": false
+        },
+        "stable_count": 0,
+        "pending_count": 1,
+        "is_stable": false,
+        "previous_regime_type": ""
+      },
+      "time": "2026-06-15T12:46:52.146415+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-15T12:45:50.380699+00:00",
-    "price": 82.25,
-    "oi": 64192.8,
-    "cvd": -31212.0,
-    "cvd_time": "2026-06-15T12:45:50.380702+00:00",
-    "last_trade_ts": 1781527528589,
-    "bias": "SHORT",
-    "tech_score": -48,
-    "total_score": -48
+    "time": "2026-06-15T12:46:52.146429+00:00",
+    "price": 82.27,
+    "oi": 64198.21,
+    "cvd": -27866.0,
+    "cvd_time": "2026-06-15T12:46:52.146431+00:00",
+    "last_trade_ts": 1781527601072,
+    "bias": "NEUTRAL",
+    "tech_score": -32,
+    "total_score": -31
   },
-  "updated_at": "2026-06-15T12:45:50.380706+00:00"
+  "updated_at": "2026-06-15T12:46:52.146436+00:00",
+  "regime_memory": {
+    "type": "",
+    "pending_type": "NORMAL",
+    "stable_count": 0,
+    "pending_count": 1,
+    "updated_at": "2026-06-15T12:46:51.769270+00:00"
+  }
 }
