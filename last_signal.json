@@ -23,10 +23,10 @@
     "best_price": 83.07,
     "last_action": "TP1_PROTECT",
     "last_message_key": "ff69e3cc1d:TP1_PROTECT:True:False:False:True:False:82.4953",
-    "entry_integrity_score": 75,
+    "entry_integrity_score": 47,
     "entry_fail_streak": 0,
     "entry_recovery_checks": 0,
-    "entry_last_state": "🟡 Робоча",
+    "entry_last_state": "🟠 Слабка",
     "mfe_giveback_streak": 0,
     "mfe_giveback_last_state": "OK",
     "notes": [
@@ -1256,26 +1256,35 @@
       "result_pct": 0.572,
       "stop_current": 82.4953,
       "time": "2026-06-15T20:45:53.997766+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "TP1_PROTECT",
+      "price": 82.61,
+      "result_pct": 0.511,
+      "stop_current": 82.4953,
+      "time": "2026-06-15T21:01:24.166471+00:00"
     }
   ],
   "regime_memory": {
     "type": "NEWS_SHOCK",
-    "pending_type": "NORMAL",
+    "pending_type": "TREND_PULLBACK",
     "stable_count": 0,
     "pending_count": 1,
-    "updated_at": "2026-06-15T20:45:53.667320+00:00"
+    "updated_at": "2026-06-15T21:01:23.884514+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-15T20:45:53.997789+00:00",
-    "price": 82.66,
-    "oi": 64934.31,
-    "cvd": 190799.0,
-    "cvd_time": "2026-06-15T20:45:53.997792+00:00",
-    "last_trade_ts": 1781556262718,
+    "time": "2026-06-15T21:01:24.166490+00:00",
+    "price": 82.61,
+    "oi": 64883.06,
+    "cvd": 186235.0,
+    "cvd_time": "2026-06-15T21:01:24.166493+00:00",
+    "last_trade_ts": 1781557261452,
     "bias": "NEUTRAL",
-    "tech_score": 31,
-    "total_score": 33
+    "tech_score": -35,
+    "total_score": -28
   },
-  "updated_at": "2026-06-15T20:45:53.997796+00:00",
+  "updated_at": "2026-06-15T21:01:24.166498+00:00",
   "pending_trigger": null
 }
