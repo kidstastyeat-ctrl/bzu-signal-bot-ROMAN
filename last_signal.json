@@ -1,6 +1,39 @@
 {
   "version": "pro-v2-intraday-architecture",
-  "active_trade": null,
+  "active_trade": {
+    "id": "d60fab1e8b",
+    "side": "SHORT",
+    "opened_at": "2026-06-15T07:16:01.478336+00:00",
+    "entry": 82.42,
+    "stop_initial": 83.2189,
+    "stop_current": 83.2189,
+    "tp1": 81.5546,
+    "tp2": 80.8128,
+    "tp3": 79.6177,
+    "quality": 78,
+    "stop_updated_at": "",
+    "status": "OPEN",
+    "tp1_hit": false,
+    "tp2_hit": false,
+    "tp3_hit": false,
+    "tp1_stop_locked": false,
+    "tp2_stop_locked": false,
+    "tp1_locked_stop": 0.0,
+    "tp2_locked_stop": 0.0,
+    "best_price": 82.42,
+    "last_action": "OPEN",
+    "last_message_key": "",
+    "entry_integrity_score": 100,
+    "entry_fail_streak": 0,
+    "entry_recovery_checks": 0,
+    "entry_last_state": "СИЛЬНА",
+    "mfe_giveback_streak": 0,
+    "mfe_giveback_last_state": "OK",
+    "notes": [
+      "RISKY_ENTRY",
+      "є ранній тригер, але підтверджень ще не максимум: 4h фон підтримує | 15m за напрямом | 1h підтримує | 3m дав тригер"
+    ]
+  },
   "history": [
     {
       "type": "WATCH",
@@ -511,18 +544,31 @@
       "mfe_captured_pct": -8.6,
       "mfe_giveback_pct": 0.604,
       "time": "2026-06-15T07:01:14.605273+00:00"
+    },
+    {
+      "type": "ENTRY",
+      "side": "SHORT",
+      "action": "RISKY_ENTRY",
+      "price": 82.42,
+      "quality": 78,
+      "entry": 82.42,
+      "stop": 83.2189,
+      "tp1": 81.5546,
+      "tp2": 80.8128,
+      "tp3": 79.6177,
+      "time": "2026-06-15T07:16:01.478424+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-15T07:01:14.605285+00:00",
-    "price": 82.62,
-    "oi": 64237.35,
-    "cvd": -219962.0,
-    "cvd_time": "2026-06-15T07:01:14.605288+00:00",
-    "last_trade_ts": 1781506842558,
-    "bias": "NEUTRAL",
-    "tech_score": -12,
-    "total_score": -11
+    "time": "2026-06-15T07:16:01.478453+00:00",
+    "price": 82.42,
+    "oi": 64784.68,
+    "cvd": -243948.0,
+    "cvd_time": "2026-06-15T07:16:01.478456+00:00",
+    "last_trade_ts": 1781507736319,
+    "bias": "SHORT",
+    "tech_score": -206,
+    "total_score": -201
   },
-  "updated_at": "2026-06-15T07:01:14.605293+00:00"
+  "updated_at": "2026-06-15T07:16:01.478461+00:00"
 }
