@@ -1,39 +1,6 @@
 {
   "version": "pro-v2-intraday-architecture",
-  "active_trade": {
-    "id": "31f05050b8",
-    "side": "SHORT",
-    "opened_at": "2026-06-14T23:31:03.961694+00:00",
-    "entry": 82.98,
-    "stop_initial": 84.0173,
-    "stop_current": 82.7989,
-    "tp1": 81.9428,
-    "tp2": 79.77,
-    "tp3": 79.1085,
-    "quality": 76,
-    "stop_updated_at": "2026-06-15T00:15:49.394628+00:00",
-    "status": "OPEN",
-    "tp1_hit": false,
-    "tp2_hit": false,
-    "tp3_hit": false,
-    "tp1_stop_locked": false,
-    "tp2_stop_locked": false,
-    "tp1_locked_stop": 0.0,
-    "tp2_locked_stop": 0.0,
-    "best_price": 82.43,
-    "last_action": "PROTECT",
-    "last_message_key": "31f05050b8:PROTECT:False:False:False:False:False:82.7989",
-    "entry_integrity_score": 100,
-    "entry_fail_streak": 0,
-    "entry_recovery_checks": 0,
-    "entry_last_state": "🟢 Сильна",
-    "mfe_giveback_streak": 0,
-    "mfe_giveback_last_state": "OK",
-    "notes": [
-      "RISKY_ENTRY",
-      "ICT/SMC + 3M дають ранній вхід, але CVD/потік/кластери ще не підтвердили — ризиковий режим"
-    ]
-  },
+  "active_trade": null,
   "history": [
     {
       "type": "WATCH",
@@ -267,18 +234,29 @@
       "result_pct": 0.518,
       "stop_current": 82.7989,
       "time": "2026-06-15T00:15:49.394883+00:00"
+    },
+    {
+      "type": "TRADE_CLOSED",
+      "side": "SHORT",
+      "action": "STOP",
+      "price": 82.83,
+      "result_pct": 0.218,
+      "mfe_pct": 0.663,
+      "mfe_captured_pct": 32.9,
+      "mfe_giveback_pct": 0.445,
+      "time": "2026-06-15T00:31:00.164451+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-15T00:15:49.394893+00:00",
-    "price": 82.55,
-    "oi": 66485.14,
-    "cvd": -195863.0,
-    "cvd_time": "2026-06-15T00:15:49.394895+00:00",
-    "last_trade_ts": 1781482538645,
+    "time": "2026-06-15T00:31:00.164462+00:00",
+    "price": 82.83,
+    "oi": 66630.02,
+    "cvd": -212179.0,
+    "cvd_time": "2026-06-15T00:31:00.164465+00:00",
+    "last_trade_ts": 1781483449871,
     "bias": "SHORT",
-    "tech_score": -190,
-    "total_score": -186
+    "tech_score": -103,
+    "total_score": -99
   },
-  "updated_at": "2026-06-15T00:15:49.394900+00:00"
+  "updated_at": "2026-06-15T00:31:00.164470+00:00"
 }
