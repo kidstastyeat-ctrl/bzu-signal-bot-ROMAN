@@ -6,12 +6,12 @@
     "opened_at": "2026-06-15T18:15:56.955287+00:00",
     "entry": 82.19,
     "stop_initial": 81.516,
-    "stop_current": 81.516,
+    "stop_current": 82.2558,
     "tp1": 82.9297,
     "tp2": 83.505,
     "tp3": 84.3269,
     "quality": 75,
-    "stop_updated_at": "2026-06-15T18:15:56.955287+00:00",
+    "stop_updated_at": "2026-06-15T18:46:00.773946+00:00",
     "status": "OPEN",
     "tp1_hit": false,
     "tp2_hit": false,
@@ -20,13 +20,13 @@
     "tp2_stop_locked": false,
     "tp1_locked_stop": 0.0,
     "tp2_locked_stop": 0.0,
-    "best_price": 82.49,
-    "last_action": "HOLD",
-    "last_message_key": "ff69e3cc1d:HOLD:False:False:False:False:False:81.516",
-    "entry_integrity_score": 68,
+    "best_price": 82.61,
+    "last_action": "PROTECT",
+    "last_message_key": "ff69e3cc1d:PROTECT:False:False:False:False:False:82.2558",
+    "entry_integrity_score": 100,
     "entry_fail_streak": 0,
     "entry_recovery_checks": 0,
-    "entry_last_state": "🟡 Робоча",
+    "entry_last_state": "🟢 Сильна",
     "mfe_giveback_streak": 0,
     "mfe_giveback_last_state": "OK",
     "notes": [
@@ -1175,26 +1175,35 @@
       "result_pct": 0.207,
       "stop_current": 81.516,
       "time": "2026-06-15T18:31:15.210895+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "PROTECT",
+      "price": 82.53,
+      "result_pct": 0.414,
+      "stop_current": 82.2558,
+      "time": "2026-06-15T18:46:00.774456+00:00"
     }
   ],
   "regime_memory": {
     "type": "NEWS_SHOCK",
-    "pending_type": "",
-    "stable_count": 7,
-    "pending_count": 0,
-    "updated_at": "2026-06-15T18:31:14.902118+00:00"
+    "pending_type": "REVERSAL_BUILDUP",
+    "stable_count": 0,
+    "pending_count": 1,
+    "updated_at": "2026-06-15T18:46:00.431630+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-15T18:31:15.210915+00:00",
-    "price": 82.36,
-    "oi": 66437.93,
-    "cvd": 154637.0,
-    "cvd_time": "2026-06-15T18:31:15.210917+00:00",
-    "last_trade_ts": 1781548239053,
-    "bias": "NEUTRAL",
-    "tech_score": 8,
-    "total_score": 2
+    "time": "2026-06-15T18:46:00.774474+00:00",
+    "price": 82.53,
+    "oi": 66341.95,
+    "cvd": 185213.0,
+    "cvd_time": "2026-06-15T18:46:00.774477+00:00",
+    "last_trade_ts": 1781549145244,
+    "bias": "LONG",
+    "tech_score": 136,
+    "total_score": 142
   },
-  "updated_at": "2026-06-15T18:31:15.210922+00:00",
+  "updated_at": "2026-06-15T18:46:00.774482+00:00",
   "pending_trigger": null
 }
