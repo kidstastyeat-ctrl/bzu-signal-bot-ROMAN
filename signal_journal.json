@@ -3772,7 +3772,171 @@
       "context_bias": "SHORT",
       "tech_score": -103,
       "total_score": -99
+    },
+    {
+      "time": "2026-06-15T00:45:51.911884+00:00",
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 83.16,
+      "quality": 47,
+      "reason": "перевага нечітка, немає професійного входу",
+      "plan": null,
+      "confirmations": [],
+      "conflicts": [],
+      "context": {
+        "bias": "NEUTRAL",
+        "tech_score": 14,
+        "total_score": -2,
+        "tf3": {
+          "available": true,
+          "bias": "LONG",
+          "score": 68,
+          "state": "LONG_STRENGTHENING",
+          "fast_move_pct": 0.726,
+          "drift_pct": 0.471,
+          "vol_ratio": 0.07,
+          "note": "3m швидко йде вгору; 3m higher lows/closes"
+        },
+        "tf15": {
+          "label": "15m",
+          "available": true,
+          "bias": "NEUTRAL",
+          "score": 17,
+          "trend": "NEUTRAL",
+          "close": 83.22,
+          "ema20": 83.2197,
+          "ema50": 83.6623,
+          "rsi": 48.3,
+          "atr": 0.5796,
+          "slope_pct": 0.903,
+          "move_8_pct": 0.048,
+          "range_atr": 8.7,
+          "note": "EMA20 нижче EMA50; нахил вгору"
+        },
+        "tf1h": {
+          "label": "1h",
+          "available": true,
+          "bias": "SHORT",
+          "score": -56,
+          "trend": "SHORT",
+          "close": 83.22,
+          "ema20": 83.7962,
+          "ema50": 84.4837,
+          "rsi": 45.6,
+          "atr": 1.1048,
+          "slope_pct": -1.777,
+          "move_8_pct": -1.269,
+          "range_atr": 5.05,
+          "note": "ціна нижче EMA20/50; нахил вниз; імпульс вниз"
+        },
+        "tf4h": {
+          "label": "4h",
+          "available": true,
+          "bias": "SHORT",
+          "score": -56,
+          "trend": "SHORT",
+          "close": 83.22,
+          "ema20": 85.3706,
+          "ema50": 88.5184,
+          "rsi": 32.4,
+          "atr": 1.6718,
+          "slope_pct": -1.365,
+          "move_8_pct": -0.929,
+          "range_atr": 5.34,
+          "note": "ціна нижче EMA20/50; нахил вниз; імпульс вниз"
+        },
+        "structure": {
+          "available": true,
+          "bias": "NEUTRAL",
+          "score": 8,
+          "phase": "RANGE / WAIT",
+          "swing_high": 83.94,
+          "swing_low": 82.43,
+          "recent_high": 85.32,
+          "recent_low": 79.77,
+          "atr": 0.5796,
+          "note": "сильне bullish-закриття"
+        },
+        "flow": {
+          "bias": "NEUTRAL",
+          "score": 3,
+          "trade_delta_pct": -10.54,
+          "book_delta_pct": 25.51,
+          "note": "стакан підтримує покупців; підтримка покупців біля 82.91"
+        },
+        "cvd": {
+          "bias": "SHORT",
+          "score": -18,
+          "state": "BEARISH_ABSORPTION",
+          "confidence": "HIGH",
+          "confidence_factor": 1.0,
+          "sample_size": 120,
+          "delta": -867.0,
+          "delta_pct": -10.54,
+          "cvd": -213046.0,
+          "cvd_change_pct": -0.409,
+          "last_trade_ts": 1781484345019,
+          "price_move_pct": 0.641,
+          "note": "ціна вгору, CVD вниз"
+        },
+        "clusters": {
+          "bias": "NEUTRAL",
+          "score": -3,
+          "state": "LOCAL_SELL_PRESSURE_BELOW",
+          "zones": [
+            {
+              "price": 83.16,
+              "imbalance_pct": -35.4,
+              "volume": 3672.0
+            },
+            {
+              "price": 83.2265,
+              "imbalance_pct": 99.8,
+              "volume": 2495.0
+            },
+            {
+              "price": 83.0935,
+              "imbalance_pct": -100.0,
+              "volume": 2058.0
+            }
+          ],
+          "note": "локальні продажі нижче ціни"
+        },
+        "derivatives": {
+          "bias": "NEUTRAL",
+          "score": 6,
+          "state": "SHORTS_CLOSING",
+          "oi": 66376.99,
+          "oi_change_pct": -0.38,
+          "funding_pct": -0.00085,
+          "price_change_pct": 0.398,
+          "note": "ріст на падінні OI — шорти закриваються, не доганяти без ретесту"
+        },
+        "liquidity": {
+          "available": true,
+          "bias": "NEUTRAL",
+          "score": 0,
+          "event": "QUIET",
+          "blocks": [],
+          "vol_ratio": 0.07,
+          "move_1_pct": 0.096,
+          "move_6_pct": 0.422,
+          "note": "ліквідаційного тиску не видно"
+        },
+        "news": {
+          "bias": "NEUTRAL",
+          "score": -1,
+          "top": "Dollar hits 10-day low as US, Iran reach peace deal - Reuters",
+          "total": 44
+        },
+        "calendar": {
+          "active": false,
+          "alerts": [],
+          "score": 0,
+          "note": ""
+        }
+      }
     }
   ],
-  "updated_at": "2026-06-15T00:31:00.165672+00:00"
+  "updated_at": "2026-06-15T00:45:51.912890+00:00"
 }
