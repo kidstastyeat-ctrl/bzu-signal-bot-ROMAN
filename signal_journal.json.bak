@@ -441,7 +441,259 @@
           "previous_regime_type": ""
         }
       }
+    },
+    {
+      "time": "2026-06-15T13:01:21.474017+00:00",
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 82.42,
+      "quality": 41,
+      "reason": "ICT: ціна біля equilibrium / середина діапазону — входу немає; чекати sweep high/low або BOS + FVG/OB retest",
+      "setup_classifier": null,
+      "regime_engine": {
+        "name": "NORMAL",
+        "regime_type": "NORMAL",
+        "label": "звичайний intraday режим",
+        "score": 50,
+        "confidence": 50,
+        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 0,
+        "quality_cap": null,
+        "hard_block": false,
+        "allowed_setups": [],
+        "notes": [],
+        "metrics": {
+          "bias": "SHORT",
+          "range_atr": 3.55,
+          "move8_abs_pct": 0.365,
+          "slope15_abs_pct": 0.085,
+          "rsi15": 51.7,
+          "score_total_abs": 34,
+          "participation_same": 1,
+          "late_penalty": 0,
+          "pd": "DISCOUNT",
+          "ict_setup": "DISCOUNT_FVG_OB_LONG",
+          "range_edge": false
+        },
+        "stable_count": 1,
+        "pending_count": 2,
+        "is_stable": false,
+        "previous_regime_type": ""
+      },
+      "plan": null,
+      "confirmations": [],
+      "conflicts": [
+        "ICT: ціна біля equilibrium / середина діапазону — входу немає; чекати sweep high/low або BOS + FVG/OB retest",
+        "Не плутати з відкатом: для входу потрібен вихід з EQ, sweep або BOS + retest"
+      ],
+      "context": {
+        "bias": "NEUTRAL",
+        "tech_score": -35,
+        "total_score": -34,
+        "tf3": {
+          "available": true,
+          "bias": "NEUTRAL",
+          "score": 10,
+          "state": "RANGE",
+          "fast_move_pct": 0.073,
+          "drift_pct": 0.093,
+          "vol_ratio": 0.74,
+          "note": "3m higher lows/closes; 3m lower highs/closes"
+        },
+        "tf15": {
+          "label": "15m",
+          "available": true,
+          "bias": "NEUTRAL",
+          "score": -8,
+          "trend": "NEUTRAL",
+          "close": 82.55,
+          "ema20": 82.4604,
+          "ema50": 82.6512,
+          "rsi": 51.7,
+          "atr": 0.2764,
+          "slope_pct": 0.085,
+          "move_8_pct": 0.365,
+          "range_atr": 3.55,
+          "note": "EMA20 нижче EMA50"
+        },
+        "tf1h": {
+          "label": "1h",
+          "available": true,
+          "bias": "SHORT",
+          "score": -32,
+          "trend": "SHORT",
+          "close": 82.52,
+          "ema20": 82.8681,
+          "ema50": 83.6463,
+          "rsi": 43.6,
+          "atr": 0.7289,
+          "slope_pct": -0.157,
+          "move_8_pct": -0.446,
+          "range_atr": 7.61,
+          "note": "ціна нижче EMA20/50"
+        },
+        "tf4h": {
+          "label": "4h",
+          "available": true,
+          "bias": "SHORT",
+          "score": -56,
+          "trend": "SHORT",
+          "close": 82.55,
+          "ema20": 84.5844,
+          "ema50": 87.7801,
+          "rsi": 29.2,
+          "atr": 1.5145,
+          "slope_pct": -1.871,
+          "move_8_pct": -0.9,
+          "range_atr": 5.89,
+          "note": "ціна нижче EMA20/50; нахил вниз; імпульс вниз"
+        },
+        "structure": {
+          "available": true,
+          "bias": "NEUTRAL",
+          "score": 0,
+          "phase": "RANGE / WAIT",
+          "swing_high": 82.71,
+          "swing_low": 82.2,
+          "recent_high": 83.12,
+          "recent_low": 81.91,
+          "atr": 0.2764,
+          "note": "структура без чистого пробою"
+        },
+        "flow": {
+          "bias": "NEUTRAL",
+          "score": -6,
+          "trade_delta_pct": -49.67,
+          "book_delta_pct": 24.39,
+          "note": "угоди за продавців; стакан підтримує покупців"
+        },
+        "cvd": {
+          "bias": "NEUTRAL",
+          "score": -14,
+          "state": "SELLERS_DOMINATE",
+          "confidence": "HIGH",
+          "confidence_factor": 1.0,
+          "sample_size": 120,
+          "delta": -11174.0,
+          "delta_pct": -49.67,
+          "cvd": -39040.0,
+          "cvd_change_pct": -40.099,
+          "last_trade_ts": 1781528473984,
+          "price_move_pct": 0.121,
+          "note": "CVD падає"
+        },
+        "clusters": {
+          "bias": "NEUTRAL",
+          "score": -3,
+          "state": "LOCAL_SELL_PRESSURE_BELOW",
+          "zones": [
+            {
+              "price": 82.45,
+              "imbalance_pct": -99.3,
+              "volume": 13353.0
+            },
+            {
+              "price": 82.516,
+              "imbalance_pct": 22.3,
+              "volume": 9080.0
+            },
+            {
+              "price": 82.5819,
+              "imbalance_pct": 100.0,
+              "volume": 65.0
+            }
+          ],
+          "note": "локальні продажі нижче ціни"
+        },
+        "derivatives": {
+          "bias": "NEUTRAL",
+          "score": 0,
+          "state": "POSITIONING_UNKNOWN",
+          "oi": 64032.16,
+          "oi_change_pct": -0.259,
+          "funding_pct": 0.00364,
+          "price_change_pct": 0.219,
+          "note": "OI ще накопичує історію для порівняння"
+        },
+        "liquidity": {
+          "available": true,
+          "bias": "NEUTRAL",
+          "score": 0,
+          "event": "QUIET",
+          "blocks": [],
+          "vol_ratio": 0.74,
+          "move_1_pct": 0.061,
+          "move_6_pct": 0.279,
+          "note": "ліквідаційного тиску не видно"
+        },
+        "news": {
+          "bias": "NEUTRAL",
+          "score": -12,
+          "top": "France, Britain push Hormuz mission as truce nears, but Iran’s stance key - Reuters",
+          "total": 51
+        },
+        "calendar": {
+          "active": false,
+          "alerts": [],
+          "score": 0,
+          "note": ""
+        },
+        "setup_classifier": {
+          "type": "NO_CLEAN_SETUP",
+          "label": "⚪ Чистого сетапу немає",
+          "side": "NEUTRAL",
+          "score": 42,
+          "entry_allowed": false,
+          "block_entry": true,
+          "risk_mode": "NORMAL",
+          "reason": "немає одного з топових сетапів для професійного входу",
+          "quality_adjustment": -6,
+          "quality_cap": 66,
+          "force_risky": false,
+          "profile": {
+            "quality_adjustment": -6,
+            "quality_cap": 66,
+            "block_entry": true
+          },
+          "entry_rule": "для лонг потрібен один з топ-сетапів: продовження тренду, відкат, зняття ліквідності, край діапазону або новинний імпульс",
+          "stop_rule": "стоп/TP не активувати без сетапу",
+          "tp_rule": "чекати чистішу структуру",
+          "management_rule": "чекати до появи топового сетапу"
+        },
+        "regime_engine": {
+          "name": "NORMAL",
+          "regime_type": "NORMAL",
+          "label": "звичайний intraday режим",
+          "score": 50,
+          "confidence": 50,
+          "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
+          "entry_action": "ALLOW",
+          "entry_quality_adjustment": 0,
+          "quality_cap": null,
+          "hard_block": false,
+          "allowed_setups": [],
+          "notes": [],
+          "metrics": {
+            "bias": "SHORT",
+            "range_atr": 3.55,
+            "move8_abs_pct": 0.365,
+            "slope15_abs_pct": 0.085,
+            "rsi15": 51.7,
+            "score_total_abs": 34,
+            "participation_same": 1,
+            "late_penalty": 0,
+            "pd": "DISCOUNT",
+            "ict_setup": "DISCOUNT_FVG_OB_LONG",
+            "range_edge": false
+          },
+          "stable_count": 1,
+          "pending_count": 2,
+          "is_stable": false,
+          "previous_regime_type": ""
+        }
+      }
     }
   ],
-  "updated_at": "2026-06-15T12:46:52.147153+00:00"
+  "updated_at": "2026-06-15T13:01:21.474868+00:00"
 }
