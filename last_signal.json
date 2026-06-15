@@ -78,18 +78,26 @@
       "mfe_captured_pct": 3.0,
       "mfe_giveback_pct": 0.389,
       "time": "2026-06-15T10:01:23.755017+00:00"
+    },
+    {
+      "type": "WATCH",
+      "side": "SHORT",
+      "price": 82.17,
+      "quality": 34,
+      "reason": "напрям є, але 3M ще не підтвердив; чекати 3M higher low/reclaim для LONG або lower high/rejection для SHORT",
+      "time": "2026-06-15T10:15:55.847084+00:00"
     }
   ],
   "last_market_snapshot": {
-    "time": "2026-06-15T10:01:23.755027+00:00",
-    "price": 82.23,
-    "oi": 64417.14,
-    "cvd": -8014.0,
-    "cvd_time": "2026-06-15T10:01:23.755030+00:00",
-    "last_trade_ts": 1781517673684,
+    "time": "2026-06-15T10:15:55.847139+00:00",
+    "price": 82.17,
+    "oi": 64937.53,
+    "cvd": -56669.0,
+    "cvd_time": "2026-06-15T10:15:55.847142+00:00",
+    "last_trade_ts": 1781518545350,
     "bias": "SHORT",
-    "tech_score": -76,
-    "total_score": -64
+    "tech_score": -82,
+    "total_score": -70
   },
-  "updated_at": "2026-06-15T10:01:23.755034+00:00"
+  "updated_at": "2026-06-15T10:15:55.847147+00:00"
 }
