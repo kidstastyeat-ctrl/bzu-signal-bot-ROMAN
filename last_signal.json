@@ -1,42 +1,6 @@
 {
   "version": "pro-v2-intraday-architecture",
-  "active_trade": {
-    "id": "f73204d1f1",
-    "side": "SHORT",
-    "opened_at": "2026-06-16T03:01:19.618100+00:00",
-    "entry": 82.22,
-    "stop_initial": 83.1387,
-    "stop_current": 82.1542,
-    "tp1": 81.3013,
-    "tp2": 80.6167,
-    "tp3": 79.4245,
-    "quality": 73,
-    "stop_updated_at": "2026-06-16T05:31:09.489811+00:00",
-    "status": "OPEN",
-    "tp1_hit": false,
-    "tp2_hit": false,
-    "tp3_hit": false,
-    "tp1_stop_locked": false,
-    "tp2_stop_locked": false,
-    "tp1_locked_stop": 0.0,
-    "tp2_locked_stop": 0.0,
-    "best_price": 81.81,
-    "last_action": "HOLD",
-    "last_message_key": "f73204d1f1:HOLD:False:False:False:False:False:82.1542",
-    "entry_integrity_score": 83,
-    "entry_fail_streak": 0,
-    "entry_recovery_checks": 0,
-    "entry_last_state": "🟢 Сильна",
-    "mfe_giveback_streak": 0,
-    "mfe_giveback_last_state": "OK",
-    "notes": [
-      "RISKY_ENTRY",
-      "ENTRY_LEVEL: RISKY_ENTRY",
-      "SETUP_CLASSIFIER: TREND_IGNITION_ENTRY",
-      "REGIME_TYPE: NORMAL",
-      "ранній Trend Ignition: micro-BOS/старт руху після бази; це не chase, але режим тільки ризиковий"
-    ]
-  },
+  "active_trade": null,
   "history": [
     {
       "type": "NO_TRADE",
@@ -2488,26 +2452,37 @@
       "result_pct": 0.304,
       "stop_current": 82.1542,
       "time": "2026-06-16T06:45:56.292196+00:00"
+    },
+    {
+      "type": "TRADE_CLOSED",
+      "side": "SHORT",
+      "action": "STOP",
+      "price": 81.92,
+      "result_pct": 0.08,
+      "mfe_pct": 0.499,
+      "mfe_captured_pct": 16.0,
+      "mfe_giveback_pct": 0.419,
+      "time": "2026-06-16T07:01:16.132174+00:00"
     }
   ],
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 3,
+    "stable_count": 4,
     "pending_count": 0,
-    "updated_at": "2026-06-16T06:45:55.953166+00:00"
+    "updated_at": "2026-06-16T07:01:15.840798+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-16T06:45:56.292216+00:00",
-    "price": 81.97,
-    "oi": 63273.01,
-    "cvd": -10368.0,
-    "cvd_time": "2026-06-16T06:45:56.292218+00:00",
-    "last_trade_ts": 1781592348263,
+    "time": "2026-06-16T07:01:16.132190+00:00",
+    "price": 81.92,
+    "oi": 63363.97,
+    "cvd": -54286.0,
+    "cvd_time": "2026-06-16T07:01:16.132193+00:00",
+    "last_trade_ts": 1781593262009,
     "bias": "SHORT",
-    "tech_score": -88,
-    "total_score": -96
+    "tech_score": -107,
+    "total_score": -106
   },
-  "updated_at": "2026-06-16T06:45:56.292224+00:00",
+  "updated_at": "2026-06-16T07:01:16.132198+00:00",
   "pending_trigger": null
 }
