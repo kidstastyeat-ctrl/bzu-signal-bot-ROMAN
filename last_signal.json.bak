@@ -20,10 +20,10 @@
     "tp2_stop_locked": false,
     "tp1_locked_stop": 81.2285,
     "tp2_locked_stop": 0.0,
-    "best_price": 80.44,
+    "best_price": 80.37,
     "last_action": "TP1_PROTECT",
     "last_message_key": "f19a2d99b5:TP1_PROTECT:True:False:False:True:False:81.2285",
-    "entry_integrity_score": 92,
+    "entry_integrity_score": 100,
     "entry_fail_streak": 0,
     "entry_recovery_checks": 0,
     "entry_last_state": "🟢 Сильна",
@@ -38,51 +38,6 @@
     ]
   },
   "history": [
-    {
-      "type": "NO_TRADE",
-      "side": "NEUTRAL",
-      "price": 82.47,
-      "quality": 35,
-      "reason": "ICT: ціна біля equilibrium / середина діапазону — входу немає; чекати sweep high/low або BOS + FVG/OB retest",
-      "setup_classifier": null,
-      "regime_engine": {
-        "name": "RANGE",
-        "regime_type": "RANGE_COMPRESSION",
-        "label": "стискання діапазону",
-        "score": 56,
-        "confidence": 55,
-        "reason": "баланс/EQ: входи тільки після краю діапазону або BOS/reclaim",
-        "entry_action": "WAIT",
-        "entry_quality_adjustment": -2,
-        "quality_cap": 77,
-        "hard_block": false,
-        "allowed_setups": [
-          "RANGE_EDGE_TRADE",
-          "RANGE_COMPRESSION_BREAKOUT",
-          "SWEEP_REVERSAL",
-          "SWEEP_RECLAIM_EARLY_ENTRY"
-        ],
-        "notes": [],
-        "metrics": {
-          "bias": "NEUTRAL",
-          "range_atr": 3.52,
-          "move8_abs_pct": 0.34,
-          "slope15_abs_pct": 0.077,
-          "rsi15": 51.2,
-          "score_total_abs": 8,
-          "participation_same": 0,
-          "late_penalty": 0,
-          "pd": "MIDRANGE",
-          "ict_setup": "BALANCE_MIDRANGE",
-          "range_edge": false
-        },
-        "stable_count": 0,
-        "pending_count": 1,
-        "is_stable": false,
-        "previous_regime_type": ""
-      },
-      "time": "2026-06-15T13:07:33.633562+00:00"
-    },
     {
       "type": "WATCH",
       "side": "LONG",
@@ -2633,26 +2588,35 @@
       "result_pct": 1.469,
       "stop_current": 81.2285,
       "time": "2026-06-16T08:45:56.694501+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "TP1_PROTECT",
+      "price": 80.51,
+      "result_pct": 1.469,
+      "stop_current": 81.2285,
+      "time": "2026-06-16T09:01:29.857242+00:00"
     }
   ],
   "regime_memory": {
-    "type": "EXHAUSTION",
+    "type": "TREND_EXPANSION",
     "pending_type": "",
-    "stable_count": 3,
-    "pending_count": 0,
-    "updated_at": "2026-06-16T08:45:56.301966+00:00"
+    "stable_count": 1,
+    "pending_count": 1,
+    "updated_at": "2026-06-16T09:01:29.555229+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-16T08:45:56.694517+00:00",
+    "time": "2026-06-16T09:01:29.857264+00:00",
     "price": 80.51,
-    "oi": 62294.37,
-    "cvd": -94385.0,
-    "cvd_time": "2026-06-16T08:45:56.694519+00:00",
-    "last_trade_ts": 1781599519405,
+    "oi": 62110.52,
+    "cvd": -114610.0,
+    "cvd_time": "2026-06-16T09:01:29.857267+00:00",
+    "last_trade_ts": 1781600469453,
     "bias": "SHORT",
-    "tech_score": -98,
-    "total_score": -102
+    "tech_score": -199,
+    "total_score": -200
   },
-  "updated_at": "2026-06-16T08:45:56.694523+00:00",
+  "updated_at": "2026-06-16T09:01:29.857271+00:00",
   "pending_trigger": null
 }
