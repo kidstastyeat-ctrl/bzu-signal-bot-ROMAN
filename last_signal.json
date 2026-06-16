@@ -11,7 +11,7 @@
     "tp2": 79.6264,
     "tp3": 77.7062,
     "quality": 79,
-    "stop_updated_at": "",
+    "stop_updated_at": "2026-06-16T07:15:54.311920+00:00",
     "status": "OPEN",
     "tp1_hit": false,
     "tp2_hit": false,
@@ -20,13 +20,13 @@
     "tp2_stop_locked": false,
     "tp1_locked_stop": 0.0,
     "tp2_locked_stop": 0.0,
-    "best_price": 81.71,
-    "last_action": "OPEN",
-    "last_message_key": "",
+    "best_price": 81.54,
+    "last_action": "HOLD",
+    "last_message_key": "f19a2d99b5:HOLD:False:False:False:False:False:82.4181",
     "entry_integrity_score": 100,
     "entry_fail_streak": 0,
     "entry_recovery_checks": 0,
-    "entry_last_state": "СИЛЬНА",
+    "entry_last_state": "🟢 Сильна",
     "mfe_giveback_streak": 0,
     "mfe_giveback_last_state": "OK",
     "notes": [
@@ -2579,26 +2579,35 @@
       "tp2": 79.6264,
       "tp3": 77.7062,
       "time": "2026-06-16T07:15:54.312053+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "HOLD",
+      "price": 81.54,
+      "result_pct": 0.208,
+      "stop_current": 82.4181,
+      "time": "2026-06-16T07:31:13.172037+00:00"
     }
   ],
   "regime_memory": {
     "type": "TREND_EXPANSION",
     "pending_type": "",
-    "stable_count": 1,
-    "pending_count": 1,
-    "updated_at": "2026-06-16T07:15:53.886740+00:00"
+    "stable_count": 2,
+    "pending_count": 0,
+    "updated_at": "2026-06-16T07:31:12.850439+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-16T07:15:54.312084+00:00",
-    "price": 81.71,
-    "oi": 62997.87,
-    "cvd": -76416.0,
-    "cvd_time": "2026-06-16T07:15:54.312087+00:00",
-    "last_trade_ts": 1781594122907,
+    "time": "2026-06-16T07:31:13.172057+00:00",
+    "price": 81.54,
+    "oi": 62772.61,
+    "cvd": -85941.0,
+    "cvd_time": "2026-06-16T07:31:13.172060+00:00",
+    "last_trade_ts": 1781595064676,
     "bias": "SHORT",
-    "tech_score": -162,
-    "total_score": -162
+    "tech_score": -227,
+    "total_score": -230
   },
-  "updated_at": "2026-06-16T07:15:54.312092+00:00",
+  "updated_at": "2026-06-16T07:31:13.172065+00:00",
   "pending_trigger": null
 }
