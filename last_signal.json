@@ -20,13 +20,13 @@
     "tp2_stop_locked": false,
     "tp1_locked_stop": 81.2285,
     "tp2_locked_stop": 0.0,
-    "best_price": 80.3,
+    "best_price": 80.18,
     "last_action": "TP1_PROTECT",
     "last_message_key": "f19a2d99b5:TP1_PROTECT:True:False:False:True:False:81.2285",
-    "entry_integrity_score": 53,
+    "entry_integrity_score": 100,
     "entry_fail_streak": 0,
     "entry_recovery_checks": 0,
-    "entry_last_state": "🟠 Слабка",
+    "entry_last_state": "🟢 Сильна",
     "mfe_giveback_streak": 0,
     "mfe_giveback_last_state": "OK",
     "notes": [
@@ -38,46 +38,6 @@
     ]
   },
   "history": [
-    {
-      "type": "NO_TRADE",
-      "side": "NEUTRAL",
-      "price": 82.18,
-      "quality": 49,
-      "reason": "перевага нечітка, немає професійного входу",
-      "setup_classifier": null,
-      "regime_engine": {
-        "name": "NORMAL",
-        "regime_type": "NORMAL",
-        "label": "звичайний intraday режим",
-        "score": 50,
-        "confidence": 50,
-        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
-        "entry_action": "ALLOW",
-        "entry_quality_adjustment": 0,
-        "quality_cap": null,
-        "hard_block": false,
-        "allowed_setups": [],
-        "notes": [],
-        "metrics": {
-          "bias": "SHORT",
-          "range_atr": 3.11,
-          "move8_abs_pct": 0.218,
-          "slope15_abs_pct": 0.109,
-          "rsi15": 45.9,
-          "score_total_abs": 38,
-          "participation_same": 0,
-          "late_penalty": 0,
-          "pd": "DISCOUNT",
-          "ict_setup": "DISCOUNT_FVG_OB_LONG",
-          "range_edge": false
-        },
-        "stable_count": 2,
-        "pending_count": 0,
-        "is_stable": true,
-        "previous_regime_type": "NORMAL"
-      },
-      "time": "2026-06-15T15:38:32.406637+00:00"
-    },
     {
       "type": "WATCH",
       "side": "SHORT",
@@ -2323,26 +2283,35 @@
       "result_pct": 1.591,
       "stop_current": 81.2285,
       "time": "2026-06-16T11:15:59.748040+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "TP1_PROTECT",
+      "price": 80.18,
+      "result_pct": 1.872,
+      "stop_current": 81.2285,
+      "time": "2026-06-16T11:31:16.194980+00:00"
     }
   ],
   "regime_memory": {
     "type": "EXHAUSTION",
     "pending_type": "",
-    "stable_count": 2,
+    "stable_count": 3,
     "pending_count": 0,
-    "updated_at": "2026-06-16T11:15:59.393489+00:00"
+    "updated_at": "2026-06-16T11:31:15.789959+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-16T11:15:59.748064+00:00",
-    "price": 80.41,
-    "oi": 62295.57,
-    "cvd": -43599.0,
-    "cvd_time": "2026-06-16T11:15:59.748067+00:00",
-    "last_trade_ts": 1781608531272,
-    "bias": "NEUTRAL",
-    "tech_score": -19,
-    "total_score": -15
+    "time": "2026-06-16T11:31:16.195021+00:00",
+    "price": 80.18,
+    "oi": 62452.56,
+    "cvd": -35054.0,
+    "cvd_time": "2026-06-16T11:31:16.195025+00:00",
+    "last_trade_ts": 1781609445180,
+    "bias": "SHORT",
+    "tech_score": -189,
+    "total_score": -185
   },
-  "updated_at": "2026-06-16T11:15:59.748071+00:00",
+  "updated_at": "2026-06-16T11:31:16.195030+00:00",
   "pending_trigger": null
 }
