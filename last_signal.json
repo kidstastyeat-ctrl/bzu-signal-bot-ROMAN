@@ -2461,26 +2461,35 @@
       "result_pct": 0.231,
       "stop_current": 82.1542,
       "time": "2026-06-16T06:01:17.590441+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "HOLD",
+      "price": 81.91,
+      "result_pct": 0.377,
+      "stop_current": 82.1542,
+      "time": "2026-06-16T06:15:55.594983+00:00"
     }
   ],
   "regime_memory": {
-    "type": "TREND_EXPANSION",
-    "pending_type": "NORMAL",
-    "stable_count": 0,
-    "pending_count": 1,
-    "updated_at": "2026-06-16T06:01:17.252358+00:00"
+    "type": "NORMAL",
+    "pending_type": "",
+    "stable_count": 1,
+    "pending_count": 2,
+    "updated_at": "2026-06-16T06:15:55.216400+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-16T06:01:17.590460+00:00",
-    "price": 82.03,
-    "oi": 62627.58,
-    "cvd": 55274.0,
-    "cvd_time": "2026-06-16T06:01:17.590463+00:00",
-    "last_trade_ts": 1781589662045,
+    "time": "2026-06-16T06:15:55.595003+00:00",
+    "price": 81.91,
+    "oi": 62583.85,
+    "cvd": 50433.0,
+    "cvd_time": "2026-06-16T06:15:55.595006+00:00",
+    "last_trade_ts": 1781590501190,
     "bias": "SHORT",
-    "tech_score": -124,
-    "total_score": -127
+    "tech_score": -103,
+    "total_score": -103
   },
-  "updated_at": "2026-06-16T06:01:17.590467+00:00",
+  "updated_at": "2026-06-16T06:15:55.595011+00:00",
   "pending_trigger": null
 }
