@@ -5,15 +5,6 @@
     {
       "type": "FOLLOW",
       "side": "LONG",
-      "action": "HOLD",
-      "price": 82.51,
-      "result_pct": 0.389,
-      "stop_current": 82.2558,
-      "time": "2026-06-15T19:01:29.461247+00:00"
-    },
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
       "action": "PROTECT",
       "price": 82.58,
       "result_pct": 0.475,
@@ -1914,26 +1905,92 @@
         "previous_regime_type": "NORMAL"
       },
       "time": "2026-06-16T14:16:04.370137+00:00"
+    },
+    {
+      "type": "WATCH",
+      "side": "SHORT",
+      "price": 79.71,
+      "quality": 29,
+      "reason": "немає одного з топових сетапів для професійного входу",
+      "setup_classifier": {
+        "type": "NO_CLEAN_SETUP",
+        "label": "⚪ Чистого сетапу немає",
+        "side": "SHORT",
+        "score": 50,
+        "entry_allowed": false,
+        "block_entry": true,
+        "risk_mode": "NORMAL",
+        "reason": "немає одного з топових сетапів для професійного входу",
+        "quality_adjustment": -6,
+        "quality_cap": 66,
+        "force_risky": false,
+        "profile": {
+          "quality_adjustment": -6,
+          "quality_cap": 66,
+          "block_entry": true
+        },
+        "entry_rule": "для шорт потрібен один з топ-сетапів: продовження тренду, відкат, зняття ліквідності, край діапазону або новинний імпульс",
+        "stop_rule": "стоп/TP не активувати без сетапу",
+        "tp_rule": "чекати чистішу структуру",
+        "management_rule": "чекати до появи топового сетапу"
+      },
+      "regime_engine": {
+        "name": "TREND",
+        "regime_type": "TREND_EXPANSION",
+        "label": "сильне продовження тренду",
+        "score": 82,
+        "confidence": 84,
+        "reason": "сильне продовження: continuation дозволений, TP2/TP3 можна тримати довше, але без доганяння",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 3,
+        "quality_cap": 90,
+        "hard_block": false,
+        "allowed_setups": [
+          "TREND_CONTINUATION",
+          "TREND_IGNITION_ENTRY",
+          "PULLBACK_CONTINUATION",
+          "PULLBACK_CONTINUATION_FAST_ENTRY"
+        ],
+        "notes": [],
+        "metrics": {
+          "bias": "SHORT",
+          "range_atr": 6.59,
+          "move8_abs_pct": 0.592,
+          "slope15_abs_pct": 0.2,
+          "rsi15": 38.0,
+          "score_total_abs": 98,
+          "participation_same": 1,
+          "late_penalty": 0,
+          "pd": "DISCOUNT",
+          "ict_setup": "DISCOUNT_FVG_OB_LONG",
+          "range_edge": false
+        },
+        "stable_count": 1,
+        "pending_count": 1,
+        "is_stable": false,
+        "previous_regime_type": "NORMAL"
+      },
+      "time": "2026-06-16T14:31:14.431073+00:00"
     }
   ],
   "regime_memory": {
-    "type": "NORMAL",
+    "type": "TREND_EXPANSION",
     "pending_type": "",
-    "stable_count": 5,
-    "pending_count": 0,
-    "updated_at": "2026-06-16T14:16:04.006558+00:00"
+    "stable_count": 1,
+    "pending_count": 1,
+    "updated_at": "2026-06-16T14:31:14.099541+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-16T14:16:04.370195+00:00",
-    "price": 80.14,
-    "oi": 60156.2,
-    "cvd": 209060.0,
-    "cvd_time": "2026-06-16T14:16:04.370198+00:00",
-    "last_trade_ts": 1781619325239,
+    "time": "2026-06-16T14:31:14.431129+00:00",
+    "price": 79.71,
+    "oi": 60026.29,
+    "cvd": 205311.0,
+    "cvd_time": "2026-06-16T14:31:14.431133+00:00",
+    "last_trade_ts": 1781620266040,
     "bias": "SHORT",
-    "tech_score": -63,
-    "total_score": -52
+    "tech_score": -107,
+    "total_score": -98
   },
-  "updated_at": "2026-06-16T14:16:04.370203+00:00",
+  "updated_at": "2026-06-16T14:31:14.431137+00:00",
   "pending_trigger": null
 }
