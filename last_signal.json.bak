@@ -21,12 +21,12 @@
     "tp1_locked_stop": 0.0,
     "tp2_locked_stop": 0.0,
     "best_price": 79.74,
-    "last_action": "HOLD",
-    "last_message_key": "93804656b4:HOLD:False:False:False:False:False:79.3134",
-    "entry_integrity_score": 100,
-    "entry_fail_streak": 0,
+    "last_action": "PROTECT_OR_EXIT",
+    "last_message_key": "93804656b4:PROTECT_OR_EXIT:False:False:False:False:False:79.3134",
+    "entry_integrity_score": 40,
+    "entry_fail_streak": 1,
     "entry_recovery_checks": 0,
-    "entry_last_state": "🟢 Сильна",
+    "entry_last_state": "🟠 Слабка",
     "mfe_giveback_streak": 0,
     "mfe_giveback_last_state": "OK",
     "notes": [
@@ -38,15 +38,6 @@
     ]
   },
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "EXIT_WARNING",
-      "price": 82.73,
-      "result_pct": -0.169,
-      "stop_current": 82.2402,
-      "time": "2026-06-16T00:31:06.919216+00:00"
-    },
     {
       "type": "TRADE_CLOSED",
       "side": "LONG",
@@ -2686,26 +2677,35 @@
       "result_pct": 0.315,
       "stop_current": 79.3134,
       "time": "2026-06-16T19:47:21.955565+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "PROTECT_OR_EXIT",
+      "price": 79.39,
+      "result_pct": 0.177,
+      "stop_current": 79.3134,
+      "time": "2026-06-16T20:01:24.326408+00:00"
     }
   ],
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 4,
+    "stable_count": 5,
     "pending_count": 0,
-    "updated_at": "2026-06-16T19:47:21.573809+00:00"
+    "updated_at": "2026-06-16T20:01:23.938537+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-16T19:47:21.955586+00:00",
-    "price": 79.5,
-    "oi": 60232.84,
-    "cvd": 126787.0,
-    "cvd_time": "2026-06-16T19:47:21.955588+00:00",
-    "last_trade_ts": 1781639133476,
-    "bias": "LONG",
-    "tech_score": 46,
-    "total_score": 50
+    "time": "2026-06-16T20:01:24.326429+00:00",
+    "price": 79.39,
+    "oi": 60128.88,
+    "cvd": 115036.0,
+    "cvd_time": "2026-06-16T20:01:24.326432+00:00",
+    "last_trade_ts": 1781640061696,
+    "bias": "NEUTRAL",
+    "tech_score": -33,
+    "total_score": -29
   },
-  "updated_at": "2026-06-16T19:47:21.955593+00:00",
+  "updated_at": "2026-06-16T20:01:24.326437+00:00",
   "pending_trigger": null
 }

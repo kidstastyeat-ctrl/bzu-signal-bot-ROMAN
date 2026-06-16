@@ -21666,11 +21666,56 @@
         "is_stable": true,
         "previous_regime_type": "NORMAL"
       }
+    },
+    {
+      "time": "2026-06-16T20:01:24.326416+00:00",
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "PROTECT_OR_EXIT",
+      "price": 79.39,
+      "quality": 80,
+      "entry_level": "ENTRY",
+      "setup_type": "COUNTERTREND_SCALP",
+      "regime_type": "NORMAL",
+      "context_bias": "NEUTRAL",
+      "tech_score": -33,
+      "total_score": -29,
+      "regime_engine": {
+        "name": "NORMAL",
+        "regime_type": "NORMAL",
+        "label": "звичайний intraday режим",
+        "score": 50,
+        "confidence": 50,
+        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 0,
+        "quality_cap": null,
+        "hard_block": false,
+        "allowed_setups": [],
+        "notes": [],
+        "metrics": {
+          "bias": "SHORT",
+          "range_atr": 5.85,
+          "move8_abs_pct": 1.197,
+          "slope15_abs_pct": 1.2,
+          "rsi15": 53.1,
+          "score_total_abs": 29,
+          "participation_same": 1,
+          "late_penalty": 0,
+          "pd": "DISCOUNT",
+          "ict_setup": "DISCOUNT_FVG_OB_LONG",
+          "range_edge": false
+        },
+        "stable_count": 5,
+        "pending_count": 0,
+        "is_stable": true,
+        "previous_regime_type": "NORMAL"
+      }
     }
   ],
-  "updated_at": "2026-06-16T19:47:21.962676+00:00",
+  "updated_at": "2026-06-16T20:01:24.333078+00:00",
   "outcome_analytics": {
-    "updated_at": "2026-06-16T19:47:21.963408+00:00",
+    "updated_at": "2026-06-16T20:01:24.337333+00:00",
     "lookback_limit": 120,
     "closed_trades_count": 5,
     "signals_count": 120,
@@ -21905,10 +21950,10 @@
     "signal_counts_by_regime": {
       "EXHAUSTION": 18,
       "NEWS_SHOCK": 23,
-      "NORMAL": 49,
+      "NORMAL": 50,
       "RANGE_COMPRESSION": 4,
       "REVERSAL_BUILDUP": 1,
-      "TREND_EXPANSION": 22,
+      "TREND_EXPANSION": 21,
       "TREND_PULLBACK": 3
     }
   }
