@@ -5,46 +5,6 @@
     {
       "type": "NO_TRADE",
       "side": "NEUTRAL",
-      "price": 82.82,
-      "quality": 46,
-      "reason": "перевага нечітка, немає професійного входу",
-      "setup_classifier": null,
-      "regime_engine": {
-        "name": "NORMAL",
-        "regime_type": "NORMAL",
-        "label": "звичайний intraday режим",
-        "score": 50,
-        "confidence": 50,
-        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
-        "entry_action": "ALLOW",
-        "entry_quality_adjustment": 0,
-        "quality_cap": null,
-        "hard_block": false,
-        "allowed_setups": [],
-        "notes": [],
-        "metrics": {
-          "bias": "LONG",
-          "range_atr": 3.71,
-          "move8_abs_pct": 0.121,
-          "slope15_abs_pct": 0.185,
-          "rsi15": 58.6,
-          "score_total_abs": 40,
-          "participation_same": 2,
-          "late_penalty": 0,
-          "pd": "PREMIUM",
-          "ict_setup": "PREMIUM_FVG_OB_SHORT",
-          "range_edge": false
-        },
-        "stable_count": 6,
-        "pending_count": 0,
-        "is_stable": true,
-        "previous_regime_type": "NORMAL"
-      },
-      "time": "2026-06-15T23:15:53.624995+00:00"
-    },
-    {
-      "type": "NO_TRADE",
-      "side": "NEUTRAL",
       "price": 82.8,
       "quality": 43,
       "reason": "перевага нечітка, немає професійного входу",
@@ -2604,26 +2564,93 @@
         "previous_regime_type": "NEWS_SHOCK"
       },
       "time": "2026-06-16T18:31:15.923956+00:00"
+    },
+    {
+      "type": "WATCH",
+      "side": "LONG",
+      "price": 78.97,
+      "quality": 57,
+      "reason": "напрям формується, але потрібна ціна-тригер: reclaim/ретест на 3M",
+      "setup_classifier": {
+        "type": "COUNTERTREND_SCALP",
+        "label": "🟠 Скальп проти тренду",
+        "side": "LONG",
+        "score": 73,
+        "entry_allowed": true,
+        "block_entry": false,
+        "risk_mode": "RISKY",
+        "reason": "контртренд дозволений тільки як scalp після локального розвороту",
+        "quality_adjustment": -3,
+        "quality_cap": 76,
+        "force_risky": true,
+        "profile": {
+          "regime_override": "REVERSAL",
+          "tp1_pct": 0.8,
+          "tp2_pct": 1.22,
+          "tp3_pct": 2.0,
+          "min_stop_pct": 0.7,
+          "max_stop_pct": 1.05,
+          "quality_adjustment": -3,
+          "quality_cap": 76,
+          "force_risky": true
+        },
+        "entry_rule": "тільки сильне зняття ліквідності/CHOCH + 3M розворот + CVD/потік не проти",
+        "stop_rule": "короткий стоп за екстремум, без усереднення",
+        "tp_rule": "швидший TP1, TP2 тільки якщо структура розвертається",
+        "management_rule": "агресивний контроль; якщо немає швидкого підтвердження — вихід"
+      },
+      "regime_engine": {
+        "name": "NORMAL",
+        "regime_type": "NORMAL",
+        "label": "звичайний intraday режим",
+        "score": 50,
+        "confidence": 50,
+        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 0,
+        "quality_cap": null,
+        "hard_block": false,
+        "allowed_setups": [],
+        "notes": [],
+        "metrics": {
+          "bias": "LONG",
+          "range_atr": 6.6,
+          "move8_abs_pct": 0.752,
+          "slope15_abs_pct": 0.547,
+          "rsi15": 46.3,
+          "score_total_abs": 28,
+          "participation_same": 0,
+          "late_penalty": 3,
+          "pd": "DISCOUNT",
+          "ict_setup": "DISCOUNT_FVG_OB_LONG",
+          "range_edge": true
+        },
+        "stable_count": 0,
+        "pending_count": 1,
+        "is_stable": false,
+        "previous_regime_type": "NEWS_SHOCK"
+      },
+      "time": "2026-06-16T18:46:05.018965+00:00"
     }
   ],
   "regime_memory": {
     "type": "NEWS_SHOCK",
-    "pending_type": "",
-    "stable_count": 7,
-    "pending_count": 0,
-    "updated_at": "2026-06-16T18:31:15.644222+00:00"
+    "pending_type": "NORMAL",
+    "stable_count": 0,
+    "pending_count": 1,
+    "updated_at": "2026-06-16T18:46:04.639982+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-16T18:31:15.924035+00:00",
-    "price": 78.76,
-    "oi": 61387.84,
-    "cvd": 181435.0,
-    "cvd_time": "2026-06-16T18:31:15.924040+00:00",
-    "last_trade_ts": 1781634661310,
+    "time": "2026-06-16T18:46:05.019023+00:00",
+    "price": 78.97,
+    "oi": 60635.35,
+    "cvd": 87381.0,
+    "cvd_time": "2026-06-16T18:46:05.019026+00:00",
+    "last_trade_ts": 1781635534328,
     "bias": "NEUTRAL",
-    "tech_score": -19,
-    "total_score": -23
+    "tech_score": 26,
+    "total_score": 28
   },
-  "updated_at": "2026-06-16T18:31:15.924045+00:00",
+  "updated_at": "2026-06-16T18:46:05.019031+00:00",
   "pending_trigger": null
 }
