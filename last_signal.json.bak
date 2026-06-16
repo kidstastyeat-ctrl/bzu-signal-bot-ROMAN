@@ -20,7 +20,7 @@
     "tp2_stop_locked": false,
     "tp1_locked_stop": 81.2285,
     "tp2_locked_stop": 0.0,
-    "best_price": 80.37,
+    "best_price": 80.3,
     "last_action": "TP1_PROTECT",
     "last_message_key": "f19a2d99b5:TP1_PROTECT:True:False:False:True:False:81.2285",
     "entry_integrity_score": 100,
@@ -38,15 +38,6 @@
     ]
   },
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "SHORT",
-      "action": "HOLD",
-      "price": 81.85,
-      "result_pct": 0.402,
-      "stop_current": 82.8539,
-      "time": "2026-06-15T14:46:47.674208+00:00"
-    },
     {
       "type": "TRADE_CLOSED",
       "side": "SHORT",
@@ -2377,26 +2368,35 @@
       "result_pct": 1.567,
       "stop_current": 81.2285,
       "time": "2026-06-16T10:31:09.332073+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "TP1_PROTECT",
+      "price": 80.3,
+      "result_pct": 1.726,
+      "stop_current": 81.2285,
+      "time": "2026-06-16T10:45:52.963492+00:00"
     }
   ],
   "regime_memory": {
     "type": "TREND_EXPANSION",
     "pending_type": "",
-    "stable_count": 2,
+    "stable_count": 3,
     "pending_count": 0,
-    "updated_at": "2026-06-16T10:31:09.075626+00:00"
+    "updated_at": "2026-06-16T10:45:52.633802+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-16T10:31:09.332090+00:00",
-    "price": 80.43,
-    "oi": 61590.02,
-    "cvd": -67166.0,
-    "cvd_time": "2026-06-16T10:31:09.332092+00:00",
-    "last_trade_ts": 1781605861436,
+    "time": "2026-06-16T10:45:52.963509+00:00",
+    "price": 80.3,
+    "oi": 62027.29,
+    "cvd": -67342.0,
+    "cvd_time": "2026-06-16T10:45:52.963511+00:00",
+    "last_trade_ts": 1781606727581,
     "bias": "SHORT",
-    "tech_score": -149,
-    "total_score": -145
+    "tech_score": -134,
+    "total_score": -129
   },
-  "updated_at": "2026-06-16T10:31:09.332096+00:00",
+  "updated_at": "2026-06-16T10:45:52.963516+00:00",
   "pending_trigger": null
 }
