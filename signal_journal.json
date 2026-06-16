@@ -11816,14 +11816,59 @@
         "is_stable": false,
         "previous_regime_type": "TREND_EXPANSION"
       }
+    },
+    {
+      "time": "2026-06-16T04:01:18.585097+00:00",
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "EXIT_WARNING",
+      "price": 82.2,
+      "quality": 73,
+      "entry_level": "RISKY_ENTRY",
+      "setup_type": "TREND_IGNITION_ENTRY",
+      "regime_type": "NORMAL",
+      "context_bias": "NEUTRAL",
+      "tech_score": -24,
+      "total_score": -33,
+      "regime_engine": {
+        "name": "NORMAL",
+        "regime_type": "NORMAL",
+        "label": "звичайний intraday режим",
+        "score": 50,
+        "confidence": 50,
+        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 0,
+        "quality_cap": null,
+        "hard_block": false,
+        "allowed_setups": [],
+        "notes": [],
+        "metrics": {
+          "bias": "SHORT",
+          "range_atr": 5.31,
+          "move8_abs_pct": 0.242,
+          "slope15_abs_pct": 0.476,
+          "rsi15": 38.7,
+          "score_total_abs": 33,
+          "participation_same": 0,
+          "late_penalty": 7,
+          "pd": "DISCOUNT",
+          "ict_setup": "DISCOUNT_CONTEXT",
+          "range_edge": false
+        },
+        "stable_count": 1,
+        "pending_count": 2,
+        "is_stable": false,
+        "previous_regime_type": "TREND_EXPANSION"
+      }
     }
   ],
-  "updated_at": "2026-06-16T03:45:53.143891+00:00",
+  "updated_at": "2026-06-16T04:01:18.590692+00:00",
   "outcome_analytics": {
-    "updated_at": "2026-06-16T03:45:53.144579+00:00",
+    "updated_at": "2026-06-16T04:01:18.617729+00:00",
     "lookback_limit": 120,
     "closed_trades_count": 3,
-    "signals_count": 60,
+    "signals_count": 61,
     "overall": {
       "trades": 3,
       "wins": 1,
@@ -12003,13 +12048,13 @@
       }
     },
     "signals": {
-      "total": 60,
+      "total": 61,
       "entries": 4,
       "full_entries": 0,
       "risky_entries": 4,
       "watch": 18,
       "no_trade": 15,
-      "follow": 20,
+      "follow": 21,
       "closed": 3,
       "pending_trigger_activations": 0
     },
@@ -12022,11 +12067,11 @@
       "PULLBACK_CONTINUATION": 1,
       "RANGE_MIDDLE_BLOCK": 4,
       "TREND_IGNITION_ENTRY": 2,
-      "UNKNOWN": 38
+      "UNKNOWN": 39
     },
     "signal_counts_by_regime": {
       "NEWS_SHOCK": 16,
-      "NORMAL": 24,
+      "NORMAL": 25,
       "RANGE_COMPRESSION": 6,
       "REVERSAL_BUILDUP": 1,
       "TREND_EXPANSION": 10,
