@@ -21,12 +21,12 @@
     "tp1_locked_stop": 0.0,
     "tp2_locked_stop": 0.0,
     "best_price": 83.03,
-    "last_action": "PROTECT_OR_EXIT",
-    "last_message_key": "cc07d59372:PROTECT_OR_EXIT:False:False:False:False:False:82.2402",
-    "entry_integrity_score": 53,
-    "entry_fail_streak": 1,
+    "last_action": "EXIT_WARNING",
+    "last_message_key": "cc07d59372:EXIT_WARNING:False:False:False:False:False:82.2402",
+    "entry_integrity_score": 14,
+    "entry_fail_streak": 2,
     "entry_recovery_checks": 0,
-    "entry_last_state": "🟠 Слабка",
+    "entry_last_state": "🔴 Зламана",
     "mfe_giveback_streak": 0,
     "mfe_giveback_last_state": "OK",
     "notes": [
@@ -1772,26 +1772,35 @@
       "result_pct": 0.0,
       "stop_current": 82.2402,
       "time": "2026-06-16T00:01:21.541460+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "EXIT_WARNING",
+      "price": 82.71,
+      "result_pct": -0.193,
+      "stop_current": 82.2402,
+      "time": "2026-06-16T00:15:54.273298+00:00"
     }
   ],
   "regime_memory": {
     "type": "TREND_EXPANSION",
-    "pending_type": "NORMAL",
+    "pending_type": "TREND_PULLBACK",
     "stable_count": 0,
     "pending_count": 1,
-    "updated_at": "2026-06-16T00:01:21.190844+00:00"
+    "updated_at": "2026-06-16T00:15:53.888641+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-16T00:01:21.541481+00:00",
-    "price": 82.87,
-    "oi": 64614.87,
-    "cvd": 226044.0,
-    "cvd_time": "2026-06-16T00:01:21.541484+00:00",
-    "last_trade_ts": 1781568064337,
-    "bias": "LONG",
-    "tech_score": 57,
-    "total_score": 49
+    "time": "2026-06-16T00:15:54.273318+00:00",
+    "price": 82.71,
+    "oi": 64627.57,
+    "cvd": 196580.0,
+    "cvd_time": "2026-06-16T00:15:54.273321+00:00",
+    "last_trade_ts": 1781568901919,
+    "bias": "NEUTRAL",
+    "tech_score": -25,
+    "total_score": -33
   },
-  "updated_at": "2026-06-16T00:01:21.541489+00:00",
+  "updated_at": "2026-06-16T00:15:54.273326+00:00",
   "pending_trigger": null
 }
