@@ -20,13 +20,13 @@
     "tp2_stop_locked": false,
     "tp1_locked_stop": 0.0,
     "tp2_locked_stop": 0.0,
-    "best_price": 82.1,
-    "last_action": "PROTECT_OR_EXIT",
-    "last_message_key": "f73204d1f1:PROTECT_OR_EXIT:False:False:False:False:False:83.1387",
-    "entry_integrity_score": 42,
-    "entry_fail_streak": 5,
+    "best_price": 82.03,
+    "last_action": "HOLD",
+    "last_message_key": "f73204d1f1:HOLD:False:False:False:False:False:83.1387",
+    "entry_integrity_score": 100,
+    "entry_fail_streak": 0,
     "entry_recovery_checks": 0,
-    "entry_last_state": "🟠 Слабка",
+    "entry_last_state": "🟢 Сильна",
     "mfe_giveback_streak": 0,
     "mfe_giveback_last_state": "OK",
     "notes": [
@@ -2416,26 +2416,35 @@
       "result_pct": 0.085,
       "stop_current": 83.1387,
       "time": "2026-06-16T04:45:48.242314+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "HOLD",
+      "price": 82.03,
+      "result_pct": 0.231,
+      "stop_current": 83.1387,
+      "time": "2026-06-16T05:01:20.852573+00:00"
     }
   ],
   "regime_memory": {
-    "type": "NORMAL",
+    "type": "TREND_EXPANSION",
     "pending_type": "",
-    "stable_count": 4,
-    "pending_count": 0,
-    "updated_at": "2026-06-16T04:45:47.907253+00:00"
+    "stable_count": 1,
+    "pending_count": 1,
+    "updated_at": "2026-06-16T05:01:20.514258+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-16T04:45:48.242336+00:00",
-    "price": 82.15,
-    "oi": 65282.82,
-    "cvd": 292589.0,
-    "cvd_time": "2026-06-16T04:45:48.242338+00:00",
-    "last_trade_ts": 1781585105809,
+    "time": "2026-06-16T05:01:20.852594+00:00",
+    "price": 82.03,
+    "oi": 63721.25,
+    "cvd": 256215.0,
+    "cvd_time": "2026-06-16T05:01:20.852597+00:00",
+    "last_trade_ts": 1781586061439,
     "bias": "SHORT",
-    "tech_score": -50,
-    "total_score": -48
+    "tech_score": -203,
+    "total_score": -210
   },
-  "updated_at": "2026-06-16T04:45:48.242344+00:00",
+  "updated_at": "2026-06-16T05:01:20.852602+00:00",
   "pending_trigger": null
 }
