@@ -3,17 +3,6 @@
   "active_trade": null,
   "history": [
     {
-      "type": "TRADE_CLOSED",
-      "side": "LONG",
-      "action": "EXIT_MFE_GIVEBACK",
-      "price": 82.54,
-      "result_pct": 0.426,
-      "mfe_pct": 1.071,
-      "mfe_captured_pct": 39.8,
-      "mfe_giveback_pct": 0.645,
-      "time": "2026-06-15T21:15:51.073720+00:00"
-    },
-    {
       "type": "WATCH",
       "side": "LONG",
       "price": 82.71,
@@ -2404,26 +2393,93 @@
         "previous_regime_type": "EXHAUSTION"
       },
       "time": "2026-06-16T16:31:18.961217+00:00"
+    },
+    {
+      "type": "WATCH",
+      "side": "SHORT",
+      "price": 78.24,
+      "quality": 26,
+      "reason": "SHORT вже відпрацював основний імпульс — не доганяти; чекати нову базу/відкат або окремий LONG-сетап. за добу вже -5.58%; 15M RSI 23.2; ціна далеко від EMA20 (3.24 ATR); CVD/потік/кластери вже попереджають",
+      "setup_classifier": {
+        "type": "LATE_IMPULSE_CHASE",
+        "label": "🔴 Пізній імпульс / доганяння",
+        "side": "SHORT",
+        "score": 30,
+        "entry_allowed": false,
+        "block_entry": true,
+        "risk_mode": "NORMAL",
+        "reason": "SHORT вже відпрацював основний імпульс — не доганяти; чекати нову базу/відкат або окремий LONG-сетап. за добу вже -5.58%; 15M RSI 23.2; ціна далеко від EMA20 (3.39 ATR); CVD/потік/кластери вже попереджають",
+        "quality_adjustment": -12,
+        "quality_cap": 61,
+        "force_risky": false,
+        "profile": {
+          "quality_adjustment": -12,
+          "quality_cap": 61,
+          "block_entry": true
+        },
+        "entry_rule": "вхід заборонений до проторговки, ретесту або нового FVG/OB повернення рівня",
+        "stop_rule": "план лише після нового рівня для стопу",
+        "tp_rule": "не рахувати TP від поганої локації",
+        "management_rule": "чекати перебудову; напрям може бути правильний, але точка входу погана",
+        "late_penalty": 12,
+        "late_without_reset": true
+      },
+      "regime_engine": {
+        "name": "IMPULSE",
+        "regime_type": "EXHAUSTION",
+        "label": "виснажений рух",
+        "score": 72,
+        "confidence": 72,
+        "reason": "SHORT вже відпрацював основний імпульс — не доганяти; чекати нову базу/відкат або окремий LONG-сетап. за добу вже -5.58%; 15M RSI 23.2; ціна далеко від EMA20 (3.24 ATR); CVD/потік/кластери вже попереджають",
+        "entry_action": "BLOCK",
+        "entry_quality_adjustment": -10,
+        "quality_cap": 61,
+        "hard_block": true,
+        "allowed_setups": [
+          "SWEEP_REVERSAL",
+          "SWEEP_RECLAIM_EARLY_ENTRY",
+          "PRIME_ICT_LOCATION_OVERRIDE",
+          "RANGE_EDGE_TRADE"
+        ],
+        "notes": [],
+        "metrics": {
+          "bias": "SHORT",
+          "range_atr": 6.44,
+          "move8_abs_pct": 1.707,
+          "slope15_abs_pct": 2.156,
+          "rsi15": 23.2,
+          "score_total_abs": 90,
+          "participation_same": 0,
+          "late_penalty": 12,
+          "pd": "DISCOUNT",
+          "ict_setup": "DISCOUNT_CONTEXT"
+        },
+        "stable_count": 5,
+        "pending_count": 0,
+        "is_stable": true,
+        "previous_regime_type": "EXHAUSTION"
+      },
+      "time": "2026-06-16T16:46:04.969139+00:00"
     }
   ],
   "regime_memory": {
     "type": "EXHAUSTION",
     "pending_type": "",
-    "stable_count": 4,
+    "stable_count": 5,
     "pending_count": 0,
-    "updated_at": "2026-06-16T16:31:18.523553+00:00"
+    "updated_at": "2026-06-16T16:46:04.548386+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-16T16:31:18.961281+00:00",
-    "price": 78.38,
-    "oi": 61602.36,
-    "cvd": 162786.0,
-    "cvd_time": "2026-06-16T16:31:18.961284+00:00",
-    "last_trade_ts": 1781627453073,
+    "time": "2026-06-16T16:46:04.969188+00:00",
+    "price": 78.24,
+    "oi": 61576.82,
+    "cvd": 177670.0,
+    "cvd_time": "2026-06-16T16:46:04.969190+00:00",
+    "last_trade_ts": 1781628327254,
     "bias": "SHORT",
-    "tech_score": -200,
-    "total_score": -191
+    "tech_score": -100,
+    "total_score": -90
   },
-  "updated_at": "2026-06-16T16:31:18.961289+00:00",
+  "updated_at": "2026-06-16T16:46:04.969195+00:00",
   "pending_trigger": null
 }
