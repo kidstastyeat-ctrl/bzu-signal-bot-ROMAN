@@ -23,7 +23,7 @@
     "best_price": 78.76,
     "last_action": "HOLD",
     "last_message_key": "d6249b87a8:HOLD:False:False:False:False:False:79.5097",
-    "entry_integrity_score": 76,
+    "entry_integrity_score": 67,
     "entry_fail_streak": 0,
     "entry_recovery_checks": 2,
     "entry_last_state": "🟡 Робоча",
@@ -38,15 +38,6 @@
     ]
   },
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "SHORT",
-      "action": "HOLD",
-      "price": 81.54,
-      "result_pct": 0.208,
-      "stop_current": 82.4181,
-      "time": "2026-06-16T07:31:13.172037+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "SHORT",
@@ -3162,26 +3153,35 @@
       "result_pct": 0.177,
       "stop_current": 79.5097,
       "time": "2026-06-17T02:45:51.621310+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "HOLD",
+      "price": 78.76,
+      "result_pct": 0.19,
+      "stop_current": 79.5097,
+      "time": "2026-06-17T03:01:14.068447+00:00"
     }
   ],
   "regime_memory": {
     "type": "TREND_EXPANSION",
     "pending_type": "",
-    "stable_count": 3,
+    "stable_count": 4,
     "pending_count": 0,
-    "updated_at": "2026-06-17T02:45:51.278052+00:00"
+    "updated_at": "2026-06-17T03:01:13.768659+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-17T02:45:51.621334+00:00",
-    "price": 78.77,
-    "oi": 59817.76,
-    "cvd": 186541.0,
-    "cvd_time": "2026-06-17T02:45:51.621337+00:00",
-    "last_trade_ts": 1781664344309,
+    "time": "2026-06-17T03:01:14.068468+00:00",
+    "price": 78.76,
+    "oi": 59727.56,
+    "cvd": 162918.0,
+    "cvd_time": "2026-06-17T03:01:14.068471+00:00",
+    "last_trade_ts": 1781665240022,
     "bias": "SHORT",
-    "tech_score": -171,
-    "total_score": -174
+    "tech_score": -130,
+    "total_score": -134
   },
-  "updated_at": "2026-06-17T02:45:51.621341+00:00",
+  "updated_at": "2026-06-17T03:01:14.068475+00:00",
   "pending_trigger": null
 }
