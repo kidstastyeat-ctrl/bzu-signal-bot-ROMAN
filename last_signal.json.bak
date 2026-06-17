@@ -6,12 +6,12 @@
     "opened_at": "2026-06-17T01:31:02.718726+00:00",
     "entry": 78.91,
     "stop_initial": 79.5097,
-    "stop_current": 78.8469,
+    "stop_current": 78.7995,
     "tp1": 78.184,
     "tp2": 77.6869,
     "tp3": 76.8978,
     "quality": 73,
-    "stop_updated_at": "2026-06-17T03:15:56.068441+00:00",
+    "stop_updated_at": "2026-06-17T04:01:20.143311+00:00",
     "status": "OPEN",
     "tp1_hit": false,
     "tp2_hit": false,
@@ -20,10 +20,10 @@
     "tp2_stop_locked": false,
     "tp1_locked_stop": 0.0,
     "tp2_locked_stop": 0.0,
-    "best_price": 78.53,
-    "last_action": "HOLD",
-    "last_message_key": "d6249b87a8:HOLD:False:False:False:False:False:78.8469",
-    "entry_integrity_score": 87,
+    "best_price": 78.26,
+    "last_action": "PROTECT",
+    "last_message_key": "d6249b87a8:PROTECT:False:False:False:False:False:78.7995",
+    "entry_integrity_score": 100,
     "entry_fail_streak": 0,
     "entry_recovery_checks": 2,
     "entry_last_state": "🟢 Сильна",
@@ -38,15 +38,6 @@
     ]
   },
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "SHORT",
-      "action": "TP1_PROTECT",
-      "price": 80.58,
-      "result_pct": 1.383,
-      "stop_current": 81.2285,
-      "time": "2026-06-16T08:31:15.929170+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "SHORT",
@@ -3162,26 +3153,35 @@
       "result_pct": 0.482,
       "stop_current": 78.8469,
       "time": "2026-06-17T03:45:50.036412+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "PROTECT",
+      "price": 78.35,
+      "result_pct": 0.71,
+      "stop_current": 78.7995,
+      "time": "2026-06-17T04:01:20.143881+00:00"
     }
   ],
   "regime_memory": {
     "type": "TREND_EXPANSION",
-    "pending_type": "NORMAL",
-    "stable_count": 0,
-    "pending_count": 1,
-    "updated_at": "2026-06-17T03:45:49.653550+00:00"
+    "pending_type": "",
+    "stable_count": 1,
+    "pending_count": 0,
+    "updated_at": "2026-06-17T04:01:19.761883+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-17T03:45:50.036434+00:00",
-    "price": 78.53,
-    "oi": 57823.71,
-    "cvd": 148771.0,
-    "cvd_time": "2026-06-17T03:45:50.036436+00:00",
-    "last_trade_ts": 1781667928936,
+    "time": "2026-06-17T04:01:20.143901+00:00",
+    "price": 78.35,
+    "oi": 57400.2,
+    "cvd": 144581.0,
+    "cvd_time": "2026-06-17T04:01:20.143904+00:00",
+    "last_trade_ts": 1781668872239,
     "bias": "SHORT",
-    "tech_score": -40,
-    "total_score": -43
+    "tech_score": -195,
+    "total_score": -198
   },
-  "updated_at": "2026-06-17T03:45:50.036441+00:00",
+  "updated_at": "2026-06-17T04:01:20.143909+00:00",
   "pending_trigger": null
 }
