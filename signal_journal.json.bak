@@ -261,6 +261,43 @@
         "модель: POST_TP1_FAST_CAPTURE_MIDWAY_TO_TP2_HARD_REVERSAL",
         "після TP1 головне — не віддати підтверджений прибуток назад"
       ]
+    },
+    {
+      "id": "07842b93b6",
+      "opened_at": "2026-06-17T06:01:24.032830+00:00",
+      "closed_at": "2026-06-17T06:45:52.352708+00:00",
+      "side": "LONG",
+      "entry_level": "RISKY_ENTRY",
+      "setup_type": "TREND_IGNITION_ENTRY",
+      "regime_type": "NEWS_SHOCK",
+      "entry": 78.9,
+      "close_price": 78.22,
+      "market_close_price": 78.22,
+      "stop_initial": 77.8901,
+      "stop_final": 77.8901,
+      "tp1": 79.9099,
+      "tp2": 80.3644,
+      "tp3": 81.1487,
+      "quality": 67,
+      "result_action": "EXIT_ENTRY_POINT_BROKEN",
+      "result_pct": -0.862,
+      "leveraged_pct": -8.62,
+      "best_pct": 0.241,
+      "mfe_pct": 0.241,
+      "mfe_captured_pct": -357.7,
+      "mfe_giveback_pct": 1.103,
+      "trade_phase": "EXPANSION",
+      "phase_status": "EDGE_LOST",
+      "mae_pct": 0.862,
+      "confirmed_mfe_pct": 0.241,
+      "exit_reason_code": "ENTRY_POINT_INTEGRITY_BROKEN",
+      "exit_quality": "ENTRY_POINT",
+      "exit_score": null,
+      "missed_continuation_check": "pending_next_runs",
+      "notes": [
+        "ціна пройшла понад 60% шляху до стопа і структура/ICT проти точки входу",
+        "слабких перевірок підряд: 3"
+      ]
     }
   ],
   "signals": [
@@ -29079,56 +29116,105 @@
         "is_stable": true,
         "previous_regime_type": "NEWS_SHOCK"
       }
+    },
+    {
+      "time": "2026-06-17T06:45:52.352725+00:00",
+      "type": "CLOSE",
+      "side": "LONG",
+      "action": "EXIT_ENTRY_POINT_BROKEN",
+      "price": 78.22,
+      "quality": 67,
+      "entry_level": "RISKY_ENTRY",
+      "setup_type": "TREND_IGNITION_ENTRY",
+      "regime_type": "NEWS_SHOCK",
+      "context_bias": "SHORT",
+      "tech_score": -135,
+      "total_score": -131,
+      "regime_engine": {
+        "name": "NEWS_IMPULSE",
+        "regime_type": "NEWS_SHOCK",
+        "label": "новинний шок",
+        "score": 78,
+        "confidence": 78,
+        "reason": "новинний шок/подія: вхід тільки після 3M/структурного підтвердження, не доганяти першу свічку",
+        "entry_action": "RISKY_ONLY",
+        "entry_quality_adjustment": -2,
+        "quality_cap": 79,
+        "hard_block": false,
+        "allowed_setups": [
+          "NEWS_IMPULSE",
+          "TREND_IGNITION_ENTRY",
+          "PRIME_ICT_LOCATION_OVERRIDE",
+          "PULLBACK_CONTINUATION_FAST_ENTRY"
+        ],
+        "notes": [],
+        "metrics": {
+          "bias": "SHORT",
+          "range_atr": 4.71,
+          "move8_abs_pct": 0.115,
+          "slope15_abs_pct": 0.004,
+          "rsi15": 40.4,
+          "score_total_abs": 131,
+          "participation_same": 1,
+          "late_penalty": 11,
+          "pd": "DISCOUNT",
+          "ict_setup": "DISCOUNT_FVG_OB_LONG"
+        },
+        "stable_count": 5,
+        "pending_count": 0,
+        "is_stable": true,
+        "previous_regime_type": "NEWS_SHOCK"
+      }
     }
   ],
-  "updated_at": "2026-06-17T06:31:12.665371+00:00",
+  "updated_at": "2026-06-17T06:45:52.357607+00:00",
   "outcome_analytics": {
-    "updated_at": "2026-06-17T06:31:12.670265+00:00",
+    "updated_at": "2026-06-17T06:45:52.361639+00:00",
     "lookback_limit": 120,
-    "closed_trades_count": 7,
+    "closed_trades_count": 8,
     "signals_count": 120,
     "overall": {
-      "trades": 7,
+      "trades": 8,
       "wins": 5,
-      "losses": 2,
-      "win_rate": 71.4,
-      "expectancy_pct": 0.433,
-      "total_pct": 3.029,
-      "total_leveraged_pct": 30.29,
-      "avg_mfe_pct": 1.046,
-      "avg_mae_pct": 0.111,
-      "avg_mfe_capture_pct": 16.0,
-      "tp1_proxy_rate": 42.9,
-      "stop_or_negative_rate": 71.4
+      "losses": 3,
+      "win_rate": 62.5,
+      "expectancy_pct": 0.271,
+      "total_pct": 2.167,
+      "total_leveraged_pct": 21.67,
+      "avg_mfe_pct": 0.945,
+      "avg_mae_pct": 0.205,
+      "avg_mfe_capture_pct": -30.7,
+      "tp1_proxy_rate": 37.5,
+      "stop_or_negative_rate": 75.0
     },
     "today": {
-      "trades": 1,
+      "trades": 2,
       "wins": 1,
-      "losses": 0,
-      "win_rate": 100.0,
-      "expectancy_pct": 0.684,
-      "total_pct": 0.684,
-      "total_leveraged_pct": 6.84,
-      "avg_mfe_pct": 1.331,
-      "avg_mae_pct": 0.304,
-      "avg_mfe_capture_pct": 51.4,
-      "tp1_proxy_rate": 100.0,
-      "stop_or_negative_rate": 0.0
+      "losses": 1,
+      "win_rate": 50.0,
+      "expectancy_pct": -0.089,
+      "total_pct": -0.178,
+      "total_leveraged_pct": -1.78,
+      "avg_mfe_pct": 0.786,
+      "avg_mae_pct": 0.583,
+      "avg_mfe_capture_pct": -153.2,
+      "tp1_proxy_rate": 50.0,
+      "stop_or_negative_rate": 50.0
     },
     "by_side": {
       "LONG": {
-        "trades": 3,
+        "trades": 4,
         "wins": 2,
-        "losses": 1,
-        "win_rate": 66.7,
-        "expectancy_pct": 0.141,
-        "total_pct": 0.422,
-        "total_leveraged_pct": 4.22,
-        "avg_mfe_pct": 0.627,
-        "avg_mae_pct": 0.048,
-        "avg_mfe_capture_pct": 3.1,
-        "tp1_proxy_rate": 33.3,
-        "stop_or_negative_rate": 66.7
+        "losses": 2,
+        "win_rate": 50.0,
+        "expectancy_pct": -0.11,
+        "total_pct": -0.44,
+        "total_leveraged_pct": -4.4,
+        "avg_mfe_pct": 0.531,
+        "avg_mae_pct": 0.252,
+        "avg_mfe_capture_pct": -87.1,
+        "tp1_proxy_rate": 25.0,
+        "stop_or_negative_rate": 75.0
       },
       "SHORT": {
         "trades": 4,
@@ -29189,34 +29275,34 @@
         "stop_or_negative_rate": 50.0
       },
       "TREND_IGNITION_ENTRY": {
-        "trades": 3,
+        "trades": 4,
         "wins": 2,
-        "losses": 1,
-        "win_rate": 66.7,
-        "expectancy_pct": 0.641,
-        "total_pct": 1.923,
-        "total_leveraged_pct": 19.23,
-        "avg_mfe_pct": 1.369,
-        "avg_mae_pct": 0.11,
-        "avg_mfe_capture_pct": 17.2,
-        "tp1_proxy_rate": 33.3,
+        "losses": 2,
+        "win_rate": 50.0,
+        "expectancy_pct": 0.265,
+        "total_pct": 1.061,
+        "total_leveraged_pct": 10.61,
+        "avg_mfe_pct": 1.087,
+        "avg_mae_pct": 0.298,
+        "avg_mfe_capture_pct": -76.5,
+        "tp1_proxy_rate": 25.0,
         "stop_or_negative_rate": 100.0
       }
     },
     "by_regime": {
       "NEWS_SHOCK": {
-        "trades": 2,
+        "trades": 3,
         "wins": 1,
-        "losses": 1,
-        "win_rate": 50.0,
-        "expectancy_pct": 0.14,
-        "total_pct": 0.28,
-        "total_leveraged_pct": 2.8,
-        "avg_mfe_pct": 0.791,
-        "avg_mae_pct": 0.165,
-        "avg_mfe_capture_pct": 5.6,
-        "tp1_proxy_rate": 50.0,
-        "stop_or_negative_rate": 50.0
+        "losses": 2,
+        "win_rate": 33.3,
+        "expectancy_pct": -0.194,
+        "total_pct": -0.582,
+        "total_leveraged_pct": -5.82,
+        "avg_mfe_pct": 0.608,
+        "avg_mae_pct": 0.397,
+        "avg_mfe_capture_pct": -115.5,
+        "tp1_proxy_rate": 33.3,
+        "stop_or_negative_rate": 66.7
       },
       "NORMAL": {
         "trades": 2,
@@ -29263,18 +29349,18 @@
         "stop_or_negative_rate": 100.0
       },
       "RISKY_ENTRY": {
-        "trades": 6,
+        "trades": 7,
         "wins": 4,
-        "losses": 2,
-        "win_rate": 66.7,
-        "expectancy_pct": 0.492,
-        "total_pct": 2.949,
-        "total_leveraged_pct": 29.49,
-        "avg_mfe_pct": 1.117,
-        "avg_mae_pct": 0.13,
-        "avg_mfe_capture_pct": 16.6,
-        "tp1_proxy_rate": 50.0,
-        "stop_or_negative_rate": 66.7
+        "losses": 3,
+        "win_rate": 57.1,
+        "expectancy_pct": 0.298,
+        "total_pct": 2.087,
+        "total_leveraged_pct": 20.87,
+        "avg_mfe_pct": 0.992,
+        "avg_mae_pct": 0.234,
+        "avg_mfe_capture_pct": -36.9,
+        "tp1_proxy_rate": 42.9,
+        "stop_or_negative_rate": 71.4
       }
     },
     "by_exit_reason": {
@@ -29293,16 +29379,16 @@
         "stop_or_negative_rate": 0.0
       },
       "ENTRY_POINT_INTEGRITY_BROKEN": {
-        "trades": 2,
+        "trades": 3,
         "wins": 0,
-        "losses": 2,
+        "losses": 3,
         "win_rate": 0.0,
-        "expectancy_pct": -0.115,
-        "total_pct": -0.23,
-        "total_leveraged_pct": -2.3,
-        "avg_mfe_pct": 0.352,
-        "avg_mae_pct": 0.237,
-        "avg_mfe_capture_pct": -36.0,
+        "expectancy_pct": -0.364,
+        "total_pct": -1.092,
+        "total_leveraged_pct": -10.92,
+        "avg_mfe_pct": 0.315,
+        "avg_mae_pct": 0.445,
+        "avg_mfe_capture_pct": -143.3,
         "tp1_proxy_rate": 0.0,
         "stop_or_negative_rate": 100.0
       },
@@ -29340,10 +29426,10 @@
       "entries": 5,
       "full_entries": 1,
       "risky_entries": 4,
-      "watch": 40,
+      "watch": 39,
       "no_trade": 11,
       "follow": 60,
-      "closed": 4,
+      "closed": 5,
       "pending_trigger_activations": 0
     },
     "signal_counts_by_setup": {
@@ -29352,19 +29438,17 @@
       "NEWS_IMPULSE": 1,
       "NO_CLEAN_SETUP": 12,
       "PRIME_ICT_LOCATION_OVERRIDE": 2,
-      "PULLBACK_CONTINUATION": 1,
       "RANGE_MIDDLE_BLOCK": 5,
       "TREND_IGNITION_ENTRY": 4,
-      "UNKNOWN": 75
+      "UNKNOWN": 76
     },
     "signal_counts_by_regime": {
       "EXHAUSTION": 18,
-      "NEWS_SHOCK": 16,
+      "NEWS_SHOCK": 17,
       "NORMAL": 45,
       "RANGE_COMPRESSION": 10,
       "REVERSAL_BUILDUP": 2,
-      "TREND_EXPANSION": 28,
-      "TREND_PULLBACK": 1
+      "TREND_EXPANSION": 28
     }
   }
 }
