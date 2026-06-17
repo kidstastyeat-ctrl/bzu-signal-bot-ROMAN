@@ -1149,39 +1149,81 @@
         "previous_regime_type": "NEWS_SHOCK"
       },
       "time": "2026-06-17T18:31:07.790190+00:00"
+    },
+    {
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 79.14,
+      "quality": 41,
+      "reason": "перевага нечітка, немає професійного входу",
+      "setup_classifier": null,
+      "regime_engine": {
+        "name": "NEWS_IMPULSE",
+        "regime_type": "NEWS_SHOCK",
+        "label": "новинний шок",
+        "score": 78,
+        "confidence": 78,
+        "reason": "новинний шок/подія: вхід тільки після 3M/структурного підтвердження, не доганяти першу свічку",
+        "entry_action": "RISKY_ONLY",
+        "entry_quality_adjustment": -2,
+        "quality_cap": 79,
+        "hard_block": false,
+        "allowed_setups": [
+          "NEWS_IMPULSE",
+          "TREND_IGNITION_ENTRY",
+          "PRIME_ICT_LOCATION_OVERRIDE",
+          "PULLBACK_CONTINUATION_FAST_ENTRY"
+        ],
+        "notes": [],
+        "metrics": {
+          "bias": "NEUTRAL",
+          "range_atr": 7.84,
+          "move8_abs_pct": 0.013,
+          "slope15_abs_pct": 0.31,
+          "rsi15": 52.0,
+          "score_total_abs": 6,
+          "participation_same": 0,
+          "late_penalty": 0,
+          "pd": "DISCOUNT",
+          "ict_setup": "DISCOUNT_FVG_OB_LONG"
+        },
+        "stable_count": 10,
+        "pending_count": 0,
+        "is_stable": true,
+        "previous_regime_type": "NEWS_SHOCK"
+      },
+      "time": "2026-06-17T18:42:26.959164+00:00"
     }
   ],
   "regime_memory": {
     "type": "NEWS_SHOCK",
     "pending_type": "",
-    "stable_count": 9,
+    "stable_count": 10,
     "pending_count": 0,
-    "updated_at": "2026-06-17T18:31:07.461915+00:00"
+    "updated_at": "2026-06-17T18:42:26.716464+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-17T18:31:07.790258+00:00",
-    "price": 79.39,
-    "oi": 59796.65,
-    "cvd": 129465.0,
-    "cvd_time": "2026-06-17T18:31:07.790262+00:00",
-    "last_trade_ts": 1781721048701,
-    "bias": "LONG",
-    "tech_score": 67,
-    "total_score": 66
+    "time": "2026-06-17T18:42:26.959179+00:00",
+    "price": 79.14,
+    "oi": 59902.81,
+    "cvd": 120178.0,
+    "cvd_time": "2026-06-17T18:42:26.959182+00:00",
+    "last_trade_ts": 1781721740865,
+    "bias": "NEUTRAL",
+    "tech_score": 9,
+    "total_score": 6
   },
-  "updated_at": "2026-06-17T18:31:07.790267+00:00",
+  "updated_at": "2026-06-17T18:42:26.959185+00:00",
   "pending_trigger": null,
   "opportunity_analytics": {
     "new_entries": 0,
     "covered_by_active_trade": 0,
     "missed": 2,
     "active_episode_keys": [
-      "LONG:CAPITULATION_RECOVERY",
       "SHORT:CAPITULATION_RECOVERY"
     ],
     "episode_status": {
-      "SHORT:CAPITULATION_RECOVERY": "MISSED",
-      "LONG:CAPITULATION_RECOVERY": "MISSED"
+      "SHORT:CAPITULATION_RECOVERY": "MISSED"
     },
     "recent": [
       {
@@ -1204,5 +1246,16 @@
     "covered_total": 0,
     "total_opportunities": 2,
     "coverage_pct": 0.0
+  },
+  "range_boundary_state": {
+    "status": "ACTIVE",
+    "high": 79.66,
+    "low": 78.77,
+    "created_ts": 1781720100000,
+    "updated_ts": 1781720100000,
+    "rollover_ts": 0,
+    "rollover_side": "",
+    "old_high": null,
+    "old_low": null
   }
 }
