@@ -28981,11 +28981,60 @@
           "previous_regime_type": "NEWS_SHOCK"
         }
       }
+    },
+    {
+      "time": "2026-06-17T06:15:56.402663+00:00",
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "PROTECT_OR_EXIT",
+      "price": 78.87,
+      "quality": 67,
+      "entry_level": "RISKY_ENTRY",
+      "setup_type": "TREND_IGNITION_ENTRY",
+      "regime_type": "NEWS_SHOCK",
+      "context_bias": "NEUTRAL",
+      "tech_score": 40,
+      "total_score": 40,
+      "regime_engine": {
+        "name": "NEWS_IMPULSE",
+        "regime_type": "NEWS_SHOCK",
+        "label": "новинний шок",
+        "score": 78,
+        "confidence": 78,
+        "reason": "новинний шок/подія: вхід тільки після 3M/структурного підтвердження, не доганяти першу свічку",
+        "entry_action": "RISKY_ONLY",
+        "entry_quality_adjustment": -2,
+        "quality_cap": 79,
+        "hard_block": false,
+        "allowed_setups": [
+          "NEWS_IMPULSE",
+          "TREND_IGNITION_ENTRY",
+          "PRIME_ICT_LOCATION_OVERRIDE",
+          "PULLBACK_CONTINUATION_FAST_ENTRY"
+        ],
+        "notes": [],
+        "metrics": {
+          "bias": "LONG",
+          "range_atr": 5.16,
+          "move8_abs_pct": 0.496,
+          "slope15_abs_pct": 0.582,
+          "rsi15": 55.0,
+          "score_total_abs": 40,
+          "participation_same": 1,
+          "late_penalty": 4,
+          "pd": "MIDRANGE",
+          "ict_setup": "BALANCE_MIDRANGE"
+        },
+        "stable_count": 3,
+        "pending_count": 0,
+        "is_stable": true,
+        "previous_regime_type": "NEWS_SHOCK"
+      }
     }
   ],
-  "updated_at": "2026-06-17T06:01:24.040524+00:00",
+  "updated_at": "2026-06-17T06:15:56.410677+00:00",
   "outcome_analytics": {
-    "updated_at": "2026-06-17T06:01:24.045409+00:00",
+    "updated_at": "2026-06-17T06:15:56.415212+00:00",
     "lookback_limit": 120,
     "closed_trades_count": 7,
     "signals_count": 120,
@@ -29244,8 +29293,8 @@
       "risky_entries": 4,
       "watch": 40,
       "no_trade": 12,
-      "follow": 58,
-      "closed": 5,
+      "follow": 59,
+      "closed": 4,
       "pending_trigger_activations": 0
     },
     "signal_counts_by_setup": {
@@ -29261,11 +29310,11 @@
     },
     "signal_counts_by_regime": {
       "EXHAUSTION": 18,
-      "NEWS_SHOCK": 14,
+      "NEWS_SHOCK": 15,
       "NORMAL": 46,
       "RANGE_COMPRESSION": 10,
       "REVERSAL_BUILDUP": 2,
-      "TREND_EXPANSION": 29,
+      "TREND_EXPANSION": 28,
       "TREND_PULLBACK": 1
     }
   }
