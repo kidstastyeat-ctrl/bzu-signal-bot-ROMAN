@@ -20,13 +20,13 @@
     "tp2_stop_locked": false,
     "tp1_locked_stop": 0.0,
     "tp2_locked_stop": 0.0,
-    "best_price": 79.07,
-    "last_action": "PROTECT_OR_EXIT",
-    "last_message_key": "07842b93b6:PROTECT_OR_EXIT:False:False:False:False:False:77.8901",
-    "entry_integrity_score": 42,
-    "entry_fail_streak": 1,
+    "best_price": 79.09,
+    "last_action": "EXIT_WARNING",
+    "last_message_key": "07842b93b6:EXIT_WARNING:False:False:False:False:False:77.8901",
+    "entry_integrity_score": 22,
+    "entry_fail_streak": 2,
     "entry_recovery_checks": 0,
-    "entry_last_state": "🟠 Слабка",
+    "entry_last_state": "🔴 Зламана",
     "mfe_giveback_streak": 0,
     "mfe_giveback_last_state": "OK",
     "notes": [
@@ -39,15 +39,6 @@
     ]
   },
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "SHORT",
-      "action": "TP1_PROTECT",
-      "price": 80.4,
-      "result_pct": 1.603,
-      "stop_current": 81.2285,
-      "time": "2026-06-16T11:01:27.722135+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "SHORT",
@@ -3235,26 +3226,35 @@
       "result_pct": -0.038,
       "stop_current": 77.8901,
       "time": "2026-06-17T06:15:56.402655+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "EXIT_WARNING",
+      "price": 78.74,
+      "result_pct": -0.203,
+      "stop_current": 77.8901,
+      "time": "2026-06-17T06:31:12.657000+00:00"
     }
   ],
   "regime_memory": {
     "type": "NEWS_SHOCK",
     "pending_type": "",
-    "stable_count": 3,
+    "stable_count": 4,
     "pending_count": 0,
-    "updated_at": "2026-06-17T06:15:56.032449+00:00"
+    "updated_at": "2026-06-17T06:31:12.272509+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-17T06:15:56.402676+00:00",
-    "price": 78.87,
-    "oi": 57145.62,
-    "cvd": 114231.0,
-    "cvd_time": "2026-06-17T06:15:56.402679+00:00",
-    "last_trade_ts": 1781676923167,
+    "time": "2026-06-17T06:31:12.657021+00:00",
+    "price": 78.74,
+    "oi": 56668.31,
+    "cvd": 27698.0,
+    "cvd_time": "2026-06-17T06:31:12.657024+00:00",
+    "last_trade_ts": 1781677860210,
     "bias": "NEUTRAL",
-    "tech_score": 40,
-    "total_score": 40
+    "tech_score": -36,
+    "total_score": -33
   },
-  "updated_at": "2026-06-17T06:15:56.402683+00:00",
+  "updated_at": "2026-06-17T06:31:12.657030+00:00",
   "pending_trigger": null
 }
