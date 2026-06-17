@@ -20,12 +20,12 @@
     "tp2_stop_locked": false,
     "tp1_locked_stop": 0.0,
     "tp2_locked_stop": 0.0,
-    "best_price": 78.8,
+    "best_price": 78.79,
     "last_action": "HOLD",
     "last_message_key": "d6249b87a8:HOLD:False:False:False:False:False:79.5097",
-    "entry_integrity_score": 78,
+    "entry_integrity_score": 70,
     "entry_fail_streak": 0,
-    "entry_recovery_checks": 1,
+    "entry_recovery_checks": 2,
     "entry_last_state": "🟡 Робоча",
     "mfe_giveback_streak": 0,
     "mfe_giveback_last_state": "OK",
@@ -38,15 +38,6 @@
     ]
   },
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "SHORT",
-      "action": "HOLD",
-      "price": 81.97,
-      "result_pct": 0.304,
-      "stop_current": 82.1542,
-      "time": "2026-06-16T06:45:56.292196+00:00"
-    },
     {
       "type": "TRADE_CLOSED",
       "side": "SHORT",
@@ -3235,26 +3226,35 @@
       "result_pct": 0.139,
       "stop_current": 79.5097,
       "time": "2026-06-17T02:01:18.867884+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "HOLD",
+      "price": 78.84,
+      "result_pct": 0.089,
+      "stop_current": 79.5097,
+      "time": "2026-06-17T02:15:56.249912+00:00"
     }
   ],
   "regime_memory": {
-    "type": "NEWS_SHOCK",
+    "type": "TREND_EXPANSION",
     "pending_type": "",
     "stable_count": 1,
     "pending_count": 1,
-    "updated_at": "2026-06-17T02:01:18.538700+00:00"
+    "updated_at": "2026-06-17T02:15:55.889676+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-17T02:01:18.867903+00:00",
-    "price": 78.8,
-    "oi": 60482.64,
-    "cvd": 234861.0,
-    "cvd_time": "2026-06-17T02:01:18.867906+00:00",
-    "last_trade_ts": 1781661656302,
+    "time": "2026-06-17T02:15:56.249931+00:00",
+    "price": 78.84,
+    "oi": 60079.12,
+    "cvd": 202589.0,
+    "cvd_time": "2026-06-17T02:15:56.249934+00:00",
+    "last_trade_ts": 1781662526076,
     "bias": "SHORT",
-    "tech_score": -186,
-    "total_score": -184
+    "tech_score": -159,
+    "total_score": -160
   },
-  "updated_at": "2026-06-17T02:01:18.867911+00:00",
+  "updated_at": "2026-06-17T02:15:56.249939+00:00",
   "pending_trigger": null
 }
