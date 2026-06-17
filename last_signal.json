@@ -20,12 +20,12 @@
     "tp2_stop_locked": false,
     "tp1_locked_stop": 0.0,
     "tp2_locked_stop": 0.0,
-    "best_price": 78.88,
+    "best_price": 78.8,
     "last_action": "HOLD",
     "last_message_key": "d6249b87a8:HOLD:False:False:False:False:False:79.5097",
     "entry_integrity_score": 78,
     "entry_fail_streak": 0,
-    "entry_recovery_checks": 0,
+    "entry_recovery_checks": 1,
     "entry_last_state": "🟡 Робоча",
     "mfe_giveback_streak": 0,
     "mfe_giveback_last_state": "OK",
@@ -38,15 +38,6 @@
     ]
   },
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "SHORT",
-      "action": "HOLD",
-      "price": 81.98,
-      "result_pct": 0.292,
-      "stop_current": 82.1542,
-      "time": "2026-06-16T06:31:07.592748+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "SHORT",
@@ -3235,26 +3226,35 @@
       "result_pct": -0.013,
       "stop_current": 79.5097,
       "time": "2026-06-17T01:45:54.229204+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "HOLD",
+      "price": 78.8,
+      "result_pct": 0.139,
+      "stop_current": 79.5097,
+      "time": "2026-06-17T02:01:18.867884+00:00"
     }
   ],
   "regime_memory": {
-    "type": "TREND_EXPANSION",
+    "type": "NEWS_SHOCK",
     "pending_type": "",
-    "stable_count": 2,
-    "pending_count": 0,
-    "updated_at": "2026-06-17T01:45:53.847819+00:00"
+    "stable_count": 1,
+    "pending_count": 1,
+    "updated_at": "2026-06-17T02:01:18.538700+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-17T01:45:54.229228+00:00",
-    "price": 78.92,
-    "oi": 60390.19,
-    "cvd": 149354.0,
-    "cvd_time": "2026-06-17T01:45:54.229230+00:00",
-    "last_trade_ts": 1781660731426,
+    "time": "2026-06-17T02:01:18.867903+00:00",
+    "price": 78.8,
+    "oi": 60482.64,
+    "cvd": 234861.0,
+    "cvd_time": "2026-06-17T02:01:18.867906+00:00",
+    "last_trade_ts": 1781661656302,
     "bias": "SHORT",
-    "tech_score": -226,
-    "total_score": -228
+    "tech_score": -186,
+    "total_score": -184
   },
-  "updated_at": "2026-06-17T01:45:54.229235+00:00",
+  "updated_at": "2026-06-17T02:01:18.867911+00:00",
   "pending_trigger": null
 }
