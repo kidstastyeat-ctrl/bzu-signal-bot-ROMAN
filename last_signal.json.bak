@@ -1,18 +1,7 @@
 {
-  "version": "pro-v2-intraday-architecture",
+  "version": "pro-v3-single-file-clean-architecture",
   "active_trade": null,
   "history": [
-    {
-      "type": "TRADE_CLOSED",
-      "side": "LONG",
-      "action": "EXIT_ENTRY_POINT_BROKEN",
-      "price": 79.27,
-      "result_pct": -0.913,
-      "mfe_pct": 0.35,
-      "mfe_captured_pct": -260.9,
-      "mfe_giveback_pct": 1.263,
-      "time": "2026-06-17T16:01:31.309398+00:00"
-    },
     {
       "type": "WATCH",
       "side": "SHORT",
@@ -5178,37 +5167,105 @@
         "previous_regime_type": "NORMAL"
       },
       "time": "2026-06-18T09:45:52.936674+00:00"
+    },
+    {
+      "type": "WATCH",
+      "side": "SHORT",
+      "price": 77.64,
+      "quality": 55,
+      "reason": "немає одного з топових сетапів для професійного входу",
+      "setup_classifier": {
+        "type": "NO_CLEAN_SETUP",
+        "label": "⚪ Чистого сетапу немає",
+        "side": "SHORT",
+        "score": 56,
+        "entry_allowed": false,
+        "block_entry": true,
+        "risk_mode": "NORMAL",
+        "reason": "немає одного з топових сетапів для професійного входу",
+        "quality_adjustment": -6,
+        "quality_cap": 66,
+        "force_risky": false,
+        "profile": {
+          "quality_adjustment": -6,
+          "quality_cap": 66,
+          "block_entry": true
+        },
+        "entry_rule": "для шорт потрібен один з топ-сетапів: продовження тренду, відкат, зняття ліквідності, край діапазону або новинний імпульс",
+        "stop_rule": "стоп/TP не активувати без сетапу",
+        "tp_rule": "чекати чистішу структуру",
+        "management_rule": "чекати до появи топового сетапу"
+      },
+      "regime_engine": {
+        "name": "TREND",
+        "regime_type": "TREND_EXPANSION",
+        "label": "сильне продовження тренду",
+        "score": 82,
+        "confidence": 84,
+        "reason": "сильне продовження: continuation дозволений, TP2/TP3 можна тримати довше, але без доганяння",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 3,
+        "quality_cap": 90,
+        "hard_block": false,
+        "allowed_setups": [
+          "TREND_CONTINUATION",
+          "TREND_IGNITION_ENTRY",
+          "PULLBACK_CONTINUATION",
+          "PULLBACK_CONTINUATION_FAST_ENTRY"
+        ],
+        "notes": [],
+        "metrics": {
+          "bias": "SHORT",
+          "range_atr": 3.63,
+          "move8_abs_pct": 0.372,
+          "slope15_abs_pct": 0.056,
+          "rsi15": 42.8,
+          "score_total_abs": 116,
+          "participation_same": 1,
+          "late_penalty": 0,
+          "pd": "DISCOUNT",
+          "ict_setup": "DISCOUNT_FVG_OB_LONG",
+          "range_edge": false
+        },
+        "stable_count": 1,
+        "pending_count": 1,
+        "is_stable": false,
+        "previous_regime_type": "NORMAL"
+      },
+      "time": "2026-06-18T10:02:50.456384+00:00"
     }
   ],
   "regime_memory": {
-    "type": "NORMAL",
+    "type": "TREND_EXPANSION",
     "pending_type": "",
-    "stable_count": 4,
-    "pending_count": 0,
-    "updated_at": "2026-06-18T09:45:52.557523+00:00"
+    "stable_count": 1,
+    "pending_count": 1,
+    "updated_at": "2026-06-18T10:02:50.091314+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-18T09:45:52.936697+00:00",
-    "price": 77.81,
-    "oi": 59999.34,
-    "cvd": 211363.0,
-    "cvd_time": "2026-06-18T09:45:52.936700+00:00",
-    "last_trade_ts": 1781775930630,
-    "bias": "NEUTRAL",
-    "tech_score": -16,
-    "total_score": -17
+    "time": "2026-06-18T10:02:50.456404+00:00",
+    "price": 77.64,
+    "oi": 60138.13,
+    "cvd": 203356.0,
+    "cvd_time": "2026-06-18T10:02:50.456406+00:00",
+    "last_trade_ts": 1781776954479,
+    "bias": "SHORT",
+    "tech_score": -114,
+    "total_score": -116
   },
-  "updated_at": "2026-06-18T09:45:52.936705+00:00",
+  "updated_at": "2026-06-18T10:02:50.456409+00:00",
   "pending_trigger": null,
   "opportunity_analytics": {
     "new_entries": 0,
     "covered_by_active_trade": 0,
-    "missed": 8,
+    "missed": 9,
     "active_episode_keys": [
+      "LONG:CAPITULATION_RECOVERY",
       "SHORT:CAPITULATION_RECOVERY"
     ],
     "episode_status": {
-      "SHORT:CAPITULATION_RECOVERY": "MISSED"
+      "SHORT:CAPITULATION_RECOVERY": "MISSED",
+      "LONG:CAPITULATION_RECOVERY": "MISSED"
     },
     "recent": [
       {
@@ -5274,48 +5331,39 @@
         "episode_key": "SHORT:CAPITULATION_RECOVERY",
         "status": "MISSED",
         "time": "2026-06-18T09:15:51.814924+00:00"
+      },
+      {
+        "side": "LONG",
+        "type": "CAPITULATION_RECOVERY",
+        "ts": 1781775900000,
+        "episode_key": "LONG:CAPITULATION_RECOVERY",
+        "status": "MISSED",
+        "time": "2026-06-18T10:02:50.456241+00:00"
       }
     ],
     "covered_total": 0,
-    "total_opportunities": 8,
+    "total_opportunities": 9,
     "coverage_pct": 0.0
   },
   "range_boundary_state": {
     "status": "ACTIVE",
-    "high": 78.24,
+    "high": 78.11,
     "low": 77.47,
     "created_ts": 1781720100000,
-    "updated_ts": 1781775000000,
+    "updated_ts": 1781775900000,
     "rollover_ts": 0,
     "rollover_side": "",
     "old_high": null,
     "old_low": null
   },
-  "opportunity_memory": {
-    "active": true,
-    "source": "POST_GATE",
-    "created_at": "2026-06-18T09:15:51.814326+00:00",
-    "ttl_minutes": 45,
-    "side": "LONG",
-    "setup_type": "PRIME_ICT_LOCATION_OVERRIDE",
-    "setup_label": "🟢 Сильна ICT-локація",
-    "quality": 67,
-    "price": 77.62,
-    "trigger_level": null,
-    "invalidation": null,
-    "reason": "lock знято і свіжий тригер уже є, але фінальний консенсус ще не дозволив вхід; план буде перебудовано на наступній перевірці",
-    "missing_conditions": [
-      "lock знято і свіжий тригер уже є, але фінальний консенсус ще не дозволив вхід; план буде перебудовано на наступній перевірці"
-    ],
-    "plan": null
-  },
+  "opportunity_memory": null,
   "shock_lock": {
     "side": "SHORT",
     "status": "RELEASED",
     "origin_ts": 1781772300000,
     "extreme_ts": 1781772300000,
     "extreme_price": 77.51,
-    "released_at": "2026-06-18T09:45:52.933121+00:00",
+    "released_at": "2026-06-18T10:02:50.410662+00:00",
     "released_extreme": 77.51
   },
   "persistent_exhaustion_locks": {
@@ -5323,7 +5371,7 @@
       "side": "LONG",
       "status": "RELEASED",
       "origin_ts": 1781769420000,
-      "updated_ts": 1781775900000,
+      "updated_ts": 1781776800000,
       "origin_price": 77.85,
       "extreme_price": 77.88,
       "released_at": "2026-06-18T08:31:10.592777+00:00",
@@ -5336,7 +5384,7 @@
       "side": "SHORT",
       "status": "RELEASED",
       "origin_ts": 1781773200000,
-      "updated_ts": 1781775900000,
+      "updated_ts": 1781776800000,
       "origin_price": 77.6,
       "extreme_price": 77.6,
       "released_at": "2026-06-18T09:01:36.112142+00:00",
@@ -5392,16 +5440,16 @@
       "published_at": "2026-06-18T07:41:35+00:00",
       "reference_price": 77.84,
       "reaction_known": true,
-      "last_seen_at": "2026-06-18T09:45:52.028999+00:00",
-      "last_status": "ABSORBED"
+      "last_seen_at": "2026-06-18T10:02:48.896604+00:00",
+      "last_status": "CONFIRMED"
     },
     "ships surge out of hormuz as iran peace deal takes hold asian tankers european ships lead the rush gulf news": {
       "first_seen_at": "2026-06-18T09:45:52.028999+00:00",
       "published_at": "2026-06-18T09:28:10+00:00",
       "reference_price": 77.83,
       "reaction_known": true,
-      "last_seen_at": "2026-06-18T09:45:52.028999+00:00",
-      "last_status": "FRESH"
+      "last_seen_at": "2026-06-18T10:02:48.896604+00:00",
+      "last_status": "CONFIRMED"
     }
   },
   "lock_release_opportunities": {}
