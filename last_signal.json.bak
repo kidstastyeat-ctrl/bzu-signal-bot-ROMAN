@@ -1,5 +1,5 @@
 {
-  "version": "pro-v3-single-file-clean-architecture",
+  "version": "pro-v3.6-single-file-clean-range-entry-active-checkpoints",
   "active_trade": {
     "id": "c35cd630aa",
     "side": "SHORT",
@@ -21,19 +21,19 @@
     "tp1_locked_stop": 0.0,
     "tp2_locked_stop": 0.0,
     "best_price": 76.55,
-    "last_action": "HOLD",
-    "last_message_key": "c35cd630aa:HOLD:False:False:False:False:False:76.9976",
-    "entry_integrity_score": 70,
+    "last_action": "PROTECT_OR_EXIT",
+    "last_message_key": "c35cd630aa:PROTECT_OR_EXIT:False:False:False:False:False:76.9976",
+    "entry_integrity_score": 55,
     "entry_fail_streak": 0,
     "entry_recovery_checks": 2,
-    "entry_last_state": "🟡 Робоча",
+    "entry_last_state": "🟠 Слабка",
     "mfe_giveback_streak": 0,
     "mfe_giveback_last_state": "OK",
     "setup_type": "PRIME_ICT_LOCATION_OVERRIDE",
     "regime_type": "",
     "entry_level": "RISKY_ENTRY",
     "lifecycle_stage": "CONFIRMED",
-    "lifecycle_score": 92,
+    "lifecycle_score": 90,
     "lifecycle_confirmations": 3,
     "lifecycle_failures": 0,
     "lifecycle_last_transition": "2026-06-18T14:14:34.415765+00:00",
@@ -45,9 +45,22 @@
     "recovery_trigger_level": 0.0,
     "recovery_event_type": "",
     "recovery_entry_checks": 0,
-    "management_checks": 2,
+    "management_checks": 3,
     "mfe_profit_lock_streak": 0,
     "mfe_profit_lock_active": false,
+    "execution_urgency_score": 1,
+    "execution_urgency_mode": "LOW",
+    "execution_protect_streak": 0,
+    "execution_exit_streak": 0,
+    "execution_last_reason": "підтверджений тренд: низька терміновість виходу",
+    "execution_last_updated_at": "2026-06-18T14:23:31.374040+00:00",
+    "barrier_checkpoints": [],
+    "barrier_checkpoint_status": "NONE",
+    "barrier_checkpoint_level": 0.0,
+    "barrier_checkpoint_basis": "",
+    "barrier_checkpoint_acceptance_streak": 0,
+    "barrier_checkpoint_rejection_streak": 0,
+    "barrier_checkpoint_last_updated_at": "",
     "notes": [
       "RISKY_ENTRY",
       "ENTRY_LEVEL: RISKY_ENTRY",
@@ -298,6 +311,17 @@
       "result_pct": -0.0,
       "stop_current": 76.9976,
       "time": "2026-06-18T14:15:51.928544+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "PROTECT_OR_EXIT",
+      "price": 76.68,
+      "result_pct": -0.17,
+      "stop_current": 76.9976,
+      "execution_mode": "LOW",
+      "execution_score": 1,
+      "time": "2026-06-18T14:23:31.374270+00:00"
     }
   ],
   "news_reaction_memory": {
@@ -346,16 +370,16 @@
       "published_at": "2026-06-18T12:37:20+00:00",
       "reference_price": 78.33,
       "reaction_known": true,
-      "last_seen_at": "2026-06-18T14:10:29.031894+00:00",
+      "last_seen_at": "2026-06-18T14:23:29.895232+00:00",
       "last_status": "REJECTED"
     }
   },
   "regime_memory": {
-    "type": "NEWS_SHOCK",
+    "type": "TREND_EXPANSION",
     "pending_type": "",
     "stable_count": 1,
     "pending_count": 1,
-    "updated_at": "2026-06-18T14:15:51.661118+00:00"
+    "updated_at": "2026-06-18T14:23:31.017035+00:00"
   },
   "persistent_exhaustion_locks": {
     "SHORT": {
@@ -424,17 +448,17 @@
     "coverage_pct": 50.0
   },
   "last_market_snapshot": {
-    "time": "2026-06-18T14:15:51.928563+00:00",
-    "price": 76.55,
-    "oi": 62180.17,
-    "cvd": -11332.0,
-    "cvd_time": "2026-06-18T14:15:51.928566+00:00",
-    "last_trade_ts": 1781792144321,
+    "time": "2026-06-18T14:23:31.374290+00:00",
+    "price": 76.68,
+    "oi": 61763.93,
+    "cvd": -59641.0,
+    "cvd_time": "2026-06-18T14:23:31.374293+00:00",
+    "last_trade_ts": 1781792599751,
     "bias": "SHORT",
-    "tech_score": -170,
-    "total_score": -156
+    "tech_score": -202,
+    "total_score": -197
   },
-  "updated_at": "2026-06-18T14:15:51.928570+00:00",
+  "updated_at": "2026-06-18T14:23:31.374297+00:00",
   "range_boundary_state": {
     "status": "ACTIVE",
     "high": 78.67,
