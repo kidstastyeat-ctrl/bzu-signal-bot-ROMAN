@@ -11,7 +11,7 @@
     "tp2": 74.7128,
     "tp3": 73.7942,
     "quality": 77,
-    "stop_updated_at": "",
+    "stop_updated_at": "2026-06-18T14:10:29.866980+00:00",
     "status": "OPEN",
     "tp1_hit": false,
     "tp2_hit": false,
@@ -21,31 +21,31 @@
     "tp1_locked_stop": 0.0,
     "tp2_locked_stop": 0.0,
     "best_price": 76.55,
-    "last_action": "OPEN",
-    "last_message_key": "",
-    "entry_integrity_score": 100,
+    "last_action": "HOLD",
+    "last_message_key": "c35cd630aa:HOLD:False:False:False:False:False:76.9976",
+    "entry_integrity_score": 70,
     "entry_fail_streak": 0,
-    "entry_recovery_checks": 0,
-    "entry_last_state": "СИЛЬНА",
+    "entry_recovery_checks": 1,
+    "entry_last_state": "🟡 Робоча",
     "mfe_giveback_streak": 0,
     "mfe_giveback_last_state": "OK",
     "setup_type": "PRIME_ICT_LOCATION_OVERRIDE",
     "regime_type": "",
     "entry_level": "RISKY_ENTRY",
-    "lifecycle_stage": "EARLY_CONFIRMED",
-    "lifecycle_score": 77,
-    "lifecycle_confirmations": 0,
+    "lifecycle_stage": "CONFIRMED",
+    "lifecycle_score": 91,
+    "lifecycle_confirmations": 3,
     "lifecycle_failures": 0,
-    "lifecycle_last_transition": "2026-06-18T14:10:29.866987+00:00",
+    "lifecycle_last_transition": "2026-06-18T14:14:34.415765+00:00",
     "structural_stop": 76.9976,
-    "profit_stop": 0.0,
-    "active_stop_source": "STRUCTURAL",
+    "profit_stop": 76.9976,
+    "active_stop_source": "PROFIT",
     "recovery_after_rejection": false,
     "recovery_trigger_ts": 0,
     "recovery_trigger_level": 0.0,
     "recovery_event_type": "",
     "recovery_entry_checks": 0,
-    "management_checks": 0,
+    "management_checks": 1,
     "mfe_profit_lock_streak": 0,
     "mfe_profit_lock_active": false,
     "notes": [
@@ -280,6 +280,15 @@
       "tp2": 74.7128,
       "tp3": 73.7942,
       "time": "2026-06-18T14:10:29.867097+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "HOLD",
+      "price": 76.6,
+      "result_pct": -0.065,
+      "stop_current": 76.9976,
+      "time": "2026-06-18T14:14:34.416445+00:00"
     }
   ],
   "news_reaction_memory": {
@@ -296,7 +305,7 @@
       "published_at": "2026-06-18T12:01:54+00:00",
       "reference_price": 78.4,
       "reaction_known": true,
-      "last_seen_at": "2026-06-18T14:10:29.031894+00:00",
+      "last_seen_at": "2026-06-18T14:14:33.686708+00:00",
       "last_status": "CONFIRMED"
     },
     "sensex nifty rally on us iran peace deal optimism falling crude prices rediff": {
@@ -320,7 +329,7 @@
       "published_at": "2026-06-18T13:34:35+00:00",
       "reference_price": 77.48,
       "reaction_known": true,
-      "last_seen_at": "2026-06-18T14:10:29.031894+00:00",
+      "last_seen_at": "2026-06-18T14:14:33.686708+00:00",
       "last_status": "CONFIRMED"
     },
     "energy shares fall as iran deal lowers hormuz disruption risk aol com": {
@@ -333,11 +342,11 @@
     }
   },
   "regime_memory": {
-    "type": "NEWS_SHOCK",
+    "type": "TREND_EXPANSION",
     "pending_type": "",
-    "stable_count": 3,
-    "pending_count": 0,
-    "updated_at": "2026-06-18T14:10:29.451846+00:00"
+    "stable_count": 1,
+    "pending_count": 1,
+    "updated_at": "2026-06-18T14:14:34.093544+00:00"
   },
   "persistent_exhaustion_locks": {
     "SHORT": {
@@ -406,17 +415,17 @@
     "coverage_pct": 50.0
   },
   "last_market_snapshot": {
-    "time": "2026-06-18T14:10:29.867144+00:00",
-    "price": 76.55,
-    "oi": 62159.55,
-    "cvd": 644.0,
-    "cvd_time": "2026-06-18T14:10:29.867147+00:00",
-    "last_trade_ts": 1781791819844,
+    "time": "2026-06-18T14:14:34.416464+00:00",
+    "price": 76.6,
+    "oi": 62176.67,
+    "cvd": -20366.0,
+    "cvd_time": "2026-06-18T14:14:34.416467+00:00",
+    "last_trade_ts": 1781792068451,
     "bias": "SHORT",
-    "tech_score": -230,
-    "total_score": -210
+    "tech_score": -219,
+    "total_score": -200
   },
-  "updated_at": "2026-06-18T14:10:29.867150+00:00",
+  "updated_at": "2026-06-18T14:14:34.416472+00:00",
   "range_boundary_state": {
     "status": "ACTIVE",
     "high": 78.67,
