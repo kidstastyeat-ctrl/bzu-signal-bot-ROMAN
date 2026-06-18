@@ -6,12 +6,12 @@
     "opened_at": "2026-06-18T13:31:06.452440+00:00",
     "entry": 77.76,
     "stop_initial": 78.0744,
-    "stop_current": 78.0744,
+    "stop_current": 77.6511,
     "tp1": 76.7102,
     "tp2": 75.8938,
     "tp3": 74.9606,
     "quality": 79,
-    "stop_updated_at": "",
+    "stop_updated_at": "2026-06-18T13:45:53.115696+00:00",
     "status": "OPEN",
     "tp1_hit": false,
     "tp2_hit": false,
@@ -20,41 +20,65 @@
     "tp2_stop_locked": false,
     "tp1_locked_stop": 0.0,
     "tp2_locked_stop": 0.0,
-    "best_price": 77.76,
-    "last_action": "OPEN",
-    "last_message_key": "",
-    "entry_integrity_score": 100,
+    "best_price": 77.14,
+    "last_action": "PROTECT",
+    "last_message_key": "1bdca5bad6:PROTECT:False:False:False:False:False:77.6511",
+    "entry_integrity_score": 94,
     "entry_fail_streak": 0,
     "entry_recovery_checks": 0,
-    "entry_last_state": "СИЛЬНА",
+    "entry_last_state": "🟢 Сильна",
     "mfe_giveback_streak": 0,
     "mfe_giveback_last_state": "OK",
     "setup_type": "CLOSED_15M_DIRECTION_FLIP",
     "regime_type": "",
     "entry_level": "RISKY_ENTRY",
-    "lifecycle_stage": "EARLY_CONFIRMED",
-    "lifecycle_score": 89,
-    "lifecycle_confirmations": 0,
-    "lifecycle_failures": 0,
-    "lifecycle_last_transition": "2026-06-18T13:31:06.452448+00:00",
+    "lifecycle_stage": "WORKING",
+    "lifecycle_score": 71,
+    "lifecycle_confirmations": 2,
+    "lifecycle_failures": 1,
+    "lifecycle_last_transition": "2026-06-18T13:45:53.115615+00:00",
     "structural_stop": 78.0744,
-    "profit_stop": 0.0,
-    "active_stop_source": "STRUCTURAL",
+    "profit_stop": 77.6511,
+    "active_stop_source": "PROFIT",
     "recovery_after_rejection": false,
     "recovery_trigger_ts": 0,
     "recovery_trigger_level": 0.0,
     "recovery_event_type": "",
     "recovery_entry_checks": 0,
-    "management_checks": 0,
+    "management_checks": 1,
     "mfe_profit_lock_streak": 0,
     "mfe_profit_lock_active": false,
-    "execution_urgency_score": 0,
+    "execution_urgency_score": 32,
     "execution_urgency_mode": "NORMAL",
     "execution_protect_streak": 0,
     "execution_exit_streak": 0,
-    "execution_last_reason": "",
-    "execution_last_updated_at": "",
+    "execution_last_reason": "тиск проти: hard 0, fast 3; бар’єр 77.47 прийнято; активний новинний режим",
+    "execution_last_updated_at": "2026-06-18T13:45:53.116384+00:00",
     "barrier_checkpoints": [
+      {
+        "level": 77.69,
+        "basis": "закритий 1H swing low",
+        "priority": 94,
+        "source_status": "HARD",
+        "status": "ACCEPTED",
+        "acceptance_streak": 4,
+        "rejection_streak": 0,
+        "touched_at": "",
+        "accepted_at": "2026-06-18T13:45:53.115115+00:00",
+        "rejected_at": ""
+      },
+      {
+        "level": 77.47,
+        "basis": "закритий 1H swing low",
+        "priority": 94,
+        "source_status": "HARD",
+        "status": "ACCEPTED",
+        "acceptance_streak": 3,
+        "rejection_streak": 0,
+        "touched_at": "",
+        "accepted_at": "2026-06-18T13:45:53.116352+00:00",
+        "rejected_at": ""
+      },
       {
         "level": 77.06,
         "basis": "ICT range low / external liquidity",
@@ -66,38 +90,14 @@
         "touched_at": "",
         "accepted_at": "",
         "rejected_at": ""
-      },
-      {
-        "level": 77.47,
-        "basis": "закритий 1H swing low",
-        "priority": 94,
-        "source_status": "HARD",
-        "status": "PENDING",
-        "acceptance_streak": 0,
-        "rejection_streak": 0,
-        "touched_at": "",
-        "accepted_at": "",
-        "rejected_at": ""
-      },
-      {
-        "level": 77.69,
-        "basis": "закритий 1H swing low",
-        "priority": 94,
-        "source_status": "HARD",
-        "status": "PENDING",
-        "acceptance_streak": 0,
-        "rejection_streak": 0,
-        "touched_at": "",
-        "accepted_at": "",
-        "rejected_at": ""
       }
     ],
-    "barrier_checkpoint_status": "PENDING",
-    "barrier_checkpoint_level": 77.06,
-    "barrier_checkpoint_basis": "ICT range low / external liquidity",
-    "barrier_checkpoint_acceptance_streak": 0,
+    "barrier_checkpoint_status": "ACCEPTED",
+    "barrier_checkpoint_level": 77.47,
+    "barrier_checkpoint_basis": "закритий 1H swing low",
+    "barrier_checkpoint_acceptance_streak": 3,
     "barrier_checkpoint_rejection_streak": 0,
-    "barrier_checkpoint_last_updated_at": "2026-06-18T13:31:06.452471+00:00",
+    "barrier_checkpoint_last_updated_at": "2026-06-18T13:45:53.116358+00:00",
     "notes": [
       "RISKY_ENTRY",
       "ENTRY_LEVEL: RISKY_ENTRY",
@@ -108,71 +108,6 @@
     ]
   },
   "history": [
-    {
-      "type": "WATCH",
-      "side": "SHORT",
-      "price": 78.62,
-      "quality": 40,
-      "reason": "ліквідність/ринковий блок проти цього входу",
-      "setup_classifier": {
-        "type": "NO_CLEAN_SETUP",
-        "label": "⚪ Чистого сетапу немає",
-        "side": "SHORT",
-        "score": 35,
-        "entry_allowed": false,
-        "block_entry": true,
-        "risk_mode": "NORMAL",
-        "reason": "ліквідність/ринковий блок проти цього входу",
-        "quality_adjustment": -6,
-        "quality_cap": 66,
-        "force_risky": false,
-        "profile": {
-          "quality_adjustment": -6,
-          "quality_cap": 66,
-          "block_entry": true
-        },
-        "entry_rule": "для шорт потрібен один з топ-сетапів: продовження тренду, відкат, зняття ліквідності, край діапазону або новинний імпульс",
-        "stop_rule": "стоп/TP не активувати без сетапу",
-        "tp_rule": "чекати чистішу структуру",
-        "management_rule": "чекати до появи топового сетапу"
-      },
-      "regime_engine": {
-        "name": "REVERSAL",
-        "regime_type": "REVERSAL_BUILDUP",
-        "label": "формується розворот",
-        "score": 65,
-        "confidence": 66,
-        "reason": "формується розворот: потрібні sweep/CHOCH + 3M/flow підтвердження, прибуток захищати швидше",
-        "entry_action": "RISKY_ONLY",
-        "entry_quality_adjustment": -1,
-        "quality_cap": 84,
-        "hard_block": false,
-        "allowed_setups": [
-          "SWEEP_REVERSAL",
-          "COUNTERTREND_SCALP",
-          "PRIME_ICT_LOCATION_OVERRIDE"
-        ],
-        "notes": [],
-        "metrics": {
-          "bias": "SHORT",
-          "range_atr": 3.07,
-          "move8_abs_pct": 0.894,
-          "slope15_abs_pct": 0.203,
-          "rsi15": 38.9,
-          "score_total_abs": 116,
-          "participation_same": 1,
-          "late_penalty": 8,
-          "pd": "DISCOUNT",
-          "ict_setup": "LIQUIDITY_SWEEP_LONG",
-          "range_edge": false
-        },
-        "stable_count": 0,
-        "pending_count": 1,
-        "is_stable": false,
-        "previous_regime_type": "NEWS_SHOCK"
-      },
-      "time": "2026-06-17T20:31:12.920255+00:00"
-    },
     {
       "type": "WATCH",
       "side": "SHORT",
@@ -5569,39 +5504,48 @@
       "tp2": 75.8938,
       "tp3": 74.9606,
       "time": "2026-06-18T13:31:06.452655+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "PROTECT",
+      "price": 77.15,
+      "result_pct": 0.784,
+      "stop_current": 77.6511,
+      "execution_mode": "NORMAL",
+      "execution_score": 32,
+      "time": "2026-06-18T13:45:53.116656+00:00"
     }
   ],
   "regime_memory": {
-    "type": "TREND_EXPANSION",
+    "type": "NEWS_SHOCK",
     "pending_type": "",
-    "stable_count": 2,
-    "pending_count": 0,
-    "updated_at": "2026-06-18T13:31:06.010264+00:00"
+    "stable_count": 1,
+    "pending_count": 1,
+    "updated_at": "2026-06-18T13:45:52.840678+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-18T13:31:06.452947+00:00",
-    "price": 77.76,
-    "oi": 60462.93,
-    "cvd": 226322.0,
-    "cvd_time": "2026-06-18T13:31:06.452950+00:00",
-    "last_trade_ts": 1781789452533,
+    "time": "2026-06-18T13:45:53.116676+00:00",
+    "price": 77.15,
+    "oi": 61515.53,
+    "cvd": 230628.0,
+    "cvd_time": "2026-06-18T13:45:53.116679+00:00",
+    "last_trade_ts": 1781790341048,
     "bias": "SHORT",
-    "tech_score": -188,
-    "total_score": -186
+    "tech_score": -148,
+    "total_score": -141
   },
-  "updated_at": "2026-06-18T13:31:06.452955+00:00",
+  "updated_at": "2026-06-18T13:45:53.116682+00:00",
   "pending_trigger": null,
   "opportunity_analytics": {
     "new_entries": 2,
     "covered_by_active_trade": 0,
     "missed": 12,
     "active_episode_keys": [
-      "SHORT:CAPITULATION_RECOVERY",
-      "SHORT:CLOSED_15M_DIRECTION_FLIP"
+      "SHORT:CAPITULATION_RECOVERY"
     ],
     "episode_status": {
-      "SHORT:CAPITULATION_RECOVERY": "NEW_ENTRY",
-      "SHORT:CLOSED_15M_DIRECTION_FLIP": "NEW_ENTRY"
+      "SHORT:CAPITULATION_RECOVERY": "NEW_ENTRY"
     },
     "recent": [
       {
@@ -5848,7 +5792,7 @@
       "published_at": "2026-06-18T11:21:43+00:00",
       "reference_price": 78.49,
       "reaction_known": true,
-      "last_seen_at": "2026-06-18T13:31:05.547085+00:00",
+      "last_seen_at": "2026-06-18T13:45:52.211582+00:00",
       "last_status": "CONFIRMED"
     },
     "oman joins iran saudi arabia united arab emirates iraq kuwait and qatar in massive ninety three million barrel oil release as strait of hormuz reopens reshaping china india south k": {
@@ -5856,7 +5800,7 @@
       "published_at": "2026-06-18T12:01:54+00:00",
       "reference_price": 78.4,
       "reaction_known": true,
-      "last_seen_at": "2026-06-18T13:31:05.547085+00:00",
+      "last_seen_at": "2026-06-18T13:45:52.211582+00:00",
       "last_status": "CONFIRMED"
     },
     "energy shares fall as iran deal lowers hormuz disruption risk aol com": {
@@ -5866,6 +5810,22 @@
       "reaction_known": true,
       "last_seen_at": "2026-06-18T13:31:05.547085+00:00",
       "last_status": "REJECTED"
+    },
+    "strait of hormuz reopens after us iran peace deal oil flows resume what it means for prices mint": {
+      "first_seen_at": "2026-06-18T13:45:52.211582+00:00",
+      "published_at": "2026-06-18T13:34:43+00:00",
+      "reference_price": 77.48,
+      "reaction_known": true,
+      "last_seen_at": "2026-06-18T13:45:52.211582+00:00",
+      "last_status": "CONFIRMED"
+    },
+    "oil prices plunge as u s and iran sign historic peace deal streamlinefeed co ke": {
+      "first_seen_at": "2026-06-18T13:45:52.211582+00:00",
+      "published_at": "2026-06-18T12:51:48+00:00",
+      "reference_price": 78.2,
+      "reaction_known": true,
+      "last_seen_at": "2026-06-18T13:45:52.211582+00:00",
+      "last_status": "CONFIRMED"
     }
   },
   "lock_release_opportunities": {}
