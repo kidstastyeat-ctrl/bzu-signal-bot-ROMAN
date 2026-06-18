@@ -8764,14 +8764,152 @@
           "previous_regime_type": "NEWS_SHOCK"
         }
       }
+    },
+    {
+      "time": "2026-06-18T17:31:06.141920+00:00",
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "HOLD",
+      "price": 77.97,
+      "quality": 79,
+      "entry_level": "RISKY_ENTRY",
+      "setup_type": "CLOSED_15M_DIRECTION_FLIP",
+      "regime_type": null,
+      "context_bias": "LONG",
+      "tech_score": 109,
+      "total_score": 101,
+      "regime_engine": {
+        "name": "NEWS_IMPULSE",
+        "regime_type": "NEWS_SHOCK",
+        "label": "новинний шок",
+        "score": 78,
+        "confidence": 78,
+        "reason": "новинний шок/подія: вхід тільки після 3M/структурного підтвердження, не доганяти першу свічку",
+        "entry_action": "RISKY_ONLY",
+        "entry_quality_adjustment": -2,
+        "quality_cap": 79,
+        "hard_block": false,
+        "allowed_setups": [
+          "NEWS_IMPULSE",
+          "TREND_IGNITION_ENTRY",
+          "PRIME_ICT_LOCATION_OVERRIDE",
+          "PULLBACK_CONTINUATION_FAST_ENTRY"
+        ],
+        "notes": [],
+        "metrics": {
+          "bias": "LONG",
+          "range_atr": 5.3,
+          "move8_abs_pct": 1.128,
+          "slope15_abs_pct": 1.256,
+          "rsi15": 57.3,
+          "score_total_abs": 101,
+          "participation_same": 2,
+          "late_penalty": 0,
+          "pd": "PREMIUM",
+          "ict_setup": "BOS_LONG_RETRACE_FVG_OB"
+        },
+        "stable_count": 3,
+        "pending_count": 0,
+        "is_stable": true,
+        "previous_regime_type": "NEWS_SHOCK"
+      },
+      "institutional_execution": {
+        "active": true,
+        "score": 21,
+        "mode": "LOW",
+        "mode_label": "НИЗЬКА — утримувати",
+        "stage": "PRE_TP1",
+        "current_pct": 0.128,
+        "best_pct": 0.308,
+        "giveback_pct": 0.18,
+        "giveback_ratio": 0.583,
+        "initial_risk_pct": 0.648,
+        "risk_used": 0.0,
+        "hard_layers_against": 0,
+        "fast_layers_against": 0,
+        "support_layers": 4,
+        "hard_reversal": false,
+        "confirmed_ict_reversal": false,
+        "ict_reversal_components": 0,
+        "closed_15m_break": false,
+        "breakout_failure": false,
+        "barrier_checkpoint": {
+          "active": true,
+          "status": "PENDING",
+          "action": "HOLD",
+          "level": 78.24,
+          "basis": "закритий 1H swing high",
+          "acceptance_streak": 0,
+          "rejection_streak": 0,
+          "adverse_layers": 0,
+          "support_layers": 4,
+          "touched": false,
+          "message": "контрольний бар’єр попереду: 78.24",
+          "checkpoints": [
+            {
+              "level": 78.24,
+              "basis": "закритий 1H swing high",
+              "priority": 94,
+              "source_status": "HARD",
+              "status": "PENDING",
+              "acceptance_streak": 0,
+              "rejection_streak": 0,
+              "touched_at": "",
+              "accepted_at": "",
+              "rejected_at": ""
+            },
+            {
+              "level": 78.83,
+              "basis": "ICT range high / external liquidity",
+              "priority": 98,
+              "source_status": "HARD",
+              "status": "PENDING",
+              "acceptance_streak": 0,
+              "rejection_streak": 0,
+              "touched_at": "",
+              "accepted_at": "",
+              "rejected_at": ""
+            },
+            {
+              "level": 79.22,
+              "basis": "закритий 1H swing high",
+              "priority": 94,
+              "source_status": "HARD",
+              "status": "PENDING",
+              "acceptance_streak": 0,
+              "rejection_streak": 0,
+              "touched_at": "",
+              "accepted_at": "",
+              "rejected_at": ""
+            }
+          ],
+          "protect_evidence": false,
+          "close_review": false
+        },
+        "news_active": true,
+        "news_against": false,
+        "low_liquidity": false,
+        "avoid_noise_stop": false,
+        "protect_evidence": false,
+        "close_evidence": false,
+        "emergency": false,
+        "allow_stop_update": false,
+        "reason": "активний новинний режим",
+        "reasons": [
+          "активний новинний режим"
+        ],
+        "policy": "HOLD_RUNNER",
+        "protect_streak": 0,
+        "exit_streak": 0
+      }
     }
   ],
-  "updated_at": "2026-06-18T17:15:50.158189+00:00",
+  "updated_at": "2026-06-18T17:31:06.146853+00:00",
   "outcome_analytics": {
-    "updated_at": "2026-06-18T17:15:50.162522+00:00",
+    "updated_at": "2026-06-18T17:31:06.155696+00:00",
     "lookback_limit": 120,
     "closed_trades_count": 2,
-    "signals_count": 18,
+    "signals_count": 19,
     "overall": {
       "trades": 2,
       "wins": 0,
@@ -8909,13 +9047,13 @@
       }
     },
     "signals": {
-      "total": 18,
+      "total": 19,
       "entries": 3,
       "full_entries": 0,
       "risky_entries": 3,
       "watch": 3,
       "no_trade": 6,
-      "follow": 4,
+      "follow": 5,
       "closed": 2,
       "pending_trigger_activations": 0
     },
@@ -8925,10 +9063,10 @@
       "PRIME_ICT_LOCATION_OVERRIDE": 1,
       "PULLBACK_CONTINUATION": 3,
       "SWEEP_RECLAIM_EARLY_ENTRY": 1,
-      "UNKNOWN": 6
+      "UNKNOWN": 7
     },
     "signal_counts_by_regime": {
-      "NEWS_SHOCK": 6,
+      "NEWS_SHOCK": 7,
       "NORMAL": 4,
       "REVERSAL_BUILDUP": 4,
       "TREND_EXPANSION": 4
