@@ -5,77 +5,6 @@
     {
       "type": "WATCH",
       "side": "SHORT",
-      "price": 78.9,
-      "quality": 60,
-      "reason": "не вдалося побудувати життєздатну технічну геометрію",
-      "setup_classifier": {
-        "type": "NEWS_IMPULSE",
-        "label": "🟠 Новинний імпульс",
-        "side": "SHORT",
-        "score": 64,
-        "entry_allowed": false,
-        "block_entry": false,
-        "risk_mode": "RISKY",
-        "reason": "новинний драйвер є, але вхід тільки після 3M/структурного підтвердження",
-        "quality_adjustment": -2,
-        "quality_cap": 79,
-        "force_risky": true,
-        "profile": {
-          "regime_override": "NEWS_IMPULSE",
-          "tp1_pct": 0.9,
-          "tp2_pct": 1.6,
-          "tp3_pct": 2.6,
-          "min_stop_pct": 0.82,
-          "max_stop_pct": 1.3,
-          "quality_adjustment": -2,
-          "quality_cap": 79,
-          "force_risky": true
-        },
-        "entry_rule": "новинний драйвер + 3M/структура в той самий бік; не доганяти без ретесту",
-        "stop_rule": "стоп ширший за шум, але не більше новинного максимального ризику",
-        "tp_rule": "TP ближче; новина може дати різкий відкат",
-        "management_rule": "швидкий захист прибутку, уважно до розвороту після імпульсу"
-      },
-      "regime_engine": {
-        "name": "NEWS_IMPULSE",
-        "regime_type": "NEWS_SHOCK",
-        "label": "новинний шок",
-        "score": 78,
-        "confidence": 78,
-        "reason": "новинний шок/подія: вхід тільки після 3M/структурного підтвердження, не доганяти першу свічку",
-        "entry_action": "RISKY_ONLY",
-        "entry_quality_adjustment": -2,
-        "quality_cap": 79,
-        "hard_block": false,
-        "allowed_setups": [
-          "NEWS_IMPULSE",
-          "TREND_IGNITION_ENTRY",
-          "PRIME_ICT_LOCATION_OVERRIDE",
-          "PULLBACK_CONTINUATION_FAST_ENTRY"
-        ],
-        "notes": [],
-        "metrics": {
-          "bias": "SHORT",
-          "range_atr": 7.2,
-          "move8_abs_pct": 0.642,
-          "slope15_abs_pct": 1.414,
-          "rsi15": 40.5,
-          "score_total_abs": 112,
-          "participation_same": 0,
-          "late_penalty": 0,
-          "pd": "DISCOUNT",
-          "ict_setup": "BOS_SHORT_RETRACE_FVG_OB"
-        },
-        "stable_count": 4,
-        "pending_count": 0,
-        "is_stable": true,
-        "previous_regime_type": "NEWS_SHOCK"
-      },
-      "time": "2026-06-17T17:31:11.441907+00:00"
-    },
-    {
-      "type": "WATCH",
-      "side": "SHORT",
       "price": 78.73,
       "quality": 60,
       "reason": "не вдалося побудувати життєздатну технічну геометрію",
@@ -5315,27 +5244,71 @@
         "previous_regime_type": "NORMAL"
       },
       "time": "2026-06-18T11:01:22.190109+00:00"
+    },
+    {
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 78.07,
+      "quality": 45,
+      "reason": "ICT: ціна біля equilibrium / середина діапазону — входу немає; чекати sweep high/low або BOS + FVG/OB retest",
+      "setup_classifier": null,
+      "regime_engine": {
+        "name": "RANGE",
+        "regime_type": "RANGE_COMPRESSION",
+        "label": "стискання діапазону",
+        "score": 62,
+        "confidence": 64,
+        "reason": "стискання діапазону: середина range заборонена, дозволений лише підтверджений compression breakout",
+        "entry_action": "WAIT",
+        "entry_quality_adjustment": -2,
+        "quality_cap": 77,
+        "hard_block": false,
+        "allowed_setups": [
+          "RANGE_COMPRESSION_BREAKOUT",
+          "TREND_IGNITION_ENTRY",
+          "PULLBACK_CONTINUATION_FAST_ENTRY"
+        ],
+        "notes": [],
+        "metrics": {
+          "bias": "NEUTRAL",
+          "range_atr": 4.88,
+          "move8_abs_pct": 0.915,
+          "slope15_abs_pct": 0.496,
+          "rsi15": 57.1,
+          "score_total_abs": 9,
+          "participation_same": 0,
+          "late_penalty": 0,
+          "pd": "MIDRANGE",
+          "ict_setup": "LIQUIDITY_SWEEP_SHORT",
+          "range_edge": false
+        },
+        "stable_count": 0,
+        "pending_count": 1,
+        "is_stable": false,
+        "previous_regime_type": "REVERSAL_BUILDUP"
+      },
+      "time": "2026-06-18T11:02:01.700784+00:00"
     }
   ],
   "regime_memory": {
     "type": "REVERSAL_BUILDUP",
-    "pending_type": "",
-    "stable_count": 1,
-    "pending_count": 2,
-    "updated_at": "2026-06-18T11:01:21.821173+00:00"
+    "pending_type": "RANGE_COMPRESSION",
+    "stable_count": 0,
+    "pending_count": 1,
+    "updated_at": "2026-06-18T11:02:01.356521+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-18T11:01:22.190131+00:00",
+    "time": "2026-06-18T11:02:01.700801+00:00",
     "price": 78.07,
-    "oi": 60633.57,
-    "cvd": 214442.0,
-    "cvd_time": "2026-06-18T11:01:22.190134+00:00",
-    "last_trade_ts": 1781780471474,
-    "bias": "SHORT",
-    "tech_score": -69,
-    "total_score": -68
+    "oi": 60643.37,
+    "cvd": 216226.0,
+    "cvd_time": "2026-06-18T11:02:01.700802+00:00",
+    "last_trade_ts": 1781780491132,
+    "bias": "NEUTRAL",
+    "tech_score": -11,
+    "total_score": -9
   },
-  "updated_at": "2026-06-18T11:01:22.190138+00:00",
+  "updated_at": "2026-06-18T11:02:01.700805+00:00",
   "pending_trigger": null,
   "opportunity_analytics": {
     "new_entries": 0,
@@ -5563,7 +5536,7 @@
       "published_at": "2026-06-18T09:28:10+00:00",
       "reference_price": 77.83,
       "reaction_known": true,
-      "last_seen_at": "2026-06-18T11:01:21.490781+00:00",
+      "last_seen_at": "2026-06-18T11:02:00.576862+00:00",
       "last_status": "REJECTED"
     },
     "oil prices hit lowest since iran conflict start after ceasefire deal crypto briefing": {
@@ -5571,7 +5544,7 @@
       "published_at": "2026-06-18T10:05:05+00:00",
       "reference_price": 77.68,
       "reaction_known": true,
-      "last_seen_at": "2026-06-18T11:01:21.490781+00:00",
+      "last_seen_at": "2026-06-18T11:02:00.576862+00:00",
       "last_status": "REJECTED"
     }
   },
