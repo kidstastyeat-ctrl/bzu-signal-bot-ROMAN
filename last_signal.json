@@ -5,71 +5,6 @@
     {
       "type": "WATCH",
       "side": "LONG",
-      "price": 79.93,
-      "quality": 41,
-      "reason": "після різкого імпульсу є сильне відхилення; це ще не підтверджений ретест — чекати нового 3M reclaim/higher low",
-      "setup_classifier": {
-        "type": "NO_CLEAN_SETUP",
-        "label": "⚪ Чистого сетапу немає",
-        "side": "LONG",
-        "score": 35,
-        "entry_allowed": false,
-        "block_entry": true,
-        "risk_mode": "NORMAL",
-        "reason": "ліквідність/ринковий блок проти цього входу",
-        "quality_adjustment": -6,
-        "quality_cap": 66,
-        "force_risky": false,
-        "profile": {
-          "quality_adjustment": -6,
-          "quality_cap": 66,
-          "block_entry": true
-        },
-        "entry_rule": "для лонг потрібен один з топ-сетапів: продовження тренду, відкат, зняття ліквідності, край діапазону або новинний імпульс",
-        "stop_rule": "стоп/TP не активувати без сетапу",
-        "tp_rule": "чекати чистішу структуру",
-        "management_rule": "чекати до появи топового сетапу"
-      },
-      "regime_engine": {
-        "name": "REVERSAL",
-        "regime_type": "REVERSAL_BUILDUP",
-        "label": "формується розворот",
-        "score": 65,
-        "confidence": 66,
-        "reason": "формується розворот: потрібні sweep/CHOCH + 3M/flow підтвердження, прибуток захищати швидше",
-        "entry_action": "RISKY_ONLY",
-        "entry_quality_adjustment": -1,
-        "quality_cap": 84,
-        "hard_block": false,
-        "allowed_setups": [
-          "SWEEP_REVERSAL",
-          "COUNTERTREND_SCALP",
-          "PRIME_ICT_LOCATION_OVERRIDE"
-        ],
-        "notes": [],
-        "metrics": {
-          "bias": "LONG",
-          "range_atr": 5.32,
-          "move8_abs_pct": 0.604,
-          "slope15_abs_pct": 0.963,
-          "rsi15": 62.3,
-          "score_total_abs": 116,
-          "participation_same": 2,
-          "late_penalty": 5,
-          "pd": "PREMIUM",
-          "ict_setup": "LIQUIDITY_SWEEP_SHORT",
-          "range_edge": false
-        },
-        "stable_count": 0,
-        "pending_count": 1,
-        "is_stable": false,
-        "previous_regime_type": ""
-      },
-      "time": "2026-06-17T14:38:34.903140+00:00"
-    },
-    {
-      "type": "WATCH",
-      "side": "LONG",
       "price": 80.05,
       "quality": 63,
       "reason": "після різкого імпульсу є сильне відхилення; це ще не підтверджений ретест — чекати нового 3M reclaim/higher low",
@@ -5114,27 +5049,97 @@
         "previous_regime_type": "NORMAL"
       },
       "time": "2026-06-18T08:31:10.595236+00:00"
+    },
+    {
+      "type": "WATCH",
+      "side": "LONG",
+      "price": 77.55,
+      "quality": 55,
+      "reason": "нового post-rejection сетапу немає",
+      "setup_classifier": {
+        "type": "PRIME_ICT_LOCATION_OVERRIDE",
+        "label": "🟢 Сильна ICT-локація",
+        "side": "LONG",
+        "score": 84,
+        "entry_allowed": true,
+        "block_entry": false,
+        "risk_mode": "RISKY",
+        "reason": "lock знято; збережений LONG сценарій ще актуальний, але потрібен свіжий 3M hold, BOS/CHOCH або breakout-retest після зняття lock",
+        "quality_adjustment": 1,
+        "quality_cap": 79,
+        "force_risky": true,
+        "profile": {
+          "regime_override": "REVERSAL",
+          "tp1_pct": 0.92,
+          "tp2_pct": 1.55,
+          "tp3_pct": 2.55,
+          "min_stop_pct": 0.76,
+          "max_stop_pct": 1.22,
+          "quality_adjustment": 1,
+          "quality_cap": 79,
+          "force_risky": true
+        },
+        "entry_rule": "сильна ICT-локація: FVG/OB/зняття ліквідності у правильній зоні + структура за напрям; 3M може бути нейтральним, але не сильно проти",
+        "stop_rule": "стоп за екстремум FVG/OB/зняття ліквідності з ATR-буфером",
+        "tp_rule": "TP1 до першої ліквідності/EQ, далі тільки якщо 3M підтвердив продовження",
+        "management_rule": "ранній ICT-вхід; якщо 3M не підтверджує після входу — ризик швидко підвищується",
+        "professional_override": true,
+        "prime_ict_override": true,
+        "late_penalty": 0
+      },
+      "regime_engine": {
+        "name": "NORMAL",
+        "regime_type": "NORMAL",
+        "label": "звичайний intraday режим",
+        "score": 50,
+        "confidence": 50,
+        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 0,
+        "quality_cap": null,
+        "hard_block": false,
+        "allowed_setups": [],
+        "notes": [],
+        "metrics": {
+          "bias": "LONG",
+          "range_atr": 3.92,
+          "move8_abs_pct": 0.985,
+          "slope15_abs_pct": 0.33,
+          "rsi15": 49.7,
+          "score_total_abs": 13,
+          "participation_same": 2,
+          "late_penalty": 0,
+          "pd": "DISCOUNT",
+          "ict_setup": "DISCOUNT_CONTEXT",
+          "range_edge": true
+        },
+        "stable_count": 3,
+        "pending_count": 0,
+        "is_stable": true,
+        "previous_regime_type": "NORMAL"
+      },
+      "time": "2026-06-18T08:43:42.168101+00:00"
     }
   ],
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 2,
+    "stable_count": 3,
     "pending_count": 0,
-    "updated_at": "2026-06-18T08:31:10.242249+00:00"
+    "updated_at": "2026-06-18T08:43:41.881419+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-18T08:31:10.595253+00:00",
-    "price": 77.84,
-    "oi": 60253.5,
-    "cvd": 203093.0,
-    "cvd_time": "2026-06-18T08:31:10.595256+00:00",
-    "last_trade_ts": 1781771438716,
+    "time": "2026-06-18T08:43:42.168120+00:00",
+    "price": 77.55,
+    "oi": 60333.69,
+    "cvd": 212539.0,
+    "cvd_time": "2026-06-18T08:43:42.168123+00:00",
+    "last_trade_ts": 1781772215543,
     "bias": "NEUTRAL",
-    "tech_score": 19,
-    "total_score": 20
+    "tech_score": 13,
+    "total_score": 13
   },
-  "updated_at": "2026-06-18T08:31:10.595260+00:00",
+  "updated_at": "2026-06-18T08:43:42.168127+00:00",
   "pending_trigger": null,
   "opportunity_analytics": {
     "new_entries": 0,
@@ -5234,7 +5239,7 @@
       "side": "LONG",
       "status": "RELEASED",
       "origin_ts": 1781769420000,
-      "updated_ts": 1781771400000,
+      "updated_ts": 1781772120000,
       "origin_price": 77.85,
       "extreme_price": 77.88,
       "released_at": "2026-06-18T08:31:10.592777+00:00",
@@ -5250,7 +5255,7 @@
       "published_at": "2026-06-18T06:29:57+00:00",
       "reference_price": 77.19,
       "reaction_known": true,
-      "last_seen_at": "2026-06-18T08:31:09.332455+00:00",
+      "last_seen_at": "2026-06-18T08:43:41.440003+00:00",
       "last_status": "REJECTED"
     },
     "trump sanctions waiver on russian crude expires what it means for india amid us iran peace deal strait the times of india": {
@@ -5258,7 +5263,7 @@
       "published_at": "2026-06-18T06:27:00+00:00",
       "reference_price": 77.19,
       "reaction_known": true,
-      "last_seen_at": "2026-06-18T08:31:09.332455+00:00",
+      "last_seen_at": "2026-06-18T08:43:41.440003+00:00",
       "last_status": "REJECTED"
     },
     "us iran peace deal lifts asian stocks and sends oil prices lower modern diplomacy": {
@@ -5266,7 +5271,7 @@
       "published_at": "2026-06-18T06:23:01+00:00",
       "reference_price": 77.16,
       "reaction_known": true,
-      "last_seen_at": "2026-06-18T08:31:09.332455+00:00",
+      "last_seen_at": "2026-06-18T08:43:41.440003+00:00",
       "last_status": "REJECTED"
     },
     "us iran deal shakes oil markets as strait of hormuz reopens latest news from azerbaijan": {
@@ -5274,8 +5279,64 @@
       "published_at": "2026-06-18T06:20:31+00:00",
       "reference_price": 77.26,
       "reaction_known": true,
-      "last_seen_at": "2026-06-18T08:31:09.332455+00:00",
+      "last_seen_at": "2026-06-18T08:43:41.440003+00:00",
       "last_status": "REJECTED"
+    }
+  },
+  "lock_release_opportunities": {
+    "LONG": {
+      "active": true,
+      "status": "ARMED",
+      "source": "POST_EVALUATION",
+      "gate_name": "",
+      "created_at": "2026-06-18T07:31:11.333482+00:00",
+      "updated_at": "2026-06-18T08:43:42.167353+00:00",
+      "ttl_minutes": 105,
+      "side": "LONG",
+      "setup_type": "PRIME_ICT_LOCATION_OVERRIDE",
+      "setup_label": "🟢 Сильна ICT-локація",
+      "classifier": {
+        "type": "PRIME_ICT_LOCATION_OVERRIDE",
+        "label": "🟢 Сильна ICT-локація",
+        "side": "LONG",
+        "score": 84,
+        "entry_allowed": true,
+        "block_entry": false,
+        "risk_mode": "RISKY",
+        "reason": "lock знято; збережений LONG сценарій ще актуальний, але потрібен свіжий 3M hold, BOS/CHOCH або breakout-retest після зняття lock",
+        "quality_adjustment": 1,
+        "quality_cap": 79,
+        "force_risky": true,
+        "profile": {
+          "regime_override": "REVERSAL",
+          "tp1_pct": 0.92,
+          "tp2_pct": 1.55,
+          "tp3_pct": 2.55,
+          "min_stop_pct": 0.76,
+          "max_stop_pct": 1.22,
+          "quality_adjustment": 1,
+          "quality_cap": 79,
+          "force_risky": true
+        },
+        "entry_rule": "сильна ICT-локація: FVG/OB/зняття ліквідності у правильній зоні + структура за напрям; 3M може бути нейтральним, але не сильно проти",
+        "stop_rule": "стоп за екстремум FVG/OB/зняття ліквідності з ATR-буфером",
+        "tp_rule": "TP1 до першої ліквідності/EQ, далі тільки якщо 3M підтвердив продовження",
+        "management_rule": "ранній ICT-вхід; якщо 3M не підтверджує після входу — ризик швидко підвищується",
+        "professional_override": true,
+        "prime_ict_override": true,
+        "late_penalty": 0
+      },
+      "quality": 84,
+      "origin_price": 77.55,
+      "trigger_level": 77.55,
+      "trigger_ts": 0,
+      "trigger_type": null,
+      "invalidation": null,
+      "initial_reason": "нового post-rejection сетапу немає",
+      "plan": null,
+      "release_seen_at": "2026-06-18T08:43:42.165594+00:00",
+      "release_reason": "новий breakout-retest/reclaim пройшов Shock Release 2.0",
+      "activation_count": 0
     }
   }
 }
