@@ -3,15 +3,6 @@
   "active_trade": null,
   "history": [
     {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "PROTECT_OR_EXIT",
-      "price": 79.51,
-      "result_pct": -0.612,
-      "stop_current": 79.0191,
-      "time": "2026-06-17T15:45:58.069736+00:00"
-    },
-    {
       "type": "TRADE_CLOSED",
       "side": "LONG",
       "action": "EXIT_ENTRY_POINT_BROKEN",
@@ -5147,38 +5138,76 @@
         "previous_regime_type": "NORMAL"
       },
       "time": "2026-06-18T09:31:09.384863+00:00"
+    },
+    {
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 77.81,
+      "quality": 40,
+      "reason": "перевага нечітка, немає професійного входу",
+      "setup_classifier": null,
+      "regime_engine": {
+        "name": "NORMAL",
+        "regime_type": "NORMAL",
+        "label": "звичайний intraday режим",
+        "score": 50,
+        "confidence": 50,
+        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 0,
+        "quality_cap": null,
+        "hard_block": false,
+        "allowed_setups": [],
+        "notes": [],
+        "metrics": {
+          "bias": "SHORT",
+          "range_atr": 3.7,
+          "move8_abs_pct": 0.296,
+          "slope15_abs_pct": 0.159,
+          "rsi15": 51.2,
+          "score_total_abs": 17,
+          "participation_same": 0,
+          "late_penalty": 0,
+          "pd": "DISCOUNT",
+          "ict_setup": "DISCOUNT_FVG_OB_LONG",
+          "range_edge": false
+        },
+        "stable_count": 4,
+        "pending_count": 0,
+        "is_stable": true,
+        "previous_regime_type": "NORMAL"
+      },
+      "time": "2026-06-18T09:45:52.936674+00:00"
     }
   ],
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 3,
+    "stable_count": 4,
     "pending_count": 0,
-    "updated_at": "2026-06-18T09:31:08.946945+00:00"
+    "updated_at": "2026-06-18T09:45:52.557523+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-18T09:31:09.384924+00:00",
-    "price": 77.77,
-    "oi": 60157.66,
-    "cvd": 211743.0,
-    "cvd_time": "2026-06-18T09:31:09.384927+00:00",
-    "last_trade_ts": 1781775054551,
+    "time": "2026-06-18T09:45:52.936697+00:00",
+    "price": 77.81,
+    "oi": 59999.34,
+    "cvd": 211363.0,
+    "cvd_time": "2026-06-18T09:45:52.936700+00:00",
+    "last_trade_ts": 1781775930630,
     "bias": "NEUTRAL",
-    "tech_score": 2,
-    "total_score": 3
+    "tech_score": -16,
+    "total_score": -17
   },
-  "updated_at": "2026-06-18T09:31:09.384931+00:00",
+  "updated_at": "2026-06-18T09:45:52.936705+00:00",
   "pending_trigger": null,
   "opportunity_analytics": {
     "new_entries": 0,
     "covered_by_active_trade": 0,
     "missed": 8,
     "active_episode_keys": [
-      "LONG:CAPITULATION_RECOVERY",
       "SHORT:CAPITULATION_RECOVERY"
     ],
     "episode_status": {
-      "LONG:CAPITULATION_RECOVERY": "MISSED",
       "SHORT:CAPITULATION_RECOVERY": "MISSED"
     },
     "recent": [
@@ -5256,7 +5285,7 @@
     "high": 78.24,
     "low": 77.47,
     "created_ts": 1781720100000,
-    "updated_ts": 1781774100000,
+    "updated_ts": 1781775000000,
     "rollover_ts": 0,
     "rollover_side": "",
     "old_high": null,
@@ -5282,19 +5311,19 @@
   },
   "shock_lock": {
     "side": "SHORT",
-    "status": "LOCKED",
+    "status": "RELEASED",
     "origin_ts": 1781772300000,
     "extreme_ts": 1781772300000,
     "extreme_price": 77.51,
-    "released_at": "",
-    "released_extreme": null
+    "released_at": "2026-06-18T09:45:52.933121+00:00",
+    "released_extreme": 77.51
   },
   "persistent_exhaustion_locks": {
     "LONG": {
       "side": "LONG",
       "status": "RELEASED",
       "origin_ts": 1781769420000,
-      "updated_ts": 1781775000000,
+      "updated_ts": 1781775900000,
       "origin_price": 77.85,
       "extreme_price": 77.88,
       "released_at": "2026-06-18T08:31:10.592777+00:00",
@@ -5307,7 +5336,7 @@
       "side": "SHORT",
       "status": "RELEASED",
       "origin_ts": 1781773200000,
-      "updated_ts": 1781775000000,
+      "updated_ts": 1781775900000,
       "origin_price": 77.6,
       "extreme_price": 77.6,
       "released_at": "2026-06-18T09:01:36.112142+00:00",
@@ -5363,82 +5392,17 @@
       "published_at": "2026-06-18T07:41:35+00:00",
       "reference_price": 77.84,
       "reaction_known": true,
-      "last_seen_at": "2026-06-18T09:31:08.453726+00:00",
-      "last_status": "UNRESOLVED"
+      "last_seen_at": "2026-06-18T09:45:52.028999+00:00",
+      "last_status": "ABSORBED"
+    },
+    "ships surge out of hormuz as iran peace deal takes hold asian tankers european ships lead the rush gulf news": {
+      "first_seen_at": "2026-06-18T09:45:52.028999+00:00",
+      "published_at": "2026-06-18T09:28:10+00:00",
+      "reference_price": 77.83,
+      "reaction_known": true,
+      "last_seen_at": "2026-06-18T09:45:52.028999+00:00",
+      "last_status": "FRESH"
     }
   },
-  "lock_release_opportunities": {
-    "LONG": {
-      "active": true,
-      "status": "ARMED",
-      "source": "POST_EVALUATION",
-      "gate_name": "",
-      "created_at": "2026-06-18T09:31:09.383982+00:00",
-      "updated_at": "2026-06-18T09:31:09.383987+00:00",
-      "ttl_minutes": 105,
-      "side": "LONG",
-      "setup_type": "COUNTERTREND_SCALP",
-      "setup_label": "🟠 Скальп проти тренду",
-      "classifier": {
-        "type": "COUNTERTREND_SCALP",
-        "label": "🟠 Скальп проти тренду",
-        "side": "LONG",
-        "score": 78,
-        "entry_allowed": true,
-        "block_entry": false,
-        "risk_mode": "RISKY",
-        "reason": "контртренд дозволений тільки як scalp після локального розвороту",
-        "quality_adjustment": -3,
-        "quality_cap": 76,
-        "force_risky": true,
-        "profile": {
-          "regime_override": "REVERSAL",
-          "tp1_pct": 0.8,
-          "tp2_pct": 1.22,
-          "tp3_pct": 2.0,
-          "min_stop_pct": 0.7,
-          "max_stop_pct": 1.05,
-          "quality_adjustment": -3,
-          "quality_cap": 76,
-          "force_risky": true
-        },
-        "entry_rule": "тільки сильне зняття ліквідності/CHOCH + 3M розворот + CVD/потік не проти",
-        "stop_rule": "короткий стоп за екстремум, без усереднення",
-        "tp_rule": "швидший TP1, TP2 тільки якщо структура розвертається",
-        "management_rule": "агресивний контроль; якщо немає швидкого підтвердження — вихід"
-      },
-      "quality": 78,
-      "origin_price": 77.77,
-      "trigger_level": 77.77,
-      "trigger_ts": 0,
-      "trigger_type": null,
-      "invalidation": 77.77,
-      "initial_reason": "напрям формується, але потрібна ціна-тригер: reclaim/ретест на 3M",
-      "plan": {
-        "entry": 77.77,
-        "stop": 77.77,
-        "tp1": 77.77,
-        "tp2": 77.77,
-        "tp3": 77.77,
-        "risk_pct": 0.0,
-        "rr1": 0,
-        "rr2": 0,
-        "rr3": 0,
-        "invalidation": "15m закриття нижче 77.77 або злам 3m/структури проти LONG. Сетап: 🟠 Скальп проти тренду. Режим: розворот. короткий стоп за екстремум, без усереднення | швидший TP1, TP2 тільки якщо структура розвертається",
-        "valid": false,
-        "validation_reason": "не вдалося побудувати життєздатну технічну геометрію",
-        "technical_stop_basis": "",
-        "technical_tp1_basis": "",
-        "technical_tp2_basis": "",
-        "technical_tp3_basis": "",
-        "geometry_mode": "15M_ICT_STRUCTURAL",
-        "technical_rr_target": 1.5,
-        "better_entry": 0.0,
-        "geometry_grade": "INVALID",
-        "barrier_mode": "NONE",
-        "preferred_geometry_met": false,
-        "breakout_gates": []
-      }
-    }
-  }
+  "lock_release_opportunities": {}
 }
