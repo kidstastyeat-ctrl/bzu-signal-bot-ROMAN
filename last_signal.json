@@ -5074,27 +5074,67 @@
         "previous_regime_type": "NEWS_SHOCK"
       },
       "time": "2026-06-18T08:15:56.092401+00:00"
+    },
+    {
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 77.84,
+      "quality": 46,
+      "reason": "перевага нечітка, немає професійного входу",
+      "setup_classifier": null,
+      "regime_engine": {
+        "name": "NORMAL",
+        "regime_type": "NORMAL",
+        "label": "звичайний intraday режим",
+        "score": 50,
+        "confidence": 50,
+        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 0,
+        "quality_cap": null,
+        "hard_block": false,
+        "allowed_setups": [],
+        "notes": [],
+        "metrics": {
+          "bias": "LONG",
+          "range_atr": 3.92,
+          "move8_abs_pct": 0.985,
+          "slope15_abs_pct": 0.33,
+          "rsi15": 49.7,
+          "score_total_abs": 20,
+          "participation_same": 2,
+          "late_penalty": 0,
+          "pd": "DISCOUNT",
+          "ict_setup": "DISCOUNT_FVG_OB_LONG",
+          "range_edge": false
+        },
+        "stable_count": 2,
+        "pending_count": 0,
+        "is_stable": true,
+        "previous_regime_type": "NORMAL"
+      },
+      "time": "2026-06-18T08:31:10.595236+00:00"
     }
   ],
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 1,
-    "pending_count": 2,
-    "updated_at": "2026-06-18T08:15:55.701525+00:00"
+    "stable_count": 2,
+    "pending_count": 0,
+    "updated_at": "2026-06-18T08:31:10.242249+00:00"
   },
   "last_market_snapshot": {
-    "time": "2026-06-18T08:15:56.092473+00:00",
-    "price": 77.85,
-    "oi": 60234.55,
-    "cvd": 189299.0,
-    "cvd_time": "2026-06-18T08:15:56.092477+00:00",
-    "last_trade_ts": 1781770523564,
+    "time": "2026-06-18T08:31:10.595253+00:00",
+    "price": 77.84,
+    "oi": 60253.5,
+    "cvd": 203093.0,
+    "cvd_time": "2026-06-18T08:31:10.595256+00:00",
+    "last_trade_ts": 1781771438716,
     "bias": "NEUTRAL",
-    "tech_score": 12,
-    "total_score": 12
+    "tech_score": 19,
+    "total_score": 20
   },
-  "updated_at": "2026-06-18T08:15:56.092481+00:00",
+  "updated_at": "2026-06-18T08:31:10.595260+00:00",
   "pending_trigger": null,
   "opportunity_analytics": {
     "new_entries": 0,
@@ -5171,9 +5211,9 @@
   "range_boundary_state": {
     "status": "ACTIVE",
     "high": 78.24,
-    "low": 77.06,
+    "low": 77.13,
     "created_ts": 1781720100000,
-    "updated_ts": 1781769600000,
+    "updated_ts": 1781770500000,
     "rollover_ts": 0,
     "rollover_side": "",
     "old_high": null,
@@ -5182,23 +5222,26 @@
   "opportunity_memory": null,
   "shock_lock": {
     "side": "LONG",
-    "status": "LOCKED",
+    "status": "RELEASED",
     "origin_ts": 1781766900000,
     "extreme_ts": 1781766900000,
     "extreme_price": 78.24,
-    "released_at": "",
-    "released_extreme": null
+    "released_at": "2026-06-18T08:31:10.592567+00:00",
+    "released_extreme": 78.24
   },
   "persistent_exhaustion_locks": {
     "LONG": {
       "side": "LONG",
-      "status": "LOCKED",
+      "status": "RELEASED",
       "origin_ts": 1781769420000,
-      "updated_ts": 1781770500000,
+      "updated_ts": 1781771400000,
       "origin_price": 77.85,
       "extreme_price": 77.88,
-      "released_at": "",
-      "reason": "після вертикального руху потрібен новий 15M/3M pullback-retest; не доганяти shock"
+      "released_at": "2026-06-18T08:31:10.592777+00:00",
+      "reason": "після вертикального руху потрібен новий 15M/3M pullback-retest; не доганяти shock",
+      "released_ts": 1781771400000,
+      "released_extreme": 77.88,
+      "release_reason": "новий breakout-retest/reclaim пройшов Shock Release 2.0"
     }
   },
   "news_reaction_memory": {
@@ -5207,7 +5250,7 @@
       "published_at": "2026-06-18T06:29:57+00:00",
       "reference_price": 77.19,
       "reaction_known": true,
-      "last_seen_at": "2026-06-18T08:15:55.169017+00:00",
+      "last_seen_at": "2026-06-18T08:31:09.332455+00:00",
       "last_status": "REJECTED"
     },
     "trump sanctions waiver on russian crude expires what it means for india amid us iran peace deal strait the times of india": {
@@ -5215,7 +5258,7 @@
       "published_at": "2026-06-18T06:27:00+00:00",
       "reference_price": 77.19,
       "reaction_known": true,
-      "last_seen_at": "2026-06-18T08:15:55.169017+00:00",
+      "last_seen_at": "2026-06-18T08:31:09.332455+00:00",
       "last_status": "REJECTED"
     },
     "us iran peace deal lifts asian stocks and sends oil prices lower modern diplomacy": {
@@ -5223,7 +5266,7 @@
       "published_at": "2026-06-18T06:23:01+00:00",
       "reference_price": 77.16,
       "reaction_known": true,
-      "last_seen_at": "2026-06-18T08:15:55.169017+00:00",
+      "last_seen_at": "2026-06-18T08:31:09.332455+00:00",
       "last_status": "REJECTED"
     },
     "us iran deal shakes oil markets as strait of hormuz reopens latest news from azerbaijan": {
@@ -5231,7 +5274,7 @@
       "published_at": "2026-06-18T06:20:31+00:00",
       "reference_price": 77.26,
       "reaction_known": true,
-      "last_seen_at": "2026-06-18T08:15:55.169017+00:00",
+      "last_seen_at": "2026-06-18T08:31:09.332455+00:00",
       "last_status": "REJECTED"
     }
   }
