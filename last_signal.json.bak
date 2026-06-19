@@ -2010,6 +2010,47 @@
         "previous_regime_type": "NORMAL"
       },
       "time": "2026-06-19T11:45:51.759957+00:00"
+    },
+    {
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 79.39,
+      "quality": 0,
+      "reason": "внутрішній pipeline не завершив усі перевірки; угода не відкривається",
+      "market_direction_context": null,
+      "setup_classifier": null,
+      "regime_engine": {
+        "name": "NORMAL",
+        "regime_type": "NORMAL",
+        "label": "звичайний intraday режим",
+        "score": 50,
+        "confidence": 50,
+        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 0,
+        "quality_cap": null,
+        "hard_block": false,
+        "allowed_setups": [],
+        "notes": [],
+        "metrics": {
+          "bias": "LONG",
+          "range_atr": 3.52,
+          "move8_abs_pct": 0.671,
+          "slope15_abs_pct": 0.32,
+          "rsi15": 53.2,
+          "score_total_abs": 75,
+          "participation_same": 0,
+          "late_penalty": 0,
+          "pd": "DISCOUNT",
+          "ict_setup": "DISCOUNT_FVG_OB_LONG",
+          "range_edge": false
+        },
+        "stable_count": 1,
+        "pending_count": 0,
+        "is_stable": false,
+        "previous_regime_type": "NORMAL"
+      },
+      "time": "2026-06-19T12:01:20.602159+00:00"
     }
   ],
   "news_reaction_memory": {
@@ -2103,11 +2144,11 @@
     },
     "brent heading for over 8 weekly loss as traders weigh us iran truce outlook msn": {
       "first_seen_at": "2026-06-19T09:15:50.702749+00:00",
-      "published_at": "2026-06-19T09:12:25+00:00",
+      "published_at": "2026-06-19T09:13:37+00:00",
       "reference_price": 79.14,
       "reaction_known": true,
-      "last_seen_at": "2026-06-19T11:45:51.071325+00:00",
-      "last_status": "ABSORBED"
+      "last_seen_at": "2026-06-19T12:01:19.769926+00:00",
+      "last_status": "REJECTED"
     },
     "brent heading for over 8 weekly loss as traders weigh us iran truce outlook reuters": {
       "first_seen_at": "2026-06-19T09:45:50.660024+00:00",
@@ -2138,23 +2179,23 @@
       "published_at": "2026-06-19T11:06:16+00:00",
       "reference_price": 79.75,
       "reaction_known": true,
-      "last_seen_at": "2026-06-19T11:45:51.071325+00:00",
+      "last_seen_at": "2026-06-19T12:01:19.769926+00:00",
       "last_status": "CONFIRMED"
     }
   },
   "regime_memory": {
     "type": "NORMAL",
-    "pending_type": "TREND_PULLBACK",
-    "stable_count": 0,
-    "pending_count": 1,
-    "updated_at": "2026-06-19T11:45:51.404065+00:00"
+    "pending_type": "",
+    "stable_count": 1,
+    "pending_count": 0,
+    "updated_at": "2026-06-19T12:01:20.266931+00:00"
   },
   "persistent_exhaustion_locks": {
     "LONG": {
       "side": "LONG",
       "status": "RELEASED",
       "origin_ts": 1781849700000,
-      "updated_ts": 1781869500000,
+      "updated_ts": 1781870400000,
       "origin_price": 79.99,
       "extreme_price": 79.99,
       "released_at": "2026-06-19T06:15:54.284815+00:00",
@@ -2167,7 +2208,7 @@
       "side": "SHORT",
       "status": "LOCKED",
       "origin_ts": 1781861400000,
-      "updated_ts": 1781869500000,
+      "updated_ts": 1781870400000,
       "origin_price": 78.95,
       "extreme_price": 78.95,
       "released_at": "",
@@ -2241,7 +2282,7 @@
     "high": 79.86,
     "low": 78.78,
     "created_ts": 1781843400000,
-    "updated_ts": 1781868600000,
+    "updated_ts": 1781869500000,
     "rollover_ts": 0,
     "rollover_side": "",
     "old_high": null,
@@ -2387,17 +2428,17 @@
     "coverage_pct": 11.1
   },
   "last_market_snapshot": {
-    "time": "2026-06-19T11:45:51.759974+00:00",
-    "price": 79.19,
-    "oi": 58392.62,
-    "cvd": -43375.0,
-    "cvd_time": "2026-06-19T11:45:51.759977+00:00",
-    "last_trade_ts": 1781869504148,
-    "bias": "NEUTRAL",
-    "tech_score": 30,
-    "total_score": 28
+    "time": "2026-06-19T12:01:20.602172+00:00",
+    "price": 79.39,
+    "oi": 58141.19,
+    "cvd": -89828.0,
+    "cvd_time": "2026-06-19T12:01:20.602173+00:00",
+    "last_trade_ts": 1781870445161,
+    "bias": "LONG",
+    "tech_score": 81,
+    "total_score": 75
   },
-  "updated_at": "2026-06-19T11:45:51.759981+00:00",
+  "updated_at": "2026-06-19T12:01:20.602176+00:00",
   "last_closed_trade": {
     "side": "LONG",
     "closed_at": "2026-06-19T05:01:17.488165+00:00",
