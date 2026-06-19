@@ -1834,6 +1834,53 @@
         "previous_regime_type": "NEWS_SHOCK"
       },
       "time": "2026-06-19T10:45:54.428451+00:00"
+    },
+    {
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 79.29,
+      "quality": 0,
+      "reason": "внутрішній pipeline не завершив усі перевірки; угода не відкривається",
+      "market_direction_context": null,
+      "setup_classifier": null,
+      "regime_engine": {
+        "name": "PULLBACK",
+        "regime_type": "TREND_PULLBACK",
+        "label": "відкат у тренді",
+        "score": 70,
+        "confidence": 70,
+        "reason": "відкат у тренді: шукати FVG/OB/reclaim, не плутати з боковиком",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 2,
+        "quality_cap": 86,
+        "hard_block": false,
+        "allowed_setups": [
+          "PULLBACK_CONTINUATION",
+          "PULLBACK_CONTINUATION_FAST_ENTRY",
+          "PRIME_ICT_LOCATION_OVERRIDE",
+          "SWEEP_REVERSAL",
+          "SWEEP_RECLAIM_EARLY_ENTRY"
+        ],
+        "notes": [],
+        "metrics": {
+          "bias": "LONG",
+          "range_atr": 4.26,
+          "move8_abs_pct": 0.013,
+          "slope15_abs_pct": 0.381,
+          "rsi15": 47.7,
+          "score_total_abs": 20,
+          "participation_same": 0,
+          "late_penalty": 0,
+          "pd": "DISCOUNT",
+          "ict_setup": "DISCOUNT_FVG_OB_LONG",
+          "range_edge": false
+        },
+        "stable_count": 2,
+        "pending_count": 0,
+        "is_stable": true,
+        "previous_regime_type": "TREND_PULLBACK"
+      },
+      "time": "2026-06-19T11:01:25.435785+00:00"
     }
   ],
   "news_reaction_memory": {
@@ -1914,8 +1961,8 @@
       "published_at": "2026-06-19T08:26:15+00:00",
       "reference_price": 79.47,
       "reaction_known": true,
-      "last_seen_at": "2026-06-19T10:45:53.370442+00:00",
-      "last_status": "UNRESOLVED"
+      "last_seen_at": "2026-06-19T11:01:24.347182+00:00",
+      "last_status": "CONFIRMED"
     },
     "brent rises after vance warns israel against breaking ceasefire msn": {
       "first_seen_at": "2026-06-19T08:31:06.565545+00:00",
@@ -1938,7 +1985,7 @@
       "published_at": "2026-06-19T08:59:19+00:00",
       "reference_price": 79.27,
       "reaction_known": true,
-      "last_seen_at": "2026-06-19T10:45:53.370442+00:00",
+      "last_seen_at": "2026-06-19T11:01:24.347182+00:00",
       "last_status": "ABSORBED"
     },
     "oil falls as strait of hormuz supply resumes in 2026 discovery alert": {
@@ -1946,23 +1993,23 @@
       "published_at": "2026-06-19T08:55:36+00:00",
       "reference_price": 79.26,
       "reaction_known": true,
-      "last_seen_at": "2026-06-19T10:45:53.370442+00:00",
+      "last_seen_at": "2026-06-19T11:01:24.347182+00:00",
       "last_status": "ABSORBED"
     }
   },
   "regime_memory": {
     "type": "TREND_PULLBACK",
     "pending_type": "",
-    "stable_count": 1,
-    "pending_count": 2,
-    "updated_at": "2026-06-19T10:45:53.988721+00:00"
+    "stable_count": 2,
+    "pending_count": 0,
+    "updated_at": "2026-06-19T11:01:25.148212+00:00"
   },
   "persistent_exhaustion_locks": {
     "LONG": {
       "side": "LONG",
       "status": "RELEASED",
       "origin_ts": 1781849700000,
-      "updated_ts": 1781865900000,
+      "updated_ts": 1781866800000,
       "origin_price": 79.99,
       "extreme_price": 79.99,
       "released_at": "2026-06-19T06:15:54.284815+00:00",
@@ -1975,7 +2022,7 @@
       "side": "SHORT",
       "status": "LOCKED",
       "origin_ts": 1781861400000,
-      "updated_ts": 1781865900000,
+      "updated_ts": 1781866800000,
       "origin_price": 78.95,
       "extreme_price": 78.95,
       "released_at": "",
@@ -2046,83 +2093,16 @@
   },
   "range_boundary_state": {
     "status": "ACTIVE",
-    "high": 79.73,
+    "high": 79.6,
     "low": 78.78,
     "created_ts": 1781843400000,
-    "updated_ts": 1781865000000,
+    "updated_ts": 1781865900000,
     "rollover_ts": 0,
     "rollover_side": "",
     "old_high": null,
     "old_low": null
   },
   "lock_release_opportunities": {
-    "SHORT": {
-      "active": true,
-      "status": "ARMED",
-      "source": "POST_EVALUATION",
-      "gate_name": "",
-      "created_at": "2026-06-19T09:15:51.689395+00:00",
-      "updated_at": "2026-06-19T09:15:51.689402+00:00",
-      "ttl_minutes": 105,
-      "side": "SHORT",
-      "setup_type": "NEWS_IMPULSE",
-      "setup_label": "🟠 Новинний імпульс",
-      "classifier": {
-        "type": "NEWS_IMPULSE",
-        "label": "🟠 Новинний імпульс",
-        "side": "SHORT",
-        "score": 76,
-        "entry_allowed": true,
-        "block_entry": false,
-        "risk_mode": "RISKY",
-        "reason": "напрям новини ще підтверджений ринком (3 хв, первинна реакція)",
-        "quality_adjustment": -2,
-        "quality_cap": 79,
-        "force_risky": true,
-        "profile": {
-          "regime_override": "NEWS_IMPULSE",
-          "tp1_pct": 0.9,
-          "tp2_pct": 1.6,
-          "tp3_pct": 2.6,
-          "min_stop_pct": 0.82,
-          "max_stop_pct": 1.3,
-          "quality_adjustment": -2,
-          "quality_cap": 79,
-          "force_risky": true
-        },
-        "entry_rule": "новинний драйвер + 3M/структура в той самий бік; не доганяти без ретесту",
-        "stop_rule": "стоп ширший за шум, але не більше новинного максимального ризику",
-        "tp_rule": "TP ближче; новина може дати різкий відкат",
-        "management_rule": "швидкий захист прибутку, уважно до розвороту після імпульсу",
-        "news_consensus": {
-          "active": true,
-          "allowed": true,
-          "directional_same": true,
-          "opposing": false,
-          "neutral_calendar": false,
-          "retest_confirmed": false,
-          "late": false,
-          "reason": "напрям новини ще підтверджений ринком (3 хв, первинна реакція)",
-          "news_score": 33,
-          "blocking_score": 37,
-          "news_bias": "SHORT",
-          "blocking_bias": "SHORT",
-          "top_age_min": 3.4,
-          "top_lifecycle": "FRESH",
-          "top_lifecycle_label": "первинна реакція",
-          "technical_priority": false
-        },
-        "mandatory_retest": false
-      },
-      "quality": 76,
-      "origin_price": 79.02,
-      "trigger_level": 79.02,
-      "trigger_ts": 0,
-      "trigger_type": null,
-      "invalidation": null,
-      "initial_reason": "не вдалося побудувати життєздатну технічну геометрію",
-      "plan": null
-    },
     "LONG": {
       "active": true,
       "status": "ARMED",
@@ -2171,34 +2151,17 @@
       "plan": null
     }
   },
-  "opportunity_memory": {
-    "active": true,
-    "source": "POST_GATE",
-    "created_at": "2026-06-19T10:01:20.489334+00:00",
-    "ttl_minutes": 45,
-    "side": "LONG",
-    "setup_type": "SWEEP_RECLAIM_EARLY_ENTRY",
-    "setup_label": "🟡 Раннє зняття ліквідності + повернення",
-    "quality": 61,
-    "price": 78.95,
-    "trigger_level": null,
-    "invalidation": null,
-    "reason": "напрям формується, але потрібна ціна-тригер: reclaim/ретест на 3M",
-    "missing_conditions": [
-      "15M ще нейтральний — вхід тільки після 3M reclaim/ретесту"
-    ],
-    "plan": null
-  },
+  "opportunity_memory": null,
   "pending_trigger": null,
   "opportunity_analytics": {
     "new_entries": 1,
     "covered_by_active_trade": 0,
-    "missed": 6,
+    "missed": 7,
     "active_episode_keys": [
-      "LONG:CAPITULATION_RECOVERY"
+      "SHORT:CAPITULATION_RECOVERY"
     ],
     "episode_status": {
-      "LONG:CAPITULATION_RECOVERY": "MISSED"
+      "SHORT:CAPITULATION_RECOVERY": "MISSED"
     },
     "recent": [
       {
@@ -2256,24 +2219,32 @@
         "episode_key": "LONG:CAPITULATION_RECOVERY",
         "status": "MISSED",
         "time": "2026-06-19T10:45:54.428357+00:00"
+      },
+      {
+        "side": "SHORT",
+        "type": "CAPITULATION_RECOVERY",
+        "ts": 1781865900000,
+        "episode_key": "SHORT:CAPITULATION_RECOVERY",
+        "status": "MISSED",
+        "time": "2026-06-19T11:01:25.435687+00:00"
       }
     ],
     "covered_total": 1,
-    "total_opportunities": 7,
-    "coverage_pct": 14.3
+    "total_opportunities": 8,
+    "coverage_pct": 12.5
   },
   "last_market_snapshot": {
-    "time": "2026-06-19T10:45:54.428468+00:00",
-    "price": 79.3,
-    "oi": 58560.43,
-    "cvd": -10647.0,
-    "cvd_time": "2026-06-19T10:45:54.428471+00:00",
-    "last_trade_ts": 1781865944734,
-    "bias": "LONG",
-    "tech_score": 42,
-    "total_score": 42
+    "time": "2026-06-19T11:01:25.435805+00:00",
+    "price": 79.29,
+    "oi": 58409.86,
+    "cvd": -33154.0,
+    "cvd_time": "2026-06-19T11:01:25.435808+00:00",
+    "last_trade_ts": 1781866866135,
+    "bias": "NEUTRAL",
+    "tech_score": 22,
+    "total_score": 20
   },
-  "updated_at": "2026-06-19T10:45:54.428475+00:00",
+  "updated_at": "2026-06-19T11:01:25.435812+00:00",
   "last_closed_trade": {
     "side": "LONG",
     "closed_at": "2026-06-19T05:01:17.488165+00:00",
