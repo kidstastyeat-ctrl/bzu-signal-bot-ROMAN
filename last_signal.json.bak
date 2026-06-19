@@ -2185,6 +2185,82 @@
         "previous_regime_type": "TREND_EXPANSION"
       },
       "time": "2026-06-19T12:31:10.707823+00:00"
+    },
+    {
+      "type": "WATCH",
+      "side": "LONG",
+      "price": 79.8,
+      "quality": 63,
+      "reason": "не вдалося побудувати життєздатну технічну геометрію",
+      "market_direction_context": null,
+      "setup_classifier": {
+        "type": "PRIME_ICT_LOCATION_OVERRIDE",
+        "label": "🟢 Сильна ICT-локація",
+        "side": "LONG",
+        "score": 79,
+        "entry_allowed": true,
+        "block_entry": false,
+        "risk_mode": "RISKY",
+        "reason": "prime ICT location: FVG/OB/sweep зона + структура за напрям; 3M не сильно проти",
+        "quality_adjustment": 1,
+        "quality_cap": 79,
+        "force_risky": true,
+        "profile": {
+          "regime_override": "REVERSAL",
+          "tp1_pct": 0.92,
+          "tp2_pct": 1.55,
+          "tp3_pct": 2.55,
+          "min_stop_pct": 0.76,
+          "max_stop_pct": 1.22,
+          "quality_adjustment": 1,
+          "quality_cap": 79,
+          "force_risky": true
+        },
+        "entry_rule": "сильна ICT-локація: FVG/OB/зняття ліквідності у правильній зоні + структура за напрям; 3M може бути нейтральним, але не сильно проти",
+        "stop_rule": "стоп за екстремум FVG/OB/зняття ліквідності з ATR-буфером",
+        "tp_rule": "TP1 до першої ліквідності/EQ, далі тільки якщо 3M підтвердив продовження",
+        "management_rule": "ранній ICT-вхід; якщо 3M не підтверджує після входу — ризик швидко підвищується",
+        "professional_override": true,
+        "prime_ict_override": true,
+        "late_penalty": 0
+      },
+      "regime_engine": {
+        "name": "TREND",
+        "regime_type": "TREND_EXPANSION",
+        "label": "сильне продовження тренду",
+        "score": 82,
+        "confidence": 88,
+        "reason": "сильне продовження: continuation дозволений, TP2/TP3 можна тримати довше, але без доганяння",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 3,
+        "quality_cap": 90,
+        "hard_block": false,
+        "allowed_setups": [
+          "TREND_CONTINUATION",
+          "TREND_IGNITION_ENTRY",
+          "PULLBACK_CONTINUATION",
+          "PULLBACK_CONTINUATION_FAST_ENTRY"
+        ],
+        "notes": [],
+        "metrics": {
+          "bias": "LONG",
+          "range_atr": 3.84,
+          "move8_abs_pct": 0.63,
+          "slope15_abs_pct": 0.8,
+          "rsi15": 61.0,
+          "score_total_abs": 253,
+          "participation_same": 2,
+          "late_penalty": 0,
+          "pd": "PREMIUM",
+          "ict_setup": "BOS_LONG_RETRACE_FVG_OB",
+          "range_edge": false
+        },
+        "stable_count": 3,
+        "pending_count": 0,
+        "is_stable": true,
+        "previous_regime_type": "TREND_EXPANSION"
+      },
+      "time": "2026-06-19T12:45:59.484351+00:00"
     }
   ],
   "news_reaction_memory": {
@@ -2270,10 +2346,10 @@
     },
     "brent rises after vance warns israel against breaking ceasefire msn": {
       "first_seen_at": "2026-06-19T08:31:06.565545+00:00",
-      "published_at": "2026-06-19T06:22:30+00:00",
+      "published_at": "2026-06-19T11:40:41+00:00",
       "reference_price": 80.05,
       "reaction_known": true,
-      "last_seen_at": "2026-06-19T09:15:50.702749+00:00",
+      "last_seen_at": "2026-06-19T12:45:57.985393+00:00",
       "last_status": "CONFIRMED"
     },
     "brent heading for over 8 weekly loss as traders weigh us iran truce outlook msn": {
@@ -2294,10 +2370,10 @@
     },
     "oil falls as strait of hormuz supply resumes in 2026 discovery alert": {
       "first_seen_at": "2026-06-19T10:15:58.023889+00:00",
-      "published_at": "2026-06-19T10:02:00+00:00",
+      "published_at": "2026-06-19T09:56:15+00:00",
       "reference_price": 79.26,
       "reaction_known": true,
-      "last_seen_at": "2026-06-19T12:15:52.636800+00:00",
+      "last_seen_at": "2026-06-19T12:45:57.985393+00:00",
       "last_status": "REJECTED"
     },
     "brent heads for 9 weekly loss as traders weigh us iran truce outlook msn": {
@@ -2321,8 +2397,8 @@
       "published_at": "2026-06-19T12:15:28+00:00",
       "reference_price": 79.65,
       "reaction_known": true,
-      "last_seen_at": "2026-06-19T12:31:09.922556+00:00",
-      "last_status": "FRESH"
+      "last_seen_at": "2026-06-19T12:45:57.985393+00:00",
+      "last_status": "REJECTED"
     },
     "us iran peace deal lifts stocks and gold while oil prices plunge equiti com": {
       "first_seen_at": "2026-06-19T12:31:09.922556+00:00",
@@ -2336,16 +2412,16 @@
   "regime_memory": {
     "type": "TREND_EXPANSION",
     "pending_type": "",
-    "stable_count": 2,
+    "stable_count": 3,
     "pending_count": 0,
-    "updated_at": "2026-06-19T12:31:10.233842+00:00"
+    "updated_at": "2026-06-19T12:45:59.016258+00:00"
   },
   "persistent_exhaustion_locks": {
     "LONG": {
       "side": "LONG",
       "status": "RELEASED",
       "origin_ts": 1781849700000,
-      "updated_ts": 1781872200000,
+      "updated_ts": 1781873100000,
       "origin_price": 79.99,
       "extreme_price": 79.99,
       "released_at": "2026-06-19T06:15:54.284815+00:00",
@@ -2358,7 +2434,7 @@
       "side": "SHORT",
       "status": "LOCKED",
       "origin_ts": 1781861400000,
-      "updated_ts": 1781872200000,
+      "updated_ts": 1781873100000,
       "origin_price": 78.95,
       "extreme_price": 78.95,
       "released_at": "",
@@ -2371,11 +2447,11 @@
   "shock_lock": {
     "side": "LONG",
     "status": "RELEASED",
-    "origin_ts": 1781866800000,
-    "extreme_ts": 1781866800000,
-    "extreme_price": 79.86,
-    "released_at": "2026-06-19T12:31:10.654928+00:00",
-    "released_extreme": 79.86
+    "origin_ts": 1781872200000,
+    "extreme_ts": 1781872200000,
+    "extreme_price": 80.19,
+    "released_at": "2026-06-19T12:45:59.433149+00:00",
+    "released_extreme": 80.19
   },
   "reversal_handoff": {
     "LONG": {
@@ -2429,17 +2505,87 @@
   },
   "range_boundary_state": {
     "status": "ACTIVE",
-    "high": 79.86,
-    "low": 79.07,
+    "high": 80.19,
+    "low": 79.05,
     "created_ts": 1781843400000,
-    "updated_ts": 1781871300000,
+    "updated_ts": 1781872200000,
     "rollover_ts": 0,
     "rollover_side": "",
     "old_high": null,
     "old_low": null
   },
-  "lock_release_opportunities": {},
-  "opportunity_memory": null,
+  "lock_release_opportunities": {
+    "LONG": {
+      "active": true,
+      "status": "ARMED",
+      "source": "POST_EVALUATION",
+      "gate_name": "",
+      "created_at": "2026-06-19T12:45:59.483447+00:00",
+      "updated_at": "2026-06-19T12:45:59.483454+00:00",
+      "ttl_minutes": 105,
+      "side": "LONG",
+      "setup_type": "PRIME_ICT_LOCATION_OVERRIDE",
+      "setup_label": "🟢 Сильна ICT-локація",
+      "classifier": {
+        "type": "PRIME_ICT_LOCATION_OVERRIDE",
+        "label": "🟢 Сильна ICT-локація",
+        "side": "LONG",
+        "score": 79,
+        "entry_allowed": true,
+        "block_entry": false,
+        "risk_mode": "RISKY",
+        "reason": "prime ICT location: FVG/OB/sweep зона + структура за напрям; 3M не сильно проти",
+        "quality_adjustment": 1,
+        "quality_cap": 79,
+        "force_risky": true,
+        "profile": {
+          "regime_override": "REVERSAL",
+          "tp1_pct": 0.92,
+          "tp2_pct": 1.55,
+          "tp3_pct": 2.55,
+          "min_stop_pct": 0.76,
+          "max_stop_pct": 1.22,
+          "quality_adjustment": 1,
+          "quality_cap": 79,
+          "force_risky": true
+        },
+        "entry_rule": "сильна ICT-локація: FVG/OB/зняття ліквідності у правильній зоні + структура за напрям; 3M може бути нейтральним, але не сильно проти",
+        "stop_rule": "стоп за екстремум FVG/OB/зняття ліквідності з ATR-буфером",
+        "tp_rule": "TP1 до першої ліквідності/EQ, далі тільки якщо 3M підтвердив продовження",
+        "management_rule": "ранній ICT-вхід; якщо 3M не підтверджує після входу — ризик швидко підвищується",
+        "professional_override": true,
+        "prime_ict_override": true,
+        "late_penalty": 0
+      },
+      "quality": 79,
+      "origin_price": 79.8,
+      "trigger_level": 79.8,
+      "trigger_ts": 0,
+      "trigger_type": null,
+      "invalidation": null,
+      "initial_reason": "не вдалося побудувати життєздатну технічну геометрію",
+      "plan": null
+    }
+  },
+  "opportunity_memory": {
+    "active": true,
+    "source": "POST_GATE",
+    "created_at": "2026-06-19T12:45:59.483494+00:00",
+    "ttl_minutes": 45,
+    "side": "LONG",
+    "setup_type": "PRIME_ICT_LOCATION_OVERRIDE",
+    "setup_label": "🟢 Сильна ICT-локація",
+    "quality": 63,
+    "price": 79.8,
+    "trigger_level": null,
+    "invalidation": null,
+    "reason": "не вдалося побудувати життєздатну технічну геометрію",
+    "missing_conditions": [
+      "класифікатор: сетап дозволений тільки як ризиковий/швидкий",
+      "не вдалося побудувати життєздатну технічну геометрію"
+    ],
+    "plan": null
+  },
   "pending_trigger": null,
   "opportunity_analytics": {
     "new_entries": 1,
@@ -2530,17 +2676,17 @@
     "coverage_pct": 11.1
   },
   "last_market_snapshot": {
-    "time": "2026-06-19T12:31:10.707845+00:00",
-    "price": 79.69,
-    "oi": 58622.92,
-    "cvd": -50209.0,
-    "cvd_time": "2026-06-19T12:31:10.707847+00:00",
-    "last_trade_ts": 1781872260258,
+    "time": "2026-06-19T12:45:59.484370+00:00",
+    "price": 79.8,
+    "oi": 60624.07,
+    "cvd": 15138.0,
+    "cvd_time": "2026-06-19T12:45:59.484372+00:00",
+    "last_trade_ts": 1781873115574,
     "bias": "LONG",
-    "tech_score": 176,
-    "total_score": 176
+    "tech_score": 252,
+    "total_score": 253
   },
-  "updated_at": "2026-06-19T12:31:10.707851+00:00",
+  "updated_at": "2026-06-19T12:45:59.484376+00:00",
   "last_closed_trade": {
     "side": "LONG",
     "closed_at": "2026-06-19T05:01:17.488165+00:00",
