@@ -20,9 +20,9 @@
     "tp2_stop_locked": false,
     "tp1_locked_stop": 0.0,
     "tp2_locked_stop": 0.0,
-    "best_price": 79.4,
-    "last_action": "PROTECT",
-    "last_message_key": "58db086253:PROTECT:False:False:False:False:False:79.0656",
+    "best_price": 79.52,
+    "last_action": "HOLD",
+    "last_message_key": "58db086253:HOLD:False:False:False:False:False:79.0656",
     "entry_integrity_score": 100,
     "entry_fail_streak": 0,
     "entry_recovery_checks": 0,
@@ -33,7 +33,7 @@
     "regime_type": "",
     "entry_level": "RISKY_ENTRY",
     "lifecycle_stage": "WORKING",
-    "lifecycle_score": 94,
+    "lifecycle_score": 95,
     "lifecycle_confirmations": 3,
     "lifecycle_failures": 0,
     "lifecycle_last_transition": "2026-06-19T02:01:14.644409+00:00",
@@ -45,15 +45,15 @@
     "recovery_trigger_level": 0.0,
     "recovery_event_type": "",
     "recovery_entry_checks": 0,
-    "management_checks": 1,
+    "management_checks": 2,
     "mfe_profit_lock_streak": 0,
     "mfe_profit_lock_active": false,
-    "execution_urgency_score": 11,
+    "execution_urgency_score": 21,
     "execution_urgency_mode": "LOW",
     "execution_protect_streak": 0,
     "execution_exit_streak": 0,
-    "execution_last_reason": "віддано 54.1% MFE; бар’єр 79.22 прийнято; підтверджений тренд: низька терміновість виходу",
-    "execution_last_updated_at": "2026-06-19T02:01:14.645131+00:00",
+    "execution_last_reason": "віддано 42.9% MFE; тиск проти: hard 0, fast 1; тест контрольного бар’єра 79.53; підтверджений тренд: низька терміновість виходу",
+    "execution_last_updated_at": "2026-06-19T02:15:52.993370+00:00",
     "barrier_checkpoints": [
       {
         "level": 79.22,
@@ -72,11 +72,11 @@
         "basis": "закритий 1H swing high",
         "priority": 94,
         "source_status": "HARD",
-        "status": "PENDING",
-        "acceptance_streak": 0,
+        "status": "ACCEPTED",
+        "acceptance_streak": 7,
         "rejection_streak": 0,
         "touched_at": "",
-        "accepted_at": "",
+        "accepted_at": "2026-06-19T02:15:52.992088+00:00",
         "rejected_at": ""
       },
       {
@@ -84,10 +84,10 @@
         "basis": "закритий 1H swing high",
         "priority": 94,
         "source_status": "HARD",
-        "status": "PENDING",
+        "status": "TESTING",
         "acceptance_streak": 0,
-        "rejection_streak": 0,
-        "touched_at": "",
+        "rejection_streak": 10,
+        "touched_at": "2026-06-19T02:15:52.993334+00:00",
         "accepted_at": "",
         "rejected_at": ""
       },
@@ -104,12 +104,12 @@
         "rejected_at": ""
       }
     ],
-    "barrier_checkpoint_status": "ACCEPTED",
-    "barrier_checkpoint_level": 79.22,
+    "barrier_checkpoint_status": "TESTING",
+    "barrier_checkpoint_level": 79.53,
     "barrier_checkpoint_basis": "закритий 1H swing high",
-    "barrier_checkpoint_acceptance_streak": 4,
-    "barrier_checkpoint_rejection_streak": 0,
-    "barrier_checkpoint_last_updated_at": "2026-06-19T02:01:14.645105+00:00",
+    "barrier_checkpoint_acceptance_streak": 0,
+    "barrier_checkpoint_rejection_streak": 10,
+    "barrier_checkpoint_last_updated_at": "2026-06-19T02:15:52.993341+00:00",
     "notes": [
       "RISKY_ENTRY",
       "ENTRY_LEVEL: RISKY_ENTRY",
@@ -3923,33 +3923,20 @@
       "execution_mode": "LOW",
       "execution_score": 11,
       "time": "2026-06-19T02:01:14.645432+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "HOLD",
+      "price": 79.31,
+      "result_pct": 0.354,
+      "stop_current": 79.0656,
+      "execution_mode": "LOW",
+      "execution_score": 21,
+      "time": "2026-06-19T02:15:52.993695+00:00"
     }
   ],
   "news_reaction_memory": {
-    "oil prices plunge as u s and iran sign historic peace deal streamlinefeed co ke": {
-      "first_seen_at": "2026-06-18T14:01:14.677478+00:00",
-      "published_at": "2026-06-18T12:51:48+00:00",
-      "reference_price": 78.2,
-      "reaction_known": true,
-      "last_seen_at": "2026-06-18T14:01:14.677478+00:00",
-      "last_status": "CONFIRMED"
-    },
-    "oil prices sink towards pre war levels as us and iran sign peace deal the straits times": {
-      "first_seen_at": "2026-06-18T14:10:29.031894+00:00",
-      "published_at": "2026-06-18T13:34:35+00:00",
-      "reference_price": 77.48,
-      "reaction_known": true,
-      "last_seen_at": "2026-06-18T14:15:51.066732+00:00",
-      "last_status": "CONFIRMED"
-    },
-    "energy shares fall as iran deal lowers hormuz disruption risk aol com": {
-      "first_seen_at": "2026-06-18T14:10:29.031894+00:00",
-      "published_at": "2026-06-18T12:37:20+00:00",
-      "reference_price": 78.33,
-      "reaction_known": true,
-      "last_seen_at": "2026-06-18T15:31:08.568965+00:00",
-      "last_status": "REJECTED"
-    },
     "hormuz crude oil and chabahar 3 big ways us iran truce impacts india news18": {
       "first_seen_at": "2026-06-18T15:46:00.486874+00:00",
       "published_at": "2026-06-18T14:45:07+00:00",
@@ -4083,7 +4070,7 @@
       "published_at": "2026-06-18T21:03:43+00:00",
       "reference_price": 79.11,
       "reaction_known": true,
-      "last_seen_at": "2026-06-19T02:01:13.803000+00:00",
+      "last_seen_at": "2026-06-19T02:15:52.087839+00:00",
       "last_status": "REJECTED"
     },
     "update brent rises after vance warns israel against breaking cease fire reuters": {
@@ -4139,7 +4126,7 @@
       "published_at": "2026-06-19T00:15:00+00:00",
       "reference_price": 78.82,
       "reaction_known": true,
-      "last_seen_at": "2026-06-19T02:01:13.803000+00:00",
+      "last_seen_at": "2026-06-19T02:15:52.087839+00:00",
       "last_status": "REJECTED"
     },
     "oil tankers resume passage through strait of hormuz as us iran peace deal comes into effect abp news": {
@@ -4147,16 +4134,16 @@
       "published_at": "2026-06-19T01:33:58+00:00",
       "reference_price": 79.23,
       "reaction_known": true,
-      "last_seen_at": "2026-06-19T02:01:13.803000+00:00",
-      "last_status": "ABSORBED"
+      "last_seen_at": "2026-06-19T02:15:52.087839+00:00",
+      "last_status": "REJECTED"
     }
   },
   "regime_memory": {
     "type": "TREND_EXPANSION",
     "pending_type": "",
-    "stable_count": 1,
-    "pending_count": 1,
-    "updated_at": "2026-06-19T02:01:14.266201+00:00"
+    "stable_count": 2,
+    "pending_count": 0,
+    "updated_at": "2026-06-19T02:15:52.488646+00:00"
   },
   "persistent_exhaustion_locks": {
     "SHORT": {
@@ -4579,17 +4566,17 @@
     "coverage_pct": 50.0
   },
   "last_market_snapshot": {
-    "time": "2026-06-19T02:01:14.645450+00:00",
-    "price": 79.2,
-    "oi": 56002.88,
-    "cvd": -25746.0,
-    "cvd_time": "2026-06-19T02:01:14.645453+00:00",
-    "last_trade_ts": 1781834421009,
+    "time": "2026-06-19T02:15:52.993714+00:00",
+    "price": 79.31,
+    "oi": 55728.44,
+    "cvd": -62937.0,
+    "cvd_time": "2026-06-19T02:15:52.993717+00:00",
+    "last_trade_ts": 1781835307417,
     "bias": "LONG",
-    "tech_score": 227,
-    "total_score": 203
+    "tech_score": 190,
+    "total_score": 183
   },
-  "updated_at": "2026-06-19T02:01:14.645457+00:00",
+  "updated_at": "2026-06-19T02:15:52.993722+00:00",
   "range_boundary_state": {
     "status": "ACTIVE",
     "high": 79.39,
