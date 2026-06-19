@@ -3543,6 +3543,50 @@
         "previous_regime_type": "NORMAL"
       },
       "time": "2026-06-19T18:45:59.634100+00:00"
+    },
+    {
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 79.89,
+      "quality": 44,
+      "reason": "перевага нечітка, немає професійного входу",
+      "market_direction_context": null,
+      "pipeline_recovered": false,
+      "pipeline_failed_stage": null,
+      "pipeline_recovery_checkpoint": null,
+      "setup_classifier": null,
+      "regime_engine": {
+        "name": "NORMAL",
+        "regime_type": "NORMAL",
+        "label": "звичайний intraday режим",
+        "score": 50,
+        "confidence": 50,
+        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 0,
+        "quality_cap": null,
+        "hard_block": false,
+        "allowed_setups": [],
+        "notes": [],
+        "metrics": {
+          "bias": "LONG",
+          "range_atr": 3.74,
+          "move8_abs_pct": 0.274,
+          "slope15_abs_pct": 0.32,
+          "rsi15": 53.1,
+          "score_total_abs": 25,
+          "participation_same": 0,
+          "late_penalty": 0,
+          "pd": "PREMIUM",
+          "ict_setup": "PREMIUM_FVG_OB_SHORT",
+          "range_edge": false
+        },
+        "stable_count": 4,
+        "pending_count": 0,
+        "is_stable": true,
+        "previous_regime_type": "NORMAL"
+      },
+      "time": "2026-06-19T19:01:28.440527+00:00"
     }
   ],
   "news_reaction_memory": {
@@ -3727,7 +3771,7 @@
       "published_at": "2026-06-19T16:21:36+00:00",
       "reference_price": 80.17,
       "reaction_known": true,
-      "last_seen_at": "2026-06-19T18:45:58.796381+00:00",
+      "last_seen_at": "2026-06-19T19:01:27.254989+00:00",
       "last_status": "CONFIRMED"
     },
     "oil markets steady as hormuz reopens and shipping starts to move techstock": {
@@ -3735,7 +3779,7 @@
       "published_at": "2026-06-19T16:21:07+00:00",
       "reference_price": 80.17,
       "reaction_known": true,
-      "last_seen_at": "2026-06-19T18:45:58.796381+00:00",
+      "last_seen_at": "2026-06-19T19:01:27.254989+00:00",
       "last_status": "CONFIRMED"
     },
     "india s russian oil imports set for record high in june as hormuz disruption reshapes supply mix outlook india": {
@@ -3743,7 +3787,7 @@
       "published_at": "2026-06-19T16:18:01+00:00",
       "reference_price": 80.29,
       "reaction_known": true,
-      "last_seen_at": "2026-06-19T18:45:58.796381+00:00",
+      "last_seen_at": "2026-06-19T19:01:27.254989+00:00",
       "last_status": "REJECTED"
     },
     "brent oil remains on track for 8 weekly decline as israel hezbollah agree to ceasefire marine news magazine": {
@@ -3751,7 +3795,7 @@
       "published_at": "2026-06-19T16:35:41+00:00",
       "reference_price": 80.35,
       "reaction_known": true,
-      "last_seen_at": "2026-06-19T18:45:58.796381+00:00",
+      "last_seen_at": "2026-06-19T19:01:27.254989+00:00",
       "last_status": "CONFIRMED"
     },
     "brent on track for 8 weekly decline as israel hezbollah agree to ceasefire gv wire": {
@@ -3767,23 +3811,23 @@
       "published_at": "2026-06-19T17:07:00+00:00",
       "reference_price": 80.02,
       "reaction_known": true,
-      "last_seen_at": "2026-06-19T18:31:08.532702+00:00",
+      "last_seen_at": "2026-06-19T19:01:27.254989+00:00",
       "last_status": "UNRESOLVED"
     }
   },
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 3,
+    "stable_count": 4,
     "pending_count": 0,
-    "updated_at": "2026-06-19T18:45:59.171012+00:00"
+    "updated_at": "2026-06-19T19:01:28.008146+00:00"
   },
   "persistent_exhaustion_locks": {
     "LONG": {
       "side": "LONG",
       "status": "RELEASED",
       "origin_ts": 1781849700000,
-      "updated_ts": 1781894700000,
+      "updated_ts": 1781895600000,
       "origin_price": 79.99,
       "extreme_price": 80.17,
       "released_at": "2026-06-19T06:15:54.284815+00:00",
@@ -3796,7 +3840,7 @@
       "side": "SHORT",
       "status": "RELEASED",
       "origin_ts": 1781861400000,
-      "updated_ts": 1781894700000,
+      "updated_ts": 1781895600000,
       "origin_price": 78.95,
       "extreme_price": 78.68,
       "released_at": "2026-06-19T17:31:09.441859+00:00",
@@ -3808,12 +3852,12 @@
   },
   "shock_lock": {
     "side": "SHORT",
-    "status": "LOCKED",
+    "status": "RELEASED",
     "origin_ts": 1781889300000,
     "extreme_ts": 1781889300000,
     "extreme_price": 79.72,
-    "released_at": "",
-    "released_extreme": null
+    "released_at": "2026-06-19T19:01:28.329938+00:00",
+    "released_extreme": 79.72
   },
   "reversal_handoff": {
     "LONG": {
@@ -3867,10 +3911,10 @@
   },
   "range_boundary_state": {
     "status": "ACTIVE",
-    "high": 80.48,
+    "high": 80.2,
     "low": 79.72,
     "created_ts": 1781843400000,
-    "updated_ts": 1781893800000,
+    "updated_ts": 1781894700000,
     "rollover_ts": 0,
     "rollover_side": "",
     "old_high": null,
@@ -4063,17 +4107,17 @@
     "coverage_pct": 23.1
   },
   "last_market_snapshot": {
-    "time": "2026-06-19T18:45:59.634123+00:00",
-    "price": 79.9,
-    "oi": 58603.16,
-    "cvd": -52000.0,
-    "cvd_time": "2026-06-19T18:45:59.634126+00:00",
-    "last_trade_ts": 1781894735179,
+    "time": "2026-06-19T19:01:28.440551+00:00",
+    "price": 79.89,
+    "oi": 58588.2,
+    "cvd": -99895.0,
+    "cvd_time": "2026-06-19T19:01:28.440554+00:00",
+    "last_trade_ts": 1781895633936,
     "bias": "NEUTRAL",
-    "tech_score": 7,
-    "total_score": 7
+    "tech_score": 26,
+    "total_score": 25
   },
-  "updated_at": "2026-06-19T18:45:59.634130+00:00",
+  "updated_at": "2026-06-19T19:01:28.440558+00:00",
   "last_closed_trade": {
     "side": "LONG",
     "closed_at": "2026-06-19T17:17:15.349776+00:00",
