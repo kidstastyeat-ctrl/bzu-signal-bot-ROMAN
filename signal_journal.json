@@ -32599,14 +32599,167 @@
           "previous_regime_type": "NEWS_SHOCK"
         }
       }
+    },
+    {
+      "time": "2026-06-19T02:01:14.645437+00:00",
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "PROTECT",
+      "price": 79.2,
+      "quality": 79,
+      "entry_level": "RISKY_ENTRY",
+      "setup_type": "CLOSED_15M_DIRECTION_FLIP",
+      "regime_type": null,
+      "context_bias": "LONG",
+      "tech_score": 227,
+      "total_score": 203,
+      "regime_engine": {
+        "name": "TREND",
+        "regime_type": "TREND_EXPANSION",
+        "label": "сильне продовження тренду",
+        "score": 82,
+        "confidence": 88,
+        "reason": "сильне продовження: continuation дозволений, TP2/TP3 можна тримати довше, але без доганяння",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 3,
+        "quality_cap": 90,
+        "hard_block": false,
+        "allowed_setups": [
+          "TREND_CONTINUATION",
+          "TREND_IGNITION_ENTRY",
+          "PULLBACK_CONTINUATION",
+          "PULLBACK_CONTINUATION_FAST_ENTRY"
+        ],
+        "notes": [],
+        "metrics": {
+          "bias": "LONG",
+          "range_atr": 2.95,
+          "move8_abs_pct": 0.379,
+          "slope15_abs_pct": 0.274,
+          "rsi15": 63.4,
+          "score_total_abs": 203,
+          "participation_same": 2,
+          "late_penalty": 0,
+          "pd": "PREMIUM",
+          "ict_setup": "BOS_LONG_RETRACE_FVG_OB",
+          "range_edge": false
+        },
+        "stable_count": 1,
+        "pending_count": 1,
+        "is_stable": false,
+        "previous_regime_type": "NEWS_SHOCK"
+      },
+      "institutional_execution": {
+        "active": true,
+        "score": 11,
+        "mode": "LOW",
+        "mode_label": "НИЗЬКА — утримувати",
+        "stage": "PRE_TP1",
+        "current_pct": 0.215,
+        "best_pct": 0.468,
+        "giveback_pct": 0.253,
+        "giveback_ratio": 0.541,
+        "initial_risk_pct": 0.399,
+        "risk_used": 0.0,
+        "hard_layers_against": 0,
+        "fast_layers_against": 0,
+        "support_layers": 4,
+        "hard_reversal": false,
+        "confirmed_ict_reversal": false,
+        "ict_reversal_components": 0,
+        "closed_15m_break": false,
+        "breakout_failure": false,
+        "barrier_checkpoint": {
+          "active": true,
+          "status": "ACCEPTED",
+          "action": "CONTINUE",
+          "level": 79.22,
+          "basis": "закритий 1H swing high",
+          "acceptance_streak": 4,
+          "rejection_streak": 0,
+          "adverse_layers": 0,
+          "support_layers": 4,
+          "touched": true,
+          "message": "бар’єр 79.22 прийнято — TP2/TP3 залишаються активними",
+          "checkpoints": [
+            {
+              "level": 79.22,
+              "basis": "закритий 1H swing high",
+              "priority": 94,
+              "source_status": "HARD",
+              "status": "ACCEPTED",
+              "acceptance_streak": 4,
+              "rejection_streak": 0,
+              "touched_at": "",
+              "accepted_at": "2026-06-19T02:01:14.645100+00:00",
+              "rejected_at": ""
+            },
+            {
+              "level": 79.29,
+              "basis": "закритий 1H swing high",
+              "priority": 94,
+              "source_status": "HARD",
+              "status": "PENDING",
+              "acceptance_streak": 0,
+              "rejection_streak": 0,
+              "touched_at": "",
+              "accepted_at": "",
+              "rejected_at": ""
+            },
+            {
+              "level": 79.53,
+              "basis": "закритий 1H swing high",
+              "priority": 94,
+              "source_status": "HARD",
+              "status": "PENDING",
+              "acceptance_streak": 0,
+              "rejection_streak": 0,
+              "touched_at": "",
+              "accepted_at": "",
+              "rejected_at": ""
+            },
+            {
+              "level": 79.77,
+              "basis": "ICT range high / external liquidity",
+              "priority": 98,
+              "source_status": "HARD",
+              "status": "PENDING",
+              "acceptance_streak": 0,
+              "rejection_streak": 0,
+              "touched_at": "",
+              "accepted_at": "",
+              "rejected_at": ""
+            }
+          ],
+          "protect_evidence": false,
+          "close_review": false
+        },
+        "news_active": false,
+        "news_against": false,
+        "low_liquidity": false,
+        "avoid_noise_stop": false,
+        "protect_evidence": true,
+        "close_evidence": false,
+        "emergency": false,
+        "allow_stop_update": true,
+        "reason": "віддано 54.1% MFE; бар’єр 79.22 прийнято; підтверджений тренд: низька терміновість виходу",
+        "reasons": [
+          "віддано 54.1% MFE",
+          "бар’єр 79.22 прийнято",
+          "підтверджений тренд: низька терміновість виходу"
+        ],
+        "policy": "HOLD_RUNNER",
+        "protect_streak": 0,
+        "exit_streak": 0
+      }
     }
   ],
-  "updated_at": "2026-06-19T01:45:51.581834+00:00",
+  "updated_at": "2026-06-19T02:01:14.657469+00:00",
   "outcome_analytics": {
-    "updated_at": "2026-06-19T01:45:51.588989+00:00",
+    "updated_at": "2026-06-19T02:01:14.658097+00:00",
     "lookback_limit": 120,
     "closed_trades_count": 3,
-    "signals_count": 53,
+    "signals_count": 54,
     "overall": {
       "trades": 3,
       "wins": 1,
@@ -32786,13 +32939,13 @@
       }
     },
     "signals": {
-      "total": 53,
+      "total": 54,
       "entries": 4,
       "full_entries": 0,
       "risky_entries": 4,
       "watch": 21,
       "no_trade": 17,
-      "follow": 8,
+      "follow": 9,
       "closed": 3,
       "pending_trigger_activations": 0
     },
@@ -32808,14 +32961,14 @@
       "SWEEP_RECLAIM_EARLY_ENTRY": 1,
       "SWEEP_REVERSAL": 3,
       "TREND_IGNITION_ENTRY": 2,
-      "UNKNOWN": 16
+      "UNKNOWN": 17
     },
     "signal_counts_by_regime": {
       "EXHAUSTION": 5,
       "NEWS_SHOCK": 21,
       "NORMAL": 12,
       "REVERSAL_BUILDUP": 6,
-      "TREND_EXPANSION": 5,
+      "TREND_EXPANSION": 6,
       "TREND_PULLBACK": 4
     }
   }
