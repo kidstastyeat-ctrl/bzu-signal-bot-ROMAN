@@ -4941,6 +4941,55 @@
         "previous_regime_type": "NORMAL"
       },
       "time": "2026-06-19T23:01:16.638373+00:00"
+    },
+    {
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 80.15,
+      "quality": 41,
+      "reason": "ICT: ціна біля equilibrium / середина діапазону — входу немає; чекати sweep high/low або BOS + FVG/OB retest",
+      "market_direction_context": null,
+      "pipeline_recovered": false,
+      "pipeline_failed_stage": null,
+      "pipeline_recovery_checkpoint": null,
+      "setup_classifier": null,
+      "regime_engine": {
+        "name": "RANGE",
+        "regime_type": "RANGE_COMPRESSION",
+        "label": "стискання діапазону",
+        "score": 56,
+        "confidence": 55,
+        "reason": "баланс/EQ: входи тільки після краю діапазону або BOS/reclaim",
+        "entry_action": "WAIT",
+        "entry_quality_adjustment": -2,
+        "quality_cap": 77,
+        "hard_block": false,
+        "allowed_setups": [
+          "RANGE_EDGE_TRADE",
+          "RANGE_COMPRESSION_BREAKOUT",
+          "SWEEP_REVERSAL",
+          "SWEEP_RECLAIM_EARLY_ENTRY"
+        ],
+        "notes": [],
+        "metrics": {
+          "bias": "NEUTRAL",
+          "range_atr": 5.85,
+          "move8_abs_pct": 0.125,
+          "slope15_abs_pct": 0.913,
+          "rsi15": 49.6,
+          "score_total_abs": 12,
+          "participation_same": 0,
+          "late_penalty": 0,
+          "pd": "MIDRANGE",
+          "ict_setup": "BALANCE_MIDRANGE",
+          "range_edge": false
+        },
+        "stable_count": 0,
+        "pending_count": 1,
+        "is_stable": false,
+        "previous_regime_type": "NORMAL"
+      },
+      "time": "2026-06-19T23:15:52.014209+00:00"
     }
   ],
   "news_reaction_memory": {
@@ -5117,7 +5166,7 @@
       "published_at": "2026-06-19T20:51:14+00:00",
       "reference_price": 79.86,
       "reaction_known": true,
-      "last_seen_at": "2026-06-19T23:01:15.798980+00:00",
+      "last_seen_at": "2026-06-19T23:15:51.158423+00:00",
       "last_status": "REJECTED"
     },
     "iraq to export crude and naphtha through syria after strait of hormuz closure crypto briefing": {
@@ -5125,23 +5174,23 @@
       "published_at": "2026-06-19T21:30:20+00:00",
       "reference_price": 80.33,
       "reaction_known": true,
-      "last_seen_at": "2026-06-19T23:01:15.798980+00:00",
-      "last_status": "CONFIRMED"
+      "last_seen_at": "2026-06-19T23:15:51.158423+00:00",
+      "last_status": "ABSORBED"
     }
   },
   "regime_memory": {
     "type": "NORMAL",
-    "pending_type": "",
-    "stable_count": 2,
-    "pending_count": 0,
-    "updated_at": "2026-06-19T23:01:16.177671+00:00"
+    "pending_type": "RANGE_COMPRESSION",
+    "stable_count": 0,
+    "pending_count": 1,
+    "updated_at": "2026-06-19T23:15:51.660286+00:00"
   },
   "persistent_exhaustion_locks": {
     "LONG": {
       "side": "LONG",
       "status": "LOCKED",
       "origin_ts": 1781906400000,
-      "updated_ts": 1781910000000,
+      "updated_ts": 1781910900000,
       "origin_price": 81.25,
       "extreme_price": 81.25,
       "released_at": "",
@@ -5154,7 +5203,7 @@
       "side": "SHORT",
       "status": "RELEASED",
       "origin_ts": 1781861400000,
-      "updated_ts": 1781910000000,
+      "updated_ts": 1781910900000,
       "origin_price": 78.95,
       "extreme_price": 78.68,
       "released_at": "2026-06-19T17:31:09.441859+00:00",
@@ -5165,11 +5214,11 @@
     }
   },
   "shock_lock": {
-    "side": "LONG",
+    "side": "SHORT",
     "status": "LOCKED",
-    "origin_ts": 1781905500000,
-    "extreme_ts": 1781905500000,
-    "extreme_price": 81.67,
+    "origin_ts": 1781910000000,
+    "extreme_ts": 1781910000000,
+    "extreme_price": 80.3,
     "released_at": "",
     "released_extreme": null
   },
@@ -5226,9 +5275,9 @@
   "range_boundary_state": {
     "status": "ACTIVE",
     "high": 81.67,
-    "low": 80.13,
+    "low": 80.21,
     "created_ts": 1781843400000,
-    "updated_ts": 1781909100000,
+    "updated_ts": 1781910000000,
     "rollover_ts": 0,
     "rollover_side": "",
     "old_high": null,
@@ -5440,17 +5489,17 @@
     "coverage_pct": 18.8
   },
   "last_market_snapshot": {
-    "time": "2026-06-19T23:01:16.638413+00:00",
-    "price": 80.65,
-    "oi": 57195.94,
-    "cvd": -143495.0,
-    "cvd_time": "2026-06-19T23:01:16.638416+00:00",
-    "last_trade_ts": 1781910054781,
-    "bias": "LONG",
-    "tech_score": 78,
-    "total_score": 74
+    "time": "2026-06-19T23:15:52.014233+00:00",
+    "price": 80.15,
+    "oi": 57282.71,
+    "cvd": -151326.0,
+    "cvd_time": "2026-06-19T23:15:52.014236+00:00",
+    "last_trade_ts": 1781910903661,
+    "bias": "NEUTRAL",
+    "tech_score": -6,
+    "total_score": -12
   },
-  "updated_at": "2026-06-19T23:01:16.638420+00:00",
+  "updated_at": "2026-06-19T23:15:52.014240+00:00",
   "last_closed_trade": {
     "side": "LONG",
     "closed_at": "2026-06-19T17:17:15.349776+00:00",
