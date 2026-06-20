@@ -5,72 +5,6 @@
     {
       "type": "WATCH",
       "side": "LONG",
-      "price": 79.46,
-      "quality": 55,
-      "reason": "активний exhaustion/shock lock: потрібен новий незалежний ретест, база або reversal/continuation event",
-      "setup_classifier": {
-        "type": "NO_CLEAN_SETUP",
-        "label": "⚪ Чистого сетапу немає",
-        "side": "LONG",
-        "score": 53,
-        "entry_allowed": false,
-        "block_entry": true,
-        "risk_mode": "NORMAL",
-        "reason": "немає одного з топових сетапів для професійного входу",
-        "quality_adjustment": -6,
-        "quality_cap": 66,
-        "force_risky": false,
-        "profile": {
-          "quality_adjustment": -6,
-          "quality_cap": 66,
-          "block_entry": true
-        },
-        "entry_rule": "для лонг потрібен один з топ-сетапів: продовження тренду, відкат, зняття ліквідності, край діапазону або новинний імпульс",
-        "stop_rule": "стоп/TP не активувати без сетапу",
-        "tp_rule": "чекати чистішу структуру",
-        "management_rule": "чекати до появи топового сетапу"
-      },
-      "regime_engine": {
-        "name": "TREND",
-        "regime_type": "TREND_EXPANSION",
-        "label": "сильне продовження тренду",
-        "score": 82,
-        "confidence": 82,
-        "reason": "сильне продовження: continuation дозволений, TP2/TP3 можна тримати довше, але без доганяння",
-        "entry_action": "ALLOW",
-        "entry_quality_adjustment": 3,
-        "quality_cap": 90,
-        "hard_block": false,
-        "allowed_setups": [
-          "TREND_CONTINUATION",
-          "TREND_IGNITION_ENTRY",
-          "PULLBACK_CONTINUATION",
-          "PULLBACK_CONTINUATION_FAST_ENTRY"
-        ],
-        "notes": [],
-        "metrics": {
-          "bias": "LONG",
-          "range_atr": 4.68,
-          "move8_abs_pct": 0.492,
-          "slope15_abs_pct": 0.991,
-          "rsi15": 56.7,
-          "score_total_abs": 104,
-          "participation_same": 0,
-          "late_penalty": 0,
-          "pd": "MIDRANGE",
-          "ict_setup": "BOS_LONG_CONTINUATION_HOLD",
-          "range_edge": false
-        },
-        "stable_count": 2,
-        "pending_count": 0,
-        "is_stable": true,
-        "previous_regime_type": "TREND_EXPANSION"
-      },
-      "time": "2026-06-19T07:07:05.602845+00:00"
-    },
-    {
-      "type": "WATCH",
-      "side": "LONG",
       "price": 79.58,
       "quality": 46,
       "reason": "активний exhaustion/shock lock: потрібен новий незалежний ретест, база або reversal/continuation event",
@@ -5178,6 +5112,76 @@
         "previous_regime_type": "TREND_PULLBACK"
       },
       "time": "2026-06-20T02:01:18.487936+00:00"
+    },
+    {
+      "type": "WATCH",
+      "side": "LONG",
+      "price": 80.5,
+      "quality": 55,
+      "reason": "активний exhaustion/shock lock: потрібен новий незалежний ретест, база або reversal/continuation event",
+      "market_direction_context": null,
+      "pipeline_recovered": false,
+      "pipeline_failed_stage": null,
+      "pipeline_recovery_checkpoint": null,
+      "setup_classifier": {
+        "type": "RANGE_MIDDLE_BLOCK",
+        "label": "🔴 Середина діапазону — входу немає",
+        "side": "LONG",
+        "score": 38,
+        "entry_allowed": false,
+        "block_entry": true,
+        "risk_mode": "NORMAL",
+        "reason": "ціна в середині range/EQ — входити не професійно",
+        "quality_adjustment": -10,
+        "quality_cap": 55,
+        "force_risky": false,
+        "profile": {
+          "quality_adjustment": -10,
+          "quality_cap": 55,
+          "block_entry": true
+        },
+        "entry_rule": "середина діапазону/EQ — входу немає; чекати край або BOS з ретестом",
+        "stop_rule": "стоп не визначати з середини діапазону",
+        "tp_rule": "математика RR з середини діапазону слабка",
+        "management_rule": "тільки чекати"
+      },
+      "regime_engine": {
+        "name": "TREND",
+        "regime_type": "TREND_EXPANSION",
+        "label": "сильне продовження тренду",
+        "score": 82,
+        "confidence": 78,
+        "reason": "сильне продовження: continuation дозволений, TP2/TP3 можна тримати довше, але без доганяння",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 3,
+        "quality_cap": 90,
+        "hard_block": false,
+        "allowed_setups": [
+          "TREND_CONTINUATION",
+          "TREND_IGNITION_ENTRY",
+          "PULLBACK_CONTINUATION",
+          "PULLBACK_CONTINUATION_FAST_ENTRY"
+        ],
+        "notes": [],
+        "metrics": {
+          "bias": "LONG",
+          "range_atr": 5.89,
+          "move8_abs_pct": 0.087,
+          "slope15_abs_pct": 0.087,
+          "rsi15": 56.6,
+          "score_total_abs": 74,
+          "participation_same": 0,
+          "late_penalty": 0,
+          "pd": "MIDRANGE",
+          "ict_setup": "BALANCE_MIDRANGE",
+          "range_edge": false
+        },
+        "stable_count": 2,
+        "pending_count": 0,
+        "is_stable": true,
+        "previous_regime_type": "TREND_EXPANSION"
+      },
+      "time": "2026-06-20T02:15:51.614037+00:00"
     }
   ],
   "news_reaction_memory": {
@@ -5330,31 +5334,39 @@
       "published_at": "2026-06-20T00:11:00+00:00",
       "reference_price": 80.65,
       "reaction_known": true,
-      "last_seen_at": "2026-06-20T02:01:17.255974+00:00",
-      "last_status": "CONFIRMED"
+      "last_seen_at": "2026-06-20T02:15:50.847603+00:00",
+      "last_status": "UNRESOLVED"
     },
     "oil prices head for biggest weekly drop in months after middle east ceasefire українські національні новини унн": {
       "first_seen_at": "2026-06-20T01:45:52.545702+00:00",
       "published_at": "2026-06-20T01:38:36+00:00",
       "reference_price": 80.24,
       "reaction_known": true,
-      "last_seen_at": "2026-06-20T02:01:17.255974+00:00",
+      "last_seen_at": "2026-06-20T02:15:50.847603+00:00",
+      "last_status": "REJECTED"
+    },
+    "oil prices steady as investors weigh peace deal iea glut forecasts msn": {
+      "first_seen_at": "2026-06-20T02:15:50.847603+00:00",
+      "published_at": "2026-06-20T00:29:54+00:00",
+      "reference_price": 80.38,
+      "reaction_known": true,
+      "last_seen_at": "2026-06-20T02:15:50.847603+00:00",
       "last_status": "REJECTED"
     }
   },
   "regime_memory": {
     "type": "TREND_EXPANSION",
     "pending_type": "",
-    "stable_count": 1,
-    "pending_count": 1,
-    "updated_at": "2026-06-20T02:01:18.046780+00:00"
+    "stable_count": 2,
+    "pending_count": 0,
+    "updated_at": "2026-06-20T02:15:51.209163+00:00"
   },
   "persistent_exhaustion_locks": {
     "LONG": {
       "side": "LONG",
       "status": "RELEASED",
       "origin_ts": 1781906400000,
-      "updated_ts": 1781920800000,
+      "updated_ts": 1781921700000,
       "origin_price": 81.25,
       "extreme_price": 81.25,
       "released_at": "2026-06-19T23:45:50.391307+00:00",
@@ -5367,7 +5379,7 @@
       "side": "SHORT",
       "status": "RELEASED",
       "origin_ts": 1781861400000,
-      "updated_ts": 1781920800000,
+      "updated_ts": 1781921700000,
       "origin_price": 78.95,
       "extreme_price": 78.68,
       "released_at": "2026-06-19T17:31:09.441859+00:00",
@@ -5378,13 +5390,13 @@
     }
   },
   "shock_lock": {
-    "side": "SHORT",
+    "side": "LONG",
     "status": "LOCKED",
-    "origin_ts": 1781916300000,
-    "extreme_ts": 1781916300000,
-    "extreme_price": 80.03,
+    "origin_ts": 1781920800000,
+    "extreme_ts": 1781920800000,
+    "extreme_price": 80.85,
     "released_at": "",
-    "released_extreme": 80.3
+    "released_extreme": null
   },
   "reversal_handoff": {
     "LONG": {
@@ -5438,10 +5450,10 @@
   },
   "range_boundary_state": {
     "status": "ACTIVE",
-    "high": 80.81,
+    "high": 80.85,
     "low": 80.03,
     "created_ts": 1781843400000,
-    "updated_ts": 1781919900000,
+    "updated_ts": 1781920800000,
     "rollover_ts": 0,
     "rollover_side": "",
     "old_high": null,
@@ -5574,12 +5586,12 @@
   "opportunity_analytics": {
     "new_entries": 3,
     "covered_by_active_trade": 0,
-    "missed": 14,
+    "missed": 15,
     "active_episode_keys": [
-      "SHORT:CAPITULATION_RECOVERY"
+      "LONG:CAPITULATION_RECOVERY"
     ],
     "episode_status": {
-      "SHORT:CAPITULATION_RECOVERY": "MISSED"
+      "LONG:CAPITULATION_RECOVERY": "MISSED"
     },
     "recent": [
       {
@@ -5725,24 +5737,32 @@
         "episode_key": "SHORT:CAPITULATION_RECOVERY",
         "status": "MISSED",
         "time": "2026-06-19T23:45:50.484499+00:00"
+      },
+      {
+        "side": "LONG",
+        "type": "CAPITULATION_RECOVERY",
+        "ts": 1781920620000,
+        "episode_key": "LONG:CAPITULATION_RECOVERY",
+        "status": "MISSED",
+        "time": "2026-06-20T02:15:51.613874+00:00"
       }
     ],
     "covered_total": 3,
-    "total_opportunities": 17,
-    "coverage_pct": 17.6
+    "total_opportunities": 18,
+    "coverage_pct": 16.7
   },
   "last_market_snapshot": {
-    "time": "2026-06-20T02:01:18.487960+00:00",
-    "price": 80.37,
-    "oi": 58135.4,
-    "cvd": -139682.0,
-    "cvd_time": "2026-06-20T02:01:18.487963+00:00",
-    "last_trade_ts": 1781920867940,
+    "time": "2026-06-20T02:15:51.614060+00:00",
+    "price": 80.5,
+    "oi": 58443.55,
+    "cvd": -165063.0,
+    "cvd_time": "2026-06-20T02:15:51.614063+00:00",
+    "last_trade_ts": 1781921709433,
     "bias": "LONG",
-    "tech_score": 159,
-    "total_score": 139
+    "tech_score": 89,
+    "total_score": 74
   },
-  "updated_at": "2026-06-20T02:01:18.487966+00:00",
+  "updated_at": "2026-06-20T02:15:51.614067+00:00",
   "last_closed_trade": {
     "side": "LONG",
     "closed_at": "2026-06-19T17:17:15.349776+00:00",
