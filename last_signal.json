@@ -5,76 +5,6 @@
     {
       "type": "NO_TRADE",
       "side": "NEUTRAL",
-      "price": 80.0,
-      "quality": 49,
-      "reason": "чистого сетапу немає; немає одного з топових сетапів для професійного входу",
-      "market_direction_context": "LONG",
-      "pipeline_recovered": false,
-      "pipeline_failed_stage": null,
-      "pipeline_recovery_checkpoint": null,
-      "setup_classifier": {
-        "type": "NO_CLEAN_SETUP",
-        "label": "⚪ Чистого сетапу немає",
-        "side": "NEUTRAL",
-        "score": 56,
-        "entry_allowed": false,
-        "block_entry": true,
-        "risk_mode": "NORMAL",
-        "reason": "немає одного з топових сетапів для професійного входу",
-        "quality_adjustment": -6,
-        "quality_cap": 66,
-        "force_risky": false,
-        "profile": {
-          "quality_adjustment": -6,
-          "quality_cap": 66,
-          "block_entry": true
-        },
-        "entry_rule": "для лонг потрібен один з топ-сетапів: продовження тренду, відкат, зняття ліквідності, край діапазону або новинний імпульс",
-        "stop_rule": "стоп/TP не активувати без сетапу",
-        "tp_rule": "чекати чистішу структуру",
-        "management_rule": "чекати до появи топового сетапу"
-      },
-      "regime_engine": {
-        "name": "TREND",
-        "regime_type": "TREND_EXPANSION",
-        "label": "сильне продовження тренду",
-        "score": 82,
-        "confidence": 78,
-        "reason": "сильне продовження: continuation дозволений, TP2/TP3 можна тримати довше, але без доганяння",
-        "entry_action": "ALLOW",
-        "entry_quality_adjustment": 3,
-        "quality_cap": 90,
-        "hard_block": false,
-        "allowed_setups": [
-          "TREND_CONTINUATION",
-          "TREND_IGNITION_ENTRY",
-          "PULLBACK_CONTINUATION",
-          "PULLBACK_CONTINUATION_FAST_ENTRY"
-        ],
-        "notes": [],
-        "metrics": {
-          "bias": "LONG",
-          "range_atr": 3.4,
-          "move8_abs_pct": 0.225,
-          "slope15_abs_pct": 0.142,
-          "rsi15": 57.3,
-          "score_total_abs": 64,
-          "participation_same": 0,
-          "late_penalty": 0,
-          "pd": "PREMIUM",
-          "ict_setup": "PREMIUM_FVG_OB_SHORT",
-          "range_edge": false
-        },
-        "stable_count": 1,
-        "pending_count": 2,
-        "is_stable": false,
-        "previous_regime_type": "NORMAL"
-      },
-      "time": "2026-06-19T21:01:16.793802+00:00"
-    },
-    {
-      "type": "NO_TRADE",
-      "side": "NEUTRAL",
       "price": 80.08,
       "quality": 55,
       "reason": "чистого сетапу немає; немає одного з топових сетапів для професійного входу",
@@ -5542,6 +5472,85 @@
         "previous_regime_type": "TREND_EXPANSION"
       },
       "time": "2026-06-20T16:45:52.932442+00:00"
+    },
+    {
+      "type": "WATCH",
+      "side": "LONG",
+      "price": 81.46,
+      "quality": 57,
+      "reason": "не вдалося побудувати життєздатну технічну геометрію",
+      "market_direction_context": null,
+      "pipeline_recovered": false,
+      "pipeline_failed_stage": null,
+      "pipeline_recovery_checkpoint": null,
+      "setup_classifier": {
+        "type": "RANGE_COMPRESSION_BREAKOUT",
+        "label": "🟢 Пробій після стискання діапазону",
+        "side": "LONG",
+        "score": 76,
+        "entry_allowed": true,
+        "block_entry": false,
+        "risk_mode": "RISKY",
+        "reason": "range compression breakout: 3M close вище локального high 81.61; перед цим була проторговка/стиснення; CVD/flow/OI не проти",
+        "quality_adjustment": 0,
+        "quality_cap": 77,
+        "force_risky": true,
+        "profile": {
+          "regime_override": "RANGE",
+          "tp1_pct": 0.88,
+          "tp2_pct": 1.35,
+          "tp3_pct": 2.1,
+          "min_stop_pct": 0.74,
+          "max_stop_pct": 1.1,
+          "quality_adjustment": 0,
+          "quality_cap": 77,
+          "force_risky": true
+        },
+        "entry_rule": "середина діапазону дозволена тільки після стискання + 3M мікро-BOS + участь CVD/потік/OI",
+        "stop_rule": "стоп за межу бази стискання / мікро-swing",
+        "tp_rule": "TP1 до краю діапазону або першої ліквідності; не тримати як сильний тренд без нового BOS",
+        "management_rule": "якщо пробій не продовжився за 1–2 перевірки — переводити в захист або попередження на вихід",
+        "professional_override": true,
+        "range_breakout": true,
+        "late_penalty": 0
+      },
+      "regime_engine": {
+        "name": "TREND",
+        "regime_type": "TREND_EXPANSION",
+        "label": "сильне продовження тренду",
+        "score": 82,
+        "confidence": 84,
+        "reason": "сильне продовження: continuation дозволений, TP2/TP3 можна тримати довше, але без доганяння",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 3,
+        "quality_cap": 90,
+        "hard_block": false,
+        "allowed_setups": [
+          "TREND_CONTINUATION",
+          "TREND_IGNITION_ENTRY",
+          "PULLBACK_CONTINUATION",
+          "PULLBACK_CONTINUATION_FAST_ENTRY"
+        ],
+        "notes": [],
+        "metrics": {
+          "bias": "LONG",
+          "range_atr": 5.69,
+          "move8_abs_pct": 0.853,
+          "slope15_abs_pct": 0.569,
+          "rsi15": 54.5,
+          "score_total_abs": 96,
+          "participation_same": 2,
+          "late_penalty": 0,
+          "pd": "MIDRANGE",
+          "ict_setup": "BALANCE_MIDRANGE",
+          "range_edge": false
+        },
+        "stable_count": 1,
+        "pending_count": 0,
+        "is_stable": false,
+        "previous_regime_type": "TREND_EXPANSION"
+      },
+      "time": "2026-06-20T17:01:23.749807+00:00"
     }
   ],
   "news_reaction_memory": {
@@ -5614,23 +5623,31 @@
       "published_at": "2026-06-20T16:41:48+00:00",
       "reference_price": 81.55,
       "reaction_known": true,
-      "last_seen_at": "2026-06-20T16:45:52.013458+00:00",
+      "last_seen_at": "2026-06-20T17:01:22.416345+00:00",
       "last_status": "FRESH"
+    },
+    "hormuz closed again iran cites us israel ceasefire violations will crude price spike business today": {
+      "first_seen_at": "2026-06-20T17:01:22.416345+00:00",
+      "published_at": "2026-06-20T15:02:24+00:00",
+      "reference_price": 80.89,
+      "reaction_known": true,
+      "last_seen_at": "2026-06-20T17:01:22.416345+00:00",
+      "last_status": "REJECTED"
     }
   },
   "regime_memory": {
     "type": "TREND_EXPANSION",
-    "pending_type": "RANGE_COMPRESSION",
-    "stable_count": 0,
-    "pending_count": 1,
-    "updated_at": "2026-06-20T16:45:52.515999+00:00"
+    "pending_type": "",
+    "stable_count": 1,
+    "pending_count": 0,
+    "updated_at": "2026-06-20T17:01:23.213503+00:00"
   },
   "persistent_exhaustion_locks": {
     "LONG": {
       "side": "LONG",
       "status": "RELEASED",
       "origin_ts": 1781964900000,
-      "updated_ts": 1781973900000,
+      "updated_ts": 1781974800000,
       "origin_price": 82.06,
       "extreme_price": 82.06,
       "released_at": "2026-06-20T14:15:50.050854+00:00",
@@ -5643,7 +5660,7 @@
       "side": "SHORT",
       "status": "RELEASED",
       "origin_ts": 1781861400000,
-      "updated_ts": 1781973900000,
+      "updated_ts": 1781974800000,
       "origin_price": 78.95,
       "extreme_price": 78.68,
       "released_at": "2026-06-19T17:31:09.441859+00:00",
@@ -5655,12 +5672,12 @@
   },
   "shock_lock": {
     "side": "LONG",
-    "status": "LOCKED",
+    "status": "RELEASED",
     "origin_ts": 1781969400000,
     "extreme_ts": 1781969400000,
     "extreme_price": 81.76,
-    "released_at": "",
-    "released_extreme": null
+    "released_at": "2026-06-20T17:01:23.669403+00:00",
+    "released_extreme": 81.76
   },
   "reversal_handoff": {
     "LONG": {
@@ -5717,7 +5734,7 @@
     "high": 82.45,
     "low": 80.56,
     "created_ts": 1781843400000,
-    "updated_ts": 1781973000000,
+    "updated_ts": 1781973900000,
     "rollover_ts": 0,
     "rollover_side": "",
     "old_high": 81.64,
@@ -5848,20 +5865,21 @@
   "opportunity_memory": {
     "active": true,
     "source": "POST_GATE",
-    "created_at": "2026-06-20T16:31:11.656108+00:00",
+    "created_at": "2026-06-20T17:01:23.748860+00:00",
     "ttl_minutes": 45,
     "side": "LONG",
-    "setup_type": "PULLBACK_CONTINUATION",
-    "setup_label": "🟢 Відкат у тренді",
-    "quality": 60,
-    "price": 81.29,
+    "setup_type": "RANGE_COMPRESSION_BREAKOUT",
+    "setup_label": "🟢 Пробій після стискання діапазону",
+    "quality": 57,
+    "price": 81.46,
     "trigger_level": null,
     "invalidation": null,
-    "reason": "активний exhaustion/shock lock: потрібен новий незалежний ретест, база або reversal/continuation event",
+    "reason": "не вдалося побудувати життєздатну технічну геометрію",
     "missing_conditions": [
+      "класифікатор: сетап дозволений тільки як ризиковий/швидкий",
       "не вдалося побудувати життєздатну технічну геометрію",
       "ціна TV/OKX розходиться — вхід тільки обережно",
-      "відкат ще не підтверджений одночасно закритою 15M, структурою та стабільним режимом — тільки ризиковий вхід"
+      "немає повного ICT-сетапу — якість входу обмежена"
     ],
     "plan": null
   },
@@ -6131,17 +6149,17 @@
     "coverage_pct": 24.1
   },
   "last_market_snapshot": {
-    "time": "2026-06-20T16:45:52.932464+00:00",
-    "price": 81.44,
-    "oi": 58399.34,
-    "cvd": -45244.0,
-    "cvd_time": "2026-06-20T16:45:52.932467+00:00",
-    "last_trade_ts": 1781973939713,
-    "bias": "NEUTRAL",
-    "tech_score": 31,
-    "total_score": 32
+    "time": "2026-06-20T17:01:23.749830+00:00",
+    "price": 81.46,
+    "oi": 58225.14,
+    "cvd": 8859.0,
+    "cvd_time": "2026-06-20T17:01:23.749833+00:00",
+    "last_trade_ts": 1781974871693,
+    "bias": "LONG",
+    "tech_score": 104,
+    "total_score": 96
   },
-  "updated_at": "2026-06-20T16:45:52.932471+00:00",
+  "updated_at": "2026-06-20T17:01:23.749836+00:00",
   "last_closed_trade": {
     "side": "LONG",
     "closed_at": "2026-06-20T08:03:12.805479+00:00",
