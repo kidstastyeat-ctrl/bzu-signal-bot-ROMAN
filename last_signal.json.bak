@@ -5,68 +5,6 @@
     {
       "type": "NO_TRADE",
       "side": "NEUTRAL",
-      "price": 79.25,
-      "quality": 55,
-      "reason": "чистого сетапу немає; немає одного з топових сетапів для професійного входу",
-      "market_direction_context": "LONG",
-      "setup_classifier": {
-        "type": "NO_CLEAN_SETUP",
-        "label": "⚪ Чистого сетапу немає",
-        "side": "NEUTRAL",
-        "score": 50,
-        "entry_allowed": false,
-        "block_entry": true,
-        "risk_mode": "NORMAL",
-        "reason": "немає одного з топових сетапів для професійного входу",
-        "quality_adjustment": -6,
-        "quality_cap": 66,
-        "force_risky": false,
-        "profile": {
-          "quality_adjustment": -6,
-          "quality_cap": 66,
-          "block_entry": true
-        },
-        "entry_rule": "для лонг потрібен один з топ-сетапів: продовження тренду, відкат, зняття ліквідності, край діапазону або новинний імпульс",
-        "stop_rule": "стоп/TP не активувати без сетапу",
-        "tp_rule": "чекати чистішу структуру",
-        "management_rule": "чекати до появи топового сетапу"
-      },
-      "regime_engine": {
-        "name": "NORMAL",
-        "regime_type": "NORMAL",
-        "label": "звичайний intraday режим",
-        "score": 50,
-        "confidence": 50,
-        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
-        "entry_action": "ALLOW",
-        "entry_quality_adjustment": 0,
-        "quality_cap": null,
-        "hard_block": false,
-        "allowed_setups": [],
-        "notes": [],
-        "metrics": {
-          "bias": "LONG",
-          "range_atr": 3.8,
-          "move8_abs_pct": 0.126,
-          "slope15_abs_pct": 0.164,
-          "rsi15": 50.7,
-          "score_total_abs": 128,
-          "participation_same": 2,
-          "late_penalty": 0,
-          "pd": "DISCOUNT",
-          "ict_setup": "DISCOUNT_FVG_OB_LONG",
-          "range_edge": false
-        },
-        "stable_count": 1,
-        "pending_count": 2,
-        "is_stable": false,
-        "previous_regime_type": "REVERSAL_BUILDUP"
-      },
-      "time": "2026-06-19T13:47:31.724572+00:00"
-    },
-    {
-      "type": "NO_TRADE",
-      "side": "NEUTRAL",
       "price": 79.57,
       "quality": 0,
       "reason": "внутрішній pipeline не завершив усі перевірки; угода не відкривається",
@@ -4893,17 +4831,78 @@
         "previous_regime_type": "RANGE_COMPRESSION"
       },
       "time": "2026-06-20T09:15:52.531600+00:00"
+    },
+    {
+      "type": "WATCH",
+      "side": "LONG",
+      "price": 80.89,
+      "quality": 55,
+      "reason": "ціна в середині range/EQ — входити не професійно",
+      "market_direction_context": null,
+      "pipeline_recovered": false,
+      "pipeline_failed_stage": null,
+      "pipeline_recovery_checkpoint": null,
+      "setup_classifier": {
+        "type": "RANGE_MIDDLE_BLOCK",
+        "label": "🔴 Середина діапазону — входу немає",
+        "side": "LONG",
+        "score": 38,
+        "entry_allowed": false,
+        "block_entry": true,
+        "risk_mode": "NORMAL",
+        "reason": "ціна в середині range/EQ — входити не професійно",
+        "quality_adjustment": -10,
+        "quality_cap": 55,
+        "force_risky": false,
+        "profile": {
+          "quality_adjustment": -10,
+          "quality_cap": 55,
+          "block_entry": true
+        },
+        "entry_rule": "середина діапазону/EQ — входу немає; чекати край або BOS з ретестом",
+        "stop_rule": "стоп не визначати з середини діапазону",
+        "tp_rule": "математика RR з середини діапазону слабка",
+        "management_rule": "тільки чекати"
+      },
+      "regime_engine": {
+        "name": "RANGE",
+        "regime_type": "RANGE_COMPRESSION",
+        "label": "стискання діапазону",
+        "score": 62,
+        "confidence": 64,
+        "reason": "стискання діапазону: середина range заборонена, дозволений лише підтверджений compression breakout",
+        "entry_action": "WAIT",
+        "entry_quality_adjustment": -2,
+        "quality_cap": 77,
+        "hard_block": false,
+        "allowed_setups": [
+          "RANGE_COMPRESSION_BREAKOUT",
+          "TREND_IGNITION_ENTRY",
+          "PULLBACK_CONTINUATION_FAST_ENTRY"
+        ],
+        "notes": [],
+        "metrics": {
+          "bias": "LONG",
+          "range_atr": 4.17,
+          "move8_abs_pct": 0.308,
+          "slope15_abs_pct": 0.181,
+          "rsi15": 56.1,
+          "score_total_abs": 74,
+          "participation_same": 1,
+          "late_penalty": 0,
+          "pd": "MIDRANGE",
+          "ict_setup": "BALANCE_MIDRANGE",
+          "range_edge": false
+        },
+        "stable_count": 3,
+        "pending_count": 0,
+        "is_stable": true,
+        "previous_regime_type": "RANGE_COMPRESSION"
+      },
+      "time": "2026-06-20T09:31:04.728218+00:00"
     }
   ],
   "news_reaction_memory": {
-    "us may soon reimpose sanctions on russian oil once hormuz reopens trump the business standard": {
-      "first_seen_at": "2026-06-19T21:15:52.228621+00:00",
-      "published_at": "2026-06-19T20:51:14+00:00",
-      "reference_price": 79.86,
-      "reaction_known": true,
-      "last_seen_at": "2026-06-19T23:45:49.609111+00:00",
-      "last_status": "REJECTED"
-    },
     "iraq to export crude and naphtha through syria after strait of hormuz closure crypto briefing": {
       "first_seen_at": "2026-06-19T21:45:53.645378+00:00",
       "published_at": "2026-06-19T21:30:20+00:00",
@@ -5013,23 +5012,23 @@
       "published_at": "2026-06-20T08:00:35+00:00",
       "reference_price": 81.02,
       "reaction_known": true,
-      "last_seen_at": "2026-06-20T09:15:51.737522+00:00",
-      "last_status": "CONFIRMED"
+      "last_seen_at": "2026-06-20T09:31:03.837416+00:00",
+      "last_status": "UNRESOLVED"
     }
   },
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 2,
+    "stable_count": 3,
     "pending_count": 0,
-    "updated_at": "2026-06-20T09:15:52.078036+00:00"
+    "updated_at": "2026-06-20T09:31:04.185470+00:00"
   },
   "persistent_exhaustion_locks": {
     "LONG": {
       "side": "LONG",
       "status": "RELEASED",
       "origin_ts": 1781906400000,
-      "updated_ts": 1781946900000,
+      "updated_ts": 1781947800000,
       "origin_price": 81.25,
       "extreme_price": 81.25,
       "released_at": "2026-06-19T23:45:50.391307+00:00",
@@ -5042,7 +5041,7 @@
       "side": "SHORT",
       "status": "RELEASED",
       "origin_ts": 1781861400000,
-      "updated_ts": 1781946900000,
+      "updated_ts": 1781947800000,
       "origin_price": 78.95,
       "extreme_price": 78.68,
       "released_at": "2026-06-19T17:31:09.441859+00:00",
@@ -5114,9 +5113,9 @@
   "range_boundary_state": {
     "status": "ACTIVE",
     "high": 81.37,
-    "low": 80.83,
+    "low": 80.76,
     "created_ts": 1781843400000,
-    "updated_ts": 1781946000000,
+    "updated_ts": 1781946900000,
     "rollover_ts": 0,
     "rollover_side": "",
     "old_high": null,
@@ -5350,17 +5349,17 @@
     "coverage_pct": 29.2
   },
   "last_market_snapshot": {
-    "time": "2026-06-20T09:15:52.531623+00:00",
-    "price": 80.81,
-    "oi": 58696.12,
-    "cvd": -149470.0,
-    "cvd_time": "2026-06-20T09:15:52.531625+00:00",
-    "last_trade_ts": 1781946908365,
+    "time": "2026-06-20T09:31:04.728246+00:00",
+    "price": 80.89,
+    "oi": 59215.16,
+    "cvd": -147354.0,
+    "cvd_time": "2026-06-20T09:31:04.728249+00:00",
+    "last_trade_ts": 1781947807714,
     "bias": "LONG",
-    "tech_score": 56,
-    "total_score": 56
+    "tech_score": 79,
+    "total_score": 74
   },
-  "updated_at": "2026-06-20T09:15:52.531629+00:00",
+  "updated_at": "2026-06-20T09:31:04.728253+00:00",
   "last_closed_trade": {
     "side": "LONG",
     "closed_at": "2026-06-20T08:03:12.805479+00:00",
