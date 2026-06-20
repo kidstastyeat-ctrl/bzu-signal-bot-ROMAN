@@ -4,8 +4,8 @@
   "active_trade": null,
   "opportunity": null,
   "latest_signal": {
-    "id": "fc83a67db7b8",
-    "time": "2026-06-20T20:45:51.107122+00:00",
+    "id": "49ae964cb039",
+    "time": "2026-06-20T20:48:00.216399+00:00",
     "action": "NO_SETUP",
     "side": "NEUTRAL",
     "setup_type": "NONE",
@@ -20,11 +20,11 @@
     "version": "pro-ict-v3.1.1-telegram-clean",
     "architecture_version": "DETERMINISTIC_PRO_ICT_CORE_V3_1_EVENT_EDGE_TELEGRAM_CLEAN",
     "context": {
-      "time": "2026-06-20T20:45:51.073649+00:00",
-      "price": 81.14,
+      "time": "2026-06-20T20:48:00.185304+00:00",
+      "price": 81.11,
       "price_source": "OKX",
-      "reference_price": 80.98,
-      "cross_price_diff_pct": 0.1972,
+      "reference_price": 80.97,
+      "cross_price_diff_pct": 0.1726,
       "regime": "RANGE",
       "regime_reason": "15M рух перекривається і не має ефективного напрямку",
       "tf3": {
@@ -199,25 +199,25 @@
         "low": 80.56,
         "high": 82.02,
         "equilibrium": 81.29,
-        "position": 0.397,
+        "position": 0.377,
         "zone": "DISCOUNT",
         "at_lower_edge": false,
         "at_upper_edge": false
       },
       "flow": {
-        "bias": "SHORT",
-        "score": -5,
-        "trade_delta": -5778.0,
-        "trade_delta_pct": -31.21,
-        "book_delta_pct": 2.97,
+        "bias": "NEUTRAL",
+        "score": -3,
+        "trade_delta": -5410.0,
+        "trade_delta_pct": -26.28,
+        "book_delta_pct": 9.68,
         "price_move_pct": -0.025,
-        "cvd_acceleration": -8200.0,
+        "cvd_acceleration": -8504.0,
         "absorption_bias": "NEUTRAL",
         "confidence": "MEDIUM",
         "sample_size": 200
       },
       "derivatives": {
-        "oi": 5764600.0,
+        "oi": 5762173.0,
         "funding_rate": 0.0
       },
       "zones": [
@@ -545,9 +545,19 @@
       "reason": "ринок не сформував узгоджений ланцюжок 4H/1H location → 15M invalidation → 3M trigger/acceptance/retest",
       "plan": null,
       "time": "2026-06-20T20:45:51.107352+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "price": 81.11,
+      "quality": 0,
+      "reason": "ринок не сформував узгоджений ланцюжок 4H/1H location → 15M invalidation → 3M trigger/acceptance/retest",
+      "plan": null,
+      "time": "2026-06-20T20:48:00.216641+00:00"
     }
   ],
-  "last_telegram_success_at": "2026-06-20T20:45:51.695089+00:00",
+  "last_telegram_success_at": "2026-06-20T20:48:00.628155+00:00",
   "last_telegram_error": "",
-  "updated_at": "2026-06-20T20:45:51.695102+00:00"
+  "updated_at": "2026-06-20T20:48:00.628173+00:00"
 }
