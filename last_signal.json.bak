@@ -5,15 +5,6 @@
     {
       "type": "FOLLOW",
       "side": "LONG",
-      "action": "PROTECT",
-      "price": 80.05,
-      "result_pct": -0.15,
-      "stop_current": 79.9975,
-      "time": "2026-06-19T16:31:08.446005+00:00"
-    },
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
       "action": "HOLD",
       "price": 80.29,
       "result_pct": 0.15,
@@ -4991,6 +4982,50 @@
         "previous_regime_type": "REVERSAL_BUILDUP"
       },
       "time": "2026-06-20T12:15:50.808654+00:00"
+    },
+    {
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 80.34,
+      "quality": 42,
+      "reason": "перевага нечітка, немає професійного входу",
+      "market_direction_context": null,
+      "pipeline_recovered": false,
+      "pipeline_failed_stage": null,
+      "pipeline_recovery_checkpoint": null,
+      "setup_classifier": null,
+      "regime_engine": {
+        "name": "NORMAL",
+        "regime_type": "NORMAL",
+        "label": "звичайний intraday режим",
+        "score": 50,
+        "confidence": 50,
+        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 0,
+        "quality_cap": null,
+        "hard_block": false,
+        "allowed_setups": [],
+        "notes": [],
+        "metrics": {
+          "bias": "SHORT",
+          "range_atr": 5.48,
+          "move8_abs_pct": 0.691,
+          "slope15_abs_pct": 0.687,
+          "rsi15": 36.7,
+          "score_total_abs": 20,
+          "participation_same": 1,
+          "late_penalty": 7,
+          "pd": "DISCOUNT",
+          "ict_setup": "DISCOUNT_FVG_OB_LONG",
+          "range_edge": false
+        },
+        "stable_count": 0,
+        "pending_count": 1,
+        "is_stable": false,
+        "previous_regime_type": "REVERSAL_BUILDUP"
+      },
+      "time": "2026-06-20T12:31:08.037369+00:00"
     }
   ],
   "news_reaction_memory": {
@@ -5095,23 +5130,23 @@
       "published_at": "2026-06-20T11:42:25+00:00",
       "reference_price": 80.42,
       "reaction_known": true,
-      "last_seen_at": "2026-06-20T12:15:49.935987+00:00",
+      "last_seen_at": "2026-06-20T12:31:06.557203+00:00",
       "last_status": "ABSORBED"
     }
   },
   "regime_memory": {
     "type": "REVERSAL_BUILDUP",
-    "pending_type": "TREND_PULLBACK",
+    "pending_type": "NORMAL",
     "stable_count": 0,
     "pending_count": 1,
-    "updated_at": "2026-06-20T12:15:50.361025+00:00"
+    "updated_at": "2026-06-20T12:31:07.552215+00:00"
   },
   "persistent_exhaustion_locks": {
     "LONG": {
       "side": "LONG",
       "status": "RELEASED",
       "origin_ts": 1781906400000,
-      "updated_ts": 1781957700000,
+      "updated_ts": 1781958600000,
       "origin_price": 81.25,
       "extreme_price": 81.25,
       "released_at": "2026-06-19T23:45:50.391307+00:00",
@@ -5124,7 +5159,7 @@
       "side": "SHORT",
       "status": "RELEASED",
       "origin_ts": 1781861400000,
-      "updated_ts": 1781957700000,
+      "updated_ts": 1781958600000,
       "origin_price": 78.95,
       "extreme_price": 78.68,
       "released_at": "2026-06-19T17:31:09.441859+00:00",
@@ -5198,7 +5233,7 @@
     "high": 81.18,
     "low": 80.31,
     "created_ts": 1781843400000,
-    "updated_ts": 1781956800000,
+    "updated_ts": 1781957700000,
     "rollover_ts": 0,
     "rollover_side": "",
     "old_high": null,
@@ -5531,17 +5566,17 @@
     "coverage_pct": 29.2
   },
   "last_market_snapshot": {
-    "time": "2026-06-20T12:15:50.808676+00:00",
-    "price": 80.42,
-    "oi": 59013.07,
-    "cvd": -150272.0,
-    "cvd_time": "2026-06-20T12:15:50.808679+00:00",
-    "last_trade_ts": 1781957730953,
-    "bias": "LONG",
-    "tech_score": 38,
-    "total_score": 43
+    "time": "2026-06-20T12:31:08.037398+00:00",
+    "price": 80.34,
+    "oi": 59009.85,
+    "cvd": -155381.0,
+    "cvd_time": "2026-06-20T12:31:08.037401+00:00",
+    "last_trade_ts": 1781958607894,
+    "bias": "NEUTRAL",
+    "tech_score": -24,
+    "total_score": -20
   },
-  "updated_at": "2026-06-20T12:15:50.808683+00:00",
+  "updated_at": "2026-06-20T12:31:08.037406+00:00",
   "last_closed_trade": {
     "side": "LONG",
     "closed_at": "2026-06-20T08:03:12.805479+00:00",
