@@ -23,7 +23,7 @@
     "best_price": 81.37,
     "last_action": "HOLD",
     "last_message_key": "e7c808164d:HOLD:False:False:False:False:False:80.9331",
-    "entry_integrity_score": 90,
+    "entry_integrity_score": 100,
     "entry_fail_streak": 0,
     "entry_recovery_checks": 0,
     "entry_last_state": "🟢 Сильна",
@@ -33,7 +33,7 @@
     "regime_type": "",
     "entry_level": "RISKY_ENTRY",
     "lifecycle_stage": "WORKING",
-    "lifecycle_score": 53,
+    "lifecycle_score": 80,
     "lifecycle_confirmations": 2,
     "lifecycle_failures": 0,
     "lifecycle_last_transition": "2026-06-20T07:31:04.972758+00:00",
@@ -45,7 +45,7 @@
     "recovery_trigger_level": 0.0,
     "recovery_event_type": "",
     "recovery_entry_checks": 0,
-    "management_checks": 8,
+    "management_checks": 9,
     "mfe_profit_lock_streak": 0,
     "mfe_profit_lock_active": false,
     "notes": [
@@ -61,14 +61,14 @@
     "thesis_protected_base": 80.55,
     "thesis_protected_structure": 80.55,
     "thesis_reclaim_level": 80.82,
-    "thesis_state": "THESIS_RECOVERED",
+    "thesis_state": "THESIS_INTACT",
     "thesis_pressure_streak": 0,
     "thesis_break_streak": 0,
-    "thesis_recovery_streak": 4,
+    "thesis_recovery_streak": 0,
     "thesis_evidence_started_at": "2026-06-20T05:31:05.352257+00:00",
     "thesis_last_snapshot": {
       "version": "SETUP_THESIS_PERSISTENCE_INDEPENDENT_EVIDENCE_V3_11",
-      "state": "THESIS_RECOVERED",
+      "state": "THESIS_INTACT",
       "allow_close": false,
       "close_reason": "protected base/HL-LH не зламано або недостатньо незалежних post-entry доказів",
       "side": "LONG",
@@ -77,14 +77,14 @@
       "protected_base": 80.55,
       "protected_structure": 80.55,
       "reclaim_level": 80.82,
-      "price": 81.14,
-      "current_pct": 0.396,
+      "price": 81.02,
+      "current_pct": 0.247,
       "best_pct": 0.681,
       "initial_risk_pct": 0.466,
       "mfe_r": 1.46,
       "mfe_exit_armed": true,
-      "post_entry_3m_count": 39,
-      "post_entry_15m_count": 7,
+      "post_entry_3m_count": 44,
+      "post_entry_15m_count": 8,
       "protected_base_broken_3m": false,
       "protected_base_broken_15m": false,
       "reclaim_lost": false,
@@ -99,7 +99,7 @@
       },
       "pressure_streak": 0,
       "break_streak": 0,
-      "recovery_streak": 4,
+      "recovery_streak": 0,
       "pre_entry_evidence_ignored": true
     },
     "thesis_family_streaks": {
@@ -113,47 +113,6 @@
     "thesis_patch_version": "SETUP_THESIS_PERSISTENCE_INDEPENDENT_EVIDENCE_V3_11"
   },
   "history": [
-    {
-      "type": "NO_TRADE",
-      "side": "NEUTRAL",
-      "price": 79.39,
-      "quality": 0,
-      "reason": "внутрішній pipeline не завершив усі перевірки; угода не відкривається",
-      "market_direction_context": null,
-      "setup_classifier": null,
-      "regime_engine": {
-        "name": "NORMAL",
-        "regime_type": "NORMAL",
-        "label": "звичайний intraday режим",
-        "score": 50,
-        "confidence": 50,
-        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
-        "entry_action": "ALLOW",
-        "entry_quality_adjustment": 0,
-        "quality_cap": null,
-        "hard_block": false,
-        "allowed_setups": [],
-        "notes": [],
-        "metrics": {
-          "bias": "LONG",
-          "range_atr": 3.52,
-          "move8_abs_pct": 0.671,
-          "slope15_abs_pct": 0.32,
-          "rsi15": 53.2,
-          "score_total_abs": 75,
-          "participation_same": 0,
-          "late_penalty": 0,
-          "pd": "DISCOUNT",
-          "ict_setup": "DISCOUNT_FVG_OB_LONG",
-          "range_edge": false
-        },
-        "stable_count": 1,
-        "pending_count": 0,
-        "is_stable": false,
-        "previous_regime_type": "NORMAL"
-      },
-      "time": "2026-06-19T12:01:20.602159+00:00"
-    },
     {
       "type": "WATCH",
       "side": "LONG",
@@ -5043,6 +5002,15 @@
       "result_pct": 0.396,
       "stop_current": 80.9331,
       "time": "2026-06-20T07:31:04.973739+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "HOLD",
+      "price": 81.02,
+      "result_pct": 0.247,
+      "stop_current": 80.9331,
+      "time": "2026-06-20T07:45:50.224366+00:00"
     }
   ],
   "news_reaction_memory": {
@@ -5163,16 +5131,16 @@
       "published_at": "2026-06-20T05:58:00+00:00",
       "reference_price": 80.92,
       "reaction_known": true,
-      "last_seen_at": "2026-06-20T07:31:04.316510+00:00",
+      "last_seen_at": "2026-06-20T07:45:49.372138+00:00",
       "last_status": "REJECTED"
     }
   },
   "regime_memory": {
     "type": "TREND_EXPANSION",
-    "pending_type": "REVERSAL_BUILDUP",
-    "stable_count": 0,
-    "pending_count": 1,
-    "updated_at": "2026-06-20T07:31:04.602452+00:00"
+    "pending_type": "",
+    "stable_count": 1,
+    "pending_count": 0,
+    "updated_at": "2026-06-20T07:45:49.932454+00:00"
   },
   "persistent_exhaustion_locks": {
     "LONG": {
@@ -5264,9 +5232,9 @@
   "range_boundary_state": {
     "status": "ACTIVE",
     "high": 81.37,
-    "low": 80.47,
+    "low": 80.59,
     "created_ts": 1781843400000,
-    "updated_ts": 1781939700000,
+    "updated_ts": 1781940600000,
     "rollover_ts": 0,
     "rollover_side": "",
     "old_high": null,
@@ -5492,17 +5460,17 @@
     "coverage_pct": 30.4
   },
   "last_market_snapshot": {
-    "time": "2026-06-20T07:31:04.973761+00:00",
-    "price": 81.14,
-    "oi": 60131.79,
-    "cvd": -158309.0,
-    "cvd_time": "2026-06-20T07:31:04.973764+00:00",
-    "last_trade_ts": 1781940610751,
+    "time": "2026-06-20T07:45:50.224388+00:00",
+    "price": 81.02,
+    "oi": 60178.24,
+    "cvd": -157477.0,
+    "cvd_time": "2026-06-20T07:45:50.224391+00:00",
+    "last_trade_ts": 1781941530281,
     "bias": "LONG",
-    "tech_score": 73,
-    "total_score": 68
+    "tech_score": 154,
+    "total_score": 143
   },
-  "updated_at": "2026-06-20T07:31:04.973769+00:00",
+  "updated_at": "2026-06-20T07:45:50.224396+00:00",
   "last_closed_trade": {
     "side": "LONG",
     "closed_at": "2026-06-19T17:17:15.349776+00:00",

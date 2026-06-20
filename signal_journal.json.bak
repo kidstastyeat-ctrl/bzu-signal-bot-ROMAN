@@ -63583,14 +63583,101 @@
         "pre_entry_evidence_ignored": true
       },
       "thesis_state": "THESIS_RECOVERED"
+    },
+    {
+      "time": "2026-06-20T07:45:50.224374+00:00",
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "HOLD",
+      "price": 81.02,
+      "quality": 79,
+      "entry_level": "RISKY_ENTRY",
+      "setup_type": "CLOSED_15M_DIRECTION_FLIP",
+      "regime_type": null,
+      "context_bias": "LONG",
+      "tech_score": 154,
+      "total_score": 143,
+      "regime_engine": {
+        "name": "TREND",
+        "regime_type": "TREND_EXPANSION",
+        "label": "сильне продовження тренду",
+        "score": 82,
+        "confidence": 88,
+        "reason": "сильне продовження: continuation дозволений, TP2/TP3 можна тримати довше, але без доганяння",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 3,
+        "quality_cap": 90,
+        "hard_block": false,
+        "allowed_setups": [
+          "TREND_CONTINUATION",
+          "TREND_IGNITION_ENTRY",
+          "PULLBACK_CONTINUATION",
+          "PULLBACK_CONTINUATION_FAST_ENTRY"
+        ],
+        "notes": [],
+        "metrics": {
+          "bias": "LONG",
+          "range_atr": 4.12,
+          "move8_abs_pct": 0.383,
+          "slope15_abs_pct": 0.873,
+          "rsi15": 65.0,
+          "score_total_abs": 143,
+          "participation_same": 1,
+          "late_penalty": 0,
+          "pd": "PREMIUM",
+          "ict_setup": "BOS_LONG_RETRACE_FVG_OB",
+          "range_edge": false
+        },
+        "stable_count": 1,
+        "pending_count": 0,
+        "is_stable": false,
+        "previous_regime_type": "TREND_EXPANSION"
+      },
+      "setup_thesis_persistence": {
+        "version": "SETUP_THESIS_PERSISTENCE_INDEPENDENT_EVIDENCE_V3_11",
+        "state": "THESIS_INTACT",
+        "allow_close": false,
+        "close_reason": "protected base/HL-LH не зламано або недостатньо незалежних post-entry доказів",
+        "side": "LONG",
+        "setup_type": "CLOSED_15M_DIRECTION_FLIP",
+        "hard_stop": 80.4434,
+        "protected_base": 80.55,
+        "protected_structure": 80.55,
+        "reclaim_level": 80.82,
+        "price": 81.02,
+        "current_pct": 0.247,
+        "best_pct": 0.681,
+        "initial_risk_pct": 0.466,
+        "mfe_r": 1.46,
+        "mfe_exit_armed": true,
+        "post_entry_3m_count": 44,
+        "post_entry_15m_count": 8,
+        "protected_base_broken_3m": false,
+        "protected_base_broken_15m": false,
+        "reclaim_lost": false,
+        "independent_families": [],
+        "independent_family_count": 0,
+        "families": {
+          "PRICE_STRUCTURE": false,
+          "ORDER_FLOW": false,
+          "ICT_LOCATION": false,
+          "LIQUIDITY": false,
+          "NEWS": false
+        },
+        "pressure_streak": 0,
+        "break_streak": 0,
+        "recovery_streak": 0,
+        "pre_entry_evidence_ignored": true
+      },
+      "thesis_state": "THESIS_INTACT"
     }
   ],
-  "updated_at": "2026-06-20T07:31:04.987042+00:00",
+  "updated_at": "2026-06-20T07:45:50.237303+00:00",
   "outcome_analytics": {
-    "updated_at": "2026-06-20T07:31:04.987756+00:00",
+    "updated_at": "2026-06-20T07:45:50.243124+00:00",
     "lookback_limit": 120,
     "closed_trades_count": 2,
-    "signals_count": 112,
+    "signals_count": 113,
     "overall": {
       "trades": 2,
       "wins": 1,
@@ -63728,13 +63815,13 @@
       }
     },
     "signals": {
-      "total": 112,
+      "total": 113,
       "entries": 3,
       "full_entries": 0,
       "risky_entries": 3,
       "watch": 54,
       "no_trade": 41,
-      "follow": 12,
+      "follow": 13,
       "closed": 2,
       "pending_trigger_activations": 0
     },
@@ -63751,7 +63838,7 @@
       "RANGE_MIDDLE_BLOCK": 8,
       "SWEEP_RECLAIM_EARLY_ENTRY": 1,
       "TREND_IGNITION_ENTRY": 3,
-      "UNKNOWN": 40
+      "UNKNOWN": 41
     },
     "signal_counts_by_regime": {
       "EXHAUSTION": 1,
@@ -63759,7 +63846,7 @@
       "NORMAL": 31,
       "RANGE_COMPRESSION": 9,
       "REVERSAL_BUILDUP": 15,
-      "TREND_EXPANSION": 34,
+      "TREND_EXPANSION": 35,
       "TREND_PULLBACK": 7
     }
   }
