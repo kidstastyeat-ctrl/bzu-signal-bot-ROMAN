@@ -21,8 +21,8 @@
     "tp1_locked_stop": 0.0,
     "tp2_locked_stop": 0.0,
     "best_price": 81.31,
-    "last_action": "PROTECT",
-    "last_message_key": "e7c808164d:PROTECT:False:False:False:False:False:80.9331",
+    "last_action": "HOLD",
+    "last_message_key": "e7c808164d:HOLD:False:False:False:False:False:80.9331",
     "entry_integrity_score": 100,
     "entry_fail_streak": 0,
     "entry_recovery_checks": 0,
@@ -33,7 +33,7 @@
     "regime_type": "",
     "entry_level": "RISKY_ENTRY",
     "lifecycle_stage": "WORKING",
-    "lifecycle_score": 95,
+    "lifecycle_score": 94,
     "lifecycle_confirmations": 3,
     "lifecycle_failures": 0,
     "lifecycle_last_transition": "2026-06-20T06:45:52.307584+00:00",
@@ -45,7 +45,7 @@
     "recovery_trigger_level": 0.0,
     "recovery_event_type": "",
     "recovery_entry_checks": 0,
-    "management_checks": 5,
+    "management_checks": 6,
     "mfe_profit_lock_streak": 0,
     "mfe_profit_lock_active": false,
     "notes": [
@@ -64,7 +64,7 @@
     "thesis_state": "THESIS_RECOVERED",
     "thesis_pressure_streak": 0,
     "thesis_break_streak": 0,
-    "thesis_recovery_streak": 1,
+    "thesis_recovery_streak": 2,
     "thesis_evidence_started_at": "2026-06-20T05:31:05.352257+00:00",
     "thesis_last_snapshot": {
       "version": "SETUP_THESIS_PERSISTENCE_INDEPENDENT_EVIDENCE_V3_11",
@@ -77,14 +77,14 @@
       "protected_base": 80.55,
       "protected_structure": 80.55,
       "reclaim_level": 80.82,
-      "price": 81.14,
-      "current_pct": 0.396,
+      "price": 81.03,
+      "current_pct": 0.26,
       "best_pct": 0.606,
       "initial_risk_pct": 0.466,
       "mfe_r": 1.301,
       "mfe_exit_armed": true,
-      "post_entry_3m_count": 24,
-      "post_entry_15m_count": 4,
+      "post_entry_3m_count": 29,
+      "post_entry_15m_count": 5,
       "protected_base_broken_3m": false,
       "protected_base_broken_15m": false,
       "reclaim_lost": false,
@@ -99,7 +99,7 @@
       },
       "pressure_streak": 0,
       "break_streak": 0,
-      "recovery_streak": 1,
+      "recovery_streak": 2,
       "pre_entry_evidence_ignored": true
     },
     "thesis_family_streaks": {
@@ -113,47 +113,6 @@
     "thesis_patch_version": "SETUP_THESIS_PERSISTENCE_INDEPENDENT_EVIDENCE_V3_11"
   },
   "history": [
-    {
-      "type": "NO_TRADE",
-      "side": "NEUTRAL",
-      "price": 79.23,
-      "quality": 0,
-      "reason": "внутрішній pipeline не завершив усі перевірки; угода не відкривається",
-      "market_direction_context": null,
-      "setup_classifier": null,
-      "regime_engine": {
-        "name": "NORMAL",
-        "regime_type": "NORMAL",
-        "label": "звичайний intraday режим",
-        "score": 50,
-        "confidence": 50,
-        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
-        "entry_action": "ALLOW",
-        "entry_quality_adjustment": 0,
-        "quality_cap": null,
-        "hard_block": false,
-        "allowed_setups": [],
-        "notes": [],
-        "metrics": {
-          "bias": "LONG",
-          "range_atr": 4.05,
-          "move8_abs_pct": 0.366,
-          "slope15_abs_pct": 0.101,
-          "rsi15": 51.5,
-          "score_total_abs": 59,
-          "participation_same": 0,
-          "late_penalty": 0,
-          "pd": "DISCOUNT",
-          "ict_setup": "DISCOUNT_FVG_OB_LONG",
-          "range_edge": false
-        },
-        "stable_count": 0,
-        "pending_count": 1,
-        "is_stable": false,
-        "previous_regime_type": "TREND_PULLBACK"
-      },
-      "time": "2026-06-19T11:15:56.629801+00:00"
-    },
     {
       "type": "NO_TRADE",
       "side": "NEUTRAL",
@@ -5145,6 +5104,15 @@
       "result_pct": 0.396,
       "stop_current": 80.9331,
       "time": "2026-06-20T06:45:52.308550+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "HOLD",
+      "price": 81.03,
+      "result_pct": 0.26,
+      "stop_current": 80.9331,
+      "time": "2026-06-20T07:01:19.311062+00:00"
     }
   ],
   "news_reaction_memory": {
@@ -5265,16 +5233,16 @@
       "published_at": "2026-06-20T05:58:00+00:00",
       "reference_price": 80.92,
       "reaction_known": true,
-      "last_seen_at": "2026-06-20T06:45:51.503283+00:00",
+      "last_seen_at": "2026-06-20T07:01:18.450270+00:00",
       "last_status": "REJECTED"
     }
   },
   "regime_memory": {
     "type": "TREND_EXPANSION",
     "pending_type": "",
-    "stable_count": 1,
+    "stable_count": 2,
     "pending_count": 0,
-    "updated_at": "2026-06-20T06:45:52.021861+00:00"
+    "updated_at": "2026-06-20T07:01:18.977268+00:00"
   },
   "persistent_exhaustion_locks": {
     "LONG": {
@@ -5365,10 +5333,10 @@
   },
   "range_boundary_state": {
     "status": "ACTIVE",
-    "high": 81.18,
+    "high": 81.31,
     "low": 80.47,
     "created_ts": 1781843400000,
-    "updated_ts": 1781937000000,
+    "updated_ts": 1781937900000,
     "rollover_ts": 0,
     "rollover_side": "",
     "old_high": null,
@@ -5379,13 +5347,17 @@
   "pending_trigger": null,
   "opportunity_analytics": {
     "new_entries": 5,
-    "covered_by_active_trade": 0,
+    "covered_by_active_trade": 2,
     "missed": 16,
     "active_episode_keys": [
-      "LONG:CAPITULATION_RECOVERY"
+      "LONG:CAPITULATION_RECOVERY",
+      "LONG:CLOSED_15M_DIRECTION_FLIP",
+      "LONG:FRESH_BASE_CONTINUATION_REENTRY"
     ],
     "episode_status": {
-      "LONG:CAPITULATION_RECOVERY": "NEW_ENTRY"
+      "LONG:CAPITULATION_RECOVERY": "NEW_ENTRY",
+      "LONG:CLOSED_15M_DIRECTION_FLIP": "COVERED_BY_ACTIVE_TRADE",
+      "LONG:FRESH_BASE_CONTINUATION_REENTRY": "COVERED_BY_ACTIVE_TRADE"
     },
     "recent": [
       {
@@ -5571,24 +5543,40 @@
         "episode_key": "LONG:CAPITULATION_RECOVERY",
         "status": "UPGRADED_TO_NEW_ENTRY",
         "time": "2026-06-20T05:31:05.352142+00:00"
+      },
+      {
+        "side": "LONG",
+        "type": "CLOSED_15M_DIRECTION_FLIP",
+        "ts": 1781937900000,
+        "episode_key": "LONG:CLOSED_15M_DIRECTION_FLIP",
+        "status": "COVERED_BY_ACTIVE_TRADE",
+        "time": "2026-06-20T07:01:19.309403+00:00"
+      },
+      {
+        "side": "LONG",
+        "type": "FRESH_BASE_CONTINUATION_REENTRY",
+        "ts": 1781937900000,
+        "episode_key": "LONG:FRESH_BASE_CONTINUATION_REENTRY",
+        "status": "COVERED_BY_ACTIVE_TRADE",
+        "time": "2026-06-20T07:01:19.309411+00:00"
       }
     ],
-    "covered_total": 5,
-    "total_opportunities": 21,
-    "coverage_pct": 23.8
+    "covered_total": 7,
+    "total_opportunities": 23,
+    "coverage_pct": 30.4
   },
   "last_market_snapshot": {
-    "time": "2026-06-20T06:45:52.308573+00:00",
-    "price": 81.14,
-    "oi": 59293.4,
-    "cvd": -141556.0,
-    "cvd_time": "2026-06-20T06:45:52.308576+00:00",
-    "last_trade_ts": 1781937933447,
+    "time": "2026-06-20T07:01:19.311085+00:00",
+    "price": 81.03,
+    "oi": 59967.26,
+    "cvd": -148104.0,
+    "cvd_time": "2026-06-20T07:01:19.311089+00:00",
+    "last_trade_ts": 1781938867553,
     "bias": "LONG",
-    "tech_score": 278,
-    "total_score": 271
+    "tech_score": 211,
+    "total_score": 195
   },
-  "updated_at": "2026-06-20T06:45:52.308580+00:00",
+  "updated_at": "2026-06-20T07:01:19.311093+00:00",
   "last_closed_trade": {
     "side": "LONG",
     "closed_at": "2026-06-19T17:17:15.349776+00:00",
