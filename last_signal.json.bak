@@ -3,15 +3,6 @@
   "active_trade": null,
   "history": [
     {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "PROTECT_OR_EXIT",
-      "price": 80.02,
-      "result_pct": -0.187,
-      "stop_current": 79.9975,
-      "time": "2026-06-19T17:01:17.387670+00:00"
-    },
-    {
       "type": "TRADE_CLOSED",
       "side": "LONG",
       "action": "STOP",
@@ -5061,6 +5052,50 @@
         "previous_regime_type": "REVERSAL_BUILDUP"
       },
       "time": "2026-06-20T12:45:51.954705+00:00"
+    },
+    {
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 80.29,
+      "quality": 44,
+      "reason": "перевага нечітка, немає професійного входу",
+      "market_direction_context": null,
+      "pipeline_recovered": false,
+      "pipeline_failed_stage": null,
+      "pipeline_recovery_checkpoint": null,
+      "setup_classifier": null,
+      "regime_engine": {
+        "name": "NORMAL",
+        "regime_type": "NORMAL",
+        "label": "звичайний intraday режим",
+        "score": 50,
+        "confidence": 50,
+        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 0,
+        "quality_cap": null,
+        "hard_block": false,
+        "allowed_setups": [],
+        "notes": [],
+        "metrics": {
+          "bias": "NEUTRAL",
+          "range_atr": 4.9,
+          "move8_abs_pct": 0.643,
+          "slope15_abs_pct": 0.789,
+          "rsi15": 35.2,
+          "score_total_abs": 3,
+          "participation_same": 0,
+          "late_penalty": 0,
+          "pd": "DISCOUNT",
+          "ict_setup": "DISCOUNT_FVG_OB_LONG",
+          "range_edge": false
+        },
+        "stable_count": 2,
+        "pending_count": 0,
+        "is_stable": true,
+        "previous_regime_type": "NORMAL"
+      },
+      "time": "2026-06-20T13:01:18.687689+00:00"
     }
   ],
   "news_reaction_memory": {
@@ -5157,7 +5192,7 @@
       "published_at": "2026-06-20T11:42:25+00:00",
       "reference_price": 80.42,
       "reaction_known": true,
-      "last_seen_at": "2026-06-20T12:45:50.811381+00:00",
+      "last_seen_at": "2026-06-20T13:01:17.954238+00:00",
       "last_status": "ABSORBED"
     },
     "hormuz oil traffic surges after ceasefire but iran s new permit rules spark industry pushback international business times australia": {
@@ -5165,23 +5200,23 @@
       "published_at": "2026-06-20T12:38:21+00:00",
       "reference_price": 80.46,
       "reaction_known": true,
-      "last_seen_at": "2026-06-20T12:45:50.811381+00:00",
+      "last_seen_at": "2026-06-20T13:01:17.954238+00:00",
       "last_status": "FRESH"
     }
   },
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 1,
-    "pending_count": 2,
-    "updated_at": "2026-06-20T12:45:51.540040+00:00"
+    "stable_count": 2,
+    "pending_count": 0,
+    "updated_at": "2026-06-20T13:01:18.282759+00:00"
   },
   "persistent_exhaustion_locks": {
     "LONG": {
       "side": "LONG",
       "status": "RELEASED",
       "origin_ts": 1781906400000,
-      "updated_ts": 1781959500000,
+      "updated_ts": 1781960400000,
       "origin_price": 81.25,
       "extreme_price": 81.25,
       "released_at": "2026-06-19T23:45:50.391307+00:00",
@@ -5194,7 +5229,7 @@
       "side": "SHORT",
       "status": "RELEASED",
       "origin_ts": 1781861400000,
-      "updated_ts": 1781959500000,
+      "updated_ts": 1781960400000,
       "origin_price": 78.95,
       "extreme_price": 78.68,
       "released_at": "2026-06-19T17:31:09.441859+00:00",
@@ -5265,10 +5300,10 @@
   },
   "range_boundary_state": {
     "status": "ACTIVE",
-    "high": 81.18,
+    "high": 81.07,
     "low": 80.31,
     "created_ts": 1781843400000,
-    "updated_ts": 1781958600000,
+    "updated_ts": 1781959500000,
     "rollover_ts": 0,
     "rollover_side": "",
     "old_high": null,
@@ -5601,17 +5636,17 @@
     "coverage_pct": 29.2
   },
   "last_market_snapshot": {
-    "time": "2026-06-20T12:45:51.954728+00:00",
-    "price": 80.31,
-    "oi": 58902.57,
-    "cvd": -181514.0,
-    "cvd_time": "2026-06-20T12:45:51.954731+00:00",
-    "last_trade_ts": 1781959503257,
+    "time": "2026-06-20T13:01:18.687717+00:00",
+    "price": 80.29,
+    "oi": 58930.47,
+    "cvd": -172013.0,
+    "cvd_time": "2026-06-20T13:01:18.687720+00:00",
+    "last_trade_ts": 1781960467288,
     "bias": "NEUTRAL",
-    "tech_score": -24,
-    "total_score": -23
+    "tech_score": 2,
+    "total_score": 3
   },
-  "updated_at": "2026-06-20T12:45:51.954735+00:00",
+  "updated_at": "2026-06-20T13:01:18.687724+00:00",
   "last_closed_trade": {
     "side": "LONG",
     "closed_at": "2026-06-20T08:03:12.805479+00:00",
