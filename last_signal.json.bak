@@ -5,50 +5,6 @@
     {
       "type": "NO_TRADE",
       "side": "NEUTRAL",
-      "price": 79.89,
-      "quality": 44,
-      "reason": "перевага нечітка, немає професійного входу",
-      "market_direction_context": null,
-      "pipeline_recovered": false,
-      "pipeline_failed_stage": null,
-      "pipeline_recovery_checkpoint": null,
-      "setup_classifier": null,
-      "regime_engine": {
-        "name": "NORMAL",
-        "regime_type": "NORMAL",
-        "label": "звичайний intraday режим",
-        "score": 50,
-        "confidence": 50,
-        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
-        "entry_action": "ALLOW",
-        "entry_quality_adjustment": 0,
-        "quality_cap": null,
-        "hard_block": false,
-        "allowed_setups": [],
-        "notes": [],
-        "metrics": {
-          "bias": "LONG",
-          "range_atr": 3.74,
-          "move8_abs_pct": 0.274,
-          "slope15_abs_pct": 0.32,
-          "rsi15": 53.1,
-          "score_total_abs": 25,
-          "participation_same": 0,
-          "late_penalty": 0,
-          "pd": "PREMIUM",
-          "ict_setup": "PREMIUM_FVG_OB_SHORT",
-          "range_edge": false
-        },
-        "stable_count": 4,
-        "pending_count": 0,
-        "is_stable": true,
-        "previous_regime_type": "NORMAL"
-      },
-      "time": "2026-06-19T19:01:28.440527+00:00"
-    },
-    {
-      "type": "NO_TRADE",
-      "side": "NEUTRAL",
       "price": 80.03,
       "quality": 27,
       "reason": "чистого сетапу немає; немає одного з топових сетапів для професійного входу",
@@ -5420,6 +5376,71 @@
         "previous_regime_type": "EXHAUSTION"
       },
       "time": "2026-06-20T14:45:50.997091+00:00"
+    },
+    {
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 80.66,
+      "quality": 55,
+      "reason": "чистого сетапу немає; немає одного з топових сетапів для професійного входу",
+      "market_direction_context": "LONG",
+      "pipeline_recovered": false,
+      "pipeline_failed_stage": null,
+      "pipeline_recovery_checkpoint": null,
+      "setup_classifier": {
+        "type": "NO_CLEAN_SETUP",
+        "label": "⚪ Чистого сетапу немає",
+        "side": "NEUTRAL",
+        "score": 48,
+        "entry_allowed": false,
+        "block_entry": true,
+        "risk_mode": "NORMAL",
+        "reason": "немає одного з топових сетапів для професійного входу",
+        "quality_adjustment": -6,
+        "quality_cap": 66,
+        "force_risky": false,
+        "profile": {
+          "quality_adjustment": -6,
+          "quality_cap": 66,
+          "block_entry": true
+        },
+        "entry_rule": "для лонг потрібен один з топ-сетапів: продовження тренду, відкат, зняття ліквідності, край діапазону або новинний імпульс",
+        "stop_rule": "стоп/TP не активувати без сетапу",
+        "tp_rule": "чекати чистішу структуру",
+        "management_rule": "чекати до появи топового сетапу"
+      },
+      "regime_engine": {
+        "name": "NORMAL",
+        "regime_type": "NORMAL",
+        "label": "звичайний intraday режим",
+        "score": 50,
+        "confidence": 50,
+        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 0,
+        "quality_cap": null,
+        "hard_block": false,
+        "allowed_setups": [],
+        "notes": [],
+        "metrics": {
+          "bias": "LONG",
+          "range_atr": 4.95,
+          "move8_abs_pct": 0.609,
+          "slope15_abs_pct": 1.346,
+          "rsi15": 45.4,
+          "score_total_abs": 54,
+          "participation_same": 0,
+          "late_penalty": 0,
+          "pd": "DISCOUNT",
+          "ict_setup": "DISCOUNT_FVG_OB_LONG",
+          "range_edge": true
+        },
+        "stable_count": 2,
+        "pending_count": 0,
+        "is_stable": true,
+        "previous_regime_type": "NORMAL"
+      },
+      "time": "2026-06-20T15:01:19.525030+00:00"
     }
   ],
   "news_reaction_memory": {
@@ -5508,7 +5529,7 @@
       "published_at": "2026-06-20T12:38:21+00:00",
       "reference_price": 80.46,
       "reaction_known": true,
-      "last_seen_at": "2026-06-20T14:45:50.165608+00:00",
+      "last_seen_at": "2026-06-20T15:01:18.713461+00:00",
       "last_status": "REJECTED"
     },
     "when will govt reduce petrol diesel prices in india oil prices fall 33 from iran war highs peace deal bhaskar english": {
@@ -5531,16 +5552,16 @@
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 1,
-    "pending_count": 2,
-    "updated_at": "2026-06-20T14:45:50.545189+00:00"
+    "stable_count": 2,
+    "pending_count": 0,
+    "updated_at": "2026-06-20T15:01:19.068474+00:00"
   },
   "persistent_exhaustion_locks": {
     "LONG": {
       "side": "LONG",
       "status": "RELEASED",
       "origin_ts": 1781964900000,
-      "updated_ts": 1781966700000,
+      "updated_ts": 1781967600000,
       "origin_price": 82.06,
       "extreme_price": 82.06,
       "released_at": "2026-06-20T14:15:50.050854+00:00",
@@ -5553,7 +5574,7 @@
       "side": "SHORT",
       "status": "RELEASED",
       "origin_ts": 1781861400000,
-      "updated_ts": 1781966700000,
+      "updated_ts": 1781967600000,
       "origin_price": 78.95,
       "extreme_price": 78.68,
       "released_at": "2026-06-19T17:31:09.441859+00:00",
@@ -5564,11 +5585,11 @@
     }
   },
   "shock_lock": {
-    "side": "LONG",
+    "side": "SHORT",
     "status": "LOCKED",
-    "origin_ts": 1781961300000,
-    "extreme_ts": 1781961300000,
-    "extreme_price": 82.63,
+    "origin_ts": 1781966700000,
+    "extreme_ts": 1781966700000,
+    "extreme_price": 80.56,
     "released_at": "",
     "released_extreme": null
   },
@@ -5623,13 +5644,13 @@
     "SHORT": {}
   },
   "range_boundary_state": {
-    "status": "ROLLED_OVER",
-    "high": 81.64,
-    "low": 80.31,
+    "status": "ACTIVE",
+    "high": 82.63,
+    "low": 80.36,
     "created_ts": 1781843400000,
-    "updated_ts": 1781963100000,
-    "rollover_ts": 1781963100000,
-    "rollover_side": "LONG",
+    "updated_ts": 1781966700000,
+    "rollover_ts": 0,
+    "rollover_side": "",
     "old_high": 81.64,
     "old_low": 80.31
   },
@@ -5759,72 +5780,7 @@
       "breakout_gates": []
     }
   },
-  "pending_trigger": {
-    "active": true,
-    "created_at": "2026-06-20T14:31:07.545511+00:00",
-    "side": "LONG",
-    "price": 81.85,
-    "quality": 67,
-    "setup_type": "PULLBACK_CONTINUATION_FAST_ENTRY",
-    "setup_label": "🟢 Ранній вхід на відкаті",
-    "reason": "нового post-rejection сетапу немає",
-    "regime_engine": {
-      "name": "NORMAL",
-      "regime_type": "NORMAL",
-      "label": "звичайний intraday режим",
-      "score": 50,
-      "confidence": 50,
-      "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
-      "entry_action": "ALLOW",
-      "entry_quality_adjustment": 0,
-      "quality_cap": null,
-      "hard_block": false,
-      "allowed_setups": [],
-      "notes": [],
-      "metrics": {
-        "bias": "LONG",
-        "range_atr": 6.15,
-        "move8_abs_pct": 1.752,
-        "slope15_abs_pct": 1.91,
-        "rsi15": 63.7,
-        "score_total_abs": 120,
-        "participation_same": 2,
-        "late_penalty": 0,
-        "pd": "PREMIUM",
-        "ict_setup": "PREMIUM_CONTEXT",
-        "range_edge": false
-      },
-      "stable_count": 0,
-      "pending_count": 1,
-      "is_stable": false,
-      "previous_regime_type": "EXHAUSTION"
-    },
-    "plan": {
-      "entry": 81.85,
-      "stop": 81.6417,
-      "tp1": 82.63,
-      "tp2": 83.8144,
-      "tp3": 84.7966,
-      "risk_pct": 0.254,
-      "rr1": 3.74,
-      "rr2": 9.43,
-      "rr3": 14.15,
-      "invalidation": "15m закриття нижче 81.6417 або злам 3m/структури проти LONG. Сетап: 🟢 Ранній вхід на відкаті. Режим: відкат у тренді. стоп за low/high відкату або за OB/FVG | TP1 ближче, TP2 до продовження тренду",
-      "valid": true,
-      "validation_reason": "",
-      "technical_stop_basis": "bullish FVG invalidation",
-      "technical_tp1_basis": "ICT range high / external liquidity",
-      "technical_tp2_basis": "TP2 15M ATR/structure extension",
-      "technical_tp3_basis": "TP3 15M ATR/structure extension",
-      "geometry_mode": "15M_ICT_STRUCTURAL",
-      "technical_rr_target": 1.5,
-      "better_entry": 0.0,
-      "geometry_grade": "MISSED_CONTINUATION_RECOVERY",
-      "barrier_mode": "DIRECT",
-      "preferred_geometry_met": false,
-      "breakout_gates": []
-    }
-  },
+  "pending_trigger": null,
   "opportunity_analytics": {
     "new_entries": 5,
     "covered_by_active_trade": 2,
@@ -6070,17 +6026,17 @@
     "coverage_pct": 25.9
   },
   "last_market_snapshot": {
-    "time": "2026-06-20T14:45:50.997116+00:00",
-    "price": 81.81,
-    "oi": 61860.28,
-    "cvd": -48568.0,
-    "cvd_time": "2026-06-20T14:45:50.997120+00:00",
-    "last_trade_ts": 1781966738509,
+    "time": "2026-06-20T15:01:19.525057+00:00",
+    "price": 80.66,
+    "oi": 58354.72,
+    "cvd": -61262.0,
+    "cvd_time": "2026-06-20T15:01:19.525060+00:00",
+    "last_trade_ts": 1781967670133,
     "bias": "LONG",
-    "tech_score": 82,
-    "total_score": 85
+    "tech_score": 50,
+    "total_score": 54
   },
-  "updated_at": "2026-06-20T14:45:50.997124+00:00",
+  "updated_at": "2026-06-20T15:01:19.525064+00:00",
   "last_closed_trade": {
     "side": "LONG",
     "closed_at": "2026-06-20T08:03:12.805479+00:00",
