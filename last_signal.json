@@ -1,11 +1,11 @@
 {
-  "version": "pro-ict-v3.1.1-telegram-clean",
-  "architecture_version": "DETERMINISTIC_PRO_ICT_CORE_V3_1_EVENT_EDGE_TELEGRAM_CLEAN",
+  "version": "pro-ict-v3.1.2-ua-regime-fix",
+  "architecture_version": "DETERMINISTIC_PRO_ICT_CORE_V3_1_EVENT_EDGE_UA_REGIME_FIX",
   "active_trade": null,
   "opportunity": null,
   "latest_signal": {
-    "id": "cb693558a732",
-    "time": "2026-06-20T21:01:13.415386+00:00",
+    "id": "0d1fc641d326",
+    "time": "2026-06-20T21:01:53.821639+00:00",
     "action": "NO_SETUP",
     "side": "NEUTRAL",
     "setup_type": "NONE",
@@ -17,14 +17,14 @@
     "audit": {
       "candidates": []
     },
-    "version": "pro-ict-v3.1.1-telegram-clean",
-    "architecture_version": "DETERMINISTIC_PRO_ICT_CORE_V3_1_EVENT_EDGE_TELEGRAM_CLEAN",
+    "version": "pro-ict-v3.1.2-ua-regime-fix",
+    "architecture_version": "DETERMINISTIC_PRO_ICT_CORE_V3_1_EVENT_EDGE_UA_REGIME_FIX",
     "context": {
-      "time": "2026-06-20T21:01:13.381584+00:00",
-      "price": 81.29,
+      "time": "2026-06-20T21:01:53.789810+00:00",
+      "price": 81.33,
       "price_source": "OKX",
-      "reference_price": 81.15,
-      "cross_price_diff_pct": 0.1722,
+      "reference_price": 81.12,
+      "cross_price_diff_pct": 0.2582,
       "regime": "RANGE",
       "regime_reason": "15M рух перекривається і не має ефективного напрямку",
       "tf3": {
@@ -199,25 +199,25 @@
         "low": 80.76,
         "high": 81.76,
         "equilibrium": 81.26,
-        "position": 0.53,
+        "position": 0.57,
         "zone": "MID",
         "at_lower_edge": false,
         "at_upper_edge": false
       },
       "flow": {
         "bias": "LONG",
-        "score": 9,
-        "trade_delta": 7295.0,
-        "trade_delta_pct": 49.05,
-        "book_delta_pct": 8.81,
-        "price_move_pct": 0.123,
-        "cvd_acceleration": 4911.0,
+        "score": 7,
+        "trade_delta": 6483.0,
+        "trade_delta_pct": 44.38,
+        "book_delta_pct": -4.12,
+        "price_move_pct": 0.148,
+        "cvd_acceleration": 1197.0,
         "absorption_bias": "NEUTRAL",
         "confidence": "MEDIUM",
         "sample_size": 200
       },
       "derivatives": {
-        "oi": 5755729.0,
+        "oi": 5755426.0,
         "funding_rate": 0.0
       },
       "zones": [
@@ -555,9 +555,19 @@
       "reason": "ринок не сформував узгоджений ланцюжок 4H/1H location → 15M invalidation → 3M trigger/acceptance/retest",
       "plan": null,
       "time": "2026-06-20T21:01:13.415613+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "price": 81.33,
+      "quality": 0,
+      "reason": "ринок не сформував узгоджений ланцюжок 4H/1H location → 15M invalidation → 3M trigger/acceptance/retest",
+      "plan": null,
+      "time": "2026-06-20T21:01:53.821881+00:00"
     }
   ],
-  "last_telegram_success_at": "2026-06-20T21:01:13.946150+00:00",
+  "last_telegram_success_at": "2026-06-20T21:01:54.188848+00:00",
   "last_telegram_error": "",
-  "updated_at": "2026-06-20T21:01:13.946162+00:00"
+  "updated_at": "2026-06-20T21:01:54.188866+00:00"
 }
