@@ -3,72 +3,6 @@
   "active_trade": null,
   "history": [
     {
-      "type": "NO_TRADE",
-      "side": "NEUTRAL",
-      "price": 79.16,
-      "quality": 55,
-      "reason": "чистого сетапу немає; ліквідність/ринковий блок проти цього входу",
-      "market_direction_context": "SHORT",
-      "setup_classifier": {
-        "type": "NO_CLEAN_SETUP",
-        "label": "⚪ Чистого сетапу немає",
-        "side": "NEUTRAL",
-        "score": 35,
-        "entry_allowed": false,
-        "block_entry": true,
-        "risk_mode": "NORMAL",
-        "reason": "ліквідність/ринковий блок проти цього входу",
-        "quality_adjustment": -6,
-        "quality_cap": 66,
-        "force_risky": false,
-        "profile": {
-          "quality_adjustment": -6,
-          "quality_cap": 66,
-          "block_entry": true
-        },
-        "entry_rule": "для шорт потрібен один з топ-сетапів: продовження тренду, відкат, зняття ліквідності, край діапазону або новинний імпульс",
-        "stop_rule": "стоп/TP не активувати без сетапу",
-        "tp_rule": "чекати чистішу структуру",
-        "management_rule": "чекати до появи топового сетапу"
-      },
-      "regime_engine": {
-        "name": "NEWS_IMPULSE",
-        "regime_type": "NEWS_SHOCK",
-        "label": "новинний шок",
-        "score": 78,
-        "confidence": 78,
-        "reason": "новинний шок/подія: вхід тільки після 3M/структурного підтвердження, не доганяти першу свічку",
-        "entry_action": "RISKY_ONLY",
-        "entry_quality_adjustment": -2,
-        "quality_cap": 79,
-        "hard_block": false,
-        "allowed_setups": [
-          "NEWS_IMPULSE",
-          "TREND_IGNITION_ENTRY",
-          "PRIME_ICT_LOCATION_OVERRIDE",
-          "PULLBACK_CONTINUATION_FAST_ENTRY"
-        ],
-        "notes": [],
-        "metrics": {
-          "bias": "SHORT",
-          "range_atr": 4.17,
-          "move8_abs_pct": 0.789,
-          "slope15_abs_pct": 0.213,
-          "rsi15": 43.5,
-          "score_total_abs": 141,
-          "participation_same": 2,
-          "late_penalty": 4,
-          "pd": "DISCOUNT",
-          "ict_setup": "BOS_SHORT_RETRACE_FVG_OB"
-        },
-        "stable_count": 2,
-        "pending_count": 0,
-        "is_stable": true,
-        "previous_regime_type": "NEWS_SHOCK"
-      },
-      "time": "2026-06-19T08:31:07.855057+00:00"
-    },
-    {
       "type": "WATCH",
       "side": "SHORT",
       "price": 79.29,
@@ -5240,6 +5174,80 @@
         "previous_regime_type": "TREND_EXPANSION"
       },
       "time": "2026-06-20T03:45:49.326508+00:00"
+    },
+    {
+      "type": "WATCH",
+      "side": "LONG",
+      "price": 80.58,
+      "quality": 58,
+      "reason": "не вдалося побудувати життєздатну технічну геометрію",
+      "market_direction_context": null,
+      "pipeline_recovered": false,
+      "pipeline_failed_stage": null,
+      "pipeline_recovery_checkpoint": null,
+      "setup_classifier": {
+        "type": "PULLBACK_CONTINUATION_FAST_ENTRY",
+        "label": "🟢 Ранній вхід на відкаті",
+        "side": "LONG",
+        "score": 72,
+        "entry_allowed": true,
+        "block_entry": false,
+        "risk_mode": "RISKY",
+        "reason": "ранній вхід на відкаті: HTF/структура за напрям, ціна у правильній ICT-зоні, 3M не сильно проти",
+        "quality_adjustment": 1,
+        "quality_cap": 76,
+        "force_risky": true,
+        "profile": {
+          "regime_override": "PULLBACK",
+          "tp1_atr_mult": 1.18,
+          "tp2_atr_mult": 2.2,
+          "tp3_tail_atr": 0.95,
+          "min_stop_pct": 0.76,
+          "max_stop_pct": 1.34,
+          "quality_adjustment": 1,
+          "quality_cap": 76,
+          "force_risky": true
+        },
+        "entry_rule": "ранній вхід на відкаті: 1H/15M або структура за напрям, ціна в FVG/OB/правильній PD-зоні, 3M не сильно проти",
+        "stop_rule": "стоп за low/high відкату або за межу FVG/OB з ATR-буфером",
+        "tp_rule": "TP1 близько 1.5R або більше; TP2/TP3 тільки якщо 3M підтвердив продовження",
+        "management_rule": "вести як ризиковий ранній вхід: якщо після входу немає реакції — швидко підвищувати ризик",
+        "professional_override": true,
+        "pullback_fast_entry": true,
+        "late_penalty": 0
+      },
+      "regime_engine": {
+        "name": "NORMAL",
+        "regime_type": "NORMAL",
+        "label": "звичайний intraday режим",
+        "score": 50,
+        "confidence": 50,
+        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 0,
+        "quality_cap": null,
+        "hard_block": false,
+        "allowed_setups": [],
+        "notes": [],
+        "metrics": {
+          "bias": "LONG",
+          "range_atr": 3.43,
+          "move8_abs_pct": 0.211,
+          "slope15_abs_pct": 0.698,
+          "rsi15": 56.2,
+          "score_total_abs": 77,
+          "participation_same": 0,
+          "late_penalty": 0,
+          "pd": "DISCOUNT",
+          "ict_setup": "DISCOUNT_FVG_OB_LONG",
+          "range_edge": false
+        },
+        "stable_count": 0,
+        "pending_count": 1,
+        "is_stable": false,
+        "previous_regime_type": "TREND_EXPANSION"
+      },
+      "time": "2026-06-20T04:01:13.985285+00:00"
     }
   ],
   "news_reaction_memory": {
@@ -5336,7 +5344,7 @@
       "published_at": "2026-06-20T01:38:36+00:00",
       "reference_price": 80.24,
       "reaction_known": true,
-      "last_seen_at": "2026-06-20T03:45:48.550205+00:00",
+      "last_seen_at": "2026-06-20T04:01:13.249184+00:00",
       "last_status": "REJECTED"
     },
     "oil prices steady as investors weigh peace deal iea glut forecasts msn": {
@@ -5352,7 +5360,7 @@
       "published_at": "2026-06-20T03:27:24+00:00",
       "reference_price": 80.81,
       "reaction_known": true,
-      "last_seen_at": "2026-06-20T03:45:48.550205+00:00",
+      "last_seen_at": "2026-06-20T04:01:13.249184+00:00",
       "last_status": "CONFIRMED"
     },
     "fragile iran deal offers oil relief but hormuz risks remain msn": {
@@ -5368,23 +5376,31 @@
       "published_at": "2026-06-20T03:33:26+00:00",
       "reference_price": 80.77,
       "reaction_known": true,
-      "last_seen_at": "2026-06-20T03:45:48.550205+00:00",
+      "last_seen_at": "2026-06-20T04:01:13.249184+00:00",
+      "last_status": "FRESH"
+    },
+    "brent falls as israel hezbollah agree to ceasefire msn": {
+      "first_seen_at": "2026-06-20T04:01:13.249184+00:00",
+      "published_at": "2026-06-20T03:31:08+00:00",
+      "reference_price": 80.75,
+      "reaction_known": true,
+      "last_seen_at": "2026-06-20T04:01:13.249184+00:00",
       "last_status": "FRESH"
     }
   },
   "regime_memory": {
     "type": "TREND_EXPANSION",
-    "pending_type": "RANGE_COMPRESSION",
+    "pending_type": "NORMAL",
     "stable_count": 0,
     "pending_count": 1,
-    "updated_at": "2026-06-20T03:45:48.968221+00:00"
+    "updated_at": "2026-06-20T04:01:13.549762+00:00"
   },
   "persistent_exhaustion_locks": {
     "LONG": {
       "side": "LONG",
       "status": "RELEASED",
       "origin_ts": 1781906400000,
-      "updated_ts": 1781927100000,
+      "updated_ts": 1781928000000,
       "origin_price": 81.25,
       "extreme_price": 81.25,
       "released_at": "2026-06-19T23:45:50.391307+00:00",
@@ -5397,7 +5413,7 @@
       "side": "SHORT",
       "status": "RELEASED",
       "origin_ts": 1781861400000,
-      "updated_ts": 1781927100000,
+      "updated_ts": 1781928000000,
       "origin_price": 78.95,
       "extreme_price": 78.68,
       "released_at": "2026-06-19T17:31:09.441859+00:00",
@@ -5469,16 +5485,164 @@
   "range_boundary_state": {
     "status": "ACTIVE",
     "high": 80.87,
-    "low": 80.36,
+    "low": 80.46,
     "created_ts": 1781843400000,
-    "updated_ts": 1781926200000,
+    "updated_ts": 1781927100000,
     "rollover_ts": 0,
     "rollover_side": "",
     "old_high": null,
     "old_low": null
   },
-  "lock_release_opportunities": {},
-  "opportunity_memory": null,
+  "lock_release_opportunities": {
+    "LONG": {
+      "active": true,
+      "status": "ARMED",
+      "source": "POST_EVALUATION",
+      "gate_name": "",
+      "created_at": "2026-06-20T04:01:13.889367+00:00",
+      "updated_at": "2026-06-20T04:01:13.984248+00:00",
+      "ttl_minutes": 105,
+      "side": "LONG",
+      "setup_type": "PULLBACK_CONTINUATION_FAST_ENTRY",
+      "setup_label": "🟢 Ранній вхід на відкаті",
+      "classifier": {
+        "type": "PULLBACK_CONTINUATION_FAST_ENTRY",
+        "label": "🟢 Ранній вхід на відкаті",
+        "side": "LONG",
+        "score": 72,
+        "entry_allowed": true,
+        "block_entry": false,
+        "risk_mode": "RISKY",
+        "reason": "ранній вхід на відкаті: HTF/структура за напрям, ціна у правильній ICT-зоні, 3M не сильно проти",
+        "quality_adjustment": 1,
+        "quality_cap": 76,
+        "force_risky": true,
+        "profile": {
+          "regime_override": "PULLBACK",
+          "tp1_atr_mult": 1.18,
+          "tp2_atr_mult": 2.2,
+          "tp3_tail_atr": 0.95,
+          "min_stop_pct": 0.76,
+          "max_stop_pct": 1.34,
+          "quality_adjustment": 1,
+          "quality_cap": 76,
+          "force_risky": true
+        },
+        "entry_rule": "ранній вхід на відкаті: 1H/15M або структура за напрям, ціна в FVG/OB/правильній PD-зоні, 3M не сильно проти",
+        "stop_rule": "стоп за low/high відкату або за межу FVG/OB з ATR-буфером",
+        "tp_rule": "TP1 близько 1.5R або більше; TP2/TP3 тільки якщо 3M підтвердив продовження",
+        "management_rule": "вести як ризиковий ранній вхід: якщо після входу немає реакції — швидко підвищувати ризик",
+        "professional_override": true,
+        "pullback_fast_entry": true,
+        "late_penalty": 0
+      },
+      "quality": 72,
+      "origin_price": 80.58,
+      "trigger_level": 80.58,
+      "trigger_ts": 0,
+      "trigger_type": null,
+      "invalidation": null,
+      "initial_reason": "не вдалося побудувати життєздатну технічну геометрію",
+      "plan": null,
+      "release_seen_at": "",
+      "release_reason": "",
+      "activation_count": 0
+    }
+  },
+  "opportunity_memory": {
+    "active": true,
+    "source": "GEOMETRY_PENDING",
+    "created_at": "2026-06-20T04:01:13.888578+00:00",
+    "updated_at": "2026-06-20T04:01:13.984279+00:00",
+    "ttl_minutes": 55,
+    "side": "LONG",
+    "setup_type": "PULLBACK_CONTINUATION_FAST_ENTRY",
+    "setup_family": "CONTINUATION",
+    "setup_label": "🟢 Ранній вхід на відкаті",
+    "quality": 72,
+    "price": 80.58,
+    "trigger_level": 80.58,
+    "trigger_ts": 0,
+    "trigger_type": null,
+    "retest_confirmed": false,
+    "invalidation": 80.435,
+    "initial_reason": "ранній вхід на відкаті: HTF/структура за напрям, ціна у правильній ICT-зоні, 3M не сильно проти",
+    "missing_condition": "VALID_TECHNICAL_GEOMETRY",
+    "blocking_gate": "PLAN_GEOMETRY",
+    "blocked_gates": [
+      "PLAN_GEOMETRY"
+    ],
+    "observation_count": 2,
+    "geometry_fail_count": 1,
+    "geometry_candidates": {
+      "stops": [
+        {
+          "level": 80.435,
+          "basis": "bullish FVG invalidation",
+          "timeframe": "ICT",
+          "kind": "BULL_FVG",
+          "priority": 97
+        },
+        {
+          "level": 80.4036,
+          "basis": "bullish OB invalidation",
+          "timeframe": "ICT",
+          "kind": "BULL_OB",
+          "priority": 100
+        },
+        {
+          "level": 79.9736,
+          "basis": "closed 15M swing low invalidation",
+          "timeframe": "15M",
+          "kind": "SWING",
+          "priority": 93
+        },
+        {
+          "level": 79.7236,
+          "basis": "closed 15M swing low invalidation",
+          "timeframe": "15M",
+          "kind": "SWING",
+          "priority": 93
+        }
+      ],
+      "targets": [
+        {
+          "level": 80.59,
+          "basis": "протилежний bearish OB (перший край)",
+          "priority": 88
+        },
+        {
+          "level": 80.73,
+          "basis": "протилежний bearish OB (mid)",
+          "priority": 80
+        },
+        {
+          "level": 80.86,
+          "basis": "15M swing high / buy-side liquidity",
+          "priority": 96
+        },
+        {
+          "level": 81.67,
+          "basis": "ICT range high / external liquidity",
+          "priority": 98
+        }
+      ]
+    },
+    "plan": null,
+    "thesis": {
+      "alive": true,
+      "tf15_same": true,
+      "tf1_same": true,
+      "structure_same": false,
+      "closed_confirmed": true,
+      "fast_support": 0,
+      "fast_against": 1
+    },
+    "last_geometry_failure_at": "2026-06-20T04:01:13.895214+00:00",
+    "last_geometry_reason": "не вдалося побудувати життєздатну технічну геометрію",
+    "last_final_reason": "не вдалося побудувати життєздатну технічну геометрію",
+    "last_final_action": "WATCH"
+  },
   "pending_trigger": null,
   "opportunity_analytics": {
     "new_entries": 3,
@@ -5657,17 +5821,17 @@
     "coverage_pct": 15.8
   },
   "last_market_snapshot": {
-    "time": "2026-06-20T03:45:49.326531+00:00",
-    "price": 80.6,
-    "oi": 59590.59,
-    "cvd": -195645.0,
-    "cvd_time": "2026-06-20T03:45:49.326534+00:00",
-    "last_trade_ts": 1781927107732,
+    "time": "2026-06-20T04:01:13.985309+00:00",
+    "price": 80.58,
+    "oi": 59525.31,
+    "cvd": -199347.0,
+    "cvd_time": "2026-06-20T04:01:13.985313+00:00",
+    "last_trade_ts": 1781928062026,
     "bias": "LONG",
-    "tech_score": 117,
-    "total_score": 95
+    "tech_score": 99,
+    "total_score": 77
   },
-  "updated_at": "2026-06-20T03:45:49.326538+00:00",
+  "updated_at": "2026-06-20T04:01:13.985316+00:00",
   "last_closed_trade": {
     "side": "LONG",
     "closed_at": "2026-06-19T17:17:15.349776+00:00",
