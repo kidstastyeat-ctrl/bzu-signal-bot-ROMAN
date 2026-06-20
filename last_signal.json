@@ -5,50 +5,6 @@
     {
       "type": "NO_TRADE",
       "side": "NEUTRAL",
-      "price": 79.9,
-      "quality": 41,
-      "reason": "перевага нечітка, немає професійного входу",
-      "market_direction_context": null,
-      "pipeline_recovered": false,
-      "pipeline_failed_stage": null,
-      "pipeline_recovery_checkpoint": null,
-      "setup_classifier": null,
-      "regime_engine": {
-        "name": "NORMAL",
-        "regime_type": "NORMAL",
-        "label": "звичайний intraday режим",
-        "score": 50,
-        "confidence": 50,
-        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
-        "entry_action": "ALLOW",
-        "entry_quality_adjustment": 0,
-        "quality_cap": null,
-        "hard_block": false,
-        "allowed_setups": [],
-        "notes": [],
-        "metrics": {
-          "bias": "NEUTRAL",
-          "range_atr": 4.75,
-          "move8_abs_pct": 0.448,
-          "slope15_abs_pct": 0.374,
-          "rsi15": 54.2,
-          "score_total_abs": 7,
-          "participation_same": 0,
-          "late_penalty": 0,
-          "pd": "PREMIUM",
-          "ict_setup": "PREMIUM_FVG_OB_SHORT",
-          "range_edge": false
-        },
-        "stable_count": 3,
-        "pending_count": 0,
-        "is_stable": true,
-        "previous_regime_type": "NORMAL"
-      },
-      "time": "2026-06-19T18:45:59.634100+00:00"
-    },
-    {
-      "type": "NO_TRADE",
-      "side": "NEUTRAL",
       "price": 79.89,
       "quality": 44,
       "reason": "перевага нечітка, немає професійного входу",
@@ -5390,6 +5346,80 @@
         "previous_regime_type": "EXHAUSTION"
       },
       "time": "2026-06-20T14:31:07.546751+00:00"
+    },
+    {
+      "type": "WATCH",
+      "side": "LONG",
+      "price": 81.81,
+      "quality": 60,
+      "reason": "активний exhaustion/shock lock: потрібен новий незалежний ретест, база або reversal/continuation event",
+      "market_direction_context": null,
+      "pipeline_recovered": false,
+      "pipeline_failed_stage": null,
+      "pipeline_recovery_checkpoint": null,
+      "setup_classifier": {
+        "type": "PULLBACK_CONTINUATION_FAST_ENTRY",
+        "label": "🟢 Ранній вхід на відкаті",
+        "side": "LONG",
+        "score": 83,
+        "entry_allowed": true,
+        "block_entry": false,
+        "risk_mode": "RISKY",
+        "reason": "lock знято, але два швидкі шари ще проти збереженого сетапу",
+        "quality_adjustment": 0,
+        "quality_cap": 79,
+        "force_risky": true,
+        "profile": {
+          "regime_override": "PULLBACK",
+          "tp1_atr_mult": 1.18,
+          "tp2_atr_mult": 2.2,
+          "tp3_tail_atr": 0.95,
+          "min_stop_pct": 0.76,
+          "max_stop_pct": 1.34,
+          "quality_adjustment": 1,
+          "quality_cap": 76,
+          "force_risky": true
+        },
+        "entry_rule": "відкат у правильну premium/discount зону + реакція FVG/OB + 3M повернення рівня/відбій",
+        "stop_rule": "стоп за low/high відкату або за OB/FVG",
+        "tp_rule": "TP1 ближче, TP2 до продовження тренду",
+        "management_rule": "якщо 3M не підтвердив після входу — швидке попередження на вихід",
+        "bridge_saved_score": 83,
+        "bridge_current_readiness": 67,
+        "professional_override": true
+      },
+      "regime_engine": {
+        "name": "NORMAL",
+        "regime_type": "NORMAL",
+        "label": "звичайний intraday режим",
+        "score": 50,
+        "confidence": 50,
+        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 0,
+        "quality_cap": null,
+        "hard_block": false,
+        "allowed_setups": [],
+        "notes": [],
+        "metrics": {
+          "bias": "LONG",
+          "range_atr": 5.91,
+          "move8_abs_pct": 1.939,
+          "slope15_abs_pct": 1.897,
+          "rsi15": 65.6,
+          "score_total_abs": 85,
+          "participation_same": 0,
+          "late_penalty": 0,
+          "pd": "PREMIUM",
+          "ict_setup": "PREMIUM_CONTEXT",
+          "range_edge": false
+        },
+        "stable_count": 1,
+        "pending_count": 2,
+        "is_stable": false,
+        "previous_regime_type": "EXHAUSTION"
+      },
+      "time": "2026-06-20T14:45:50.997091+00:00"
     }
   ],
   "news_reaction_memory": {
@@ -5478,7 +5508,7 @@
       "published_at": "2026-06-20T12:38:21+00:00",
       "reference_price": 80.46,
       "reaction_known": true,
-      "last_seen_at": "2026-06-20T14:31:06.587459+00:00",
+      "last_seen_at": "2026-06-20T14:45:50.165608+00:00",
       "last_status": "REJECTED"
     },
     "when will govt reduce petrol diesel prices in india oil prices fall 33 from iran war highs peace deal bhaskar english": {
@@ -5486,7 +5516,7 @@
       "published_at": "2026-06-20T12:01:03+00:00",
       "reference_price": 80.54,
       "reaction_known": true,
-      "last_seen_at": "2026-06-20T14:31:06.587459+00:00",
+      "last_seen_at": "2026-06-20T14:45:50.165608+00:00",
       "last_status": "REJECTED"
     },
     "iran closes strait of hormuz over ceasefire violations mehr devdiscourse": {
@@ -5499,18 +5529,18 @@
     }
   },
   "regime_memory": {
-    "type": "EXHAUSTION",
-    "pending_type": "NORMAL",
-    "stable_count": 0,
-    "pending_count": 1,
-    "updated_at": "2026-06-20T14:31:07.141374+00:00"
+    "type": "NORMAL",
+    "pending_type": "",
+    "stable_count": 1,
+    "pending_count": 2,
+    "updated_at": "2026-06-20T14:45:50.545189+00:00"
   },
   "persistent_exhaustion_locks": {
     "LONG": {
       "side": "LONG",
       "status": "RELEASED",
       "origin_ts": 1781964900000,
-      "updated_ts": 1781965800000,
+      "updated_ts": 1781966700000,
       "origin_price": 82.06,
       "extreme_price": 82.06,
       "released_at": "2026-06-20T14:15:50.050854+00:00",
@@ -5523,7 +5553,7 @@
       "side": "SHORT",
       "status": "RELEASED",
       "origin_ts": 1781861400000,
-      "updated_ts": 1781965800000,
+      "updated_ts": 1781966700000,
       "origin_price": 78.95,
       "extreme_price": 78.68,
       "released_at": "2026-06-19T17:31:09.441859+00:00",
@@ -5535,12 +5565,12 @@
   },
   "shock_lock": {
     "side": "LONG",
-    "status": "RELEASED",
+    "status": "LOCKED",
     "origin_ts": 1781961300000,
     "extreme_ts": 1781961300000,
     "extreme_price": 82.63,
-    "released_at": "2026-06-20T14:31:07.484112+00:00",
-    "released_extreme": 82.63
+    "released_at": "",
+    "released_extreme": null
   },
   "reversal_handoff": {
     "LONG": {
@@ -5606,11 +5636,11 @@
   "lock_release_opportunities": {
     "LONG": {
       "active": true,
-      "status": "ARMED",
+      "status": "WAITING_TRIGGER",
       "source": "POST_EVALUATION",
       "gate_name": "",
       "created_at": "2026-06-20T14:31:07.545364+00:00",
-      "updated_at": "2026-06-20T14:31:07.545368+00:00",
+      "updated_at": "2026-06-20T14:45:50.936901+00:00",
       "ttl_minutes": 105,
       "side": "LONG",
       "setup_type": "PULLBACK_CONTINUATION_FAST_ENTRY",
@@ -5677,7 +5707,11 @@
         "barrier_mode": "DIRECT",
         "preferred_geometry_met": false,
         "breakout_gates": []
-      }
+      },
+      "release_seen_at": "2026-06-20T14:45:50.936906+00:00",
+      "release_reason": "новий breakout-retest/reclaim пройшов Shock Release 2.0",
+      "release_age_min": 30.0,
+      "current_extension_atr15": 0.0
     }
   },
   "opportunity_memory": {
@@ -6036,17 +6070,17 @@
     "coverage_pct": 25.9
   },
   "last_market_snapshot": {
-    "time": "2026-06-20T14:31:07.546809+00:00",
-    "price": 81.85,
-    "oi": 62342.3,
-    "cvd": -42511.0,
-    "cvd_time": "2026-06-20T14:31:07.546813+00:00",
-    "last_trade_ts": 1781965854588,
+    "time": "2026-06-20T14:45:50.997116+00:00",
+    "price": 81.81,
+    "oi": 61860.28,
+    "cvd": -48568.0,
+    "cvd_time": "2026-06-20T14:45:50.997120+00:00",
+    "last_trade_ts": 1781966738509,
     "bias": "LONG",
-    "tech_score": 130,
-    "total_score": 120
+    "tech_score": 82,
+    "total_score": 85
   },
-  "updated_at": "2026-06-20T14:31:07.546817+00:00",
+  "updated_at": "2026-06-20T14:45:50.997124+00:00",
   "last_closed_trade": {
     "side": "LONG",
     "closed_at": "2026-06-20T08:03:12.805479+00:00",
