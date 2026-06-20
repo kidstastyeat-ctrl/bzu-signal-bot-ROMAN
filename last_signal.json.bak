@@ -5,15 +5,6 @@
     {
       "type": "FOLLOW",
       "side": "LONG",
-      "action": "HOLD",
-      "price": 80.29,
-      "result_pct": 0.15,
-      "stop_current": 79.9975,
-      "time": "2026-06-19T16:45:52.202125+00:00"
-    },
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
       "action": "PROTECT_OR_EXIT",
       "price": 80.02,
       "result_pct": -0.187,
@@ -5026,17 +5017,53 @@
         "previous_regime_type": "REVERSAL_BUILDUP"
       },
       "time": "2026-06-20T12:31:08.037369+00:00"
+    },
+    {
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 80.31,
+      "quality": 42,
+      "reason": "перевага нечітка, немає професійного входу",
+      "market_direction_context": null,
+      "pipeline_recovered": false,
+      "pipeline_failed_stage": null,
+      "pipeline_recovery_checkpoint": null,
+      "setup_classifier": null,
+      "regime_engine": {
+        "name": "NORMAL",
+        "regime_type": "NORMAL",
+        "label": "звичайний intraday режим",
+        "score": 50,
+        "confidence": 50,
+        "reason": "звичайний intraday режим: головний фільтр — Setup Classifier і RR",
+        "entry_action": "ALLOW",
+        "entry_quality_adjustment": 0,
+        "quality_cap": null,
+        "hard_block": false,
+        "allowed_setups": [],
+        "notes": [],
+        "metrics": {
+          "bias": "SHORT",
+          "range_atr": 4.88,
+          "move8_abs_pct": 0.519,
+          "slope15_abs_pct": 0.764,
+          "rsi15": 36.4,
+          "score_total_abs": 23,
+          "participation_same": 1,
+          "late_penalty": 7,
+          "pd": "DISCOUNT",
+          "ict_setup": "DISCOUNT_FVG_OB_LONG",
+          "range_edge": false
+        },
+        "stable_count": 1,
+        "pending_count": 2,
+        "is_stable": false,
+        "previous_regime_type": "REVERSAL_BUILDUP"
+      },
+      "time": "2026-06-20T12:45:51.954705+00:00"
     }
   ],
   "news_reaction_memory": {
-    "indian refiners reassess iranian crude purchases amid potential sanctions relief news and statistics indexbox": {
-      "first_seen_at": "2026-06-20T00:45:49.876611+00:00",
-      "published_at": "2026-06-20T00:11:00+00:00",
-      "reference_price": 80.65,
-      "reaction_known": true,
-      "last_seen_at": "2026-06-20T03:01:15.229917+00:00",
-      "last_status": "UNRESOLVED"
-    },
     "oil prices head for biggest weekly drop in months after middle east ceasefire українські національні новини унн": {
       "first_seen_at": "2026-06-20T01:45:52.545702+00:00",
       "published_at": "2026-06-20T01:38:36+00:00",
@@ -5130,23 +5157,31 @@
       "published_at": "2026-06-20T11:42:25+00:00",
       "reference_price": 80.42,
       "reaction_known": true,
-      "last_seen_at": "2026-06-20T12:31:06.557203+00:00",
+      "last_seen_at": "2026-06-20T12:45:50.811381+00:00",
       "last_status": "ABSORBED"
+    },
+    "hormuz oil traffic surges after ceasefire but iran s new permit rules spark industry pushback international business times australia": {
+      "first_seen_at": "2026-06-20T12:45:50.811381+00:00",
+      "published_at": "2026-06-20T12:38:21+00:00",
+      "reference_price": 80.46,
+      "reaction_known": true,
+      "last_seen_at": "2026-06-20T12:45:50.811381+00:00",
+      "last_status": "FRESH"
     }
   },
   "regime_memory": {
-    "type": "REVERSAL_BUILDUP",
-    "pending_type": "NORMAL",
-    "stable_count": 0,
-    "pending_count": 1,
-    "updated_at": "2026-06-20T12:31:07.552215+00:00"
+    "type": "NORMAL",
+    "pending_type": "",
+    "stable_count": 1,
+    "pending_count": 2,
+    "updated_at": "2026-06-20T12:45:51.540040+00:00"
   },
   "persistent_exhaustion_locks": {
     "LONG": {
       "side": "LONG",
       "status": "RELEASED",
       "origin_ts": 1781906400000,
-      "updated_ts": 1781958600000,
+      "updated_ts": 1781959500000,
       "origin_price": 81.25,
       "extreme_price": 81.25,
       "released_at": "2026-06-19T23:45:50.391307+00:00",
@@ -5159,7 +5194,7 @@
       "side": "SHORT",
       "status": "RELEASED",
       "origin_ts": 1781861400000,
-      "updated_ts": 1781958600000,
+      "updated_ts": 1781959500000,
       "origin_price": 78.95,
       "extreme_price": 78.68,
       "released_at": "2026-06-19T17:31:09.441859+00:00",
@@ -5175,7 +5210,7 @@
     "origin_ts": 1781953200000,
     "extreme_ts": 1781954100000,
     "extreme_price": 80.44,
-    "released_at": "2026-06-20T11:45:50.114441+00:00",
+    "released_at": "2026-06-20T12:45:51.853132+00:00",
     "released_extreme": 80.44
   },
   "reversal_handoff": {
@@ -5233,7 +5268,7 @@
     "high": 81.18,
     "low": 80.31,
     "created_ts": 1781843400000,
-    "updated_ts": 1781957700000,
+    "updated_ts": 1781958600000,
     "rollover_ts": 0,
     "rollover_side": "",
     "old_high": null,
@@ -5566,17 +5601,17 @@
     "coverage_pct": 29.2
   },
   "last_market_snapshot": {
-    "time": "2026-06-20T12:31:08.037398+00:00",
-    "price": 80.34,
-    "oi": 59009.85,
-    "cvd": -155381.0,
-    "cvd_time": "2026-06-20T12:31:08.037401+00:00",
-    "last_trade_ts": 1781958607894,
+    "time": "2026-06-20T12:45:51.954728+00:00",
+    "price": 80.31,
+    "oi": 58902.57,
+    "cvd": -181514.0,
+    "cvd_time": "2026-06-20T12:45:51.954731+00:00",
+    "last_trade_ts": 1781959503257,
     "bias": "NEUTRAL",
     "tech_score": -24,
-    "total_score": -20
+    "total_score": -23
   },
-  "updated_at": "2026-06-20T12:31:08.037406+00:00",
+  "updated_at": "2026-06-20T12:45:51.954735+00:00",
   "last_closed_trade": {
     "side": "LONG",
     "closed_at": "2026-06-20T08:03:12.805479+00:00",
