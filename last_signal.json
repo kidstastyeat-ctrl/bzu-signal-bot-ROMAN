@@ -23,7 +23,7 @@
     "best_price": 81.05,
     "last_action": "HOLD",
     "last_message_key": "e7c808164d:HOLD:False:False:False:False:False:80.4434",
-    "entry_integrity_score": 80,
+    "entry_integrity_score": 83,
     "entry_fail_streak": 0,
     "entry_recovery_checks": 0,
     "entry_last_state": "🟢 Сильна",
@@ -45,7 +45,7 @@
     "recovery_trigger_level": 0.0,
     "recovery_event_type": "",
     "recovery_entry_checks": 0,
-    "management_checks": 1,
+    "management_checks": 2,
     "mfe_profit_lock_streak": 0,
     "mfe_profit_lock_active": false,
     "notes": [
@@ -77,14 +77,14 @@
       "protected_base": 80.55,
       "protected_structure": 80.55,
       "reclaim_level": 80.82,
-      "price": 80.76,
-      "current_pct": -0.074,
+      "price": 80.79,
+      "current_pct": -0.037,
       "best_pct": 0.285,
       "initial_risk_pct": 0.466,
       "mfe_r": 0.611,
       "mfe_exit_armed": true,
-      "post_entry_3m_count": 4,
-      "post_entry_15m_count": 0,
+      "post_entry_3m_count": 9,
+      "post_entry_15m_count": 1,
       "protected_base_broken_3m": false,
       "protected_base_broken_15m": false,
       "reclaim_lost": false,
@@ -113,97 +113,6 @@
     "thesis_patch_version": "SETUP_THESIS_PERSISTENCE_INDEPENDENT_EVIDENCE_V3_11"
   },
   "history": [
-    {
-      "type": "WATCH",
-      "side": "LONG",
-      "price": 79.1,
-      "quality": 55,
-      "reason": "активна новина проти цього NEWS_IMPULSE (77 хв, підтверджена ціною)",
-      "market_direction_context": null,
-      "setup_classifier": {
-        "type": "NEWS_IMPULSE",
-        "label": "🟠 Новинний імпульс",
-        "side": "LONG",
-        "score": 73,
-        "entry_allowed": false,
-        "block_entry": true,
-        "risk_mode": "RISKY",
-        "reason": "активна новина проти цього NEWS_IMPULSE (77 хв, підтверджена ціною)",
-        "quality_adjustment": -2,
-        "quality_cap": 79,
-        "force_risky": true,
-        "profile": {
-          "regime_override": "NEWS_IMPULSE",
-          "tp1_pct": 0.9,
-          "tp2_pct": 1.6,
-          "tp3_pct": 2.6,
-          "min_stop_pct": 0.82,
-          "max_stop_pct": 1.3,
-          "quality_adjustment": -2,
-          "quality_cap": 79,
-          "force_risky": true
-        },
-        "entry_rule": "новинний драйвер + 3M/структура в той самий бік; не доганяти без ретесту",
-        "stop_rule": "стоп ширший за шум, але не більше новинного максимального ризику",
-        "tp_rule": "TP ближче; новина може дати різкий відкат",
-        "management_rule": "швидкий захист прибутку, уважно до розвороту після імпульсу",
-        "news_consensus": {
-          "active": true,
-          "allowed": false,
-          "directional_same": false,
-          "opposing": true,
-          "neutral_calendar": false,
-          "retest_confirmed": true,
-          "late": false,
-          "reason": "активна новина проти цього NEWS_IMPULSE (77 хв, підтверджена ціною)",
-          "news_score": 40,
-          "blocking_score": 45,
-          "news_bias": "SHORT",
-          "blocking_bias": "SHORT",
-          "top_age_min": 76.7,
-          "top_lifecycle": "CONFIRMED",
-          "top_lifecycle_label": "підтверджена ціною",
-          "technical_priority": false
-        },
-        "mandatory_retest": false
-      },
-      "regime_engine": {
-        "name": "NEWS_IMPULSE",
-        "regime_type": "NEWS_SHOCK",
-        "label": "новинний шок",
-        "score": 78,
-        "confidence": 78,
-        "reason": "новинний шок/подія: вхід тільки після 3M/структурного підтвердження, не доганяти першу свічку",
-        "entry_action": "RISKY_ONLY",
-        "entry_quality_adjustment": -2,
-        "quality_cap": 79,
-        "hard_block": false,
-        "allowed_setups": [
-          "NEWS_IMPULSE",
-          "TREND_IGNITION_ENTRY",
-          "PRIME_ICT_LOCATION_OVERRIDE",
-          "PULLBACK_CONTINUATION_FAST_ENTRY"
-        ],
-        "notes": [],
-        "metrics": {
-          "bias": "LONG",
-          "range_atr": 4.51,
-          "move8_abs_pct": 0.678,
-          "slope15_abs_pct": 0.869,
-          "rsi15": 44.5,
-          "score_total_abs": 44,
-          "participation_same": 2,
-          "late_penalty": 0,
-          "pd": "DISCOUNT",
-          "ict_setup": "DISCOUNT_FVG_OB_LONG"
-        },
-        "stable_count": 4,
-        "pending_count": 0,
-        "is_stable": true,
-        "previous_regime_type": "NEWS_SHOCK"
-      },
-      "time": "2026-06-19T10:15:59.036900+00:00"
-    },
     {
       "type": "WATCH",
       "side": "LONG",
@@ -5367,6 +5276,15 @@
       "result_pct": -0.074,
       "stop_current": 80.4434,
       "time": "2026-06-20T05:45:49.841827+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "HOLD",
+      "price": 80.79,
+      "result_pct": -0.037,
+      "stop_current": 80.4434,
+      "time": "2026-06-20T06:01:20.707795+00:00"
     }
   ],
   "news_reaction_memory": {
@@ -5447,8 +5365,8 @@
       "published_at": "2026-06-20T03:27:24+00:00",
       "reference_price": 80.81,
       "reaction_known": true,
-      "last_seen_at": "2026-06-20T05:45:49.055415+00:00",
-      "last_status": "UNRESOLVED"
+      "last_seen_at": "2026-06-20T06:01:20.017613+00:00",
+      "last_status": "ABSORBED"
     },
     "fragile iran deal offers oil relief but hormuz risks remain msn": {
       "first_seen_at": "2026-06-20T03:31:03.440346+00:00",
@@ -5463,7 +5381,7 @@
       "published_at": "2026-06-20T03:33:26+00:00",
       "reference_price": 80.77,
       "reaction_known": true,
-      "last_seen_at": "2026-06-20T05:45:49.055415+00:00",
+      "last_seen_at": "2026-06-20T06:01:20.017613+00:00",
       "last_status": "ABSORBED"
     },
     "brent falls as israel hezbollah agree to ceasefire msn": {
@@ -5471,7 +5389,7 @@
       "published_at": "2026-06-20T03:31:08+00:00",
       "reference_price": 80.75,
       "reaction_known": true,
-      "last_seen_at": "2026-06-20T05:45:49.055415+00:00",
+      "last_seen_at": "2026-06-20T06:01:20.017613+00:00",
       "last_status": "ABSORBED"
     },
     "trump sanctions waiver on russian crude expires what it means for india amid us iran peace deal strait of hormuz opening msn": {
@@ -5487,7 +5405,7 @@
       "published_at": "2026-06-20T03:31:03+00:00",
       "reference_price": 80.75,
       "reaction_known": true,
-      "last_seen_at": "2026-06-20T05:45:49.055415+00:00",
+      "last_seen_at": "2026-06-20T06:01:20.017613+00:00",
       "last_status": "ABSORBED"
     },
     "us iran peace deal lifts stocks and gold while oil prices plunge equiti com": {
@@ -5497,14 +5415,22 @@
       "reaction_known": true,
       "last_seen_at": "2026-06-20T05:31:04.326599+00:00",
       "last_status": "REJECTED"
+    },
+    "israel hezbollah ceasefire resumes as us iran hormuz deal nears breakdown bloomingbit": {
+      "first_seen_at": "2026-06-20T06:01:20.017613+00:00",
+      "published_at": "2026-06-20T05:58:00+00:00",
+      "reference_price": 80.92,
+      "reaction_known": true,
+      "last_seen_at": "2026-06-20T06:01:20.017613+00:00",
+      "last_status": "FRESH"
     }
   },
   "regime_memory": {
     "type": "TREND_EXPANSION",
     "pending_type": "",
-    "stable_count": 2,
+    "stable_count": 3,
     "pending_count": 0,
-    "updated_at": "2026-06-20T05:45:49.479907+00:00"
+    "updated_at": "2026-06-20T06:01:20.351922+00:00"
   },
   "persistent_exhaustion_locks": {
     "LONG": {
@@ -5598,7 +5524,7 @@
     "high": 81.05,
     "low": 80.47,
     "created_ts": 1781843400000,
-    "updated_ts": 1781933400000,
+    "updated_ts": 1781934300000,
     "rollover_ts": 0,
     "rollover_side": "",
     "old_high": null,
@@ -5810,17 +5736,17 @@
     "coverage_pct": 23.8
   },
   "last_market_snapshot": {
-    "time": "2026-06-20T05:45:49.841850+00:00",
-    "price": 80.76,
-    "oi": 59973.81,
-    "cvd": -197031.0,
-    "cvd_time": "2026-06-20T05:45:49.841853+00:00",
-    "last_trade_ts": 1781934338837,
+    "time": "2026-06-20T06:01:20.707819+00:00",
+    "price": 80.79,
+    "oi": 59938.88,
+    "cvd": -191595.0,
+    "cvd_time": "2026-06-20T06:01:20.707822+00:00",
+    "last_trade_ts": 1781935269731,
     "bias": "LONG",
-    "tech_score": 163,
-    "total_score": 155
+    "tech_score": 194,
+    "total_score": 169
   },
-  "updated_at": "2026-06-20T05:45:49.841858+00:00",
+  "updated_at": "2026-06-20T06:01:20.707826+00:00",
   "last_closed_trade": {
     "side": "LONG",
     "closed_at": "2026-06-19T17:17:15.349776+00:00",
