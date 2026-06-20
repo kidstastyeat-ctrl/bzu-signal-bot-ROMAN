@@ -5,51 +5,6 @@
     {
       "type": "NO_TRADE",
       "side": "NEUTRAL",
-      "price": 78.94,
-      "quality": 43,
-      "reason": "перевага нечітка, немає професійного входу",
-      "market_direction_context": null,
-      "setup_classifier": null,
-      "regime_engine": {
-        "name": "REVERSAL",
-        "regime_type": "REVERSAL_BUILDUP",
-        "label": "формується розворот",
-        "score": 65,
-        "confidence": 66,
-        "reason": "формується розворот: потрібні sweep/CHOCH + 3M/flow підтвердження, прибуток захищати швидше",
-        "entry_action": "RISKY_ONLY",
-        "entry_quality_adjustment": -1,
-        "quality_cap": 84,
-        "hard_block": false,
-        "allowed_setups": [
-          "SWEEP_REVERSAL",
-          "COUNTERTREND_SCALP",
-          "PRIME_ICT_LOCATION_OVERRIDE"
-        ],
-        "notes": [],
-        "metrics": {
-          "bias": "LONG",
-          "range_atr": 3.66,
-          "move8_abs_pct": 0.428,
-          "slope15_abs_pct": 0.059,
-          "rsi15": 44.9,
-          "score_total_abs": 18,
-          "participation_same": 1,
-          "late_penalty": 0,
-          "pd": "DISCOUNT",
-          "ict_setup": "LIQUIDITY_SWEEP_LONG",
-          "range_edge": true
-        },
-        "stable_count": 1,
-        "pending_count": 2,
-        "is_stable": false,
-        "previous_regime_type": "TREND_EXPANSION"
-      },
-      "time": "2026-06-19T13:15:57.192076+00:00"
-    },
-    {
-      "type": "NO_TRADE",
-      "side": "NEUTRAL",
       "price": 79.21,
       "quality": 49,
       "reason": "перевага нечітка, немає професійного входу",
@@ -4861,6 +4816,55 @@
         "previous_regime_type": "RANGE_COMPRESSION"
       },
       "time": "2026-06-20T08:45:52.921068+00:00"
+    },
+    {
+      "type": "NO_TRADE",
+      "side": "NEUTRAL",
+      "price": 80.77,
+      "quality": 38,
+      "reason": "ICT: ціна біля equilibrium / середина діапазону — входу немає; чекати sweep high/low або BOS + FVG/OB retest",
+      "market_direction_context": null,
+      "pipeline_recovered": false,
+      "pipeline_failed_stage": null,
+      "pipeline_recovery_checkpoint": null,
+      "setup_classifier": null,
+      "regime_engine": {
+        "name": "RANGE",
+        "regime_type": "RANGE_COMPRESSION",
+        "label": "стискання діапазону",
+        "score": 56,
+        "confidence": 55,
+        "reason": "баланс/EQ: входи тільки після краю діапазону або BOS/reclaim",
+        "entry_action": "WAIT",
+        "entry_quality_adjustment": -2,
+        "quality_cap": 77,
+        "hard_block": false,
+        "allowed_setups": [
+          "RANGE_EDGE_TRADE",
+          "RANGE_COMPRESSION_BREAKOUT",
+          "SWEEP_REVERSAL",
+          "SWEEP_RECLAIM_EARLY_ENTRY"
+        ],
+        "notes": [],
+        "metrics": {
+          "bias": "LONG",
+          "range_atr": 4.26,
+          "move8_abs_pct": 0.333,
+          "slope15_abs_pct": 0.086,
+          "rsi15": 50.8,
+          "score_total_abs": 18,
+          "participation_same": 2,
+          "late_penalty": 0,
+          "pd": "MIDRANGE",
+          "ict_setup": "BALANCE_MIDRANGE",
+          "range_edge": false
+        },
+        "stable_count": 1,
+        "pending_count": 0,
+        "is_stable": false,
+        "previous_regime_type": "RANGE_COMPRESSION"
+      },
+      "time": "2026-06-20T09:01:12.455747+00:00"
     }
   ],
   "news_reaction_memory": {
@@ -4981,23 +4985,23 @@
       "published_at": "2026-06-20T08:00:35+00:00",
       "reference_price": 81.02,
       "reaction_known": true,
-      "last_seen_at": "2026-06-20T08:45:51.999091+00:00",
-      "last_status": "UNRESOLVED"
+      "last_seen_at": "2026-06-20T09:01:11.576684+00:00",
+      "last_status": "CONFIRMED"
     }
   },
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
-    "pending_type": "TREND_EXPANSION",
-    "stable_count": 0,
-    "pending_count": 1,
-    "updated_at": "2026-06-20T08:45:52.542255+00:00"
+    "pending_type": "",
+    "stable_count": 1,
+    "pending_count": 0,
+    "updated_at": "2026-06-20T09:01:12.016282+00:00"
   },
   "persistent_exhaustion_locks": {
     "LONG": {
       "side": "LONG",
       "status": "RELEASED",
       "origin_ts": 1781906400000,
-      "updated_ts": 1781945100000,
+      "updated_ts": 1781946000000,
       "origin_price": 81.25,
       "extreme_price": 81.25,
       "released_at": "2026-06-19T23:45:50.391307+00:00",
@@ -5010,7 +5014,7 @@
       "side": "SHORT",
       "status": "RELEASED",
       "origin_ts": 1781861400000,
-      "updated_ts": 1781945100000,
+      "updated_ts": 1781946000000,
       "origin_price": 78.95,
       "extreme_price": 78.68,
       "released_at": "2026-06-19T17:31:09.441859+00:00",
@@ -5021,11 +5025,11 @@
     }
   },
   "shock_lock": {
-    "side": "LONG",
+    "side": "SHORT",
     "status": "LOCKED",
-    "origin_ts": 1781939700000,
-    "extreme_ts": 1781939700000,
-    "extreme_price": 81.37,
+    "origin_ts": 1781945100000,
+    "extreme_ts": 1781945100000,
+    "extreme_price": 80.84,
     "released_at": "",
     "released_extreme": null
   },
@@ -5082,9 +5086,9 @@
   "range_boundary_state": {
     "status": "ACTIVE",
     "high": 81.37,
-    "low": 80.88,
+    "low": 80.84,
     "created_ts": 1781843400000,
-    "updated_ts": 1781944200000,
+    "updated_ts": 1781945100000,
     "rollover_ts": 0,
     "rollover_side": "",
     "old_high": null,
@@ -5097,12 +5101,8 @@
     "new_entries": 5,
     "covered_by_active_trade": 2,
     "missed": 16,
-    "active_episode_keys": [
-      "LONG:CAPITULATION_RECOVERY"
-    ],
-    "episode_status": {
-      "LONG:CAPITULATION_RECOVERY": "NEW_ENTRY"
-    },
+    "active_episode_keys": [],
+    "episode_status": {},
     "recent": [
       {
         "side": "LONG",
@@ -5310,17 +5310,17 @@
     "coverage_pct": 30.4
   },
   "last_market_snapshot": {
-    "time": "2026-06-20T08:45:52.921093+00:00",
-    "price": 80.9,
-    "oi": 60038.6,
-    "cvd": -159187.0,
-    "cvd_time": "2026-06-20T08:45:52.921096+00:00",
-    "last_trade_ts": 1781945114812,
-    "bias": "LONG",
-    "tech_score": 73,
-    "total_score": 74
+    "time": "2026-06-20T09:01:12.455776+00:00",
+    "price": 80.77,
+    "oi": 58904.64,
+    "cvd": -154459.0,
+    "cvd_time": "2026-06-20T09:01:12.455779+00:00",
+    "last_trade_ts": 1781946048228,
+    "bias": "NEUTRAL",
+    "tech_score": 18,
+    "total_score": 18
   },
-  "updated_at": "2026-06-20T08:45:52.921100+00:00",
+  "updated_at": "2026-06-20T09:01:12.455783+00:00",
   "last_closed_trade": {
     "side": "LONG",
     "closed_at": "2026-06-20T08:03:12.805479+00:00",
