@@ -1,16 +1,21 @@
-name: BZU Auto Bot ROMAN
+name: BZU Auto Bot
 
-on:
+'on':
+  schedule:
+    - cron: '*/15 * * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: bzu-signal-memory
+  cancel-in-progress: false
+
 jobs:
   run-bot:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,28 +30,22 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install requests beautifulsoup4
 
       - name: Run bot
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          BOT_DISPLAY_NAME: ${{ vars.BOT_DISPLAY_NAME }}
-          BOT_CLIENT_LABEL: ${{ vars.BOT_CLIENT_LABEL }}
-          TIMEZONE_LABEL: ${{ vars.TIMEZONE_LABEL }}
-          POSITION_LEVERAGE: ${{ vars.POSITION_LEVERAGE }}
+          CRYPTOPANIC_KEY: ${{ secrets.CRYPTOPANIC_KEY }}
         run: python bot_oneshot.py
 
       - name: Save signal memory and journal
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-
-          git add last_signal.json signal_journal.json last_signal.json.bak signal_journal.json.bak || true
-
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "Update signal memory"
-            git push
-          fi
+          git pull --rebase origin main || true
+          git add last_signal_v5_1.json signal_journal_v5_1.json \
+                  last_signal_v5_1.json.bak signal_journal_v5_1.json.bak \
+                  last_signal_v5_1.json.tmp signal_journal_v5_1.json.tmp || true
+          git diff --cached --quiet && echo "No memory changes" || git commit -m "Update signal memory and journal v5.1"
+          git push origin HEAD:main
