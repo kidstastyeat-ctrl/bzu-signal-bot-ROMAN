@@ -69,11 +69,25 @@
       "macro_risk": "NORMAL",
       "version": "pro-hybrid-confluence-v5.1-final-reentry",
       "architecture_version": "HYBRID_CONFLUENCE_V5_1_FINAL_REENTRY"
+    },
+    {
+      "id": "c34ae46194",
+      "time": "2026-06-21T18:06:33.889952+00:00",
+      "action": "ARMED",
+      "side": "LONG",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 98,
+      "reason": "Продовження тренду після ICT-відкату сформовано; потрібен свіжий 3M trigger/acceptance",
+      "regime": "TREND",
+      "news_bias": "NEUTRAL",
+      "macro_risk": "NORMAL",
+      "version": "pro-hybrid-confluence-v5.1-aggressive-final",
+      "architecture_version": "HYBRID_CONFLUENCE_V5_1_AGGRESSIVE_FINAL"
     }
   ],
   "trades": [],
-  "version": "pro-hybrid-confluence-v5.1-final-reentry",
-  "architecture_version": "HYBRID_CONFLUENCE_V5_1_FINAL_REENTRY",
+  "version": "pro-hybrid-confluence-v5.1-aggressive-final",
+  "architecture_version": "HYBRID_CONFLUENCE_V5_1_AGGRESSIVE_FINAL",
   "analytics": {
     "closed_trades": 0,
     "wins": 0,
@@ -83,5 +97,5 @@
     "expectancy_r": 0.0,
     "by_family": {}
   },
-  "updated_at": "2026-06-21T17:57:51.990572+00:00"
+  "updated_at": "2026-06-21T18:06:34.272018+00:00"
 }

@@ -1,22 +1,22 @@
 {
-  "version": "pro-hybrid-confluence-v5.1-final-reentry",
-  "architecture_version": "HYBRID_CONFLUENCE_V5_1_FINAL_REENTRY",
+  "version": "pro-hybrid-confluence-v5.1-aggressive-final",
+  "architecture_version": "HYBRID_CONFLUENCE_V5_1_AGGRESSIVE_FINAL",
   "active_trade": null,
   "opportunity": {
     "side": "LONG",
     "setup_type": "PULLBACK_CONTINUATION",
     "setup_family": "CONTINUATION",
-    "created_at": "2026-06-21T17:57:51.433095+00:00",
-    "expires_at": "2026-06-22T11:57:51.433097+00:00",
+    "created_at": "2026-06-21T18:06:33.889976+00:00",
+    "expires_at": "2026-06-22T12:06:33.889977+00:00",
     "score": 98,
-    "trigger_level": 82.29,
-    "invalidation_level": 81.8858,
+    "trigger_level": 82.41,
+    "invalidation_level": 82.0175,
     "confirmations": [
       "біля свіжої зони",
-      "біля FVG 15m",
       "15M структура підтримує",
       "1H підтримує",
-      "4H контекст"
+      "4H контекст",
+      "CVD на боці"
     ],
     "evidence_families": [
       "ICT_LOCATION",
@@ -26,12 +26,12 @@
     ],
     "execution_lane": "STANDARD_CONFIRMED",
     "status": "ARMED",
-    "thesis_key": "LONG|CONTINUATION|PULLBACK_CONTINUATION|822",
-    "thesis": "LONG PULLBACK_CONTINUATION | HTF=LONG | Flow=LONG CVD=SHORT | 3M=SWEEP | News=NEUTRAL",
+    "thesis_key": "LONG|CONTINUATION|PULLBACK_CONTINUATION|824",
+    "thesis": "LONG PULLBACK_CONTINUATION | HTF=LONG | Flow=NEUTRAL CVD=LONG | 3M=SWEEP",
     "missed_at": ""
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1782064620000,
+    "last_scanned_3m_ts": 1782065160000,
     "last_run_processed": 240,
     "processed_count": 240,
     "events": {
@@ -40,12 +40,12 @@
         "stage": "SWEEP",
         "source": "LIQUIDITY_SWEEP",
         "event_ts": 0,
-        "last_event_ts": 1782064620000,
-        "trigger_level": 82.29,
-        "event_price": 82.29,
-        "invalidation_level": 82.29,
-        "sweep_level": 82.29,
-        "extreme": 82.26,
+        "last_event_ts": 1782065160000,
+        "trigger_level": 82.41,
+        "event_price": 82.41,
+        "invalidation_level": 82.41,
+        "sweep_level": 82.41,
+        "extreme": 82.41,
         "displacement": false,
         "retest_ts": 0,
         "ready_ts": 0,
@@ -62,12 +62,12 @@
         "stage": "SWEEP",
         "source": "LIQUIDITY_SWEEP",
         "event_ts": 0,
-        "last_event_ts": 1782064620000,
-        "trigger_level": 82.29,
-        "event_price": 82.29,
-        "invalidation_level": 82.29,
-        "sweep_level": 82.29,
-        "extreme": 82.31,
+        "last_event_ts": 1782065160000,
+        "trigger_level": 82.41,
+        "event_price": 82.41,
+        "invalidation_level": 82.41,
+        "sweep_level": 82.41,
+        "extreme": 82.42,
         "displacement": false,
         "retest_ts": 0,
         "ready_ts": 0,
@@ -82,8 +82,8 @@
     }
   },
   "latest_signal": {
-    "id": "10485eb4a1",
-    "time": "2026-06-21T17:57:51.433066+00:00",
+    "id": "c34ae46194",
+    "time": "2026-06-21T18:06:33.889952+00:00",
     "action": "ARMED",
     "side": "LONG",
     "setup_type": "PULLBACK_CONTINUATION",
@@ -92,8 +92,8 @@
     "regime": "TREND",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
-    "version": "pro-hybrid-confluence-v5.1-final-reentry",
-    "architecture_version": "HYBRID_CONFLUENCE_V5_1_FINAL_REENTRY"
+    "version": "pro-hybrid-confluence-v5.1-aggressive-final",
+    "architecture_version": "HYBRID_CONFLUENCE_V5_1_AGGRESSIVE_FINAL"
   },
   "last_message_key": "",
   "history": [
@@ -136,7 +136,15 @@
       "quality": 98,
       "price": 82.29,
       "time": "2026-06-21T17:57:51.433086+00:00"
+    },
+    {
+      "type": "ARMED",
+      "side": "LONG",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 98,
+      "price": 82.41,
+      "time": "2026-06-21T18:06:33.889967+00:00"
     }
   ],
-  "updated_at": "2026-06-21T17:57:51.989681+00:00"
+  "updated_at": "2026-06-21T18:06:34.270988+00:00"
 }
