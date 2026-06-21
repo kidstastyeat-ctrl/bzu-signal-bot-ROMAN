@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-BZU Professional Hybrid Confluence Signal Bot v5.1 (AGGRESSIVE RE-ENTRY + CLEAN TEXT)
+BZU Professional Hybrid Confluence Signal Bot v6.4
 ================================================================================
-Агресивна версія re-entry + зрозумілі назви без "(ARMED)"
-
-- При re-entry + якість ≥ 72 → одразу RISKY_ENTRY (відкриває угоду)
-- Текст: "СФОРМОВАНО СИГНАЛ — ЧЕКАЄМО ВХОДУ" замість "(ARMED)"
+Виправлення v6.4:
+- TradingView (BINANCE:BZUSDT.P) як ОСНОВНЕ джерело ціни
+- OKX — тільки як fallback
+- Явні назви файлів: last_signal_v6_4.json / signal_journal_v6_4.json
 """
 
 from __future__ import annotations
@@ -15,7 +15,6 @@ import html
 import json
 import math
 import os
-import re
 import time
 import uuid
 from dataclasses import asdict, dataclass, field
@@ -24,7 +23,6 @@ from enum import Enum
 from pathlib import Path
 from statistics import mean
 from typing import Any, Optional
-from zoneinfo import ZoneInfo
 
 import requests
 
@@ -32,16 +30,22 @@ import requests
 # CONFIGURATION
 # ==========================================================
 
-BOT_VERSION = "pro-hybrid-confluence-v5.1-aggressive-final"
-ARCHITECTURE_VERSION = "HYBRID_CONFLUENCE_V5_1_AGGRESSIVE_FINAL"
+BOT_VERSION = "pro-hybrid-confluence-v6.4"
+ARCHITECTURE_VERSION = "HYBRID_CONFLUENCE_V6_4"
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
+
+# === DATA SOURCES ===
+OKX_BASE_URL = "https://www.okx.com/api/v5/market"
+TRADINGVIEW_SCAN_URL = "https://scanner.tradingview.com/crypto/scan"
 OKX_INST_ID = os.getenv("OKX_INST_ID", "BZ-USDT-SWAP")
 
 WORKSPACE = Path(os.getenv("GITHUB_WORKSPACE", os.getcwd()))
-STATE_FILE = Path(os.getenv("SIGNAL_MEMORY_FILE", str(WORKSPACE / "last_signal_v5_1.json")))
-JOURNAL_FILE = Path(os.getenv("SIGNAL_JOURNAL_FILE", str(WORKSPACE / "signal_journal_v5_1.json")))
+
+# === ЯВНІ НАЗВИ ФАЙЛІВ v6.4 ===
+STATE_FILE = Path(os.getenv("SIGNAL_MEMORY_FILE", str(WORKSPACE / "last_signal_v6_4.json")))
+JOURNAL_FILE = Path(os.getenv("SIGNAL_JOURNAL_FILE", str(WORKSPACE / "signal_journal_v6_4.json")))
 
 REQUEST_TIMEOUT = int(os.getenv("REQUEST_TIMEOUT", "12") or 12)
 MAX_HISTORY = int(os.getenv("SIGNAL_HISTORY_LIMIT", "200") or 200)
@@ -60,15 +64,21 @@ PREFERRED_RR1 = max(2.20, float(os.getenv("PREFERRED_RR1", "2.20") or 2.20))
 MIN_RR2 = max(3.00, float(os.getenv("MIN_RR2", "3.00") or 3.00))
 MIN_RR3 = max(4.00, float(os.getenv("MIN_RR3", "4.00") or 4.00))
 
-# === Scoring Thresholds (агресивніші) ===
+# === Scoring Thresholds ===
 ENTRY_SCORE_BASE = int(os.getenv("ICT_ENTRY_SCORE", "75") or 75)
 RISKY_ENTRY_SCORE_BASE = int(os.getenv("ICT_RISKY_ENTRY_SCORE", "68") or 68)
 ARMED_SCORE_BASE = int(os.getenv("ICT_ARMED_SCORE", "58") or 58)
 MIN_ENTRY_EVIDENCE_BASE = int(os.getenv("MIN_ENTRY_EVIDENCE", "5") or 5)
 
-# === Re-Entry (дуже агресивний) ===
+# === Re-Entry ===
 MISSED_REENTRY_SCORE = 62
-REENTRY_AGGRESSIVE_THRESHOLD = 72  # при цій якості re-entry одразу відкриває угоду
+REENTRY_AGGRESSIVE_THRESHOLD = 72
+
+# === Professional Gate ===
+PRO_ENTRY_MIN = 74
+PRO_RISKY_MIN = 66
+MIN_PRO_LAYERS_ENTRY = 4
+A_PLUS_ENTRY_MIN = 82
 
 # === 3M Scanner ===
 TRIGGER_MAX_AGE_MINUTES = int(os.getenv("TRIGGER_MAX_AGE_MINUTES", "35") or 35)
@@ -174,14 +184,6 @@ class Zone:
 
 
 @dataclass
-class VolumeCluster:
-    price_level: float
-    volume: float
-    strength: float
-    type: str
-
-
-@dataclass
 class Candidate:
     side: str
     setup_type: str
@@ -211,6 +213,9 @@ class Candidate:
     confluence_layers: dict[str, int] = field(default_factory=dict)
     acceptance_quality: int = 0
     volume_cluster_support: bool = False
+    professional_gate: dict = field(default_factory=dict)
+    location_score: int = 0
+    has_forward_zone: bool = False
 
 
 @dataclass
@@ -299,6 +304,8 @@ class ActiveTrade:
     tp3_hit: bool = False
     tp1_stop_locked: bool = False
     tp2_stop_locked: bool = False
+    tp1_locked_stop: float = 0.0
+    tp2_locked_stop: float = 0.0
     status: str = "OPEN"
     last_action: str = "ENTRY"
     notes: list[str] = field(default_factory=list)
@@ -404,6 +411,7 @@ def load_state() -> dict[str, Any]:
         "active_trade": raw.get("active_trade"),
         "opportunity": raw.get("opportunity") if same_arch else None,
         "scan_3m": _normalize_scan3m_state(raw.get("scan_3m")) if same_arch else _empty_scan3m_state(),
+        "regime_memory": raw.get("regime_memory", {}) if same_arch and isinstance(raw.get("regime_memory"), dict) else {},
         "latest_signal": raw.get("latest_signal"),
         "last_message_key": raw.get("last_message_key", "") if same_arch else "",
         "history": list(raw.get("history") or [])[-MAX_HISTORY:],
@@ -457,6 +465,10 @@ def active_trade_from_state(state: dict[str, Any]) -> Optional[ActiveTrade]:
         clean.setdefault("mfe_giveback_last_state", str(raw.get("mfe_giveback_last_state", "OK")))
         clean.setdefault("trigger_level", float(raw.get("trigger_level", 0) or 0))
         clean.setdefault("opened_regime", str(raw.get("opened_regime", "")))
+        clean.setdefault("tp1_stop_locked", bool(raw.get("tp1_stop_locked", False)))
+        clean.setdefault("tp2_stop_locked", bool(raw.get("tp2_stop_locked", False)))
+        clean.setdefault("tp1_locked_stop", float(raw.get("tp1_locked_stop", 0) or 0))
+        clean.setdefault("tp2_locked_stop", float(raw.get("tp2_locked_stop", 0) or 0))
         return ActiveTrade(**clean)
     except Exception as exc:
         print(f"[WARN] ActiveTrade migration failed: {exc}")
@@ -482,7 +494,7 @@ def store_opportunity(state: dict[str, Any], opp: Optional[Opportunity]) -> None
 
 
 # ==========================================================
-# TELEGRAM + ЗРОЗУМІЛІ НАЗВИ
+# TELEGRAM
 # ==========================================================
 
 def send_telegram(text: str) -> bool:
@@ -557,7 +569,6 @@ def plain_telegram_text(text: str) -> str:
 def build_decision_message(context: dict, decision: Decision) -> str:
     current_price = decision.current_price or context.get("price", 0)
     
-    # ЗРОЗУМІЛІ НАЗВИ (без слова ARMED в дужках)
     action_names = {
         "ENTRY": "ВХІД У УГОДУ",
         "RISKY_ENTRY": "РАННІЙ ВХІД",
@@ -567,48 +578,130 @@ def build_decision_message(context: dict, decision: Decision) -> str:
     action_label = action_names.get(decision.action, decision.action)
     
     lines = [
-        "<b>BZU PRO HYBRID CONFLUENCE v5.1</b>",
+        "<b>BZU PRO HYBRID CONFLUENCE v6.4</b>",
         "",
         f"<b>{action_label}</b> | {side_word(decision.side)} | {setup_label(decision.setup_type)}",
         f"<b>Якість:</b> {decision.quality}/100 | Режим: {regime_label(decision.regime)} | News: {decision.news_bias} | Macro: {decision.macro_risk}",
         f"<b>Ціна зараз:</b> {_fmt_price(current_price)}"
     ]
-    if decision.candidate:
+    
+    if decision.candidate and decision.action != Action.NO_SETUP.value:
         c = decision.candidate
-        if c.confirmations:
+        unique_confirmations = _short_list(c.confirmations, 3)
+        if unique_confirmations:
             lines.append("")
             lines.append("<b>Підтвердження:</b>")
-            for x in c.confirmations[:4]:
+            for x in unique_confirmations:
                 lines.append(f"✅ {html.escape(x)}")
-    if decision.plan and decision.plan.valid:
+    
+    show_plan = decision.plan and decision.plan.valid and decision.action in (Action.ENTRY.value, Action.RISKY_ENTRY.value, Action.ARMED.value)
+    
+    if show_plan:
         p = decision.plan
         lines.append("")
         lines.append("<b>План:</b>")
         lines.append(f"Вхід <b>{_fmt_price(p.entry)}</b> | Стоп <b>{_fmt_price(p.stop)}</b>")
         lines.append(f"TP1 {_fmt_price(p.tp1)} (RR {p.rr1}) | TP2 {_fmt_price(p.tp2)} | TP3 {_fmt_price(p.tp3)}")
+    
     lines.append("")
     lines.append(f"<i>{html.escape(decision.reason)}</i>")
     return "\n".join(lines)[:TELEGRAM_MAX_LENGTH]
 
 
+def _short_list(items: Any, limit: int = 3) -> list[str]:
+    out: list[str] = []
+    for item in items or []:
+        text = str(item).strip()
+        if text and text not in out:
+            out.append(text)
+        if len(out) >= limit:
+            break
+    return out
+
+
+def _bias_label(block: dict) -> str:
+    value = str((block or {}).get("bias") or Side.NEUTRAL.value).upper()
+    if value in {Side.LONG.value, Side.SHORT.value}:
+        return value
+    return Side.NEUTRAL.value
+
+
+def _opposite_side(side: str) -> str:
+    return Side.SHORT.value if side == Side.LONG.value else Side.LONG.value
+
+
+def _follow_reversal_risk(trade: ActiveTrade, result: dict, context: dict) -> tuple[str, int]:
+    opposite = _opposite_side(trade.side)
+    current_pct = float(result.get("current_pct") or 0)
+    score = 10
+    if current_pct < 0:
+        score += 16
+    if current_pct <= -0.50:
+        score += 10
+    for block, weight in ((context.get("tf3", {}), 18), (context.get("tf15", {}), 22), (context.get("flow", {}), 8), (context.get("cvd", {}), 8)):
+        if _bias_label(block) == opposite:
+            score += weight
+    if result.get("action") == Action.PROTECT.value:
+        score += 14
+    if result.get("closed"):
+        score = max(score, 80)
+    score = max(0, min(100, int(score)))
+    if score < 20:
+        label = "НИЗЬКИЙ"
+    elif score < 45:
+        label = "ПОМІРНИЙ"
+    elif score < 70:
+        label = "ВИСОКИЙ"
+    else:
+        label = "КРИТИЧНИЙ"
+    return label, score
+
+
+def _follow_title(trade: ActiveTrade, result: dict, context: dict) -> str:
+    side = side_word(trade.side)
+    action = str(result.get("action") or Action.HOLD.value)
+    current_pct = float(result.get("current_pct") or 0)
+    opposite = _opposite_side(trade.side)
+    tf3_opposite = _bias_label(context.get("tf3", {})) == opposite
+    tf15_opposite = _bias_label(context.get("tf15", {})) == opposite
+
+    if result.get("closed") or action in {Action.STOP.value, Action.EXIT.value}:
+        return f"🔴 СУПРОВІД {side} — УГОДУ ЗАКРИТО"
+    if action == Action.TP3.value:
+        return f"🟢 СУПРОВІД {side} — TP3 ВЗЯТО"
+    if action == Action.TP2.value:
+        return f"🟢 СУПРОВІД {side} — TP2 ВЗЯТО"
+    if action == Action.TP1.value:
+        return f"🟢 СУПРОВІД {side} — TP1 ВЗЯТО"
+    if action == Action.PROTECT.value:
+        return f"🟠 СУПРОВІД {side} — ЗАХИСТ ПОЗИЦІЇ"
+    if current_pct < 0 or tf3_opposite or tf15_opposite:
+        return f"🟠 СУПРОВІД {side} — СЕТАП СЛАБШАЄ"
+    return f"🟢 СУПРОВІД {side} — СЕТАП ТРИМАЄТЬСЯ"
+
+
 def build_follow_message(context: dict, trade: ActiveTrade, result: dict) -> str:
+    price = context.get("price", 0)
+    recommended_stop = result.get("recommended_stop")
+    stop_to_show = recommended_stop if recommended_stop is not None else trade.stop_current
+    reversal_side = side_word(_opposite_side(trade.side))
+    reversal_label, reversal_score = _follow_reversal_risk(trade, result, context)
+    tp_status = f"TP1 {'✅' if trade.tp1_hit else '—'} | TP2 {'✅' if trade.tp2_hit else '—'} | TP3 {'✅' if trade.tp3_hit else '—'}"
+
     lines = [
-        "<b>BZU PRO — HYBRID ICT + THESIS v5.1</b>",
+        _follow_title(trade, result, context),
         "",
-        f"<b>{result.get('title', 'MONITOR')}</b>",
-        f"{result.get('recommendation', '')}",
+        f"Ціна: {_fmt_price(price)}",
+        f"Від входу: {result.get('current_pct', 0):.3f}% | Макс. прибуток: {result.get('best_pct', 0):.2f}% | Макс. просадка: {result.get('worst_pct', 0):.2f}%",
         "",
-        f"<b>Ціна зараз:</b> {_fmt_price(context['price'])} | Від входу: {result.get('current_pct', 0):.2f}% | Макс: {result.get('best_pct', 0):.2f}%"
+        f"Ризик розвороту в {reversal_side}: {reversal_label} ({reversal_score}%)",
+        "",
+        "Позиція:",
+        f"Вхід {_fmt_price(trade.entry)} | Стоп {_fmt_price(stop_to_show)}",
+        f"TP1 {_fmt_price(trade.tp1)} | TP2 {_fmt_price(trade.tp2)} | TP3 {_fmt_price(trade.tp3)}",
+        tp_status,
     ]
-    if result.get("notes"):
-        lines.append("")
-        lines.append("<b>Дії / ICT-нотатки:</b>")
-        for n in result["notes"][:3]:
-            lines.append(f"• {html.escape(n)}")
-    if result.get("recommended_stop"):
-        lines.append(f"<b>Рекомендований стоп:</b> {_fmt_price(result['recommended_stop'])}")
-    lines.append("")
-    lines.append(f"<i>Оновлено: {iso_now()[:19]}</i>")
+
     return "\n".join(lines)[:TELEGRAM_MAX_LENGTH]
 
 
@@ -669,7 +762,470 @@ def get_adaptive_params(regime: str) -> dict:
 
 
 # ==========================================================
-# 3M SCANNER (спрощений)
+# PROFESSIONAL GATE
+# ==========================================================
+
+def evaluate_professional_gate(context: dict, candidate: Candidate) -> dict:
+    score = candidate.final_score
+    layers = len(candidate.evidence_families)
+    trigger_ready = candidate.trigger_ready
+    strong_ict = "ICT_LOCATION" in candidate.evidence_families or "PRICE_STRUCTURE" in candidate.evidence_families
+
+    allow_entry = bool(
+        score >= PRO_ENTRY_MIN
+        and layers >= MIN_PRO_LAYERS_ENTRY
+        and trigger_ready
+        and strong_ict
+    )
+
+    allow_risky = bool(
+        score >= PRO_RISKY_MIN
+        and layers >= max(3, MIN_PRO_LAYERS_ENTRY - 1)
+        and (trigger_ready or strong_ict)
+    )
+
+    if allow_entry and score >= A_PLUS_ENTRY_MIN and strong_ict:
+        grade = "A+"
+    elif allow_entry:
+        grade = "A"
+    elif allow_risky:
+        grade = "B"
+    else:
+        grade = "WATCH"
+
+    reason = f"gate v6: {grade} | {layers} шарів | score {score}"
+
+    return {
+        "allow_entry": allow_entry,
+        "allow_risky": allow_risky,
+        "grade": grade,
+        "score": score,
+        "layers": layers,
+        "reason": reason,
+    }
+
+
+# ==========================================================
+# DATA SOURCES: TradingView ПРІОРИТЕТ
+# ==========================================================
+
+def http_get(url: str, timeout: int = REQUEST_TIMEOUT, retries: int = 2) -> Optional[requests.Response]:
+    headers = {"User-Agent": "Mozilla/5.0 BZU-Pro-v6.4/1.0", "Accept": "*/*"}
+    last_err = None
+    for attempt in range(max(1, retries)):
+        try:
+            resp = requests.get(url, headers=headers, timeout=timeout)
+            if resp.status_code < 400:
+                return resp
+            last_err = f"HTTP {resp.status_code}"
+        except Exception as e:
+            last_err = str(e)
+        time.sleep(0.3 * attempt)
+    return None
+
+
+def http_post(url: str, payload: dict, timeout: int = REQUEST_TIMEOUT) -> Optional[requests.Response]:
+    headers = {
+        "User-Agent": "Mozilla/5.0 BZU-Pro-v6.4/1.0",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+    }
+    try:
+        resp = requests.post(url, headers=headers, json=payload, timeout=timeout)
+        if resp.status_code < 400:
+            return resp
+    except Exception:
+        pass
+    return None
+
+
+def get_okx_candles(inst_id: str = "BZ-USDT", bar: str = "15m", limit: int = 200) -> list[Candle]:
+    url = f"{OKX_BASE_URL}/candles?instId={inst_id}&bar={bar}&limit={limit}"
+    resp = http_get(url)
+    if not resp:
+        return []
+    try:
+        data = resp.json()
+        if data.get("code") != "0":
+            return []
+        out = []
+        for row in data.get("data", []):
+            try:
+                out.append(Candle(
+                    ts=int(row[0]),
+                    open=float(row[1]),
+                    high=float(row[2]),
+                    low=float(row[3]),
+                    close=float(row[4]),
+                    volume=float(row[5] or 0),
+                    confirmed=True
+                ))
+            except Exception:
+                continue
+        out.sort(key=lambda c: c.ts)
+        return out
+    except Exception:
+        return []
+
+
+def get_okx_ticker(inst_id: str = "BZ-USDT") -> dict:
+    url = f"{OKX_BASE_URL}/ticker?instId={inst_id}"
+    resp = http_get(url)
+    if not resp:
+        return {}
+    try:
+        data = resp.json()
+        if data.get("code") != "0" or not data.get("data"):
+            return {}
+        ticker = data["data"][0]
+        last = safe_float(ticker.get("last"))
+        open24h = safe_float(ticker.get("open24h"))
+        return {
+            "price": last,
+            "change24h": pct(last, open24h) if open24h else 0.0,
+            "volume24h": safe_float(ticker.get("volCcy24h")),
+            "source": "OKX"
+        }
+    except Exception:
+        return {}
+
+
+def get_tradingview_price_fallback() -> dict:
+    """TradingView як ОСНОВНЕ джерело ціни"""
+    payload = {
+        "symbols": {
+            "tickers": ["BINANCE:BZUSDT.P", "BINANCE:BZUSDT"],
+            "query": {"types": []}
+        },
+        "columns": ["close", "change", "volume"]
+    }
+    resp = http_post(TRADINGVIEW_SCAN_URL, payload)
+    if not resp:
+        return {}
+    try:
+        rows = resp.json().get("data", [])
+        if not rows:
+            return {}
+        values = rows[0].get("d") or []
+        return {
+            "price": float(values[0]),
+            "change24h": safe_float(values[1], 0),
+            "volume24h": safe_float(values[2], 0),
+            "source": "TradingView",
+            "symbol": rows[0].get("s", "BINANCE:BZUSDT.P"),
+        }
+    except Exception as error:
+        print(f"[WARN] TradingView fallback parse failed: {error}")
+        return {}
+
+
+def collect_market_data() -> dict:
+    """
+    TradingView як ОСНОВНЕ джерело ціни
+    OKX swap-свічки — основа для 3m/15m/1h/4h сканера
+    """
+    c3 = get_okx_candles(OKX_INST_ID, "3m", 240)
+    c15 = get_okx_candles(OKX_INST_ID, "15m", 200)
+    c1h = get_okx_candles(OKX_INST_ID, "1h", 160)
+    c4h = get_okx_candles(OKX_INST_ID, "4h", 140)
+    
+    # TradingView — ПРІОРИТЕТ
+    tv_ticker = get_tradingview_price_fallback()
+    okx_ticker = get_okx_ticker(OKX_INST_ID)
+    
+    ticker = tv_ticker or okx_ticker
+    
+    if not ticker and c15:
+        ticker = {
+            "price": c15[-1].close,
+            "change24h": 0,
+            "volume24h": 0,
+            "source": "OKX candles fallback",
+            "symbol": OKX_INST_ID,
+        }
+    
+    price = ticker.get("price") if ticker else 82.5
+    
+    return {
+        "time": iso_now(),
+        "candles": {"3m": c3, "15m": c15, "1h": c1h, "4h": c4h},
+        "ticker": ticker,
+        "trades": [],
+        "book": {"bids": [], "asks": []},
+        "price": price,
+        "price_source": ticker.get("source", "TradingView") if ticker else "fallback",
+    }
+
+
+def atr(candles: list[Candle], period: int = 14) -> float:
+    if len(candles) < period + 1:
+        return 0.0
+    trs = []
+    for i in range(1, len(candles)):
+        c, p = candles[i], candles[i - 1]
+        tr = max(c.high - c.low, abs(c.high - p.close), abs(c.low - p.close))
+        trs.append(tr)
+    return mean(trs[-period:]) if trs else 0.0
+
+
+def detect_zones(candles: list[Candle], tf: str, max_age_bars: int = 80) -> list[Zone]:
+    zones = []
+    if not candles:
+        return zones
+    atr_val = atr(candles, 14) or 0.5
+    n = len(candles)
+    for i in range(max(2, n - max_age_bars), n - 2):
+        c = candles[i]
+        body = abs(c.close - c.open)
+        if body > atr_val * 0.55:
+            side = Side.LONG.value if c.close > c.open else Side.SHORT.value
+            zones.append(Zone("OB", side, c.low, c.high, c.ts, tf, strength=1.0 + body / atr_val))
+        if i >= 2:
+            prev2 = candles[i - 2]
+            if c.low > prev2.high:
+                zones.append(Zone("FVG", Side.LONG.value, prev2.high, c.low, c.ts, tf, strength=0.75))
+            if c.high < prev2.low:
+                zones.append(Zone("FVG", Side.SHORT.value, c.high, prev2.low, c.ts, tf, strength=0.75))
+    seen = set()
+    unique = []
+    for z in sorted(zones, key=lambda x: -x.strength):
+        key = (z.side, round(z.low, 4), round(z.high, 4))
+        if key not in seen:
+            seen.add(key)
+            unique.append(z)
+    return unique[-38:]
+
+
+def structure_snapshot(candles: list[Candle], tf: str) -> dict:
+    if len(candles) < 10:
+        return {"bias": Side.NEUTRAL.value, "bos": Side.NEUTRAL.value, "swing_high": 0, "swing_low": 0}
+    highs = [c.high for c in candles[-28:]]
+    lows = [c.low for c in candles[-28:]]
+    swing_high = max(highs)
+    swing_low = min(lows)
+    last_close = candles[-1].close
+    bias = Side.LONG.value if last_close > (swing_high + swing_low) / 2 else Side.SHORT.value
+    bos = Side.NEUTRAL.value
+    if last_close > swing_high * 0.993:
+        bos = Side.LONG.value
+    elif last_close < swing_low * 1.007:
+        bos = Side.SHORT.value
+    return {"timeframe": tf, "bias": bias, "bos": bos, "swing_high": swing_high, "swing_low": swing_low}
+
+
+def flow_snapshot(trades: list[dict], book: dict) -> dict:
+    return {"bias": Side.NEUTRAL.value, "score": 0, "absorption_bias": Side.NEUTRAL.value}
+
+
+def cvd_snapshot(trades: list[dict]) -> dict:
+    return {"cvd": 0.0, "bias": Side.NEUTRAL.value, "strength": 0, "absorption": Side.NEUTRAL.value}
+
+
+def regime_detection(tf4h: dict, tf1h: dict, move8: float) -> tuple[str, str]:
+    htf_aligned = tf4h.get("bias") == tf1h.get("bias") and tf1h.get("bias") != Side.NEUTRAL.value
+    if abs(move8) > 2.8:
+        return Regime.SHOCK.value, "Сильний імпульс >2.8 ATR"
+    if htf_aligned and abs(move8) > 0.55:
+        return Regime.TREND.value, "HTF узгоджений + ефективний рух"
+    if not htf_aligned and abs(move8) < 0.38:
+        return Regime.RANGE.value, "HTF неузгоджений + низька ефективність"
+    return Regime.TRANSITION.value, "Перехідний режим"
+
+
+def _regime_engine_result(regime_type: str, legacy_name: str, score: int, confidence: int, reason: str,
+                          entry_action: str = "ALLOW", quality_adjustment: int = 0,
+                          quality_cap: Optional[int] = None, hard_block: bool = False,
+                          risky_only: bool = False, metrics: Optional[dict] = None) -> dict:
+    return {
+        "name": str(legacy_name or Regime.NORMAL.value).upper(),
+        "regime_type": str(regime_type or Regime.NORMAL.value).upper(),
+        "score": int(clamp(score, 0, 100)),
+        "confidence": int(clamp(confidence, 0, 100)),
+        "reason": reason or "звичайний intraday режим",
+        "entry_action": "RISKY_ONLY" if risky_only else str(entry_action or "ALLOW").upper(),
+        "entry_quality_adjustment": int(quality_adjustment or 0),
+        "quality_cap": quality_cap,
+        "hard_block": bool(hard_block),
+        "metrics": dict(metrics or {}),
+    }
+
+
+def detect_regime_engine_2(context: dict, side: Optional[str] = None) -> dict:
+    price = safe_float(context.get("price"), 0.0)
+    atr15 = safe_float(context.get("atr15"), 0.6) or 0.6
+    tf3 = context.get("tf3", {})
+    tf15 = context.get("tf15", {})
+    tf1h = context.get("tf1h", {})
+    tf4h = context.get("tf4h", {})
+    c15 = (context.get("candles", {}) or {}).get("15m", [])
+    regime = str(context.get("regime") or Regime.NORMAL.value).upper()
+    bias = side if side in {Side.LONG.value, Side.SHORT.value} else tf15.get("bias", Side.NEUTRAL.value)
+
+    move8 = pct(c15[-1].close, c15[-8].close) if len(c15) >= 8 else 0.0
+    recent_range = (max(c.high for c in c15[-16:]) - min(c.low for c in c15[-16:])) if len(c15) >= 16 else 0.0
+    range_atr = recent_range / atr15 if atr15 else 0.0
+    htf_same = bias in {Side.LONG.value, Side.SHORT.value} and (tf1h.get("bias") == bias or tf4h.get("bias") == bias)
+    tf15_same = bias in {Side.LONG.value, Side.SHORT.value} and tf15.get("bias") == bias
+    tf3_same = bias in {Side.LONG.value, Side.SHORT.value} and tf3.get("bias") == bias
+    tf3_against = bias in {Side.LONG.value, Side.SHORT.value} and tf3.get("bias") == opposite(bias)
+    near_range_mid = bool(range_atr and abs(move8) < 0.38 and tf15.get("score", 0) <= 28)
+
+    metrics = {
+        "bias": bias,
+        "move8_pct": round(move8, 3),
+        "range_atr": round(range_atr, 2),
+        "tf3": tf3.get("bias"),
+        "tf15": tf15.get("bias"),
+        "tf1h": tf1h.get("bias"),
+        "tf4h": tf4h.get("bias"),
+    }
+
+    if abs(move8) >= 2.8 or regime == Regime.SHOCK.value:
+        return _regime_engine_result(
+            "NEWS_SHOCK", Regime.SHOCK.value, 78, 78,
+            "сильний імпульс/шок: входи тільки після 3M підтвердження, прибуток захищати швидше",
+            entry_action="RISKY_ONLY", quality_adjustment=-2, quality_cap=79, risky_only=True, metrics=metrics,
+        )
+    if abs(move8) >= 1.65 and tf3_against:
+        return _regime_engine_result(
+            "EXHAUSTION", Regime.TRANSITION.value, 72, 72,
+            "рух розтягнутий і 3M вже проти: не доганяти, чекати retest/reclaim",
+            entry_action="BLOCK", quality_adjustment=-10, quality_cap=61, hard_block=True, metrics=metrics,
+        )
+    if near_range_mid or (regime == Regime.RANGE.value and range_atr <= 2.30):
+        return _regime_engine_result(
+            "RANGE_COMPRESSION", Regime.RANGE.value, 62, 64,
+            "стискання/середина діапазону: TP ближче, входи тільки після підтвердження",
+            entry_action="WAIT", quality_adjustment=-2, quality_cap=77, metrics=metrics,
+        )
+    if regime == Regime.RANGE.value and range_atr > 2.30:
+        return _regime_engine_result(
+            "RANGE_EDGE", Regime.RANGE.value, 66, 68,
+            "діапазон із робочими краями: брати тільки від краю, прибуток захищати швидше",
+            entry_action="RISKY_ONLY" if not tf15_same else "ALLOW", quality_cap=82, metrics=metrics,
+        )
+    if htf_same and not tf15_same and bias in {Side.LONG.value, Side.SHORT.value}:
+        return _regime_engine_result(
+            "TREND_PULLBACK", Regime.TRANSITION.value, 70, 70,
+            "відкат у напрямку HTF: шукати реакцію від ICT-зони, TP середньої дальності",
+            entry_action="ALLOW", quality_adjustment=2, quality_cap=86, metrics=metrics,
+        )
+    if regime == Regime.TREND.value and htf_same and tf15_same and (tf3_same or abs(move8) > 0.65):
+        return _regime_engine_result(
+            "TREND_EXPANSION", Regime.TREND.value, 82, 84,
+            "сильне продовження: TP2/TP3 можна тримати довше, але MFE не віддавати",
+            entry_action="ALLOW", quality_adjustment=3, quality_cap=90, metrics=metrics,
+        )
+    if tf3_same and not htf_same and regime == Regime.TRANSITION.value:
+        return _regime_engine_result(
+            "REVERSAL_BUILDUP", Regime.TRANSITION.value, 65, 66,
+            "формується локальний розворот: тільки контрольований ранній/risky вхід",
+            entry_action="RISKY_ONLY", quality_adjustment=-1, quality_cap=84, risky_only=True, metrics=metrics,
+        )
+    return _regime_engine_result(
+        "NORMAL", regime, 50, 50,
+        "звичайний intraday режим: головний фільтр — confluence, RR і 3M trigger",
+        entry_action="ALLOW", metrics=metrics,
+    )
+
+
+def stabilize_regime_engine(state: dict, detected: dict) -> dict:
+    if not isinstance(state, dict) or not isinstance(detected, dict):
+        return detected
+    memory = state.get("regime_memory") if isinstance(state.get("regime_memory"), dict) else {}
+    current_type = str(detected.get("regime_type") or detected.get("name") or "NORMAL")
+    prev_type = str(memory.get("type") or "")
+    prev_pending = str(memory.get("pending_type") or "")
+    confidence = int(detected.get("confidence", 0) or 0)
+
+    if current_type == prev_type:
+        stable_count = int(memory.get("stable_count", 0) or 0) + 1
+        pending_count = 0
+    elif current_type == prev_pending:
+        pending_count = int(memory.get("pending_count", 0) or 0) + 1
+        stable_count = 1 if confidence >= 78 or pending_count >= 2 or current_type in {"NEWS_SHOCK", "EXHAUSTION"} else 0
+    else:
+        pending_count = 1
+        stable_count = 1 if confidence >= 82 or current_type in {"NEWS_SHOCK", "EXHAUSTION"} else 0
+
+    detected = dict(detected)
+    detected["stable_count"] = stable_count
+    detected["pending_count"] = pending_count
+    detected["previous_regime_type"] = prev_type
+    detected["is_stable"] = bool(stable_count >= 1)
+    state["regime_memory"] = {
+        "type": current_type if stable_count >= 1 else prev_type,
+        "pending_type": current_type if stable_count < 1 else "",
+        "stable_count": stable_count,
+        "pending_count": pending_count,
+        "updated_at": iso_now(),
+    }
+    return detected
+
+
+def build_context(data: dict, state: dict) -> dict:
+    c3 = data["candles"]["3m"]
+    c15 = data["candles"]["15m"]
+    c1h = data["candles"]["1h"]
+    c4h = data["candles"]["4h"]
+    price = data["price"] or (c15[-1].close if c15 else 82.5)
+    atr3 = atr(c3, 14)
+    atr15 = atr(c15, 14) or (atr3 * 3.8 if atr3 else 0.6)
+    atr1h = atr(c1h, 14) or (atr15 * 3.2)
+
+    tf3 = {"bias": Side.NEUTRAL.value, "score": 0, "atr": atr3, "structure": structure_snapshot(c3, "3m")}
+    tf15 = {"bias": Side.NEUTRAL.value, "score": 20, "atr": atr15, "structure": structure_snapshot(c15, "15m")}
+    tf1h = {"bias": Side.NEUTRAL.value, "score": 25, "atr": atr1h, "structure": structure_snapshot(c1h, "1h")}
+    tf4h = {"bias": Side.NEUTRAL.value, "score": 15, "atr": atr(c4h, 14) or (atr1h * 3.5), "structure": structure_snapshot(c4h, "4h")}
+
+    if c15:
+        ema = mean([c.close for c in c15[-8:]])
+        tf15["bias"] = Side.LONG.value if c15[-1].close > ema else Side.SHORT.value
+        tf15["score"] = 40 if abs(c15[-1].close - ema) / ema > 0.003 else 24
+    if c1h:
+        ema = mean([c.close for c in c1h[-6:]])
+        tf1h["bias"] = Side.LONG.value if c1h[-1].close > ema else Side.SHORT.value
+        tf1h["score"] = 44 if abs(c1h[-1].close - ema) / ema > 0.004 else 28
+    if c4h:
+        ema = mean([c.close for c in c4h[-5:]])
+        tf4h["bias"] = Side.LONG.value if c4h[-1].close > ema else Side.SHORT.value
+        tf4h["score"] = 30 if abs(c4h[-1].close - ema) / ema > 0.005 else 18
+
+    zones = detect_zones(c15, "15m") + detect_zones(c1h, "1h", 42) + detect_zones(c4h, "4h", 28)
+    flow = flow_snapshot(data.get("trades", []), data.get("book", {}))
+    cvd = cvd_snapshot(data.get("trades", []))
+    move8 = pct(c15[-1].close, c15[-8].close) if len(c15) >= 8 else 0.0
+    regime, regime_reason = regime_detection(tf4h, tf1h, move8)
+
+    ctx = {
+        "time": data["time"],
+        "price": price,
+        "price_source": data.get("price_source", "TradingView"),
+        "regime": regime,
+        "regime_reason": regime_reason,
+        "tf3": tf3, "tf15": tf15, "tf1h": tf1h, "tf4h": tf4h,
+        "zones": zones[-38:],
+        "flow": flow,
+        "cvd": cvd,
+        "atr15": atr15,
+        "atr1h": atr1h,
+        "candles": data["candles"],
+        "volume_clusters": [],
+        "scan_3m": state.get("scan_3m", {}),
+        "scan_3m_events": {},
+    }
+    market_regime = stabilize_regime_engine(state, detect_regime_engine_2(ctx))
+    ctx["market_regime"] = market_regime
+    ctx["regime_engine"] = market_regime
+    ctx["regime_type"] = market_regime.get("regime_type", regime)
+    scan_result = scan_closed_3m_sequence(state, ctx)
+    ctx["scan_3m"] = state.get("scan_3m", {})
+    ctx["scan_3m_events"] = scan_result.get("events", {})
+    return ctx
+
+
+# ==========================================================
+# 3M SCANNER + LOCATION + FORWARD ZONE
 # ==========================================================
 
 def _empty_scan3m_state() -> dict:
@@ -765,281 +1321,71 @@ def scan_closed_3m_sequence(state: dict, context: dict) -> dict:
     return {"last_run_processed": len(new_candles), "events": events}
 
 
-# ==========================================================
-# MARKET DATA (спрощений)
-# ==========================================================
-
-def http_get(url: str, timeout: int = REQUEST_TIMEOUT, retries: int = 2) -> Optional[requests.Response]:
-    headers = {"User-Agent": "Mozilla/5.0 BZU-Pro-v5.1/1.0", "Accept": "*/*"}
-    last_err = None
-    for attempt in range(max(1, retries)):
-        try:
-            resp = requests.get(url, headers=headers, timeout=timeout)
-            if resp.status_code < 400:
-                return resp
-            last_err = f"HTTP {resp.status_code}"
-        except Exception as e:
-            last_err = str(e)
-        time.sleep(0.3 * attempt)
-    return None
+def has_forward_ict_zone(price: float, zones: list[Zone], side: str, atr15: float) -> bool:
+    forward_distance = atr15 * 2.2
+    for z in zones:
+        if z.side != side:
+            continue
+        if side == Side.LONG.value:
+            if z.low > price and z.low < price + forward_distance:
+                return True
+        else:
+            if z.high < price and z.high > price - forward_distance:
+                return True
+    return False
 
 
-def get_okx_candles(bar: str = "15m", limit: int = 160) -> list[Candle]:
-    url = f"https://www.okx.com/api/v5/market/candles?instId={OKX_INST_ID}&bar={bar}&limit={limit}"
-    resp = http_get(url)
-    if not resp:
-        return []
-    try:
-        data = resp.json().get("data", [])
-        out = []
-        for row in data:
-            try:
-                out.append(Candle(ts=int(row[0]), open=float(row[1]), high=float(row[2]),
-                                  low=float(row[3]), close=float(row[4]), volume=float(row[5] or 0), confirmed=True))
-            except Exception:
-                continue
-        out.sort(key=lambda c: c.ts)
-        return out
-    except Exception:
-        return []
+def calculate_location_score(price: float, zones: list[Zone], side: str, atr15: float, tf15: dict, tf1h: dict) -> int:
+    score = 10
+    forward_distance = atr15 * 2.0
+
+    for z in zones:
+        if z.side != side:
+            continue
+        dist = abs(price - z.low) if side == Side.LONG.value else abs(price - z.high)
+        
+        if dist < atr15 * 0.6:
+            score += 12
+        elif dist < atr15 * 1.2:
+            score += 8
+        elif dist < forward_distance:
+            score += 4
+
+        if z.kind == "FVG" and dist < atr15 * 1.5:
+            score += 5
+        if z.kind == "OB" and dist < atr15 * 1.8:
+            score += 6
+
+    if tf15.get("bias") == side:
+        score += 8
+    if tf1h.get("bias") == side:
+        score += 10
+
+    return min(score, 45)
 
 
-def get_okx_ticker() -> dict:
-    url = f"https://www.okx.com/api/v5/market/ticker?instId={OKX_INST_ID}"
-    resp = http_get(url)
-    if not resp:
-        return {}
-    try:
-        row = resp.json().get("data", [{}])[0]
-        last = safe_float(row.get("last") or row.get("lastSz"))
-        open24 = safe_float(row.get("open24h"))
-        return {"price": last, "change24h": pct(last, open24) if open24 else 0.0, "volume24h": safe_float(row.get("volCcy24h")), "source": "OKX"}
-    except Exception:
-        return {}
+def calculate_acceptance_quality(event: dict, candles_3m: list[Candle], atr15: float, structure_alignment: int, has_forward_zone: bool) -> int:
+    base = event.get("acceptance_quality", 40)
+    
+    if has_forward_zone:
+        base += 12
 
+    if event.get("displacement"):
+        base += 8
 
-def get_okx_trades(limit: int = 150) -> list[dict]:
-    url = f"https://www.okx.com/api/v5/market/trades?instId={OKX_INST_ID}&limit={limit}"
-    resp = http_get(url)
-    if not resp:
-        return []
-    try:
-        out = []
-        for row in resp.json().get("data", []):
-            out.append({"price": safe_float(row.get("px")), "size": safe_float(row.get("sz")), "side": str(row.get("side", "")).lower(), "ts": int(row.get("ts", 0))})
-        return out
-    except Exception:
-        return []
+    if structure_alignment > 70:
+        base += 6
+    elif structure_alignment > 55:
+        base += 3
 
+    if event.get("stage") == "READY":
+        base += 5
 
-def get_okx_book(depth: int = 50) -> dict:
-    url = f"https://www.okx.com/api/v5/market/books?instId={OKX_INST_ID}&sz={depth}"
-    resp = http_get(url)
-    if not resp:
-        return {"bids": [], "asks": []}
-    try:
-        b = resp.json().get("data", [{}])[0]
-        return {
-            "bids": [(safe_float(x[0]), safe_float(x[1])) for x in b.get("bids", [])[:depth]],
-            "asks": [(safe_float(x[0]), safe_float(x[1])) for x in b.get("asks", [])[:depth]]
-        }
-    except Exception:
-        return {"bids": [], "asks": []}
-
-
-def collect_market_data() -> dict:
-    c3 = get_okx_candles("3m", 240)
-    c15 = get_okx_candles("15m", 200)
-    c1h = get_okx_candles("1H", 160)
-    c4h = get_okx_candles("4H", 140)
-    okx_t = get_okx_ticker()
-    trades = get_okx_trades(150)
-    book = get_okx_book(50)
-    ticker = okx_t or {"price": (c15[-1].close if c15 else 80.0), "source": "fallback"}
-    return {
-        "time": iso_now(),
-        "candles": {"3m": c3, "15m": c15, "1h": c1h, "4h": c4h},
-        "ticker": ticker,
-        "trades": trades,
-        "book": book,
-        "price": safe_float(ticker.get("price"))
-    }
-
-
-def atr(candles: list[Candle], period: int = 14) -> float:
-    if len(candles) < period + 1:
-        return 0.0
-    trs = []
-    for i in range(1, len(candles)):
-        c, p = candles[i], candles[i - 1]
-        tr = max(c.high - c.low, abs(c.high - p.close), abs(c.low - p.close))
-        trs.append(tr)
-    return mean(trs[-period:]) if trs else 0.0
-
-
-def detect_zones(candles: list[Candle], tf: str, max_age_bars: int = 80) -> list[Zone]:
-    zones = []
-    if not candles:
-        return zones
-    atr_val = atr(candles, 14) or 0.5
-    n = len(candles)
-    for i in range(max(2, n - max_age_bars), n - 2):
-        c = candles[i]
-        body = abs(c.close - c.open)
-        if body > atr_val * 0.55:
-            side = Side.LONG.value if c.close > c.open else Side.SHORT.value
-            zones.append(Zone("OB", side, c.low, c.high, c.ts, tf, strength=1.0 + body / atr_val))
-        if i >= 2:
-            prev2 = candles[i - 2]
-            if c.low > prev2.high:
-                zones.append(Zone("FVG", Side.LONG.value, prev2.high, c.low, c.ts, tf, strength=0.75))
-            if c.high < prev2.low:
-                zones.append(Zone("FVG", Side.SHORT.value, c.high, prev2.low, c.ts, tf, strength=0.75))
-    seen = set()
-    unique = []
-    for z in sorted(zones, key=lambda x: -x.strength):
-        key = (z.side, round(z.low, 4), round(z.high, 4))
-        if key not in seen:
-            seen.add(key)
-            unique.append(z)
-    return unique[-38:]
-
-
-def structure_snapshot(candles: list[Candle], tf: str) -> dict:
-    if len(candles) < 10:
-        return {"bias": Side.NEUTRAL.value, "bos": Side.NEUTRAL.value, "swing_high": 0, "swing_low": 0}
-    highs = [c.high for c in candles[-28:]]
-    lows = [c.low for c in candles[-28:]]
-    swing_high = max(highs)
-    swing_low = min(lows)
-    last_close = candles[-1].close
-    bias = Side.LONG.value if last_close > (swing_high + swing_low) / 2 else Side.SHORT.value
-    bos = Side.NEUTRAL.value
-    if last_close > swing_high * 0.993:
-        bos = Side.LONG.value
-    elif last_close < swing_low * 1.007:
-        bos = Side.SHORT.value
-    return {"timeframe": tf, "bias": bias, "bos": bos, "swing_high": swing_high, "swing_low": swing_low}
-
-
-def flow_snapshot(trades: list[dict], book: dict) -> dict:
-    if not trades:
-        return {"bias": Side.NEUTRAL.value, "score": 0, "absorption_bias": Side.NEUTRAL.value}
-    buy_vol = sum(t["size"] for t in trades if t["side"] == "buy")
-    sell_vol = sum(t["size"] for t in trades if t["side"] == "sell")
-    total = buy_vol + sell_vol or 1
-    delta = buy_vol - sell_vol
-    bias = Side.LONG.value if delta > total * 0.065 else (Side.SHORT.value if delta < -total * 0.065 else Side.NEUTRAL.value)
-    score = int(clamp(abs(delta) / total * 100, 0, 35))
-    absorption = Side.NEUTRAL.value
-    if book.get("bids") and book.get("asks"):
-        bid_vol = sum(b[1] for b in book["bids"][:6])
-        ask_vol = sum(a[1] for a in book["asks"][:6])
-        if bid_vol > ask_vol * 1.32:
-            absorption = Side.LONG.value
-        elif ask_vol > bid_vol * 1.32:
-            absorption = Side.SHORT.value
-    return {"bias": bias, "score": score, "absorption_bias": absorption}
-
-
-def cvd_snapshot(trades: list[dict]) -> dict:
-    if not trades:
-        return {"cvd": 0.0, "bias": Side.NEUTRAL.value, "strength": 0, "absorption": Side.NEUTRAL.value}
-    cvd = 0.0
-    for t in trades:
-        signed = t["size"] if t["side"] == "buy" else -t["size"]
-        cvd += signed
-    last_30 = trades[-30:] if len(trades) >= 30 else trades
-    buy = sum(t["size"] for t in last_30 if t["side"] == "buy")
-    sell = sum(t["size"] for t in last_30 if t["side"] == "sell")
-    total = buy + sell or 1
-    delta = buy - sell
-    bias = Side.LONG.value if delta > total * 0.08 else (Side.SHORT.value if delta < -total * 0.08 else Side.NEUTRAL.value)
-    strength = int(clamp(abs(delta) / total * 100, 0, 42))
-    absorption = Side.NEUTRAL.value
-    if buy > sell * 1.45:
-        absorption = Side.LONG.value
-    elif sell > buy * 1.45:
-        absorption = Side.SHORT.value
-    return {"cvd": round(cvd, 2), "bias": bias, "strength": strength, "absorption": absorption}
-
-
-def regime_detection(tf4h: dict, tf1h: dict, move8: float) -> tuple[str, str]:
-    htf_aligned = tf4h.get("bias") == tf1h.get("bias") and tf1h.get("bias") != Side.NEUTRAL.value
-    if abs(move8) > 2.8:
-        return Regime.SHOCK.value, "Сильний імпульс >2.8 ATR"
-    if htf_aligned and abs(move8) > 0.55:
-        return Regime.TREND.value, "HTF узгоджений + ефективний рух"
-    if not htf_aligned and abs(move8) < 0.38:
-        return Regime.RANGE.value, "HTF неузгоджений + низька ефективність"
-    return Regime.TRANSITION.value, "Перехідний режим"
-
-
-def build_context(data: dict, state: dict) -> dict:
-    c3 = data["candles"]["3m"]
-    c15 = data["candles"]["15m"]
-    c1h = data["candles"]["1h"]
-    c4h = data["candles"]["4h"]
-    price = data["price"] or (c15[-1].close if c15 else 80.0)
-    atr3 = atr(c3, 14)
-    atr15 = atr(c15, 14) or (atr3 * 3.8 if atr3 else 0.6)
-    atr1h = atr(c1h, 14) or (atr15 * 3.2)
-
-    tf3 = {"bias": Side.NEUTRAL.value, "score": 0, "atr": atr3, "structure": structure_snapshot(c3, "3m")}
-    tf15 = {"bias": Side.NEUTRAL.value, "score": 20, "atr": atr15, "structure": structure_snapshot(c15, "15m")}
-    tf1h = {"bias": Side.NEUTRAL.value, "score": 25, "atr": atr1h, "structure": structure_snapshot(c1h, "1h")}
-    tf4h = {"bias": Side.NEUTRAL.value, "score": 15, "atr": atr(c4h, 14) or (atr1h * 3.5), "structure": structure_snapshot(c4h, "4h")}
-
-    if c15:
-        ema = mean([c.close for c in c15[-8:]])
-        tf15["bias"] = Side.LONG.value if c15[-1].close > ema else Side.SHORT.value
-        tf15["score"] = 40 if abs(c15[-1].close - ema) / ema > 0.003 else 24
-    if c1h:
-        ema = mean([c.close for c in c1h[-6:]])
-        tf1h["bias"] = Side.LONG.value if c1h[-1].close > ema else Side.SHORT.value
-        tf1h["score"] = 44 if abs(c1h[-1].close - ema) / ema > 0.004 else 28
-    if c4h:
-        ema = mean([c.close for c in c4h[-5:]])
-        tf4h["bias"] = Side.LONG.value if c4h[-1].close > ema else Side.SHORT.value
-        tf4h["score"] = 30 if abs(c4h[-1].close - ema) / ema > 0.005 else 18
-
-    zones = detect_zones(c15, "15m") + detect_zones(c1h, "1h", 42) + detect_zones(c4h, "4h", 28)
-    flow = flow_snapshot(data.get("trades", []), data.get("book", {}))
-    cvd = cvd_snapshot(data.get("trades", []))
-    move8 = pct(c15[-1].close, c15[-8].close) if len(c15) >= 8 else 0.0
-    regime, regime_reason = regime_detection(tf4h, tf1h, move8)
-
-    volume_clusters = []
-    try:
-        volume_clusters = detect_volume_clusters(c15)
-    except Exception:
-        pass
-
-    ctx = {
-        "time": data["time"],
-        "price": price,
-        "price_source": data["ticker"].get("source", "OKX"),
-        "regime": regime,
-        "regime_reason": regime_reason,
-        "tf3": tf3, "tf15": tf15, "tf1h": tf1h, "tf4h": tf4h,
-        "zones": zones[-38:],
-        "flow": flow,
-        "cvd": cvd,
-        "atr15": atr15,
-        "atr1h": atr1h,
-        "candles": data["candles"],
-        "volume_clusters": volume_clusters,
-        "scan_3m": state.get("scan_3m", {}),
-        "scan_3m_events": {},
-    }
-    scan_result = scan_closed_3m_sequence(state, ctx)
-    ctx["scan_3m"] = state.get("scan_3m", {})
-    ctx["scan_3m_events"] = scan_result.get("events", {})
-    return ctx
+    return min(base, 95)
 
 
 # ==========================================================
-# CANDIDATE + АГРЕСИВНИЙ RE-ENTRY
+# CANDIDATE + RE-ENTRY
 # ==========================================================
 
 def candidate_from_missed_opportunity(opp: Opportunity, context: dict) -> Optional[Candidate]:
@@ -1098,7 +1444,6 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
     cvd = context.get("cvd", {})
     regime = context["regime"]
     scan_events = context.get("scan_3m_events", {})
-    volume_clusters = context.get("volume_clusters", [])
 
     params = get_adaptive_params(regime)
 
@@ -1109,6 +1454,9 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
         trigger_level = event.get("trigger_level", price)
         trigger_age = (int(now_utc().timestamp() * 1000) - event.get("last_event_ts", 0)) / 60000.0 if event.get("last_event_ts") else 999.0
         scan_stage = event.get("stage", "")
+
+        location_score = calculate_location_score(price, zones, side, atr15, tf15, tf1h)
+        has_forward_zone = has_forward_ict_zone(price, zones, side, atr15)
 
         loc_score = 14
         loc_conf = ["біля свіжої зони"]
@@ -1156,6 +1504,9 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
         if regime == Regime.TRANSITION.value:
             raw = int(raw * 0.88)
 
+        if has_forward_zone:
+            raw += 8
+
         evidence = ["ICT_LOCATION", "PRICE_STRUCTURE"]
         if flw_score > 12:
             evidence.append("ORDER_FLOW_CVD")
@@ -1163,15 +1514,8 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
             evidence.append("EXECUTION_TRIGGER_3M")
         if tf4h.get("bias") == side:
             evidence.append("HTF_CONTEXT")
-
-        volume_support = False
-        try:
-            volume_support = has_volume_cluster_support(price, volume_clusters, side, atr15)
-        except Exception:
-            pass
-        if volume_support:
-            evidence.append("VOLUME_CLUSTER_SUPPORT")
-            raw += 6
+        if has_forward_zone:
+            evidence.append("FORWARD_ICT_ZONE")
 
         setup_type = SetupType.PULLBACK_CONTINUATION.value
         variant = "PULLBACK_FORMING"
@@ -1201,11 +1545,8 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
             structure_alignment += 20
         if tf1h.get("bias") == side:
             structure_alignment += 15
-        acceptance_quality = 40
-        try:
-            acceptance_quality = calculate_acceptance_quality(event, context["candles"]["3m"], atr15, structure_alignment)
-        except Exception:
-            pass
+        
+        acceptance_quality = calculate_acceptance_quality(event, context["candles"]["3m"], atr15, structure_alignment, has_forward_zone)
 
         cand = Candidate(
             side=side,
@@ -1241,8 +1582,11 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
                 "htf": htf_score
             },
             acceptance_quality=acceptance_quality,
-            volume_cluster_support=volume_support
+            location_score=location_score,
+            has_forward_zone=has_forward_zone
         )
+        
+        cand.professional_gate = evaluate_professional_gate(context, cand)
         candidates.append(cand)
     return sorted(candidates, key=lambda c: -c.final_score)[:2]
 
@@ -1259,10 +1603,83 @@ def collapse_candidates(cands: list[Candidate]) -> list[Candidate]:
 # TRADE PLAN
 # ==========================================================
 
+def setup_trade_profile(setup_type: str) -> dict:
+    profiles = {
+        SetupType.PULLBACK_CONTINUATION.value: {"tp1_rr": 2.10, "tp2_rr": 3.10, "tp3_rr": 4.20, "tp1_atr": 1.25, "stop_min_atr": 0.78, "stop_max_atr": 2.35, "quality_adjustment": 2},
+        SetupType.BREAKOUT_RETEST.value: {"tp1_rr": 2.00, "tp2_rr": 3.00, "tp3_rr": 4.10, "tp1_atr": 1.15, "stop_min_atr": 0.75, "stop_max_atr": 2.15, "force_risky": True},
+        SetupType.SWEEP_RECLAIM.value: {"tp1_rr": 1.85, "tp2_rr": 2.70, "tp3_rr": 3.70, "tp1_atr": 1.05, "stop_min_atr": 0.72, "stop_max_atr": 1.85, "force_risky": True},
+        SetupType.CAPITULATION_RECOVERY.value: {"tp1_rr": 1.80, "tp2_rr": 2.65, "tp3_rr": 3.60, "tp1_atr": 1.00, "stop_min_atr": 0.76, "stop_max_atr": 1.95, "force_risky": True},
+        SetupType.TREND_IGNITION.value: {"tp1_rr": 1.95, "tp2_rr": 3.00, "tp3_rr": 4.35, "tp1_atr": 1.20, "stop_min_atr": 0.78, "stop_max_atr": 2.20, "force_risky": True},
+        SetupType.RANGE_COMPRESSION_BREAKOUT.value: {"tp1_rr": 1.70, "tp2_rr": 2.35, "tp3_rr": 3.10, "tp1_atr": 0.95, "stop_min_atr": 0.70, "stop_max_atr": 1.55, "force_risky": True},
+        SetupType.RANGE_EDGE_REVERSAL.value: {"tp1_rr": 1.65, "tp2_rr": 2.25, "tp3_rr": 3.00, "tp1_atr": 0.90, "stop_min_atr": 0.70, "stop_max_atr": 1.45, "force_risky": True},
+    }
+    return dict(profiles.get(str(setup_type or ""), {"tp1_rr": PREFERRED_RR1, "tp2_rr": MIN_RR2, "tp3_rr": MIN_RR3, "tp1_atr": MIN_TP1_ATR15, "stop_min_atr": MIN_STOP_ATR15, "stop_max_atr": MAX_STOP_ATR15}))
+
+
+def trade_mode_profile(context: dict, side: Optional[str] = None, setup_type: Optional[str] = None) -> dict:
+    regime = context.get("market_regime") if isinstance(context.get("market_regime"), dict) else detect_regime_engine_2(context, side)
+    name = str(regime.get("name", context.get("regime", Regime.NORMAL.value)) or Regime.NORMAL.value).upper()
+    regime_type = str(regime.get("regime_type", name) or name).upper()
+    profiles = {
+        Regime.RANGE.value: {"tp1_rr": 1.65, "tp2_rr": 2.35, "tp3_rr": 3.10, "stop_min_atr": 0.72, "stop_max_atr": 1.55, "be_trigger": 0.40, "protect_trigger": 0.62, "giveback": 0.22},
+        Regime.TRANSITION.value: {"tp1_rr": 1.95, "tp2_rr": 2.85, "tp3_rr": 3.85, "stop_min_atr": 0.78, "stop_max_atr": 2.10, "be_trigger": 0.52, "protect_trigger": 0.82, "giveback": 0.32},
+        Regime.TREND.value: {"tp1_rr": 2.20, "tp2_rr": 3.35, "tp3_rr": 4.70, "stop_min_atr": 0.85, "stop_max_atr": 2.60, "be_trigger": 0.70, "protect_trigger": 1.05, "giveback": 0.42},
+        Regime.SHOCK.value: {"tp1_rr": 1.70, "tp2_rr": 2.45, "tp3_rr": 3.30, "stop_min_atr": 0.82, "stop_max_atr": 1.90, "be_trigger": 0.46, "protect_trigger": 0.74, "giveback": 0.50},
+        Regime.NORMAL.value: {"tp1_rr": 2.00, "tp2_rr": 3.00, "tp3_rr": 4.00, "stop_min_atr": 0.80, "stop_max_atr": 2.30, "be_trigger": 0.55, "protect_trigger": 0.88, "giveback": 0.35},
+    }
+    overrides = {
+        "TREND_EXPANSION": {"tp1_rr": 2.20, "tp2_rr": 3.55, "tp3_rr": 4.90, "protect_trigger": 1.05, "giveback": 0.44},
+        "TREND_PULLBACK": {"tp1_rr": 2.05, "tp2_rr": 3.15, "tp3_rr": 4.20, "stop_max_atr": 2.20, "protect_trigger": 0.84, "giveback": 0.31},
+        "RANGE_COMPRESSION": {"tp1_rr": 1.65, "tp2_rr": 2.25, "tp3_rr": 2.95, "stop_max_atr": 1.45, "be_trigger": 0.38, "protect_trigger": 0.60, "giveback": 0.20},
+        "RANGE_EDGE": {"tp1_rr": 1.70, "tp2_rr": 2.35, "tp3_rr": 3.10, "stop_max_atr": 1.50, "be_trigger": 0.40, "protect_trigger": 0.62, "giveback": 0.22},
+        "REVERSAL_BUILDUP": {"tp1_rr": 1.80, "tp2_rr": 2.55, "tp3_rr": 3.45, "stop_max_atr": 1.85, "be_trigger": 0.46, "protect_trigger": 0.74, "giveback": 0.26},
+        "NEWS_SHOCK": {"tp1_rr": 1.70, "tp2_rr": 2.40, "tp3_rr": 3.20, "stop_max_atr": 1.80, "be_trigger": 0.48, "protect_trigger": 0.76, "giveback": 0.52},
+        "EXHAUSTION": {"tp1_rr": 1.55, "tp2_rr": 2.10, "tp3_rr": 2.80, "stop_max_atr": 1.35, "be_trigger": 0.36, "protect_trigger": 0.56, "giveback": 0.18},
+    }
+    profile = dict(profiles.get(name, profiles[Regime.NORMAL.value]))
+    profile.update(overrides.get(regime_type, {}))
+    setup_profile = setup_trade_profile(setup_type or "")
+    for key in ("tp1_rr", "tp2_rr", "tp3_rr", "stop_min_atr", "stop_max_atr"):
+        if key in setup_profile:
+            if key.startswith("tp"):
+                profile[key] = max(float(profile.get(key, 0)), float(setup_profile[key]))
+            else:
+                profile[key] = float(setup_profile[key])
+    profile["regime"] = name
+    profile["regime_type"] = regime_type
+    profile["entry_action"] = regime.get("entry_action", "ALLOW")
+    profile["hard_block"] = bool(regime.get("hard_block"))
+    profile["quality_adjustment"] = int(regime.get("entry_quality_adjustment", 0) or 0) + int(setup_profile.get("quality_adjustment", 0) or 0)
+    profile["quality_cap"] = setup_profile.get("quality_cap", regime.get("quality_cap"))
+    profile["force_risky"] = bool(setup_profile.get("force_risky") or regime.get("entry_action") == "RISKY_ONLY")
+    profile["reason"] = regime.get("reason", "")
+    return profile
+
+
+def enforce_smart_money_rr(side: str, price: float, stop: float, tp1: float, tp2: float, tp3: float, atr15: float) -> tuple[float, float, float, float]:
+    risk = abs(price - stop)
+    if side not in {Side.LONG.value, Side.SHORT.value} or risk <= 1e-9:
+        return stop, tp1, tp2, tp3
+    min_tp1_distance = risk * max(1.0, MIN_RR1)
+    min_tp2_distance = risk * max(1.45, MIN_RR1 + 0.45)
+    min_tp3_distance = risk * max(2.10, MIN_RR1 + 1.10)
+    step = max(atr15 * 0.45, price * 0.003)
+    if side == Side.LONG.value:
+        tp1 = max(tp1, price + min_tp1_distance)
+        tp2 = max(tp2, price + min_tp2_distance, tp1 + step)
+        tp3 = max(tp3, price + min_tp3_distance, tp2 + step)
+    else:
+        tp1 = min(tp1, price - min_tp1_distance)
+        tp2 = min(tp2, price - min_tp2_distance, tp1 - step)
+        tp3 = min(tp3, price - min_tp3_distance, tp2 - step)
+    return stop, tp1, tp2, tp3
+
+
 def build_trade_plan(context: dict, candidate: Candidate) -> TradePlan:
     price = context["price"]
     atr15 = context["atr15"] or 0.6
     side = candidate.side
+    profile = trade_mode_profile(context, side, candidate.setup_type)
     zones = context["zones"]
     structural_stop = candidate.invalidation_level
     for z in sorted(zones, key=lambda x: -x.strength):
@@ -1270,13 +1687,19 @@ def build_trade_plan(context: dict, candidate: Candidate) -> TradePlan:
             structural_stop = z.low if side == Side.LONG.value else z.high
             break
     stop_dist = abs(price - structural_stop)
-    stop_dist = max(stop_dist, atr15 * MIN_STOP_ATR15)
-    stop_dist = min(stop_dist, atr15 * MAX_STOP_ATR15)
+    stop_dist = max(stop_dist, atr15 * float(profile.get("stop_min_atr", MIN_STOP_ATR15)))
+    stop_dist = min(stop_dist, atr15 * float(profile.get("stop_max_atr", MAX_STOP_ATR15)))
     stop = price - stop_dist if side == Side.LONG.value else price + stop_dist
-    tp1 = price + stop_dist * PREFERRED_RR1 if side == Side.LONG.value else price - stop_dist * PREFERRED_RR1
-    tp2 = price + stop_dist * MIN_RR2 if side == Side.LONG.value else price - stop_dist * MIN_RR2
-    tp3 = price + stop_dist * MIN_RR3 if side == Side.LONG.value else price - stop_dist * MIN_RR3
+    tp1_dist = max(stop_dist * float(profile.get("tp1_rr", PREFERRED_RR1)), atr15 * MIN_TP1_ATR15)
+    tp2_dist = max(stop_dist * float(profile.get("tp2_rr", MIN_RR2)), tp1_dist + atr15 * 0.45)
+    tp3_dist = max(stop_dist * float(profile.get("tp3_rr", MIN_RR3)), tp2_dist + atr15 * 0.55)
+    tp1 = price + tp1_dist if side == Side.LONG.value else price - tp1_dist
+    tp2 = price + tp2_dist if side == Side.LONG.value else price - tp2_dist
+    tp3 = price + tp3_dist if side == Side.LONG.value else price - tp3_dist
+    stop, tp1, tp2, tp3 = enforce_smart_money_rr(side, price, stop, tp1, tp2, tp3, atr15)
     rr1 = abs(tp1 - price) / abs(stop - price) if abs(stop - price) > 1e-9 else 2.1
+    regime_action = str(profile.get("entry_action", "ALLOW")).upper()
+    execution_ready = candidate.trigger_ready and candidate.final_score >= ENTRY_SCORE_BASE and not profile.get("hard_block") and regime_action in {"ALLOW", "RISKY_ONLY"}
     plan = TradePlan(
         entry=round_price(price),
         stop=round_price(stop),
@@ -1289,12 +1712,12 @@ def build_trade_plan(context: dict, candidate: Candidate) -> TradePlan:
         rr3=round(abs(tp3 - price) / abs(stop - price), 2),
         position_risk_pct=RISKY_RISK_PCT if candidate.execution_lane == ExecutionLane.EARLY_TACTICAL.value else NORMAL_RISK_PCT,
         invalidation=f"закриття 15M за {round_price(structural_stop)}",
-        stop_basis="HTF захищена структура + ATR buffer",
-        target_basis="TP1 ≥2.2R реальна ліквідність",
+        stop_basis=f"{profile.get('regime_type', context.get('regime'))}: структура + ATR buffer",
+        target_basis=f"динамічні TP за regime/setup profile ({profile.get('regime_type')})",
         stop_timeframe="1H" if any(z.timeframe == "1h" for z in zones) else "15M",
         structural_invalidation=round_price(structural_stop),
         trigger_level=candidate.trigger_level,
-        execution_ready=candidate.trigger_ready and candidate.final_score >= ENTRY_SCORE_BASE,
+        execution_ready=execution_ready,
         valid=rr1 >= MIN_RR1,
         reason="" if rr1 >= MIN_RR1 else "RR1 нижче мінімуму",
     )
@@ -1302,7 +1725,7 @@ def build_trade_plan(context: dict, candidate: Candidate) -> TradePlan:
 
 
 # ==========================================================
-# EVALUATION (АГРЕСИВНИЙ RE-ENTRY)
+# EVALUATION
 # ==========================================================
 
 def evaluate_new_setup(context: dict, state: dict, journal: dict) -> Decision:
@@ -1312,7 +1735,6 @@ def evaluate_new_setup(context: dict, state: dict, journal: dict) -> Decision:
     saved_opp = opportunity_from_state(state)
     current_price = context.get("price", 0)
     
-    # === ДУЖЕ АГРЕСИВНИЙ RE-ENTRY ===
     if saved_opp and saved_opp.status in ["ARMED", "WAIT_PULLBACK"]:
         missed_cand = candidate_from_missed_opportunity(saved_opp, context)
         if missed_cand:
@@ -1321,9 +1743,6 @@ def evaluate_new_setup(context: dict, state: dict, journal: dict) -> Decision:
             if not guard["blocked"] and missed_cand.final_score >= MISSED_REENTRY_SCORE * get_adaptive_params(context["regime"])["reentry_aggressiveness"]:
                 plan = build_trade_plan(context, missed_cand)
                 
-                # === АГРЕСИВНА ЛОГІКА ===
-                # Якщо якість ≥ REENTRY_AGGRESSIVE_THRESHOLD (72) → одразу RISKY_ENTRY
-                # Інакше — ARMED
                 if missed_cand.final_score >= REENTRY_AGGRESSIVE_THRESHOLD:
                     action = Action.RISKY_ENTRY.value
                     reason = "Re-entry з пропущеного імпульсу — високий confluence, відкриваємо угоду"
@@ -1366,20 +1785,30 @@ def evaluate_new_setup(context: dict, state: dict, journal: dict) -> Decision:
     best = cands[0]
     plan = build_trade_plan(context, best)
     action = Action.NO_SETUP.value
-    quality = best.final_score
+    mode_profile = trade_mode_profile(context, best.side, best.setup_type)
+    quality = int(best.final_score + mode_profile.get("quality_adjustment", 0))
+    if mode_profile.get("quality_cap") is not None:
+        quality = min(quality, int(mode_profile["quality_cap"]))
+    quality = int(clamp(quality, 1, 100))
     reason = "Професійний сетап не пройшов gate'и якості"
 
     params = get_adaptive_params(context["regime"])
+    gate = best.professional_gate or {}
+    entry_action = str(mode_profile.get("entry_action", "ALLOW")).upper()
+    hard_block = bool(mode_profile.get("hard_block"))
 
-    if best.final_score >= params["entry_score"] and plan.valid and plan.execution_ready and len(best.evidence_families) >= params["min_evidence"]:
+    if hard_block:
+        action = Action.NO_SETUP.value
+        reason = f"Regime Engine 2.0 блокує вхід: {mode_profile.get('reason', 'режим не підтримує вхід')}"
+    elif gate.get("allow_entry") and plan.valid and plan.execution_ready and entry_action == "ALLOW" and not mode_profile.get("force_risky"):
         action = Action.ENTRY.value
-        reason = f"{setup_label(best.setup_type)} — високий confluence ({len(best.evidence_families)} evidence)"
-    elif best.final_score >= params["risky_entry_score"] and plan.valid and best.execution_lane == ExecutionLane.EARLY_TACTICAL.value:
+        reason = f"{setup_label(best.setup_type)} — {gate.get('grade', 'A')} gate v6 + {mode_profile.get('regime_type')} profile"
+    elif (gate.get("allow_risky") or entry_action == "RISKY_ONLY" or mode_profile.get("force_risky")) and plan.valid and not hard_block:
         action = Action.RISKY_ENTRY.value
-        reason = f"Ризикований ранній вхід: {setup_label(best.setup_type)}"
+        reason = f"Ризикований ранній вхід: {setup_label(best.setup_type)} — {mode_profile.get('regime_type')} profile"
     elif best.final_score >= params["armed_score"]:
         action = Action.ARMED.value
-        reason = f"{setup_label(best.setup_type)} сформовано; потрібен свіжий 3M trigger/acceptance"
+        reason = f"{setup_label(best.setup_type)} сформовано; gate v6: {gate.get('grade', 'WATCH')} | {mode_profile.get('regime_type')}"
 
     return Decision(
         id=uuid.uuid4().hex[:10],
@@ -1395,13 +1824,54 @@ def evaluate_new_setup(context: dict, state: dict, journal: dict) -> Decision:
         news_bias="NEUTRAL",
         macro_risk="NORMAL",
         current_price=current_price,
-        audit={"selected": {"side": best.side, "setup": best.setup_type, "score": best.final_score}}
+        audit={"selected": {"side": best.side, "setup": best.setup_type, "score": best.final_score, "quality_after_regime": quality, "gate": gate.get("grade"), "regime_engine": context.get("market_regime")}}
     )
 
 
 # ==========================================================
-# TRADE MANAGEMENT
+# MANAGE ACTIVE TRADE
 # ==========================================================
+
+def _is_more_protective_stop(side: str, current_stop: float, new_stop: float, price: float) -> bool:
+    if not new_stop:
+        return False
+    if side == Side.LONG.value:
+        return current_stop == 0 or (current_stop < new_stop < price)
+    return current_stop == 0 or (current_stop > new_stop > price)
+
+
+def _profit_lock_stop_level(trade: ActiveTrade, context: dict, best_pct: float, current_pct: float, profile: dict) -> tuple[Optional[float], str]:
+    if best_pct < float(profile.get("protect_trigger", 0.88)):
+        return None, ""
+    side = trade.side
+    entry = trade.entry
+    price = context.get("price", entry)
+    atr15 = context.get("atr15", 0.6) or 0.6
+    if best_pct >= float(profile.get("be_trigger", 0.55)):
+        lock_pct = max(0.05, min(best_pct * 0.34, max(current_pct, 0.12)))
+    else:
+        lock_pct = 0.03
+    if side == Side.LONG.value:
+        raw_stop = entry * (1 + lock_pct / 100)
+        air_stop = price - atr15 * 0.55
+        stop = min(raw_stop, air_stop)
+    else:
+        raw_stop = entry * (1 - lock_pct / 100)
+        air_stop = price + atr15 * 0.55
+        stop = max(raw_stop, air_stop)
+    reason = f"MFE Guard: було +{best_pct:.2f}%, стоп фіксує частину руху за {profile.get('regime_type', 'REGIME')} профілем"
+    return round_price(stop), reason
+
+
+def _apply_protective_stop(trade: ActiveTrade, context: dict, stop: Optional[float]) -> bool:
+    if stop is None:
+        return False
+    price = context.get("price", trade.entry)
+    if not _is_more_protective_stop(trade.side, trade.stop_current, stop, price):
+        return False
+    trade.stop_current = float(stop)
+    return True
+
 
 def manage_active_trade(trade: ActiveTrade, context: dict) -> dict:
     price = context["price"]
@@ -1414,8 +1884,8 @@ def manage_active_trade(trade: ActiveTrade, context: dict) -> dict:
 
     result = {
         "action": Action.HOLD.value,
-        "title": "УГОДА ВІДКРИТА — HYBRID ICT v5.1",
-        "recommendation": "Структура та thesis на боці — тримаємо",
+        "title": "УГОДА ВІДКРИТА — HYBRID ICT v6.4",
+        "recommendation": "Структура та теза на боці — тримаємо",
         "current_pct": ((price - trade.entry) / trade.entry * 100) if side == Side.LONG.value else ((trade.entry - price) / trade.entry * 100),
         "best_pct": ((trade.best_price - trade.entry) / trade.entry * 100) if side == Side.LONG.value else ((trade.entry - trade.best_price) / trade.entry * 100),
         "closed": False,
@@ -1430,34 +1900,76 @@ def manage_active_trade(trade: ActiveTrade, context: dict) -> dict:
     if (side == Side.LONG.value and price < trade.worst_price) or (side == Side.SHORT.value and price > trade.worst_price):
         trade.worst_price = price
 
+    result["best_pct"] = ((trade.best_price - trade.entry) / trade.entry * 100) if side == Side.LONG.value else ((trade.entry - trade.best_price) / trade.entry * 100)
+    result["worst_pct"] = max(0.0, ((trade.entry - trade.worst_price) / trade.entry * 100) if side == Side.LONG.value else ((trade.worst_price - trade.entry) / trade.entry * 100))
     mfe = result["best_pct"]
-    current_r = result["current_pct"] / (abs(trade.stop_initial - trade.entry) / trade.entry * 100) if trade.entry else 0
 
-    params = get_adaptive_params(context.get("regime", "NORMAL"))
+    profile = trade_mode_profile(context, side, trade.setup_type)
 
-    if mfe > params["min_mfe_for_protect"] and current_r < mfe * params["mfe_giveback_threshold"]:
+    giveback = max(0, mfe - result["current_pct"])
+    giveback_ratio = giveback / mfe if mfe > 0.1 else 0
+
+    lock_stop, lock_reason = _profit_lock_stop_level(trade, context, mfe, result["current_pct"], profile)
+    if lock_stop is not None and result["action"] == Action.HOLD.value and _apply_protective_stop(trade, context, lock_stop):
+        result["action"] = Action.PROTECT.value
+        result["recommended_stop"] = round_price(trade.stop_current)
+        result["recommended_stop_reason"] = lock_reason
+        result["notes"].append(lock_reason)
+
+    guard_trigger = float(profile.get("be_trigger", 0.55))
+    giveback_limit = float(profile.get("giveback", 0.35))
+    if mfe >= guard_trigger and giveback_ratio >= giveback_limit:
         trade.mfe_giveback_streak += 1
-        if trade.mfe_giveback_streak >= 3:
+        if trade.mfe_giveback_streak >= 2:
             result["action"] = Action.PROTECT.value
-            result["notes"].append("MFE giveback — фіксуємо частину прибутку")
-            result["recommended_stop"] = round_price(trade.entry + (trade.best_price - trade.entry) * 0.40 if side == Side.LONG.value else trade.entry - (trade.entry - trade.best_price) * 0.40)
-            result["recommended_stop_reason"] = "Адаптивний захист прибутку"
+            protect_stop, protect_reason = _profit_lock_stop_level(trade, context, mfe, max(result["current_pct"], 0.10), profile)
+            if protect_stop is not None and _apply_protective_stop(trade, context, protect_stop):
+                result["recommended_stop"] = round_price(trade.stop_current)
+                result["recommended_stop_reason"] = protect_reason
+            result["notes"].append(f"MFE Guard: прибуток віддається ({giveback_ratio:.0%}) — захистити позицію")
+            if trade.tp1_hit and result["current_pct"] <= 0.18 and giveback_ratio >= min(0.72, giveback_limit + 0.22):
+                result["action"] = Action.EXIT.value
+                result["closed"] = True
+                result["exit_price"] = price
+                result["notes"].append("Після TP1 MFE майже віддано назад — закриття залишку")
     else:
         trade.mfe_giveback_streak = max(0, trade.mfe_giveback_streak - 1)
 
-    if not trade.tp1_hit and ((side == Side.LONG.value and price >= trade.tp1) or (side == Side.SHORT.value and price <= trade.tp1)):
+    if not result["closed"] and not trade.tp1_hit and ((side == Side.LONG.value and price >= trade.tp1) or (side == Side.SHORT.value and price <= trade.tp1)):
         trade.tp1_hit = True
         trade.tp1_stop_locked = True
-        trade.stop_current = max(trade.stop_current, trade.entry * 0.992) if side == Side.LONG.value else min(trade.stop_current, trade.entry * 1.008)
+        trade.tp1_locked_stop = max(trade.stop_current, trade.entry * 0.992) if side == Side.LONG.value else min(trade.stop_current, trade.entry * 1.008)
+        trade.stop_current = trade.tp1_locked_stop
         result["action"] = Action.TP1.value
-        result["notes"].append("TP1 досягнуто — стоп зафіксовано в зоні BE+")
+        result["notes"].append("TP1 досягнуто — стоп зафіксовано до TP2")
 
-    if trade.tp1_hit and not trade.tp2_hit and ((side == Side.LONG.value and price >= trade.tp2) or (side == Side.SHORT.value and price <= trade.tp2)):
+    if not result["closed"] and trade.tp1_hit and not trade.tp2_hit and ((side == Side.LONG.value and price >= trade.tp2) or (side == Side.SHORT.value and price <= trade.tp2)):
         trade.tp2_hit = True
         trade.tp2_stop_locked = True
-        trade.stop_current = trade.tp1 if side == Side.LONG.value else trade.tp1
+        trade.tp2_locked_stop = trade.tp1
+        trade.stop_current = trade.tp2_locked_stop
         result["action"] = Action.TP2.value
-        result["notes"].append("TP2 досягнуто — стоп на TP1")
+        result["notes"].append("TP2 досягнуто — стоп на TP1 (зафіксовано)")
+
+    if not result["closed"] and trade.tp1_stop_locked and not trade.tp2_hit:
+        result["recommended_stop"] = round_price(trade.tp1_locked_stop)
+        result["recommended_stop_reason"] = "TP1-стоп зафіксовано до TP2"
+
+    if not result["closed"] and trade.tp2_stop_locked:
+        result["recommended_stop"] = round_price(trade.tp2_locked_stop)
+        result["recommended_stop_reason"] = "TP2-стоп зафіксовано"
+
+    if not result["closed"] and trade.tp1_hit and not trade.tp2_hit:
+        if side == Side.LONG.value and tf15.get("bias") == Side.LONG.value:
+            new_stop = max(trade.stop_current, price - atr15 * 1.2)
+            if new_stop > trade.stop_current:
+                trade.stop_current = new_stop
+                result["notes"].append("SMC Trailing: стоп підтягнуто за 15M структурою")
+        elif side == Side.SHORT.value and tf15.get("bias") == Side.SHORT.value:
+            new_stop = min(trade.stop_current, price + atr15 * 1.2)
+            if new_stop < trade.stop_current:
+                trade.stop_current = new_stop
+                result["notes"].append("SMC Trailing: стоп підтягнуто за 15M структурою")
 
     structural_break = False
     if side == Side.LONG.value:
@@ -1473,7 +1985,7 @@ def manage_active_trade(trade: ActiveTrade, context: dict) -> dict:
             structural_break = True
             result["notes"].append("15M + 3M структура проти SHORT")
 
-    if structural_break:
+    if not result["closed"] and structural_break:
         result["closed"] = True
         result["action"] = Action.STOP.value
         result["exit_price"] = price
@@ -1507,7 +2019,20 @@ SETUP_FAMILY_MAP = {
     SetupType.NONE.value: SetupFamily.NONE.value,
 }
 
-REGIME_LABELS = {"TREND": "ТРЕНД", "RANGE": "ДІАПАЗОН", "TRANSITION": "ПЕРЕХІДНИЙ", "SHOCK": "ІМПУЛЬСНИЙ", "NORMAL": "ЗВИЧАЙНИЙ"}
+REGIME_LABELS = {
+    "TREND": "ТРЕНД",
+    "RANGE": "ДІАПАЗОН",
+    "TRANSITION": "ПЕРЕХІДНИЙ",
+    "SHOCK": "ІМПУЛЬСНИЙ",
+    "NORMAL": "ЗВИЧАЙНИЙ",
+    "TREND_EXPANSION": "ТРЕНДОВЕ РОЗШИРЕННЯ",
+    "TREND_PULLBACK": "ВІДКАТ У ТРЕНДІ",
+    "RANGE_COMPRESSION": "СТИСКАННЯ ДІАПАЗОНУ",
+    "RANGE_EDGE": "КРАЙ ДІАПАЗОНУ",
+    "REVERSAL_BUILDUP": "ФОРМУВАННЯ РОЗВОРОТУ",
+    "NEWS_SHOCK": "НОВИННИЙ ІМПУЛЬС",
+    "EXHAUSTION": "ВИСНАЖЕННЯ РУХУ",
+}
 FAMILY_LABELS = {"CONTINUATION": "ПРОДОВЖЕННЯ ТРЕНДУ", "LIQUIDITY_RECOVERY": "ВІДНОВЛЕННЯ ПІСЛЯ ЛІКВІДНОСТІ", "STRUCTURAL_TRANSITION": "СТРУКТУРНА ЗМІНА", "EXPANSION": "РОЗШИРЕННЯ РУХУ", "RANGE_EXECUTION": "ТОРГІВЛЯ В ДІАПАЗОНІ", "NONE": "НЕ ВИЗНАЧЕНО"}
 SETUP_LABELS = {
     SetupType.SWEEP_RECLAIM.value: "Зняття ліквідності + повернення за рівень",
@@ -1559,7 +2084,7 @@ def run_bot() -> None:
     if not context.get("price"):
         print("NO PRICE — abort")
         return
-    print(f"PRICE {context['price']:.4f} | REGIME {context['regime']} | ATR15 {context['atr15']:.4f}")
+    print(f"PRICE {context['price']:.4f} | REGIME {context['regime']} | ATR15 {context['atr15']:.4f} | Джерело: {context.get('price_source', 'TradingView')}")
 
     active = active_trade_from_state(state)
     if active and active.status != "CLOSED":
@@ -1611,7 +2136,7 @@ def run_bot() -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="BZU Professional Hybrid Confluence Signal Bot v5.1 (AGGRESSIVE + CLEAN TEXT)")
+    parser = argparse.ArgumentParser(description="BZU Professional Hybrid Confluence Signal Bot v6.4")
     parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args()
     if args.self_test:
