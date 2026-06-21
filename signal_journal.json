@@ -7120,12 +7120,503 @@
           }
         }
       }
+    },
+    {
+      "id": "f2989713f32b",
+      "time": "2026-06-21T17:01:14.006046+00:00",
+      "action": "ARMED",
+      "side": "LONG",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 86,
+      "reason": "пропущений імпульс збережено; очікується новий 3M retest/hold у зоні повторного входу",
+      "regime": "SHOCK",
+      "candidate": null,
+      "plan": null,
+      "audit": {
+        "candidates": [
+          {
+            "side": "LONG",
+            "setup_type": "BREAKOUT_RETEST",
+            "setup_family": "EXPANSION",
+            "variant": "RETEST_FORMING",
+            "stage": "REJECTED",
+            "execution_lane": "STANDARD_CONFIRMED",
+            "lane_threshold": 75,
+            "raw_score": 71,
+            "final_score": 83,
+            "selection_score": 108.3,
+            "trigger_ready": true,
+            "risk_mode": "RISKY",
+            "evidence_families": [
+              "ICT_LOCATION",
+              "PRICE_STRUCTURE",
+              "LIQUIDITY",
+              "EXECUTION_TRIGGER",
+              "HTF_CONTEXT"
+            ],
+            "evidence_count": 5,
+            "late_extension_atr": 1.405,
+            "execution_anchor": 82.46,
+            "trigger_level": 81.91,
+            "trigger_age_minutes": 0.0,
+            "scan_event_stage": "READY",
+            "hard_reject_reason": "execution window закрилось; новий вхід тільки після окремого ретесту",
+            "score_components": {
+              "location": 10,
+              "structure": 17,
+              "liquidity": 17,
+              "trigger": 15,
+              "flow": 7,
+              "htf": 5
+            },
+            "geometry_valid": false,
+            "execution_ready": false,
+            "lane_ready": false,
+            "geometry_reason": "",
+            "blocking_zone": "",
+            "acceptance_status": ""
+          },
+          {
+            "side": "LONG",
+            "setup_type": "CLOSED_15M_DIRECTION_FLIP",
+            "setup_family": "STRUCTURAL_TRANSITION",
+            "variant": "FULL_15M_FLIP",
+            "stage": "REJECTED",
+            "execution_lane": "EARLY_TACTICAL",
+            "lane_threshold": 68,
+            "raw_score": 78,
+            "final_score": 78,
+            "selection_score": 102.6,
+            "trigger_ready": true,
+            "risk_mode": "RISKY",
+            "evidence_families": [
+              "PRICE_STRUCTURE",
+              "LIQUIDITY",
+              "EXECUTION_TRIGGER",
+              "HTF_CONTEXT"
+            ],
+            "evidence_count": 4,
+            "late_extension_atr": 1.405,
+            "execution_anchor": 82.46,
+            "trigger_level": 81.91,
+            "trigger_age_minutes": 0.0,
+            "scan_event_stage": "READY",
+            "hard_reject_reason": "execution window закрилось; новий вхід тільки після окремого ретесту",
+            "score_components": {
+              "location": 9,
+              "structure": 25,
+              "liquidity": 17,
+              "trigger": 15,
+              "flow": 7,
+              "htf": 5
+            },
+            "geometry_valid": false,
+            "execution_ready": false,
+            "lane_ready": false,
+            "geometry_reason": "",
+            "blocking_zone": "",
+            "acceptance_status": ""
+          }
+        ],
+        "opportunity_memory": {
+          "side": "LONG",
+          "setup_type": "PULLBACK_CONTINUATION",
+          "created_at": "2026-06-21T16:45:50.370347+00:00",
+          "expires_at": "2026-06-22T16:45:50.370347+00:00",
+          "score": 86,
+          "trigger_level": 82.13,
+          "invalidation_level": 81.05,
+          "confirmations": [
+            "ціна біля свіжої 3m FVG зони",
+            "15M структура тримає напрям",
+            "1H підтримує продовження",
+            "агресивний flow і стакан підтримують напрям",
+            "15M і 1H узгоджені",
+            "повний 3M scan зберіг подію READY між 15-хвилинними запусками"
+          ],
+          "setup_family": "CONTINUATION",
+          "variant": "FULL_PULLBACK",
+          "stage": "EXECUTABLE",
+          "evidence_families": [
+            "PRICE_STRUCTURE",
+            "LIQUIDITY",
+            "EXECUTION_TRIGGER",
+            "ORDER_FLOW",
+            "HTF_CONTEXT"
+          ],
+          "execution_profile": "STANDARD",
+          "execution_anchor": 82.28,
+          "status": "WAIT_PULLBACK",
+          "execution_lane": "MISSED_IMPULSE_REENTRY",
+          "origin_trigger_ts": 1782060120000,
+          "missed_at": "2026-06-21T16:45:50.370347+00:00",
+          "reentry_zone_low": 81.43,
+          "reentry_zone_high": 81.4945,
+          "natural_target_level": 82.39,
+          "optimal_entry_for_rr": 81.4623
+        }
+      },
+      "version": "pro-ict-v3.2.8-tiers-alignment-thesis",
+      "architecture_version": "DETERMINISTIC_PRO_ICT_CORE_V3_2_8_TIERS_ALIGNMENT_THESIS",
+      "context": {
+        "time": "2026-06-21T17:01:13.983335+00:00",
+        "price": 82.38,
+        "price_source": "OKX",
+        "reference_price": 82.02,
+        "cross_price_diff_pct": 0.437,
+        "regime": "SHOCK",
+        "regime_reason": "останні три 15M свічки пройшли понад 2 ATR",
+        "tf3": {
+          "timeframe": "3m",
+          "available": true,
+          "bias": "LONG",
+          "score": 35,
+          "close": 82.46,
+          "ema20": 82.0618,
+          "ema50": 81.8854,
+          "rsi": 70.5,
+          "atr": 0.13965,
+          "move8_pct": 0.414,
+          "efficiency": 0.413,
+          "volume_ratio": 2.256,
+          "structure": {
+            "timeframe": "3m",
+            "bias": "LONG",
+            "trend": "NEUTRAL",
+            "bos": "NEUTRAL",
+            "choch": "NEUTRAL",
+            "swing_high": 82.3,
+            "swing_low": 82.12,
+            "prior_break_high": 82.3,
+            "prior_break_low": 82.12,
+            "recent_highs": [
+              81.79,
+              82.04,
+              82.39,
+              82.3
+            ],
+            "recent_lows": [
+              81.73,
+              81.64,
+              81.64,
+              82.12
+            ],
+            "ema20": 82.0618,
+            "ema50": 81.8854
+          }
+        },
+        "tf15": {
+          "timeframe": "15m",
+          "available": true,
+          "bias": "LONG",
+          "score": 40,
+          "close": 82.46,
+          "ema20": 81.7905,
+          "ema50": 81.6014,
+          "rsi": 65.4,
+          "atr": 0.33461,
+          "move8_pct": 0.831,
+          "efficiency": 0.622,
+          "volume_ratio": 1.313,
+          "structure": {
+            "timeframe": "15m",
+            "bias": "LONG",
+            "trend": "NEUTRAL",
+            "bos": "LONG",
+            "choch": "NEUTRAL",
+            "swing_high": 81.91,
+            "swing_low": 81.64,
+            "prior_break_high": 81.91,
+            "prior_break_low": 81.64,
+            "recent_highs": [
+              81.8,
+              81.9,
+              81.9,
+              81.91
+            ],
+            "recent_lows": [
+              80.66,
+              80.83,
+              81.64,
+              81.64
+            ],
+            "ema20": 81.7905,
+            "ema50": 81.6014
+          }
+        },
+        "tf1h": {
+          "timeframe": "1h",
+          "available": true,
+          "bias": "LONG",
+          "score": 40,
+          "close": 82.46,
+          "ema20": 81.5813,
+          "ema50": 81.0313,
+          "rsi": 62.4,
+          "atr": 0.59132,
+          "move8_pct": 1.427,
+          "efficiency": 0.22,
+          "volume_ratio": 1.299,
+          "structure": {
+            "timeframe": "1h",
+            "bias": "LONG",
+            "trend": "NEUTRAL",
+            "bos": "NEUTRAL",
+            "choch": "NEUTRAL",
+            "swing_high": 83.0,
+            "swing_low": 80.66,
+            "prior_break_high": 83.0,
+            "prior_break_low": 80.66,
+            "recent_highs": [
+              81.8,
+              81.69,
+              81.69,
+              83.0
+            ],
+            "recent_lows": [
+              81.08,
+              81.26,
+              81.04,
+              80.66
+            ],
+            "ema20": 81.5813,
+            "ema50": 81.0313
+          }
+        },
+        "tf4h": {
+          "timeframe": "4h",
+          "available": true,
+          "bias": "LONG",
+          "score": 20,
+          "close": 81.77,
+          "ema20": 80.8293,
+          "ema50": 82.0679,
+          "rsi": 55.4,
+          "atr": 1.27073,
+          "move8_pct": 0.901,
+          "efficiency": 0.307,
+          "volume_ratio": 0.683,
+          "structure": {
+            "timeframe": "4h",
+            "bias": "LONG",
+            "trend": "LONG",
+            "bos": "NEUTRAL",
+            "choch": "NEUTRAL",
+            "swing_high": 82.63,
+            "swing_low": 78.59,
+            "prior_break_high": 82.63,
+            "prior_break_low": 78.59,
+            "recent_highs": [
+              82.2,
+              79.77,
+              81.67,
+              82.63
+            ],
+            "recent_lows": [
+              78.17,
+              77.69,
+              76.5,
+              78.59
+            ],
+            "ema20": 80.8293,
+            "ema50": 82.0679
+          }
+        },
+        "sweep3": {
+          "side": "NEUTRAL",
+          "level": 0.0,
+          "reclaim": false,
+          "age": 999
+        },
+        "sweep15": {
+          "side": "NEUTRAL",
+          "level": 0.0,
+          "reclaim": false,
+          "age": 999
+        },
+        "dealing_range": {
+          "low": 80.66,
+          "high": 83.0,
+          "equilibrium": 81.83,
+          "position": 0.735,
+          "zone": "PREMIUM",
+          "at_lower_edge": false,
+          "at_upper_edge": false
+        },
+        "flow": {
+          "bias": "SHORT",
+          "score": -7,
+          "trade_delta": -13446.0,
+          "trade_delta_pct": -44.84,
+          "book_delta_pct": -0.0,
+          "price_move_pct": 0.097,
+          "cvd_acceleration": 25408.0,
+          "absorption_bias": "LONG",
+          "confidence": "MEDIUM",
+          "sample_size": 200
+        },
+        "derivatives": {
+          "oi": 5726028.0,
+          "funding_rate": 2.8501627918e-05
+        },
+        "zones": [
+          {
+            "kind": "FVG",
+            "side": "LONG",
+            "low": 81.7,
+            "high": 81.85,
+            "created_ts": 1782058860000,
+            "timeframe": "3m",
+            "strength": 1.0741244963374579,
+            "mitigated": false
+          },
+          {
+            "kind": "FVG",
+            "side": "LONG",
+            "low": 81.93,
+            "high": 81.99,
+            "created_ts": 1782059400000,
+            "timeframe": "3m",
+            "strength": 0.42964979853492213,
+            "mitigated": false
+          },
+          {
+            "kind": "FVG",
+            "side": "LONG",
+            "low": 82.1,
+            "high": 82.12,
+            "created_ts": 1782059580000,
+            "timeframe": "3m",
+            "strength": 0.14321659951174248,
+            "mitigated": false
+          },
+          {
+            "kind": "OB",
+            "side": "LONG",
+            "low": 81.77,
+            "high": 81.86,
+            "created_ts": 1782059220000,
+            "timeframe": "3m",
+            "strength": 1.7185991941400955,
+            "mitigated": false
+          },
+          {
+            "kind": "FVG",
+            "side": "LONG",
+            "low": 81.77,
+            "high": 81.83,
+            "created_ts": 1782058500000,
+            "timeframe": "15m",
+            "strength": 0.17931062847378054,
+            "mitigated": false
+          },
+          {
+            "kind": "FVG",
+            "side": "LONG",
+            "low": 82.04,
+            "high": 82.12,
+            "created_ts": 1782059400000,
+            "timeframe": "15m",
+            "strength": 0.23908083796502658,
+            "mitigated": false
+          },
+          {
+            "kind": "OB",
+            "side": "LONG",
+            "low": 80.36,
+            "high": 80.53,
+            "created_ts": 1781956800000,
+            "timeframe": "1h",
+            "strength": 2.638155433678797,
+            "mitigated": false
+          },
+          {
+            "kind": "OB",
+            "side": "LONG",
+            "low": 81.05,
+            "high": 81.24,
+            "created_ts": 1782036000000,
+            "timeframe": "1h",
+            "strength": 2.1646403558390315,
+            "mitigated": false
+          },
+          {
+            "kind": "OB",
+            "side": "LONG",
+            "low": 81.68,
+            "high": 81.78,
+            "created_ts": 1782054000000,
+            "timeframe": "1h",
+            "strength": 1.18378769459945,
+            "mitigated": false
+          },
+          {
+            "kind": "FVG",
+            "side": "LONG",
+            "low": 78.53,
+            "high": 78.84,
+            "created_ts": 1781798400000,
+            "timeframe": "4h",
+            "strength": 0.24395391662337354,
+            "mitigated": false
+          },
+          {
+            "kind": "OB",
+            "side": "LONG",
+            "low": 76.5,
+            "high": 78.48,
+            "created_ts": 1781784000000,
+            "timeframe": "4h",
+            "strength": 1.5424183115542165,
+            "mitigated": false
+          },
+          {
+            "kind": "OB",
+            "side": "LONG",
+            "low": 81.07,
+            "high": 81.55,
+            "created_ts": 1782014400000,
+            "timeframe": "4h",
+            "strength": 0.9600767041306879,
+            "mitigated": false
+          }
+        ],
+        "scan_3m": {
+          "last_scanned_3m_ts": 1782061020000,
+          "last_run_processed": 5,
+          "processed_count": 61,
+          "events": {
+            "LONG": {
+              "side": "LONG",
+              "stage": "READY",
+              "source": "SWEEP_THEN_DISPLACEMENT",
+              "event_ts": 1782058860000,
+              "last_event_ts": 1782061020000,
+              "trigger_level": 81.91,
+              "event_price": 82.46,
+              "invalidation_level": 81.64,
+              "sweep_level": 81.68,
+              "extreme": 81.64,
+              "displacement": true,
+              "retest_ts": 1782059400000,
+              "ready_ts": 1782061020000,
+              "hold_closes": 10,
+              "previous_stage": "",
+              "chain_quality": 50,
+              "confirmation_quality": 40,
+              "acceptance_quality": 0,
+              "retest_quality": 0,
+              "processed_bars": 19
+            }
+          }
+        }
+      }
     }
   ],
   "trades": [],
   "version": "pro-ict-v3.2.8-tiers-alignment-thesis",
   "architecture_version": "DETERMINISTIC_PRO_ICT_CORE_V3_2_8_TIERS_ALIGNMENT_THESIS",
-  "updated_at": "2026-06-21T16:45:50.713400+00:00",
+  "updated_at": "2026-06-21T17:01:14.556892+00:00",
   "analytics": {
     "closed_trades": 0,
     "wins": 0,
