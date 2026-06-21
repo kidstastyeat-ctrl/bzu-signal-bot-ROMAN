@@ -83,6 +83,20 @@
       "macro_risk": "NORMAL",
       "version": "pro-hybrid-confluence-v5.1-aggressive-final",
       "architecture_version": "HYBRID_CONFLUENCE_V5_1_AGGRESSIVE_FINAL"
+    },
+    {
+      "id": "c8cb88dea7",
+      "time": "2026-06-21T18:08:54.082508+00:00",
+      "action": "RISKY_ENTRY",
+      "side": "LONG",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 98,
+      "reason": "Re-entry з пропущеного імпульсу — високий confluence, відкриваємо угоду",
+      "regime": "TREND",
+      "news_bias": "NEUTRAL",
+      "macro_risk": "NORMAL",
+      "version": "pro-hybrid-confluence-v5.1-aggressive-final",
+      "architecture_version": "HYBRID_CONFLUENCE_V5_1_AGGRESSIVE_FINAL"
     }
   ],
   "trades": [],
@@ -97,5 +111,5 @@
     "expectancy_r": 0.0,
     "by_family": {}
   },
-  "updated_at": "2026-06-21T18:06:34.272018+00:00"
+  "updated_at": "2026-06-21T18:08:54.390236+00:00"
 }
