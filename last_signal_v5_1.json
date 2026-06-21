@@ -1,16 +1,16 @@
 {
-  "version": "pro-hybrid-confluence-v5.1-reentry-fixed",
-  "architecture_version": "HYBRID_CONFLUENCE_V5_1_REENTRY_FIXED",
+  "version": "pro-hybrid-confluence-v5.1-final-reentry",
+  "architecture_version": "HYBRID_CONFLUENCE_V5_1_FINAL_REENTRY",
   "active_trade": null,
   "opportunity": {
     "side": "LONG",
     "setup_type": "PULLBACK_CONTINUATION",
     "setup_family": "CONTINUATION",
-    "created_at": "2026-06-21T17:45:52.230239+00:00",
-    "expires_at": "2026-06-22T11:45:52.230240+00:00",
+    "created_at": "2026-06-21T17:57:51.433095+00:00",
+    "expires_at": "2026-06-22T11:57:51.433097+00:00",
     "score": 98,
-    "trigger_level": 82.35,
-    "invalidation_level": 81.9257,
+    "trigger_level": 82.29,
+    "invalidation_level": 81.8858,
     "confirmations": [
       "біля свіжої зони",
       "біля FVG 15m",
@@ -24,28 +24,28 @@
       "ORDER_FLOW_CVD",
       "HTF_CONTEXT"
     ],
-    "execution_lane": "MISSED_IMPULSE_REENTRY",
+    "execution_lane": "STANDARD_CONFIRMED",
     "status": "ARMED",
-    "thesis_key": "LONG|CONTINUATION|PULLBACK_CONTINUATION|823",
-    "thesis": "LONG PULLBACK_CONTINUATION | HTF=LONG | Flow=SHORT CVD=LONG | 3M=SWEEP | News=NEUTRAL",
+    "thesis_key": "LONG|CONTINUATION|PULLBACK_CONTINUATION|822",
+    "thesis": "LONG PULLBACK_CONTINUATION | HTF=LONG | Flow=LONG CVD=SHORT | 3M=SWEEP | News=NEUTRAL",
     "missed_at": ""
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1782063900000,
-    "last_run_processed": 1,
-    "processed_count": 241,
+    "last_scanned_3m_ts": 1782064620000,
+    "last_run_processed": 240,
+    "processed_count": 240,
     "events": {
       "LONG": {
         "side": "LONG",
         "stage": "SWEEP",
         "source": "LIQUIDITY_SWEEP",
         "event_ts": 0,
-        "last_event_ts": 1782063900000,
-        "trigger_level": 82.35,
-        "event_price": 82.35,
-        "invalidation_level": 82.35,
-        "sweep_level": 82.35,
-        "extreme": 82.32,
+        "last_event_ts": 1782064620000,
+        "trigger_level": 82.29,
+        "event_price": 82.29,
+        "invalidation_level": 82.29,
+        "sweep_level": 82.29,
+        "extreme": 82.26,
         "displacement": false,
         "retest_ts": 0,
         "ready_ts": 0,
@@ -55,19 +55,19 @@
         "confirmation_quality": 40,
         "acceptance_quality": 0,
         "retest_quality": 0,
-        "processed_bars": 241
+        "processed_bars": 240
       },
       "SHORT": {
         "side": "SHORT",
         "stage": "SWEEP",
         "source": "LIQUIDITY_SWEEP",
         "event_ts": 0,
-        "last_event_ts": 1782063900000,
-        "trigger_level": 82.35,
-        "event_price": 82.35,
-        "invalidation_level": 82.35,
-        "sweep_level": 82.35,
-        "extreme": 82.34,
+        "last_event_ts": 1782064620000,
+        "trigger_level": 82.29,
+        "event_price": 82.29,
+        "invalidation_level": 82.29,
+        "sweep_level": 82.29,
+        "extreme": 82.31,
         "displacement": false,
         "retest_ts": 0,
         "ready_ts": 0,
@@ -77,23 +77,23 @@
         "confirmation_quality": 40,
         "acceptance_quality": 0,
         "retest_quality": 0,
-        "processed_bars": 241
+        "processed_bars": 240
       }
     }
   },
   "latest_signal": {
-    "id": "81f7b95d77",
-    "time": "2026-06-21T17:45:52.230213+00:00",
+    "id": "10485eb4a1",
+    "time": "2026-06-21T17:57:51.433066+00:00",
     "action": "ARMED",
     "side": "LONG",
     "setup_type": "PULLBACK_CONTINUATION",
     "quality": 98,
-    "reason": "Re-entry з пропущеного імпульсу (теза збережена, чекаємо тригер)",
+    "reason": "Продовження тренду після ICT-відкату сформовано; потрібен свіжий 3M trigger/acceptance",
     "regime": "TREND",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
-    "version": "pro-hybrid-confluence-v5.1-reentry-fixed",
-    "architecture_version": "HYBRID_CONFLUENCE_V5_1_REENTRY_FIXED"
+    "version": "pro-hybrid-confluence-v5.1-final-reentry",
+    "architecture_version": "HYBRID_CONFLUENCE_V5_1_FINAL_REENTRY"
   },
   "last_message_key": "",
   "history": [
@@ -128,7 +128,15 @@
       "quality": 98,
       "price": 82.32,
       "time": "2026-06-21T17:45:52.230231+00:00"
+    },
+    {
+      "type": "ARMED",
+      "side": "LONG",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 98,
+      "price": 82.29,
+      "time": "2026-06-21T17:57:51.433086+00:00"
     }
   ],
-  "updated_at": "2026-06-21T17:45:52.926623+00:00"
+  "updated_at": "2026-06-21T17:57:51.989681+00:00"
 }
