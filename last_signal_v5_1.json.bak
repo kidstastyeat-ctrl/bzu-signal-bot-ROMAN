@@ -20,7 +20,7 @@
     "worst_price": 82.47,
     "thesis_key": "LONG|CONTINUATION|PULLBACK_CONTINUATION|824",
     "thesis": "LONG PULLBACK_CONTINUATION | HTF=LONG | Flow=NEUTRAL CVD=LONG | 3M=SWEEP",
-    "last_checked_3m_ts": 1782068474289,
+    "last_checked_3m_ts": 1782069348143,
     "tp1_hit": false,
     "tp2_hit": false,
     "tp3_hit": false,
@@ -38,21 +38,21 @@
   },
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1782068400000,
+    "last_scanned_3m_ts": 1782069300000,
     "last_run_processed": 5,
-    "processed_count": 258,
+    "processed_count": 263,
     "events": {
       "LONG": {
         "side": "LONG",
         "stage": "SWEEP",
         "source": "LIQUIDITY_SWEEP",
         "event_ts": 0,
-        "last_event_ts": 1782068400000,
+        "last_event_ts": 1782069300000,
         "trigger_level": 82.41,
         "event_price": 82.41,
         "invalidation_level": 82.41,
         "sweep_level": 82.41,
-        "extreme": 83.13,
+        "extreme": 82.92,
         "displacement": false,
         "retest_ts": 0,
         "ready_ts": 0,
@@ -62,19 +62,19 @@
         "confirmation_quality": 40,
         "acceptance_quality": 0,
         "retest_quality": 0,
-        "processed_bars": 258
+        "processed_bars": 263
       },
       "SHORT": {
         "side": "SHORT",
         "stage": "SWEEP",
         "source": "LIQUIDITY_SWEEP",
         "event_ts": 0,
-        "last_event_ts": 1782068400000,
+        "last_event_ts": 1782069300000,
         "trigger_level": 82.41,
         "event_price": 82.41,
         "invalidation_level": 82.41,
         "sweep_level": 82.41,
-        "extreme": 83.2,
+        "extreme": 82.95,
         "displacement": false,
         "retest_ts": 0,
         "ready_ts": 0,
@@ -84,7 +84,7 @@
         "confirmation_quality": 40,
         "acceptance_quality": 0,
         "retest_quality": 0,
-        "processed_bars": 258
+        "processed_bars": 263
       }
     }
   },
@@ -187,7 +187,14 @@
       "action": "HOLD",
       "price": 83.2,
       "time": "2026-06-21T19:01:14.875489+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "HOLD",
+      "price": 82.93,
+      "time": "2026-06-21T19:15:48.666293+00:00"
     }
   ],
-  "updated_at": "2026-06-21T19:01:14.875508+00:00"
+  "updated_at": "2026-06-21T19:15:48.666315+00:00"
 }
