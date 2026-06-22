@@ -1,24 +1,61 @@
 {
   "version": "pro-hybrid-confluence-v6.4",
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
-  "active_trade": null,
+  "active_trade": {
+    "id": "c10ca90005",
+    "side": "SHORT",
+    "setup_type": "SWEEP_RECLAIM",
+    "setup_family": "LIQUIDITY_RECOVERY",
+    "opened_at": "2026-06-22T08:27:49.145892+00:00",
+    "entry": 79.18,
+    "stop_initial": 79.6998,
+    "stop_current": 79.6998,
+    "structural_invalidation": 79.6998,
+    "tp1": 78.1404,
+    "tp2": 77.8025,
+    "tp3": 77.3347,
+    "quality": 86,
+    "position_risk_pct": 0.3,
+    "best_price": 79.18,
+    "worst_price": 79.18,
+    "thesis_key": "SHORT|LIQUIDITY_RECOVERY|SWEEP_RECLAIM|791",
+    "thesis": "SHORT SWEEP_RECLAIM | HTF=NEUTRAL | Flow=NEUTRAL CVD=NEUTRAL | 3M=READY",
+    "last_checked_3m_ts": 0,
+    "tp1_hit": false,
+    "tp2_hit": false,
+    "tp3_hit": false,
+    "tp1_stop_locked": false,
+    "tp2_stop_locked": false,
+    "tp1_locked_stop": 0.0,
+    "tp2_locked_stop": 0.0,
+    "status": "OPEN",
+    "last_action": "ENTRY",
+    "notes": [],
+    "entry_integrity_score": 100,
+    "entry_fail_streak": 0,
+    "mfe_giveback_streak": 0,
+    "mfe_giveback_last_state": "OK",
+    "trigger_level": 83.06,
+    "opened_regime": "TRANSITION",
+    "entry_level": "RISKY_ENTRY"
+  },
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1782116640000,
-    "last_run_processed": 3,
-    "processed_count": 456,
+    "last_scanned_3m_ts": 1782116820000,
+    "last_run_processed": 1,
+    "processed_count": 457,
     "events": {
       "LONG": {
         "side": "LONG",
         "stage": "READY",
         "source": "LIQUIDITY_SWEEP",
         "event_ts": 0,
-        "last_event_ts": 1782116640000,
+        "last_event_ts": 1782116820000,
         "trigger_level": 83.06,
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 79.34,
+        "extreme": 79.21,
         "displacement": false,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -28,19 +65,19 @@
         "confirmation_quality": 40,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 456
+        "processed_bars": 457
       },
       "SHORT": {
         "side": "SHORT",
         "stage": "READY",
         "source": "LIQUIDITY_SWEEP",
         "event_ts": 0,
-        "last_event_ts": 1782116640000,
+        "last_event_ts": 1782116820000,
         "trigger_level": 83.06,
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 79.48,
+        "extreme": 79.36,
         "displacement": false,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -50,24 +87,24 @@
         "confirmation_quality": 40,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 456
+        "processed_bars": 457
       }
     }
   },
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 4,
+    "stable_count": 5,
     "pending_count": 0,
-    "updated_at": "2026-06-22T08:26:14.337209+00:00"
+    "updated_at": "2026-06-22T08:27:49.145458+00:00"
   },
   "latest_signal": {
-    "id": "415d93fe91",
-    "time": "2026-06-21T22:05:23.924949+00:00",
+    "id": "019314e161",
+    "time": "2026-06-22T08:27:49.145860+00:00",
     "action": "RISKY_ENTRY",
     "side": "SHORT",
     "setup_type": "SWEEP_RECLAIM",
-    "quality": 94,
+    "quality": 86,
     "reason": "Ризикований ранній вхід: Зняття ліквідності + повернення за рівень — NORMAL profile",
     "regime": "TRANSITION",
     "news_bias": "NEUTRAL",
@@ -400,7 +437,15 @@
       "action": "STOP",
       "price": 79.36,
       "time": "2026-06-22T08:26:14.786115+00:00"
+    },
+    {
+      "type": "RISKY_ENTRY",
+      "side": "SHORT",
+      "setup_type": "SWEEP_RECLAIM",
+      "quality": 86,
+      "price": 79.18,
+      "time": "2026-06-22T08:27:49.145877+00:00"
     }
   ],
-  "updated_at": "2026-06-22T08:26:14.786137+00:00"
+  "updated_at": "2026-06-22T08:27:49.483704+00:00"
 }
