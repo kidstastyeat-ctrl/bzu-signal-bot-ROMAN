@@ -1,24 +1,61 @@
 {
   "version": "pro-hybrid-confluence-v6.4",
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
-  "active_trade": null,
+  "active_trade": {
+    "id": "5bea236d2c",
+    "side": "LONG",
+    "setup_type": "SWEEP_RECLAIM",
+    "setup_family": "LIQUIDITY_RECOVERY",
+    "opened_at": "2026-06-22T15:01:27.011157+00:00",
+    "entry": 77.57,
+    "stop_initial": 76.9772,
+    "stop_current": 76.9772,
+    "structural_invalidation": 76.9772,
+    "tp1": 78.7556,
+    "tp2": 79.1409,
+    "tp3": 79.6744,
+    "quality": 86,
+    "position_risk_pct": 0.3,
+    "best_price": 77.57,
+    "worst_price": 77.57,
+    "thesis_key": "LONG|LIQUIDITY_RECOVERY|SWEEP_RECLAIM|775",
+    "thesis": "LONG SWEEP_RECLAIM | HTF=NEUTRAL | Flow=NEUTRAL CVD=NEUTRAL | 3M=READY",
+    "last_checked_3m_ts": 0,
+    "tp1_hit": false,
+    "tp2_hit": false,
+    "tp3_hit": false,
+    "tp1_stop_locked": false,
+    "tp2_stop_locked": false,
+    "tp1_locked_stop": 0.0,
+    "tp2_locked_stop": 0.0,
+    "status": "OPEN",
+    "last_action": "ENTRY",
+    "notes": [],
+    "entry_integrity_score": 100,
+    "entry_fail_streak": 0,
+    "mfe_giveback_streak": 0,
+    "mfe_giveback_last_state": "OK",
+    "trigger_level": 83.06,
+    "opened_regime": "TRANSITION",
+    "entry_level": "RISKY_ENTRY"
+  },
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1782139500000,
+    "last_scanned_3m_ts": 1782140400000,
     "last_run_processed": 5,
-    "processed_count": 583,
+    "processed_count": 588,
     "events": {
       "LONG": {
         "side": "LONG",
         "stage": "READY",
         "source": "LIQUIDITY_SWEEP",
         "event_ts": 0,
-        "last_event_ts": 1782139500000,
+        "last_event_ts": 1782140400000,
         "trigger_level": 83.06,
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 77.93,
+        "extreme": 77.66,
         "displacement": false,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -28,19 +65,19 @@
         "confirmation_quality": 40,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 583
+        "processed_bars": 588
       },
       "SHORT": {
         "side": "SHORT",
         "stage": "READY",
         "source": "LIQUIDITY_SWEEP",
         "event_ts": 0,
-        "last_event_ts": 1782139500000,
+        "last_event_ts": 1782140400000,
         "trigger_level": 83.06,
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 78.01,
+        "extreme": 77.84,
         "displacement": false,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -50,24 +87,24 @@
         "confirmation_quality": 40,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 583
+        "processed_bars": 588
       }
     }
   },
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 11,
+    "stable_count": 12,
     "pending_count": 0,
-    "updated_at": "2026-06-22T14:45:57.411949+00:00"
+    "updated_at": "2026-06-22T15:01:27.010722+00:00"
   },
   "latest_signal": {
-    "id": "670032f60f",
-    "time": "2026-06-22T14:01:20.478951+00:00",
+    "id": "dff909d98e",
+    "time": "2026-06-22T15:01:27.011125+00:00",
     "action": "RISKY_ENTRY",
-    "side": "SHORT",
+    "side": "LONG",
     "setup_type": "SWEEP_RECLAIM",
-    "quality": 77,
+    "quality": 86,
     "reason": "Ризикований ранній вхід: Зняття ліквідності + повернення за рівень — NORMAL profile",
     "regime": "TRANSITION",
     "news_bias": "NEUTRAL",
@@ -607,7 +644,15 @@
       "action": "STOP",
       "price": 77.81,
       "time": "2026-06-22T14:45:58.010255+00:00"
+    },
+    {
+      "type": "RISKY_ENTRY",
+      "side": "LONG",
+      "setup_type": "SWEEP_RECLAIM",
+      "quality": 86,
+      "price": 77.57,
+      "time": "2026-06-22T15:01:27.011142+00:00"
     }
   ],
-  "updated_at": "2026-06-22T14:45:58.010285+00:00"
+  "updated_at": "2026-06-22T15:01:27.442182+00:00"
 }
