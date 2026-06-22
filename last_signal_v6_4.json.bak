@@ -20,7 +20,7 @@
     "worst_price": 79.18,
     "thesis_key": "SHORT|LIQUIDITY_RECOVERY|SWEEP_RECLAIM|791",
     "thesis": "SHORT SWEEP_RECLAIM | HTF=NEUTRAL | Flow=NEUTRAL CVD=NEUTRAL | 3M=READY",
-    "last_checked_3m_ts": 0,
+    "last_checked_3m_ts": 1782116892790,
     "tp1_hit": false,
     "tp2_hit": false,
     "tp3_hit": false,
@@ -29,7 +29,7 @@
     "tp1_locked_stop": 0.0,
     "tp2_locked_stop": 0.0,
     "status": "OPEN",
-    "last_action": "ENTRY",
+    "last_action": "HOLD",
     "notes": [],
     "entry_integrity_score": 100,
     "entry_fail_streak": 0,
@@ -94,9 +94,9 @@
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 5,
+    "stable_count": 6,
     "pending_count": 0,
-    "updated_at": "2026-06-22T08:27:49.145458+00:00"
+    "updated_at": "2026-06-22T08:28:12.790411+00:00"
   },
   "latest_signal": {
     "id": "019314e161",
@@ -445,7 +445,14 @@
       "quality": 86,
       "price": 79.18,
       "time": "2026-06-22T08:27:49.145877+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "HOLD",
+      "price": 79.18,
+      "time": "2026-06-22T08:28:13.245101+00:00"
     }
   ],
-  "updated_at": "2026-06-22T08:27:49.483704+00:00"
+  "updated_at": "2026-06-22T08:28:13.245121+00:00"
 }
