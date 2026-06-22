@@ -20,7 +20,7 @@
     "worst_price": 77.03,
     "thesis_key": "LONG|LIQUIDITY_RECOVERY|SWEEP_RECLAIM|775",
     "thesis": "LONG SWEEP_RECLAIM | HTF=NEUTRAL | Flow=NEUTRAL CVD=NEUTRAL | 3M=READY",
-    "last_checked_3m_ts": 1782145063668,
+    "last_checked_3m_ts": 1782145871821,
     "tp1_hit": false,
     "tp2_hit": false,
     "tp3_hit": false,
@@ -41,21 +41,21 @@
   },
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1782144900000,
+    "last_scanned_3m_ts": 1782145800000,
     "last_run_processed": 5,
-    "processed_count": 613,
+    "processed_count": 618,
     "events": {
       "LONG": {
         "side": "LONG",
         "stage": "READY",
         "source": "LIQUIDITY_SWEEP",
         "event_ts": 0,
-        "last_event_ts": 1782144900000,
+        "last_event_ts": 1782145800000,
         "trigger_level": 83.06,
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 77.42,
+        "extreme": 77.58,
         "displacement": false,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -65,19 +65,19 @@
         "confirmation_quality": 40,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 613
+        "processed_bars": 618
       },
       "SHORT": {
         "side": "SHORT",
         "stage": "READY",
         "source": "LIQUIDITY_SWEEP",
         "event_ts": 0,
-        "last_event_ts": 1782144900000,
+        "last_event_ts": 1782145800000,
         "trigger_level": 83.06,
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 77.49,
+        "extreme": 77.64,
         "displacement": false,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -87,16 +87,16 @@
         "confirmation_quality": 40,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 613
+        "processed_bars": 618
       }
     }
   },
   "regime_memory": {
     "type": "NORMAL",
-    "pending_type": "",
-    "stable_count": 3,
-    "pending_count": 0,
-    "updated_at": "2026-06-22T16:17:43.667929+00:00"
+    "pending_type": "RANGE_COMPRESSION",
+    "stable_count": 0,
+    "pending_count": 1,
+    "updated_at": "2026-06-22T16:31:11.821389+00:00"
   },
   "latest_signal": {
     "id": "dff909d98e",
@@ -694,7 +694,14 @@
       "action": "HOLD",
       "price": 77.38,
       "time": "2026-06-22T16:17:43.993118+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "HOLD",
+      "price": 77.51,
+      "time": "2026-06-22T16:31:12.146806+00:00"
     }
   ],
-  "updated_at": "2026-06-22T16:17:43.993147+00:00"
+  "updated_at": "2026-06-22T16:31:12.146837+00:00"
 }
