@@ -20,7 +20,7 @@
     "worst_price": 77.03,
     "thesis_key": "LONG|LIQUIDITY_RECOVERY|SWEEP_RECLAIM|775",
     "thesis": "LONG SWEEP_RECLAIM | HTF=NEUTRAL | Flow=NEUTRAL CVD=NEUTRAL | 3M=READY",
-    "last_checked_3m_ts": 1782167307025,
+    "last_checked_3m_ts": 1782167469124,
     "tp1_hit": false,
     "tp2_hit": false,
     "tp3_hit": false,
@@ -33,7 +33,7 @@
     "notes": [],
     "entry_integrity_score": 100,
     "entry_fail_streak": 0,
-    "mfe_giveback_streak": 9,
+    "mfe_giveback_streak": 10,
     "mfe_giveback_last_state": "OK",
     "trigger_level": 83.06,
     "opened_regime": "TRANSITION",
@@ -41,16 +41,16 @@
   },
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1782167220000,
-    "last_run_processed": 4,
-    "processed_count": 737,
+    "last_scanned_3m_ts": 1782167400000,
+    "last_run_processed": 1,
+    "processed_count": 738,
     "events": {
       "LONG": {
         "side": "LONG",
         "stage": "READY",
         "source": "LIQUIDITY_SWEEP",
         "event_ts": 0,
-        "last_event_ts": 1782167220000,
+        "last_event_ts": 1782167400000,
         "trigger_level": 83.06,
         "event_price": 83.06,
         "invalidation_level": 83.06,
@@ -65,19 +65,19 @@
         "confirmation_quality": 40,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 737
+        "processed_bars": 738
       },
       "SHORT": {
         "side": "SHORT",
         "stage": "READY",
         "source": "LIQUIDITY_SWEEP",
         "event_ts": 0,
-        "last_event_ts": 1782167220000,
+        "last_event_ts": 1782167400000,
         "trigger_level": 83.06,
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 77.94,
+        "extreme": 77.93,
         "displacement": false,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -87,16 +87,16 @@
         "confirmation_quality": 40,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 737
+        "processed_bars": 738
       }
     }
   },
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 8,
+    "stable_count": 9,
     "pending_count": 0,
-    "updated_at": "2026-06-22T22:28:27.025483+00:00"
+    "updated_at": "2026-06-22T22:31:09.124746+00:00"
   },
   "latest_signal": {
     "id": "dff909d98e",
@@ -869,7 +869,14 @@
       "action": "PROTECT",
       "price": 77.79,
       "time": "2026-06-22T22:28:27.351121+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "PROTECT",
+      "price": 77.78,
+      "time": "2026-06-22T22:31:09.447332+00:00"
     }
   ],
-  "updated_at": "2026-06-22T22:28:27.351152+00:00"
+  "updated_at": "2026-06-22T22:31:09.447356+00:00"
 }
