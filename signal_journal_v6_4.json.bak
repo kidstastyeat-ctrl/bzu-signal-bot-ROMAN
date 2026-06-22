@@ -391,6 +391,13 @@
       "action": "PROTECT",
       "side": "SHORT",
       "price": 78.88
+    },
+    {
+      "time": "2026-06-22T09:31:08.944199+00:00",
+      "type": "FOLLOW",
+      "action": "STOP",
+      "side": "SHORT",
+      "price": 78.84
     }
   ],
   "trades": [
@@ -407,18 +414,25 @@
       "setup_type": "SWEEP_RECLAIM",
       "result_pct": 2.9997535731887672,
       "mfe_pct": 3.314440611138489
+    },
+    {
+      "id": "c10ca90005",
+      "side": "SHORT",
+      "setup_type": "SWEEP_RECLAIM",
+      "result_pct": 0.20611265471078977,
+      "mfe_pct": 0.6062136903258448
     }
   ],
   "version": "pro-hybrid-confluence-v6.4",
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
   "analytics": {
-    "closed_trades": 2,
-    "wins": 1,
+    "closed_trades": 3,
+    "wins": 2,
     "losses": 1,
-    "win_rate": 50.0,
+    "win_rate": 66.7,
     "net_r": 0.01,
-    "expectancy_r": 0.005,
+    "expectancy_r": 0.003,
     "by_family": {}
   },
-  "updated_at": "2026-06-22T09:15:51.671877+00:00"
+  "updated_at": "2026-06-22T09:31:08.945847+00:00"
 }

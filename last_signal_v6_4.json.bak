@@ -1,61 +1,24 @@
 {
   "version": "pro-hybrid-confluence-v6.4",
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
-  "active_trade": {
-    "id": "c10ca90005",
-    "side": "SHORT",
-    "setup_type": "SWEEP_RECLAIM",
-    "setup_family": "LIQUIDITY_RECOVERY",
-    "opened_at": "2026-06-22T08:27:49.145892+00:00",
-    "entry": 79.18,
-    "stop_initial": 79.6998,
-    "stop_current": 79.0168,
-    "structural_invalidation": 79.6998,
-    "tp1": 78.1404,
-    "tp2": 77.8025,
-    "tp3": 77.3347,
-    "quality": 86,
-    "position_risk_pct": 0.3,
-    "best_price": 78.7,
-    "worst_price": 79.18,
-    "thesis_key": "SHORT|LIQUIDITY_RECOVERY|SWEEP_RECLAIM|791",
-    "thesis": "SHORT SWEEP_RECLAIM | HTF=NEUTRAL | Flow=NEUTRAL CVD=NEUTRAL | 3M=READY",
-    "last_checked_3m_ts": 1782119751027,
-    "tp1_hit": false,
-    "tp2_hit": false,
-    "tp3_hit": false,
-    "tp1_stop_locked": false,
-    "tp2_stop_locked": false,
-    "tp1_locked_stop": 0.0,
-    "tp2_locked_stop": 0.0,
-    "status": "OPEN",
-    "last_action": "PROTECT",
-    "notes": [],
-    "entry_integrity_score": 100,
-    "entry_fail_streak": 0,
-    "mfe_giveback_streak": 2,
-    "mfe_giveback_last_state": "OK",
-    "trigger_level": 83.06,
-    "opened_regime": "TRANSITION",
-    "entry_level": "RISKY_ENTRY"
-  },
+  "active_trade": null,
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1782119700000,
+    "last_scanned_3m_ts": 1782120600000,
     "last_run_processed": 5,
-    "processed_count": 473,
+    "processed_count": 478,
     "events": {
       "LONG": {
         "side": "LONG",
         "stage": "READY",
         "source": "LIQUIDITY_SWEEP",
         "event_ts": 0,
-        "last_event_ts": 1782119700000,
+        "last_event_ts": 1782120600000,
         "trigger_level": 83.06,
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 78.91,
+        "extreme": 78.88,
         "displacement": false,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -65,19 +28,19 @@
         "confirmation_quality": 40,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 473
+        "processed_bars": 478
       },
       "SHORT": {
         "side": "SHORT",
         "stage": "READY",
         "source": "LIQUIDITY_SWEEP",
         "event_ts": 0,
-        "last_event_ts": 1782119700000,
+        "last_event_ts": 1782120600000,
         "trigger_level": 83.06,
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 79.01,
+        "extreme": 79.02,
         "displacement": false,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -87,16 +50,16 @@
         "confirmation_quality": 40,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 473
+        "processed_bars": 478
       }
     }
   },
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
-    "pending_type": "NORMAL",
-    "stable_count": 0,
-    "pending_count": 1,
-    "updated_at": "2026-06-22T09:15:51.027389+00:00"
+    "pending_type": "",
+    "stable_count": 1,
+    "pending_count": 0,
+    "updated_at": "2026-06-22T09:31:08.368203+00:00"
   },
   "latest_signal": {
     "id": "019314e161",
@@ -487,7 +450,14 @@
       "action": "PROTECT",
       "price": 78.88,
       "time": "2026-06-22T09:15:51.670256+00:00"
+    },
+    {
+      "type": "CLOSE",
+      "side": "SHORT",
+      "action": "STOP",
+      "price": 78.84,
+      "time": "2026-06-22T09:31:08.944180+00:00"
     }
   ],
-  "updated_at": "2026-06-22T09:15:51.670275+00:00"
+  "updated_at": "2026-06-22T09:31:08.944203+00:00"
 }
