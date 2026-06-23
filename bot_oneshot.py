@@ -1488,6 +1488,7 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
     cvd = context.get("cvd", {})
     regime = context["regime"]
     scan_events = context.get("scan_3m_events", {})
+    c15 = (context.get("candles", {}) or {}).get("15m", [])
 
     params = get_adaptive_params(regime)
 
