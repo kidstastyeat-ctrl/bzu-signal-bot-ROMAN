@@ -17,10 +17,10 @@
     "quality": 77,
     "position_risk_pct": 0.3,
     "best_price": 77.4,
-    "worst_price": 77.42,
+    "worst_price": 77.44,
     "thesis_key": "SHORT|EXPANSION|BREAKOUT_RETEST|774",
     "thesis": "SHORT BREAKOUT_RETEST | HTF=NEUTRAL | Flow=NEUTRAL CVD=NEUTRAL | 3M=READY",
-    "last_checked_3m_ts": 1782216049664,
+    "last_checked_3m_ts": 1782216081743,
     "tp1_hit": false,
     "tp2_hit": false,
     "tp3_hit": false,
@@ -94,9 +94,9 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 2,
+    "stable_count": 3,
     "pending_count": 0,
-    "updated_at": "2026-06-23T12:00:49.664543+00:00"
+    "updated_at": "2026-06-23T12:01:21.743803+00:00"
   },
   "latest_signal": {
     "id": "049458f401",
@@ -1302,7 +1302,14 @@
       "action": "HOLD",
       "price": 77.42,
       "time": "2026-06-23T12:00:50.041023+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "HOLD",
+      "price": 77.44,
+      "time": "2026-06-23T12:01:22.093465+00:00"
     }
   ],
-  "updated_at": "2026-06-23T12:00:50.041204+00:00"
+  "updated_at": "2026-06-23T12:01:22.093646+00:00"
 }
