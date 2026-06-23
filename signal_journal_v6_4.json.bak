@@ -1427,6 +1427,13 @@
       "action": "HOLD",
       "side": "LONG",
       "price": 76.75
+    },
+    {
+      "time": "2026-06-23T16:45:58.776799+00:00",
+      "type": "FOLLOW",
+      "action": "HOLD",
+      "side": "LONG",
+      "price": 76.68
     }
   ],
   "trades": [
@@ -1540,5 +1547,5 @@
     "expectancy_r": -0.001,
     "by_family": {}
   },
-  "updated_at": "2026-06-23T16:31:09.127441+00:00"
+  "updated_at": "2026-06-23T16:45:58.780151+00:00"
 }
