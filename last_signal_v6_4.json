@@ -6,17 +6,17 @@
     "side": "SHORT",
     "setup_type": "PULLBACK_CONTINUATION",
     "setup_family": "CONTINUATION",
-    "created_at": "2026-06-24T20:01:20.919353+00:00",
-    "expires_at": "2026-06-25T14:01:20.919355+00:00",
+    "created_at": "2026-06-24T20:15:47.562271+00:00",
+    "expires_at": "2026-06-25T14:15:47.562273+00:00",
     "score": 62,
     "trigger_level": 83.06,
-    "invalidation_level": 73.89,
+    "invalidation_level": 73.683,
     "confirmations": [
       "біля свіжої зони",
       "біля OB 15m",
       "біля OB 15m",
       "біля FVG 15m",
-      "біля FVG 15m"
+      "15M структура підтримує"
     ],
     "evidence_families": [
       "ICT_LOCATION",
@@ -24,14 +24,14 @@
     ],
     "execution_lane": "STANDARD_CONFIRMED",
     "status": "ARMED",
-    "thesis_key": "SHORT|CONTINUATION|PULLBACK_CONTINUATION|735",
+    "thesis_key": "SHORT|CONTINUATION|PULLBACK_CONTINUATION|733",
     "thesis": "SHORT PULLBACK_CONTINUATION | HTF=NEUTRAL | 3M=READY",
     "missed_at": ""
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1782331200000,
+    "last_scanned_3m_ts": 1782332100000,
     "last_run_processed": 5,
-    "processed_count": 1648,
+    "processed_count": 1653,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -43,7 +43,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 73.64,
+        "extreme": 73.45,
         "displacement": false,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -53,15 +53,15 @@
         "confirmation_quality": 40,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 1648,
+        "processed_bars": 1653,
         "strong_displacement": false,
         "retest": false,
         "mitigation": false,
         "chase_risk": false,
         "impulse_strength": {
-          "score": 1,
-          "level": "NORMAL",
-          "body_strength": 1.0,
+          "score": 0,
+          "level": "WEAK",
+          "body_strength": 0.0,
           "consecutive": 0
         }
       },
@@ -75,7 +75,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 73.68,
+        "extreme": 73.47,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -85,16 +85,16 @@
         "confirmation_quality": 52,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 1648,
+        "processed_bars": 1653,
         "strong_displacement": false,
         "retest": false,
         "mitigation": false,
         "chase_risk": false,
         "impulse_strength": {
-          "score": 1,
-          "level": "NORMAL",
-          "body_strength": 1.0,
-          "consecutive": 1
+          "score": 0,
+          "level": "WEAK",
+          "body_strength": 0.0,
+          "consecutive": 0
         }
       }
     }
@@ -102,13 +102,13 @@
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 5,
+    "stable_count": 6,
     "pending_count": 0,
-    "updated_at": "2026-06-24T20:01:20.918898+00:00"
+    "updated_at": "2026-06-24T20:15:47.561712+00:00"
   },
   "latest_signal": {
-    "id": "4ecd926c6e",
-    "time": "2026-06-24T20:01:20.919329+00:00",
+    "id": "d2e1dcbcbf",
+    "time": "2026-06-24T20:15:47.562241+00:00",
     "action": "ARMED",
     "side": "SHORT",
     "setup_type": "PULLBACK_CONTINUATION",
@@ -122,13 +122,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "PROTECT",
-      "price": 77.75,
-      "time": "2026-06-22T21:45:48.133288+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1591,7 +1584,15 @@
       "quality": 62,
       "price": 73.54,
       "time": "2026-06-24T20:01:20.919345+00:00"
+    },
+    {
+      "type": "ARMED",
+      "side": "SHORT",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 62,
+      "price": 73.34,
+      "time": "2026-06-24T20:15:47.562260+00:00"
     }
   ],
-  "updated_at": "2026-06-24T20:01:21.362258+00:00"
+  "updated_at": "2026-06-24T20:15:47.870736+00:00"
 }
