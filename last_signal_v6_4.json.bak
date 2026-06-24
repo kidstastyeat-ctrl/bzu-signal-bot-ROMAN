@@ -6,8 +6,8 @@
     "side": "SHORT",
     "setup_type": "PULLBACK_CONTINUATION",
     "setup_family": "CONTINUATION",
-    "created_at": "2026-06-24T15:45:50.098129+00:00",
-    "expires_at": "2026-06-25T09:45:50.098131+00:00",
+    "created_at": "2026-06-24T16:01:17.136686+00:00",
+    "expires_at": "2026-06-25T10:01:17.136688+00:00",
     "score": 61,
     "trigger_level": 83.06,
     "invalidation_level": 74.5745,
@@ -23,16 +23,16 @@
       "PRICE_STRUCTURE",
       "FORWARD_ICT_ZONE"
     ],
-    "execution_lane": "STANDARD_CONFIRMED",
+    "execution_lane": "MISSED_IMPULSE_REENTRY",
     "status": "ARMED",
     "thesis_key": "SHORT|CONTINUATION|PULLBACK_CONTINUATION|740",
     "thesis": "SHORT PULLBACK_CONTINUATION | HTF=NEUTRAL | 3M=READY",
     "missed_at": ""
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1782315900000,
+    "last_scanned_3m_ts": 1782316800000,
     "last_run_processed": 5,
-    "processed_count": 1563,
+    "processed_count": 1568,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -44,7 +44,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 74.05,
+        "extreme": 74.18,
         "displacement": false,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -54,16 +54,16 @@
         "confirmation_quality": 40,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 1563,
+        "processed_bars": 1568,
         "strong_displacement": false,
         "retest": false,
         "mitigation": false,
         "chase_risk": false,
         "impulse_strength": {
-          "score": 1,
-          "level": "NORMAL",
-          "body_strength": 1.0,
-          "consecutive": 1
+          "score": 0,
+          "level": "WEAK",
+          "body_strength": 0.57,
+          "consecutive": 0
         }
       },
       "SHORT": {
@@ -76,7 +76,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 74.11,
+        "extreme": 74.25,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -86,15 +86,15 @@
         "confirmation_quality": 52,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 1563,
+        "processed_bars": 1568,
         "strong_displacement": false,
         "retest": false,
         "mitigation": false,
         "chase_risk": false,
         "impulse_strength": {
-          "score": 1,
-          "level": "NORMAL",
-          "body_strength": 1.0,
+          "score": 0,
+          "level": "WEAK",
+          "body_strength": 0.57,
           "consecutive": 0
         }
       }
@@ -102,20 +102,20 @@
   },
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
-    "pending_type": "NORMAL",
+    "pending_type": "RANGE_EDGE",
     "stable_count": 0,
     "pending_count": 1,
-    "updated_at": "2026-06-24T15:45:50.097570+00:00"
+    "updated_at": "2026-06-24T16:01:17.136192+00:00"
   },
   "latest_signal": {
-    "id": "53e1c2ba26",
-    "time": "2026-06-24T15:45:50.098100+00:00",
+    "id": "024e80a36d",
+    "time": "2026-06-24T16:01:17.136660+00:00",
     "action": "ARMED",
     "side": "SHORT",
     "setup_type": "PULLBACK_CONTINUATION",
     "quality": 61,
-    "reason": "Продовження тренду після ICT-відкату сформовано; gate v6: WATCH | NORMAL",
-    "regime": "TRANSITION",
+    "reason": "Re-entry з пропущеного імпульсу — сформовано сигнал, чекаємо входу",
+    "regime": "RANGE",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
     "version": "pro-hybrid-confluence-v6.4",
@@ -123,13 +123,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 77.35,
-      "time": "2026-06-22T17:15:54.268852+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1583,7 +1576,15 @@
       "quality": 61,
       "price": 74.01,
       "time": "2026-06-24T15:45:50.098118+00:00"
+    },
+    {
+      "type": "ARMED",
+      "side": "SHORT",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 61,
+      "price": 74.12,
+      "time": "2026-06-24T16:01:17.136676+00:00"
     }
   ],
-  "updated_at": "2026-06-24T15:45:50.429752+00:00"
+  "updated_at": "2026-06-24T16:01:17.459075+00:00"
 }
