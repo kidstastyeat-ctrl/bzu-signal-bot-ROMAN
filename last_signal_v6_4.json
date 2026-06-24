@@ -6,17 +6,16 @@
     "side": "SHORT",
     "setup_type": "PULLBACK_CONTINUATION",
     "setup_family": "CONTINUATION",
-    "created_at": "2026-06-24T13:45:50.602630+00:00",
-    "expires_at": "2026-06-25T07:45:50.602632+00:00",
+    "created_at": "2026-06-24T14:01:27.531843+00:00",
+    "expires_at": "2026-06-25T08:01:27.531845+00:00",
     "score": 62,
     "trigger_level": 83.06,
-    "invalidation_level": 74.3263,
+    "invalidation_level": 74.0557,
     "confirmations": [
       "біля свіжої зони",
       "біля OB 15m",
-      "біля OB 15m",
-      "біля FVG 15m",
-      "15M структура підтримує"
+      "15M структура підтримує",
+      "+5 балів: структура узгоджена з 15M bias"
     ],
     "evidence_families": [
       "ICT_LOCATION",
@@ -24,14 +23,14 @@
     ],
     "execution_lane": "STANDARD_CONFIRMED",
     "status": "ARMED",
-    "thesis_key": "SHORT|CONTINUATION|PULLBACK_CONTINUATION|737",
+    "thesis_key": "SHORT|CONTINUATION|PULLBACK_CONTINUATION|735",
     "thesis": "SHORT PULLBACK_CONTINUATION | HTF=NEUTRAL | 3M=READY",
     "missed_at": ""
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1782308700000,
+    "last_scanned_3m_ts": 1782309600000,
     "last_run_processed": 5,
-    "processed_count": 1523,
+    "processed_count": 1528,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -43,7 +42,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 73.83,
+        "extreme": 73.58,
         "displacement": false,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -53,16 +52,16 @@
         "confirmation_quality": 40,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 1523,
+        "processed_bars": 1528,
         "strong_displacement": false,
         "retest": false,
         "mitigation": false,
         "chase_risk": false,
         "impulse_strength": {
-          "score": 1,
-          "level": "NORMAL",
-          "body_strength": 0.95,
-          "consecutive": 1
+          "score": 0,
+          "level": "WEAK",
+          "body_strength": 0.53,
+          "consecutive": 0
         }
       },
       "SHORT": {
@@ -75,7 +74,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 74.05,
+        "extreme": 73.75,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -85,15 +84,15 @@
         "confirmation_quality": 52,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 1523,
+        "processed_bars": 1528,
         "strong_displacement": false,
         "retest": false,
         "mitigation": false,
         "chase_risk": false,
         "impulse_strength": {
-          "score": 1,
-          "level": "NORMAL",
-          "body_strength": 0.95,
+          "score": 0,
+          "level": "WEAK",
+          "body_strength": 0.53,
           "consecutive": 0
         }
       }
@@ -102,13 +101,13 @@
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 9,
+    "stable_count": 10,
     "pending_count": 0,
-    "updated_at": "2026-06-24T13:45:50.602046+00:00"
+    "updated_at": "2026-06-24T14:01:27.531259+00:00"
   },
   "latest_signal": {
-    "id": "5d0a321cd9",
-    "time": "2026-06-24T13:45:50.602602+00:00",
+    "id": "a62b0c6ed8",
+    "time": "2026-06-24T14:01:27.531812+00:00",
     "action": "ARMED",
     "side": "SHORT",
     "setup_type": "PULLBACK_CONTINUATION",
@@ -122,13 +121,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 77.32,
-      "time": "2026-06-22T15:31:10.349453+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1574,7 +1566,15 @@
       "quality": 62,
       "price": 73.79,
       "time": "2026-06-24T13:45:50.602620+00:00"
+    },
+    {
+      "type": "ARMED",
+      "side": "SHORT",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 62,
+      "price": 73.51,
+      "time": "2026-06-24T14:01:27.531831+00:00"
     }
   ],
-  "updated_at": "2026-06-24T13:45:51.243869+00:00"
+  "updated_at": "2026-06-24T14:01:27.862186+00:00"
 }
