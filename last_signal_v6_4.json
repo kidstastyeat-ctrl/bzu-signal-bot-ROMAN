@@ -4,9 +4,9 @@
   "active_trade": null,
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1782412200000,
-    "last_run_processed": 1,
-    "processed_count": 2098,
+    "last_scanned_3m_ts": 1782413100000,
+    "last_run_processed": 5,
+    "processed_count": 2103,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -18,7 +18,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 75.64,
+        "extreme": 75.71,
         "displacement": false,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -28,7 +28,7 @@
         "confirmation_quality": 40,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 2098,
+        "processed_bars": 2103,
         "strong_displacement": false,
         "retest": false,
         "mitigation": false,
@@ -50,7 +50,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 75.78,
+        "extreme": 75.73,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -60,7 +60,7 @@
         "confirmation_quality": 67,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 2098,
+        "processed_bars": 2103,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -77,18 +77,18 @@
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 3,
+    "stable_count": 4,
     "pending_count": 0,
-    "updated_at": "2026-06-25T18:30:59.202976+00:00"
+    "updated_at": "2026-06-25T18:45:45.944635+00:00"
   },
   "latest_signal": {
-    "id": "24a54b8a85",
-    "time": "2026-06-25T18:01:15.181702+00:00",
-    "action": "RISKY_ENTRY",
-    "side": "SHORT",
+    "id": "31f752a88f",
+    "time": "2026-06-25T18:45:45.945649+00:00",
+    "action": "NO_SETUP",
+    "side": "LONG",
     "setup_type": "PULLBACK_CONTINUATION",
-    "quality": 69,
-    "reason": "Ризикований ранній вхід: Продовження тренду після ICT-відкату — NORMAL profile",
+    "quality": 52,
+    "reason": "Професійний сетап не пройшов gate'и якості",
     "regime": "TRANSITION",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
@@ -97,13 +97,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 76.92,
-      "time": "2026-06-23T18:31:12.347947+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1623,7 +1616,15 @@
       "action": "STOP",
       "price": 75.59,
       "time": "2026-06-25T18:30:59.578791+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "LONG",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 52,
+      "price": 75.63,
+      "time": "2026-06-25T18:45:45.945663+00:00"
     }
   ],
-  "updated_at": "2026-06-25T18:30:59.578982+00:00"
+  "updated_at": "2026-06-25T18:45:46.388620+00:00"
 }
