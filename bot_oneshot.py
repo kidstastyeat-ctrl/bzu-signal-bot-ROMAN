@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
-BZU Professional Hybrid Confluence Signal Bot v6.5 (Pro ICT Edition)
+BZU Professional Hybrid Confluence Signal Bot v6.6 (Time-Warp Edition)
 ================================================================================
-Виправлення v6.5:
+Виправлення v6.6:
+- Інновація: Time-Warp Validation (Ретроспективний 3M Пул-Аналіз)
 - Інтеграція Premium/Discount (PD Arrays)
-- SMT Divergence (BTC)
+- SMT Divergence (Адаптовано для нафти: Brent vs WTI)
 - Killzones (Торгові сесії)
 - Валідація FVG (Consequent Encroachment)
-(Жоден оригінальний алгоритм не видалено)
+(Усі попередні алгоритми супроводу угод та логування повністю збережено)
 """
 
 from __future__ import annotations
@@ -32,7 +33,7 @@ import requests
 # CONFIGURATION
 # ==========================================================
 
-BOT_VERSION = "pro-hybrid-confluence-v6.5"
+BOT_VERSION = "pro-hybrid-confluence-v6.6"
 ARCHITECTURE_VERSION = "HYBRID_CONFLUENCE_V6_4"
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "")
@@ -42,7 +43,7 @@ TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
 OKX_BASE_URL = "https://www.okx.com/api/v5/market"
 TRADINGVIEW_SCAN_URL = "https://scanner.tradingview.com/crypto/scan"
 OKX_INST_ID = os.getenv("OKX_INST_ID", "BZ-USDT-SWAP")
-BTC_INST_ID = "BTC-USDT-SWAP" # Додано для SMT Divergence
+SMT_ASSET_ID = os.getenv("SMT_ASSET_ID", "WTI-USDT-SWAP") # Корелюючий актив для SMT (наприклад, WTI)
 
 WORKSPACE = Path(os.getenv("GITHUB_WORKSPACE", os.getcwd()))
 
@@ -843,32 +844,32 @@ def identify_liquidity_and_range(candles: list[Candle], left_bars: int = 5, righ
         "eq": eq,
     }
 
-def detect_smt_divergence(asset_candles: list[Candle], btc_candles: list[Candle]) -> str:
-    """Шукає розбіжності між активом та BTC."""
-    if len(asset_candles) < 20 or len(btc_candles) < 20:
+def detect_smt_divergence(asset_candles: list[Candle], smt_candles: list[Candle]) -> str:
+    """Шукає розбіжності між активом та корелюючим активом (наприклад, Brent vs WTI)."""
+    if len(asset_candles) < 20 or len(smt_candles) < 20:
         return Side.NEUTRAL.value
         
     asset_lows = [c.low for c in asset_candles[-10:]]
-    btc_lows = [c.low for c in btc_candles[-10:]]
+    smt_lows = [c.low for c in smt_candles[-10:]]
     asset_highs = [c.high for c in asset_candles[-10:]]
-    btc_highs = [c.high for c in btc_candles[-10:]]
+    smt_highs = [c.high for c in smt_candles[-10:]]
     
     asset_current_low = min(asset_lows[-3:])
     asset_prev_low = min(asset_lows[:-3])
-    btc_current_low = min(btc_lows[-3:])
-    btc_prev_low = min(btc_lows[:-3])
+    smt_current_low = min(smt_lows[-3:])
+    smt_prev_low = min(smt_lows[:-3])
     
     # Bullish SMT
-    if btc_current_low < btc_prev_low and asset_current_low >= asset_prev_low:
+    if smt_current_low < smt_prev_low and asset_current_low >= asset_prev_low:
         return Side.LONG.value
         
     asset_current_high = max(asset_highs[-3:])
     asset_prev_high = max(asset_highs[:-3])
-    btc_current_high = max(btc_highs[-3:])
-    btc_prev_high = max(btc_highs[:-3])
+    smt_current_high = max(smt_highs[-3:])
+    smt_prev_high = max(smt_highs[:-3])
     
     # Bearish SMT
-    if btc_current_high > btc_prev_high and asset_current_high <= asset_prev_high:
+    if smt_current_high > smt_prev_high and asset_current_high <= asset_prev_high:
         return Side.SHORT.value
         
     return Side.NEUTRAL.value
@@ -879,7 +880,7 @@ def detect_smt_divergence(asset_candles: list[Candle], btc_candles: list[Candle]
 # ==========================================================
 
 def http_get(url: str, timeout: int = REQUEST_TIMEOUT, retries: int = 2) -> Optional[requests.Response]:
-    headers = {"User-Agent": "Mozilla/5.0 BZU-Pro-v6.4/1.0", "Accept": "*/*"}
+    headers = {"User-Agent": "Mozilla/5.0 BZU-Pro-v6.6/1.0", "Accept": "*/*"}
     last_err = None
     for attempt in range(max(1, retries)):
         try:
@@ -895,7 +896,7 @@ def http_get(url: str, timeout: int = REQUEST_TIMEOUT, retries: int = 2) -> Opti
 
 def http_post(url: str, payload: dict, timeout: int = REQUEST_TIMEOUT) -> Optional[requests.Response]:
     headers = {
-        "User-Agent": "Mozilla/5.0 BZU-Pro-v6.4/1.0",
+        "User-Agent": "Mozilla/5.0 BZU-Pro-v6.6/1.0",
         "Content-Type": "application/json",
         "Accept": "application/json",
     }
@@ -997,7 +998,7 @@ def collect_market_data() -> dict:
     c15 = get_okx_candles(OKX_INST_ID, "15m", 200)
     c1h = get_okx_candles(OKX_INST_ID, "1h", 160)
     c4h = get_okx_candles(OKX_INST_ID, "4h", 140)
-    btc_c15 = get_okx_candles(BTC_INST_ID, "15m", 200) # ДОДАНО ДЛЯ SMT
+    smt_c15 = get_okx_candles(SMT_ASSET_ID, "15m", 200) # Адаптовано для нафти
     
     # TradingView — ПРІОРИТЕТ
     tv_ticker = get_tradingview_price_fallback()
@@ -1019,7 +1020,7 @@ def collect_market_data() -> dict:
     return {
         "time": iso_now(),
         "candles": {"3m": c3, "15m": c15, "1h": c1h, "4h": c4h},
-        "btc_candles": {"15m": btc_c15}, # ДОДАНО ДЛЯ SMT
+        "smt_candles": {"15m": smt_c15}, # Адаптовано для нафти
         "ticker": ticker,
         "trades": [],
         "book": {"bids": [], "asks": []},
@@ -1362,7 +1363,7 @@ def build_context(data: dict, state: dict) -> dict:
 
 
 # ==========================================================
-# 3M SCANNER + LOCATION + FORWARD ZONE
+# 3M SCANNER + TIME-WARP VALIDATION
 # ==========================================================
 
 def _empty_scan3m_state() -> dict:
@@ -1381,7 +1382,6 @@ def _normalize_scan3m_state(raw: Any) -> dict:
 
 
 def calculate_impulse_strength(candles: list[Candle], side: str, atr15: float) -> dict:
-    """Оцінка сили імпульсу (0-3)."""
     if len(candles) < 4:
         return {"score": 0, "level": "WEAK", "body_strength": 0, "consecutive": 0}
     last = candles[-1]
@@ -1487,6 +1487,7 @@ def scan_closed_3m_sequence(state: dict, context: dict) -> dict:
         return {"last_run_processed": 0, "events": scan_state.get("events", {})}
     atr15 = context.get("atr15", 0.6) or 0.6
     events = dict(scan_state.get("events", {}))
+    
     for side in [Side.LONG.value, Side.SHORT.value]:
         event = events.get(side, {
             "side": side, "stage": "SWEEP", "source": "LIQUIDITY_SWEEP",
@@ -1497,42 +1498,65 @@ def scan_closed_3m_sequence(state: dict, context: dict) -> dict:
             "previous_stage": "", "chain_quality": 50, "confirmation_quality": 40,
             "acceptance_quality": 0, "retest_quality": 0, "processed_bars": 0,
             "strong_displacement": False, "retest": False, "mitigation": False,
-            "impulse_strength": {"score": 0, "level": "WEAK"}, "chase_risk": False
+            "impulse_strength": {"score": 0, "level": "WEAK"}, "chase_risk": False,
+            "time_warp_opportunity": False # ІННОВАЦІЯ №4
         })
-        lookback = min(len(new_candles) + 10, len(c3))
-        recent = c3[-lookback:]
-        snap = trigger_snapshot(recent, side, event.get("trigger_level", context["price"]), atr15)
-        event["displacement"] = bool(event.get("displacement") or snap.get("displacement"))
-        event["strong_displacement"] = bool(event.get("strong_displacement") or snap.get("strong_displacement"))
-        event["retest"] = bool(event.get("retest") or snap.get("retest"))
-        event["mitigation"] = bool(event.get("mitigation") or snap.get("mitigation"))
-        event["chase_risk"] = bool(event["strong_displacement"] and not event["retest"])
-        event["impulse_strength"] = snap.get("impulse_strength", {"score": 0, "level": "WEAK"})
-        event["confirmation_quality"] = max(int(event.get("confirmation_quality", 0) or 0), int(snap.get("quality", 0) or 0))
+        
+        # --- TIME-WARP VALIDATION ENGINE ---
+        # "Повертаємося у часі" і перевіряємо кожну 3-хвилинну свічку всередині сліпої зони
+        for i in range(len(new_candles)):
+            current_c = new_candles[i]
+            retro_recent = [c for c in c3 if c.ts <= current_c.ts][-15:]
+            if len(retro_recent) < 5:
+                continue
+                
+            snap = trigger_snapshot(retro_recent, side, event.get("trigger_level", context["price"]), atr15)
+            
+            event["displacement"] = bool(event.get("displacement") or snap.get("displacement"))
+            event["strong_displacement"] = bool(event.get("strong_displacement") or snap.get("strong_displacement"))
+            event["retest"] = bool(event.get("retest") or snap.get("retest"))
+            event["mitigation"] = bool(event.get("mitigation") or snap.get("mitigation"))
+            event["chase_risk"] = bool(event["strong_displacement"] and not event["retest"])
+            
+            # Зберігаємо найсильніший імпульс
+            current_imp = event.get("impulse_strength", {"score": 0, "level": "WEAK"})
+            snap_imp = snap.get("impulse_strength", {"score": 0, "level": "WEAK"})
+            if snap_imp["score"] >= current_imp["score"]:
+                event["impulse_strength"] = snap_imp
+                
+            event["confirmation_quality"] = max(int(event.get("confirmation_quality", 0) or 0), int(snap.get("quality", 0) or 0))
 
-        if snap["ready"] and event["stage"] in ["SWEEP", "CONFIRMATION"]:
-            event["previous_stage"] = event["stage"]
-            event["stage"] = "ACCEPTANCE"
-            event["ready_ts"] = recent[-1].ts
-            event["acceptance_quality"] = max(int(event.get("acceptance_quality", 0) or 0), int(snap["quality"]))
-            event["last_event_ts"] = recent[-1].ts
-        elif event["stage"] == "ACCEPTANCE" and snap["retest"]:
-            event["previous_stage"] = event["stage"]
-            event["stage"] = "RETEST"
-            event["retest_ts"] = recent[-1].ts
-            event["retest_quality"] = max(int(event.get("retest_quality", 0) or 0), int(snap["quality"]))
-            event["last_event_ts"] = recent[-1].ts
-        elif event["stage"] == "RETEST" and (snap["reclaim"] or snap["ready"]):
-            event["previous_stage"] = event["stage"]
-            event["stage"] = "READY"
-            event["ready_ts"] = recent[-1].ts
-            event["last_event_ts"] = recent[-1].ts
-        if snap.get("sweep_level"):
-            event["trigger_level"] = snap["sweep_level"]
-            event["sweep_level"] = snap["sweep_level"]
-            event["extreme"] = snap["extreme"]
+            # Логіка стадій
+            if snap["ready"] and event["stage"] in ["SWEEP", "CONFIRMATION"]:
+                event["previous_stage"] = event["stage"]
+                event["stage"] = "ACCEPTANCE"
+                event["ready_ts"] = retro_recent[-1].ts
+                event["acceptance_quality"] = max(int(event.get("acceptance_quality", 0) or 0), int(snap["quality"]))
+                event["last_event_ts"] = retro_recent[-1].ts
+            elif event["stage"] == "ACCEPTANCE" and snap["retest"]:
+                event["previous_stage"] = event["stage"]
+                event["stage"] = "RETEST"
+                event["retest_ts"] = retro_recent[-1].ts
+                event["retest_quality"] = max(int(event.get("retest_quality", 0) or 0), int(snap["quality"]))
+                event["last_event_ts"] = retro_recent[-1].ts
+            elif event["stage"] == "RETEST" and (snap["reclaim"] or snap["ready"]):
+                event["previous_stage"] = event["stage"]
+                event["stage"] = "READY"
+                event["ready_ts"] = retro_recent[-1].ts
+                event["last_event_ts"] = retro_recent[-1].ts
+                
+            if snap.get("sweep_level"):
+                event["trigger_level"] = snap["sweep_level"]
+                event["sweep_level"] = snap["sweep_level"]
+                event["extreme"] = snap["extreme"]
+                
+            # Time-Warp Detection: Фіксуємо, якщо вхід був всередині вікна, а не на самому кінці
+            if snap["ready"] and event["stage"] in ["READY", "ACCEPTANCE", "RETEST"] and i < len(new_candles) - 1:
+                event["time_warp_opportunity"] = True
+
         event["processed_bars"] += len(new_candles)
         events[side] = event
+        
     new_last_ts = max(c.ts for c in new_candles)
     scan_state["last_scanned_3m_ts"] = new_last_ts
     scan_state["last_run_processed"] = len(new_candles)
@@ -1684,12 +1708,12 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
     regime = context["regime"]
     scan_events = context.get("scan_3m_events", {})
     c15 = (context.get("candles", {}) or {}).get("15m", [])
-    btc_c15 = (context.get("btc_candles", {}) or {}).get("15m", [])
+    smt_c15 = (context.get("smt_candles", {}) or {}).get("15m", [])
 
     # === ICT PD Array / SMT Data ===
     range_data = identify_liquidity_and_range(c15)
     eq_level = range_data.get("eq", 0.0)
-    smt_bias = detect_smt_divergence(c15, btc_c15)
+    smt_bias = detect_smt_divergence(c15, smt_c15)
     now_hour = now_utc().hour
     is_killzone = (7 <= now_hour < 10) or (12 <= now_hour < 15) or (18 <= now_hour < 21)
 
@@ -1702,6 +1726,7 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
         trigger_ready = event.get("stage") in ["ACCEPTANCE", "RETEST", "READY"] and trigger_age <= TRIGGER_MAX_AGE_MINUTES
         trigger_level = event.get("trigger_level", price)
         scan_stage = event.get("stage", "")
+        time_warp_opportunity = event.get("time_warp_opportunity", False)
 
         location_score = calculate_location_score(price, zones, side, atr15, tf15, tf1h)
         has_forward_zone = has_forward_ict_zone(price, zones, side, atr15)
@@ -1825,7 +1850,8 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
 
         if smt_bias == side:
             raw += 20
-            flw_conf.append("🔥 SMT Divergence з BTC підтверджує рух")
+            asset_name = str(SMT_ASSET_ID).split("-")[0]
+            flw_conf.append(f"🔥 SMT Divergence з {asset_name} підтверджує рух")
 
         if is_killzone:
             raw += 5
@@ -1833,10 +1859,9 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
         else:
             raw -= 8
             pattern_conf.append("⚠️ Поза активними торговими сесіями")
-        # ========================================================
 
         # ==========================================================
-        # МОДУЛЬНА СИСТЕМА ПАТЕРНІВ (PATTERN REGISTRY)
+        # МОДУЛЬНА СИСТЕМА ПАТЕРНІВ
         # ==========================================================
         pattern_registry = {
             "OB_RECLAIM": {
@@ -1904,9 +1929,14 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
 
         if best_pattern:
             raw += pattern_registry[best_pattern]["score_bonus"]
+            
         if event.get("strong_displacement") and not event.get("retest"):
             raw -= STRONG_IMPULSE_CHASE_PENALTY
             pattern_conf.append(f"штраф -{STRONG_IMPULSE_CHASE_PENALTY}: сильний displacement без retest")
+
+        if time_warp_opportunity:
+            raw += 14
+            pattern_conf.append("⏳ Time-Warp: ретроспективна валідація всередині 15хв (Limit Entry)")
 
         evidence = ["ICT_LOCATION", "PRICE_STRUCTURE"]
         if flw_score > 12:
@@ -1949,6 +1979,9 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
                 score_ok = final >= EARLY_ENTRY_MIN_SCORE
                 if htf_ok and score_ok and has_good_reclaim:
                     allow_early_entry_for_pattern = True
+
+        if time_warp_opportunity:
+            allow_early_entry_for_pattern = True
 
         if allow_early_entry_for_pattern:
             lane = ExecutionLane.EARLY_TACTICAL.value
@@ -2417,7 +2450,7 @@ def manage_active_trade(trade: ActiveTrade, context: dict) -> dict:
 
     result = {
         "action": Action.HOLD.value,
-        "title": "УГОДА ВІДКРИТА — HYBRID ICT v6.5",
+        "title": "УГОДА ВІДКРИТА — HYBRID ICT v6.6",
         "recommendation": "Структура та теза на боці — тримаємо",
         "current_pct": ((price - trade.entry) / trade.entry * 100) if side == Side.LONG.value else ((trade.entry - price) / trade.entry * 100),
         "best_pct": ((trade.best_price - trade.entry) / trade.entry * 100) if side == Side.LONG.value else ((trade.entry - trade.best_price) / trade.entry * 100),
@@ -2510,6 +2543,19 @@ def manage_active_trade(trade: ActiveTrade, context: dict) -> dict:
         result["action"] = Action.TP2.value
         result["notes"].append("TP2 досягнуто — стоп на TP1 (зафіксовано)")
 
+    # ДОДАНИЙ БЛОК ДЛЯ TP3 (ПОВНЕ ЗАКРИТТЯ УГОДИ)
+    if not result["closed"] and trade.tp2_hit and not trade.tp3_hit and _target_hit(side, context, trade.tp3):
+        trade.tp3_hit = True
+        exit_price = round_price(trade.tp3)
+        result["closed"] = True
+        result["action"] = Action.TP3.value
+        result["exit_price"] = exit_price
+        result["current_pct"] = _trade_pct(side, trade.entry, exit_price)
+        result["notes"].append(f"TP3 досягнуто ({exit_price}) — угоду повністю закрито")
+        trade.status = "CLOSED"
+        trade.last_action = Action.TP3.value
+        return result
+
     if not result["closed"] and trade.tp1_stop_locked and not trade.tp2_hit:
         result["recommended_stop"] = round_price(trade.tp1_locked_stop)
         result["recommended_stop_reason"] = "TP1-стоп зафіксовано до TP2"
@@ -2522,7 +2568,7 @@ def manage_active_trade(trade: ActiveTrade, context: dict) -> dict:
         locked = trade.tp1_locked_stop or trade.stop_current
         trade.stop_current = float(locked)
         result["recommended_stop"] = round_price(trade.stop_current)
-        result["recommended_stop_reason"] = "TP1-стоп зафіксований; до TP2 не рухати без окремого exit-сигналу"
+        result["recommended_stop_reason"] = "TP1-стоп зафікваний; до TP2 не рухати без окремого exit-сигналу"
 
     structural_break = False
     if side == Side.LONG.value:
@@ -2689,7 +2735,7 @@ def run_bot() -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="BZU Professional Hybrid Confluence Signal Bot v6.5")
+    parser = argparse.ArgumentParser(description="BZU Professional Hybrid Confluence Signal Bot v6.6")
     parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args()
     if args.self_test:
