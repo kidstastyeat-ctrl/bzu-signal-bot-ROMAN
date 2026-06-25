@@ -3625,6 +3625,20 @@
       "action": "TP3",
       "side": "LONG",
       "price": 74.91
+    },
+    {
+      "id": "7eb4f1beb8",
+      "time": "2026-06-25T16:01:12.841173+00:00",
+      "action": "NO_SETUP",
+      "side": "SHORT",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 45,
+      "reason": "Професійний сетап не пройшов gate'и якості",
+      "regime": "TRANSITION",
+      "news_bias": "NEUTRAL",
+      "macro_risk": "NORMAL",
+      "version": "pro-hybrid-confluence-v6.6",
+      "architecture_version": "HYBRID_CONFLUENCE_V6_4"
     }
   ],
   "trades": [
@@ -3787,5 +3801,5 @@
     "expectancy_r": -0.001,
     "by_family": {}
   },
-  "updated_at": "2026-06-25T15:45:48.634889+00:00"
+  "updated_at": "2026-06-25T16:01:13.363830+00:00"
 }
