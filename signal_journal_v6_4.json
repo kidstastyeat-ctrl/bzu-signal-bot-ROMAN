@@ -3737,6 +3737,20 @@
       "macro_risk": "NORMAL",
       "version": "pro-hybrid-confluence-v6.6",
       "architecture_version": "HYBRID_CONFLUENCE_V6_4"
+    },
+    {
+      "id": "24a54b8a85",
+      "time": "2026-06-25T18:01:15.181702+00:00",
+      "action": "RISKY_ENTRY",
+      "side": "SHORT",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 69,
+      "reason": "Ризикований ранній вхід: Продовження тренду після ICT-відкату — NORMAL profile",
+      "regime": "TRANSITION",
+      "news_bias": "NEUTRAL",
+      "macro_risk": "NORMAL",
+      "version": "pro-hybrid-confluence-v6.6",
+      "architecture_version": "HYBRID_CONFLUENCE_V6_4"
     }
   ],
   "trades": [
@@ -3899,5 +3913,5 @@
     "expectancy_r": -0.001,
     "by_family": {}
   },
-  "updated_at": "2026-06-25T17:51:22.689226+00:00"
+  "updated_at": "2026-06-25T18:01:15.498727+00:00"
 }
