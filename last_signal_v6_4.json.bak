@@ -1,49 +1,12 @@
 {
-  "version": "pro-hybrid-confluence-v6.5",
+  "version": "pro-hybrid-confluence-v6.6",
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
-  "active_trade": {
-    "id": "506e6bca50",
-    "side": "LONG",
-    "setup_type": "PULLBACK_CONTINUATION",
-    "setup_family": "CONTINUATION",
-    "opened_at": "2026-06-25T13:01:14.784727+00:00",
-    "entry": 73.17,
-    "stop_initial": 72.8035,
-    "stop_current": 73.9397,
-    "structural_invalidation": 72.8035,
-    "tp1": 73.9397,
-    "tp2": 74.3062,
-    "tp3": 74.7093,
-    "quality": 77,
-    "position_risk_pct": 0.5,
-    "best_price": 75.09,
-    "worst_price": 73.17,
-    "thesis_key": "LONG|CONTINUATION|PULLBACK_CONTINUATION|731",
-    "thesis": "LONG PULLBACK_CONTINUATION | HTF=NEUTRAL | 3M=READY",
-    "last_checked_3m_ts": 1782401462175,
-    "tp1_hit": true,
-    "tp2_hit": true,
-    "tp3_hit": false,
-    "tp1_stop_locked": true,
-    "tp2_stop_locked": true,
-    "tp1_locked_stop": 73.5164,
-    "tp2_locked_stop": 73.9397,
-    "status": "OPEN",
-    "last_action": "HOLD",
-    "notes": [],
-    "entry_integrity_score": 100,
-    "entry_fail_streak": 0,
-    "mfe_giveback_streak": 0,
-    "mfe_giveback_last_state": "OK",
-    "trigger_level": 83.06,
-    "opened_regime": "RANGE",
-    "entry_level": "RISKY_ENTRY"
-  },
+  "active_trade": null,
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1782401400000,
+    "last_scanned_3m_ts": 1782402300000,
     "last_run_processed": 5,
-    "processed_count": 2038,
+    "processed_count": 2043,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -55,7 +18,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 74.91,
+        "extreme": 74.99,
         "displacement": false,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -65,16 +28,16 @@
         "confirmation_quality": 40,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 2038,
+        "processed_bars": 2043,
         "strong_displacement": false,
         "retest": false,
         "mitigation": false,
         "chase_risk": false,
         "impulse_strength": {
-          "score": 0,
-          "level": "WEAK",
-          "body_strength": 0.0,
-          "consecutive": 0
+          "score": 1,
+          "level": "NORMAL",
+          "body_strength": 0.77,
+          "consecutive": 1
         }
       },
       "SHORT": {
@@ -87,7 +50,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 74.99,
+        "extreme": 75.06,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -97,15 +60,15 @@
         "confirmation_quality": 67,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 2038,
+        "processed_bars": 2043,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
         "chase_risk": true,
         "impulse_strength": {
-          "score": 0,
-          "level": "WEAK",
-          "body_strength": 0.0,
+          "score": 1,
+          "level": "NORMAL",
+          "body_strength": 0.77,
           "consecutive": 0
         }
       }
@@ -114,9 +77,9 @@
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 7,
+    "stable_count": 8,
     "pending_count": 0,
-    "updated_at": "2026-06-25T15:31:02.175335+00:00"
+    "updated_at": "2026-06-25T15:45:48.204073+00:00"
   },
   "latest_signal": {
     "id": "abe83f2580",
@@ -134,13 +97,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 76.69,
-      "time": "2026-06-23T15:31:10.306407+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1651,7 +1607,14 @@
       "action": "HOLD",
       "price": 74.87,
       "time": "2026-06-25T15:31:02.604082+00:00"
+    },
+    {
+      "type": "CLOSE",
+      "side": "LONG",
+      "action": "TP3",
+      "price": 74.91,
+      "time": "2026-06-25T15:45:48.631175+00:00"
     }
   ],
-  "updated_at": "2026-06-25T15:31:02.604277+00:00"
+  "updated_at": "2026-06-25T15:45:48.631352+00:00"
 }
