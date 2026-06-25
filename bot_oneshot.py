@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """
-BZU Professional Hybrid Confluence Signal Bot v6.4
+BZU Professional Hybrid Confluence Signal Bot v6.5 (Pro ICT Edition)
 ================================================================================
-Виправлення v6.4:
-- TradingView (BINANCE:BZUSDT.P) як ОСНОВНЕ джерело ціни
-- OKX — тільки як fallback
-- Явні назви файлів: last_signal_v6_4.json / signal_journal_v6_4.json
+Виправлення v6.5:
+- Інтеграція Premium/Discount (PD Arrays)
+- SMT Divergence (BTC)
+- Killzones (Торгові сесії)
+- Валідація FVG (Consequent Encroachment)
+(Жоден оригінальний алгоритм не видалено)
 """
 
 from __future__ import annotations
@@ -30,7 +32,7 @@ import requests
 # CONFIGURATION
 # ==========================================================
 
-BOT_VERSION = "pro-hybrid-confluence-v6.4"
+BOT_VERSION = "pro-hybrid-confluence-v6.5"
 ARCHITECTURE_VERSION = "HYBRID_CONFLUENCE_V6_4"
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "")
@@ -40,6 +42,7 @@ TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
 OKX_BASE_URL = "https://www.okx.com/api/v5/market"
 TRADINGVIEW_SCAN_URL = "https://scanner.tradingview.com/crypto/scan"
 OKX_INST_ID = os.getenv("OKX_INST_ID", "BZ-USDT-SWAP")
+BTC_INST_ID = "BTC-USDT-SWAP" # Додано для SMT Divergence
 
 WORKSPACE = Path(os.getenv("GITHUB_WORKSPACE", os.getcwd()))
 
@@ -806,6 +809,70 @@ def evaluate_professional_gate(context: dict, candidate: Candidate) -> dict:
         "reason": reason,
     }
 
+# ==========================================================
+# ICT UTILITIES (NEW)
+# ==========================================================
+
+def identify_liquidity_and_range(candles: list[Candle], left_bars: int = 5, right_bars: int = 5) -> dict:
+    """Визначає Premium/Discount зони та пули ліквідності."""
+    if len(candles) < left_bars + right_bars + 1:
+        return {"bsl": [], "ssl": [], "eq": 0.0, "premium_low": 0.0, "discount_high": 0.0}
+
+    bsl_pools = []
+    ssl_pools = []
+    
+    for i in range(left_bars, len(candles) - right_bars):
+        window = candles[i - left_bars : i + right_bars + 1]
+        center = candles[i]
+        
+        if center.high == max(c.high for c in window):
+            bsl_pools.append(center.high)
+        if center.low == min(c.low for c in window):
+            ssl_pools.append(center.low)
+            
+    recent_high = max([c.high for c in candles[-60:]]) if len(candles) >= 60 else max([c.high for c in candles])
+    recent_low = min([c.low for c in candles[-60:]]) if len(candles) >= 60 else min([c.low for c in candles])
+    
+    eq = (recent_high + recent_low) / 2
+    
+    return {
+        "bsl": sorted(list(set(bsl_pools)))[-5:],
+        "ssl": sorted(list(set(ssl_pools)))[:5],
+        "range_high": recent_high,
+        "range_low": recent_low,
+        "eq": eq,
+    }
+
+def detect_smt_divergence(asset_candles: list[Candle], btc_candles: list[Candle]) -> str:
+    """Шукає розбіжності між активом та BTC."""
+    if len(asset_candles) < 20 or len(btc_candles) < 20:
+        return Side.NEUTRAL.value
+        
+    asset_lows = [c.low for c in asset_candles[-10:]]
+    btc_lows = [c.low for c in btc_candles[-10:]]
+    asset_highs = [c.high for c in asset_candles[-10:]]
+    btc_highs = [c.high for c in btc_candles[-10:]]
+    
+    asset_current_low = min(asset_lows[-3:])
+    asset_prev_low = min(asset_lows[:-3])
+    btc_current_low = min(btc_lows[-3:])
+    btc_prev_low = min(btc_lows[:-3])
+    
+    # Bullish SMT
+    if btc_current_low < btc_prev_low and asset_current_low >= asset_prev_low:
+        return Side.LONG.value
+        
+    asset_current_high = max(asset_highs[-3:])
+    asset_prev_high = max(asset_highs[:-3])
+    btc_current_high = max(btc_highs[-3:])
+    btc_prev_high = max(btc_highs[:-3])
+    
+    # Bearish SMT
+    if btc_current_high > btc_prev_high and asset_current_high <= asset_prev_high:
+        return Side.SHORT.value
+        
+    return Side.NEUTRAL.value
+
 
 # ==========================================================
 # DATA SOURCES: TradingView ПРІОРИТЕТ
@@ -930,6 +997,7 @@ def collect_market_data() -> dict:
     c15 = get_okx_candles(OKX_INST_ID, "15m", 200)
     c1h = get_okx_candles(OKX_INST_ID, "1h", 160)
     c4h = get_okx_candles(OKX_INST_ID, "4h", 140)
+    btc_c15 = get_okx_candles(BTC_INST_ID, "15m", 200) # ДОДАНО ДЛЯ SMT
     
     # TradingView — ПРІОРИТЕТ
     tv_ticker = get_tradingview_price_fallback()
@@ -951,6 +1019,7 @@ def collect_market_data() -> dict:
     return {
         "time": iso_now(),
         "candles": {"3m": c3, "15m": c15, "1h": c1h, "4h": c4h},
+        "btc_candles": {"15m": btc_c15}, # ДОДАНО ДЛЯ SMT
         "ticker": ticker,
         "trades": [],
         "book": {"bids": [], "asks": []},
@@ -982,12 +1051,32 @@ def detect_zones(candles: list[Candle], tf: str, max_age_bars: int = 80) -> list
         if body > atr_val * 0.55:
             side = Side.LONG.value if c.close > c.open else Side.SHORT.value
             zones.append(Zone("OB", side, c.low, c.high, c.ts, tf, strength=1.0 + body / atr_val))
+        
+        # ВАЛІДАЦІЯ FVG ЗГІДНО ПРАВИЛА 50% (Consequent Encroachment)
         if i >= 2:
             prev2 = candles[i - 2]
             if c.low > prev2.high:
-                zones.append(Zone("FVG", Side.LONG.value, prev2.high, c.low, c.ts, tf, strength=0.75))
+                fvg_low, fvg_high = prev2.high, c.low
+                ce = fvg_low + (fvg_high - fvg_low) / 2
+                mitigated = False
+                for future_c in candles[i+1:]:
+                    if future_c.close < ce:
+                        mitigated = True
+                        break
+                if not mitigated:
+                    zones.append(Zone("FVG", Side.LONG.value, fvg_low, fvg_high, c.ts, tf, strength=0.75))
+            
             if c.high < prev2.low:
-                zones.append(Zone("FVG", Side.SHORT.value, c.high, prev2.low, c.ts, tf, strength=0.75))
+                fvg_low, fvg_high = c.high, prev2.low
+                ce = fvg_low + (fvg_high - fvg_low) / 2
+                mitigated = False
+                for future_c in candles[i+1:]:
+                    if future_c.close > ce:
+                        mitigated = True
+                        break
+                if not mitigated:
+                    zones.append(Zone("FVG", Side.SHORT.value, fvg_low, fvg_high, c.ts, tf, strength=0.75))
+                    
     seen = set()
     unique = []
     for z in sorted(zones, key=lambda x: -x.strength):
@@ -1257,6 +1346,7 @@ def build_context(data: dict, state: dict) -> dict:
         "atr15": atr15,
         "atr1h": atr1h,
         "candles": data["candles"],
+        "btc_candles": data.get("btc_candles", {}), # ДОДАНО
         "volume_clusters": [],
         "scan_3m": state.get("scan_3m", {}),
         "scan_3m_events": {},
@@ -1594,6 +1684,14 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
     regime = context["regime"]
     scan_events = context.get("scan_3m_events", {})
     c15 = (context.get("candles", {}) or {}).get("15m", [])
+    btc_c15 = (context.get("btc_candles", {}) or {}).get("15m", [])
+
+    # === ICT PD Array / SMT Data ===
+    range_data = identify_liquidity_and_range(c15)
+    eq_level = range_data.get("eq", 0.0)
+    smt_bias = detect_smt_divergence(c15, btc_c15)
+    now_hour = now_utc().hour
+    is_killzone = (7 <= now_hour < 10) or (12 <= now_hour < 15) or (18 <= now_hour < 21)
 
     params = get_adaptive_params(regime)
 
@@ -1665,26 +1763,19 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
         recent_structure_conf = []
 
         if recent_struct["bullish_shift"] or recent_struct["bearish_shift"]:
-            # === Динамічний розрахунок (технічний підхід) ===
-            # Штраф залежить від якості кандидата + режиму ринку
             base_structure_adj = 7
-
-            # 1. Залежність від якості кандидата (чим сильніший контекст — тим м'якше караємо)
             approx_quality = loc_score + str_score + trig_score + htf_score
             if approx_quality >= 55:
                 base_structure_adj = 5
             elif approx_quality <= 38:
                 base_structure_adj = 10
 
-            # 2. Залежність від режиму
             if regime == Regime.TREND.value:
                 base_structure_adj = int(base_structure_adj * 1.25)
             elif regime == Regime.RANGE.value:
                 base_structure_adj = int(base_structure_adj * 0.75)
 
             structure_penalty = base_structure_adj + recent_struct["strength"] * 5
-
-            # === Бонус за узгодженість з 15M bias ===
             structure_bonus = 0
             is_aligned = False
 
@@ -1695,7 +1786,6 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
                 structure_bonus = 5
                 is_aligned = True
 
-            # Застосовуємо
             if side == Side.SHORT.value and recent_struct["bullish_shift"]:
                 raw -= structure_penalty
                 recent_structure_score = -structure_penalty
@@ -1716,11 +1806,38 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
                     f"+{structure_bonus} балів: структура узгоджена з 15M bias"
                 )
 
+        active_patterns = []
+        pattern_conf = []
+        best_pattern = None
+        best_priority = 0
+
+        # === ICT CORE LOGIC (Premium/Discount, SMT, Killzone) ===
+        if eq_level > 0:
+            if side == Side.LONG.value and price <= eq_level:
+                raw += 15
+                loc_conf.append("LONG у Discount зоні (PD Array)")
+            elif side == Side.SHORT.value and price >= eq_level:
+                raw += 15
+                loc_conf.append("SHORT у Premium зоні (PD Array)")
+            else:
+                raw -= 15
+                pattern_conf.append("⚠️ Вхід поза оптимальним PD Array")
+
+        if smt_bias == side:
+            raw += 20
+            flw_conf.append("🔥 SMT Divergence з BTC підтверджує рух")
+
+        if is_killzone:
+            raw += 5
+            pattern_conf.append("✅ Угода в активну Killzone")
+        else:
+            raw -= 8
+            pattern_conf.append("⚠️ Поза активними торговими сесіями")
+        # ========================================================
+
         # ==========================================================
         # МОДУЛЬНА СИСТЕМА ПАТЕРНІВ (PATTERN REGISTRY)
         # ==========================================================
-        # Тут описані всі патерни. Легко додавати нові без конфліктів.
-
         pattern_registry = {
             "OB_RECLAIM": {
                 "name": "15M OB + 3M Confirmed Reclaim",
@@ -1745,12 +1862,6 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
             },
         }
 
-        active_patterns = []
-        pattern_conf = []
-        best_pattern = None
-        best_priority = 0
-
-        # --- Перевірка патернів ---
         has_fresh_ob = any(
             z.side == side and z.kind == "OB" and abs(price - z.low) < atr15 * 1.7
             for z in zones
@@ -1767,7 +1878,6 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
             and not (impulse_score >= 3 and not event.get("retest"))
         )
 
-        # Патерн OB_RECLAIM
         if has_fresh_ob and has_good_reclaim:
             active_patterns.append("OB_RECLAIM")
             p = pattern_registry["OB_RECLAIM"]
@@ -1776,7 +1886,6 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
                 best_priority = p["priority"]
                 best_pattern = "OB_RECLAIM"
 
-        # Патерн HTF_TREND_OB_PULLBACK
         if htf_trend and has_fresh_ob and has_good_reclaim:
             active_patterns.append("HTF_TREND_OB_PULLBACK")
             p = pattern_registry["HTF_TREND_OB_PULLBACK"]
@@ -1785,7 +1894,6 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
                 best_priority = p["priority"]
                 best_pattern = "HTF_TREND_OB_PULLBACK"
 
-        # Патерн CHOCH_RECLAIM
         if tf15_bias == side and has_strong_reclaim:
             active_patterns.append("CHOCH_RECLAIM")
             p = pattern_registry["CHOCH_RECLAIM"]
@@ -1794,7 +1902,6 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
                 best_priority = p["priority"]
                 best_pattern = "CHOCH_RECLAIM"
 
-        # Бонус до score від найкращого патерну
         if best_pattern:
             raw += pattern_registry[best_pattern]["score_bonus"]
         if event.get("strong_displacement") and not event.get("retest"):
@@ -1811,7 +1918,6 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
         if has_forward_zone:
             evidence.append("FORWARD_ICT_ZONE")
 
-        # Визначення setup_type на основі найкращого патерну
         setup_type = SetupType.PULLBACK_CONTINUATION.value
         variant = "PULLBACK_FORMING"
 
@@ -1835,7 +1941,6 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
         tier = ConfirmationTier.STANDARD.value
         final = int(clamp(raw + (len(evidence) - 3) * 2.8, 12, 98))
 
-        # Визначаємо, чи дозволяти ранній вхід
         allow_early_entry_for_pattern = False
         if best_pattern:
             p = pattern_registry[best_pattern]
@@ -2312,7 +2417,7 @@ def manage_active_trade(trade: ActiveTrade, context: dict) -> dict:
 
     result = {
         "action": Action.HOLD.value,
-        "title": "УГОДА ВІДКРИТА — HYBRID ICT v6.4",
+        "title": "УГОДА ВІДКРИТА — HYBRID ICT v6.5",
         "recommendation": "Структура та теза на боці — тримаємо",
         "current_pct": ((price - trade.entry) / trade.entry * 100) if side == Side.LONG.value else ((trade.entry - price) / trade.entry * 100),
         "best_pct": ((trade.best_price - trade.entry) / trade.entry * 100) if side == Side.LONG.value else ((trade.entry - trade.best_price) / trade.entry * 100),
@@ -2584,7 +2689,7 @@ def run_bot() -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="BZU Professional Hybrid Confluence Signal Bot v6.4")
+    parser = argparse.ArgumentParser(description="BZU Professional Hybrid Confluence Signal Bot v6.5")
     parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args()
     if args.self_test:
