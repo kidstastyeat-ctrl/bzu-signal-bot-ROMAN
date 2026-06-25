@@ -4,9 +4,9 @@
   "active_trade": null,
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1782414000000,
+    "last_scanned_3m_ts": 1782414900000,
     "last_run_processed": 5,
-    "processed_count": 2108,
+    "processed_count": 2113,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -18,7 +18,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 75.87,
+        "extreme": 76.09,
         "displacement": false,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -28,7 +28,7 @@
         "confirmation_quality": 40,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 2108,
+        "processed_bars": 2113,
         "strong_displacement": false,
         "retest": false,
         "mitigation": false,
@@ -50,7 +50,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 75.93,
+        "extreme": 76.12,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -60,7 +60,7 @@
         "confirmation_quality": 67,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 2108,
+        "processed_bars": 2113,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -77,13 +77,13 @@
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 5,
+    "stable_count": 6,
     "pending_count": 0,
-    "updated_at": "2026-06-25T19:01:10.704051+00:00"
+    "updated_at": "2026-06-25T19:15:52.825403+00:00"
   },
   "latest_signal": {
-    "id": "da532eaa73",
-    "time": "2026-06-25T19:01:10.705108+00:00",
+    "id": "8694ecbbb3",
+    "time": "2026-06-25T19:15:52.826497+00:00",
     "action": "NO_SETUP",
     "side": "LONG",
     "setup_type": "PULLBACK_CONTINUATION",
@@ -97,13 +97,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 76.89,
-      "time": "2026-06-23T19:01:26.031868+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1625,7 +1618,15 @@
       "quality": 52,
       "price": 75.78,
       "time": "2026-06-25T19:01:10.705125+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "LONG",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 52,
+      "price": 75.99,
+      "time": "2026-06-25T19:15:52.826517+00:00"
     }
   ],
-  "updated_at": "2026-06-25T19:01:11.042391+00:00"
+  "updated_at": "2026-06-25T19:15:53.182599+00:00"
 }
