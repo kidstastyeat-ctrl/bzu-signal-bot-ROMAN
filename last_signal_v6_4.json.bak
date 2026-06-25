@@ -9,27 +9,27 @@
     "opened_at": "2026-06-25T13:01:14.784727+00:00",
     "entry": 73.17,
     "stop_initial": 72.8035,
-    "stop_current": 73.5164,
+    "stop_current": 73.9397,
     "structural_invalidation": 72.8035,
     "tp1": 73.9397,
     "tp2": 74.3062,
     "tp3": 74.7093,
     "quality": 77,
     "position_risk_pct": 0.5,
-    "best_price": 74.1,
+    "best_price": 74.21,
     "worst_price": 73.17,
     "thesis_key": "LONG|CONTINUATION|PULLBACK_CONTINUATION|731",
     "thesis": "LONG PULLBACK_CONTINUATION | HTF=NEUTRAL | 3M=READY",
-    "last_checked_3m_ts": 1782396074209,
+    "last_checked_3m_ts": 1782396950383,
     "tp1_hit": true,
-    "tp2_hit": false,
+    "tp2_hit": true,
     "tp3_hit": false,
     "tp1_stop_locked": true,
-    "tp2_stop_locked": false,
+    "tp2_stop_locked": true,
     "tp1_locked_stop": 73.5164,
-    "tp2_locked_stop": 0.0,
+    "tp2_locked_stop": 73.9397,
     "status": "OPEN",
-    "last_action": "HOLD",
+    "last_action": "TP2",
     "notes": [],
     "entry_integrity_score": 100,
     "entry_fail_streak": 0,
@@ -41,9 +41,9 @@
   },
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1782396000000,
+    "last_scanned_3m_ts": 1782396900000,
     "last_run_processed": 5,
-    "processed_count": 2008,
+    "processed_count": 2013,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -55,7 +55,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 74.08,
+        "extreme": 74.27,
         "displacement": false,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -65,15 +65,15 @@
         "confirmation_quality": 40,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 2008,
+        "processed_bars": 2013,
         "strong_displacement": false,
         "retest": false,
         "mitigation": false,
         "chase_risk": false,
         "impulse_strength": {
-          "score": 0,
-          "level": "WEAK",
-          "body_strength": 0.23,
+          "score": 1,
+          "level": "NORMAL",
+          "body_strength": 0.67,
           "consecutive": 0
         }
       },
@@ -87,7 +87,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 74.21,
+        "extreme": 74.33,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -97,16 +97,16 @@
         "confirmation_quality": 67,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 2008,
+        "processed_bars": 2013,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
         "chase_risk": true,
         "impulse_strength": {
-          "score": 0,
-          "level": "WEAK",
-          "body_strength": 0.23,
-          "consecutive": 0
+          "score": 2,
+          "level": "STRONG",
+          "body_strength": 0.67,
+          "consecutive": 2
         }
       }
     }
@@ -114,9 +114,9 @@
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 1,
-    "pending_count": 2,
-    "updated_at": "2026-06-25T14:01:14.209071+00:00"
+    "stable_count": 2,
+    "pending_count": 0,
+    "updated_at": "2026-06-25T14:15:50.383021+00:00"
   },
   "latest_signal": {
     "id": "abe83f2580",
@@ -134,13 +134,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "SHORT",
-      "action": "PROTECT",
-      "price": 76.46,
-      "time": "2026-06-23T14:15:57.750213+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "SHORT",
@@ -1652,7 +1645,14 @@
       "action": "HOLD",
       "price": 74.1,
       "time": "2026-06-25T14:01:14.875856+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "TP2",
+      "price": 74.21,
+      "time": "2026-06-25T14:15:50.939442+00:00"
     }
   ],
-  "updated_at": "2026-06-25T14:01:14.876082+00:00"
+  "updated_at": "2026-06-25T14:15:50.939629+00:00"
 }
