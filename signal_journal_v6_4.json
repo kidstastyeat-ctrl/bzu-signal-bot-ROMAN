@@ -3534,6 +3534,20 @@
       "action": "STOP",
       "side": "LONG",
       "price": 73.17
+    },
+    {
+      "id": "abe83f2580",
+      "time": "2026-06-25T13:01:14.784691+00:00",
+      "action": "RISKY_ENTRY",
+      "side": "LONG",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 77,
+      "reason": "Ризикований ранній вхід: Продовження тренду після ICT-відкату — RANGE_COMPRESSION profile",
+      "regime": "RANGE",
+      "news_bias": "NEUTRAL",
+      "macro_risk": "NORMAL",
+      "version": "pro-hybrid-confluence-v6.5",
+      "architecture_version": "HYBRID_CONFLUENCE_V6_4"
     }
   ],
   "trades": [
@@ -3689,5 +3703,5 @@
     "expectancy_r": -0.002,
     "by_family": {}
   },
-  "updated_at": "2026-06-25T12:45:48.755626+00:00"
+  "updated_at": "2026-06-25T13:01:15.339315+00:00"
 }

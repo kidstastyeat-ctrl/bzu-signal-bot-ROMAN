@@ -1,12 +1,49 @@
 {
   "version": "pro-hybrid-confluence-v6.5",
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
-  "active_trade": null,
+  "active_trade": {
+    "id": "506e6bca50",
+    "side": "LONG",
+    "setup_type": "PULLBACK_CONTINUATION",
+    "setup_family": "CONTINUATION",
+    "opened_at": "2026-06-25T13:01:14.784727+00:00",
+    "entry": 73.17,
+    "stop_initial": 72.8035,
+    "stop_current": 72.8035,
+    "structural_invalidation": 72.8035,
+    "tp1": 73.9397,
+    "tp2": 74.3062,
+    "tp3": 74.7093,
+    "quality": 77,
+    "position_risk_pct": 0.5,
+    "best_price": 73.17,
+    "worst_price": 73.17,
+    "thesis_key": "LONG|CONTINUATION|PULLBACK_CONTINUATION|731",
+    "thesis": "LONG PULLBACK_CONTINUATION | HTF=NEUTRAL | 3M=READY",
+    "last_checked_3m_ts": 0,
+    "tp1_hit": false,
+    "tp2_hit": false,
+    "tp3_hit": false,
+    "tp1_stop_locked": false,
+    "tp2_stop_locked": false,
+    "tp1_locked_stop": 0.0,
+    "tp2_locked_stop": 0.0,
+    "status": "OPEN",
+    "last_action": "ENTRY",
+    "notes": [],
+    "entry_integrity_score": 100,
+    "entry_fail_streak": 0,
+    "mfe_giveback_streak": 0,
+    "mfe_giveback_last_state": "OK",
+    "trigger_level": 83.06,
+    "opened_regime": "RANGE",
+    "entry_level": "RISKY_ENTRY"
+  },
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1782391500000,
+    "last_scanned_3m_ts": 1782392400000,
     "last_run_processed": 5,
-    "processed_count": 1983,
+    "processed_count": 1988,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -18,7 +55,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 73.2,
+        "extreme": 73.25,
         "displacement": false,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -28,15 +65,15 @@
         "confirmation_quality": 40,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 1983,
+        "processed_bars": 1988,
         "strong_displacement": false,
         "retest": false,
         "mitigation": false,
         "chase_risk": false,
         "impulse_strength": {
-          "score": 1,
-          "level": "NORMAL",
-          "body_strength": 1.0,
+          "score": 0,
+          "level": "WEAK",
+          "body_strength": 0.38,
           "consecutive": 0
         }
       },
@@ -50,7 +87,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 73.28,
+        "extreme": 73.38,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -60,50 +97,43 @@
         "confirmation_quality": 67,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 1983,
+        "processed_bars": 1988,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
         "chase_risk": true,
         "impulse_strength": {
-          "score": 1,
-          "level": "NORMAL",
-          "body_strength": 1.0,
-          "consecutive": 1
+          "score": 0,
+          "level": "WEAK",
+          "body_strength": 0.38,
+          "consecutive": 0
         }
       }
     }
   },
   "regime_memory": {
-    "type": "NORMAL",
-    "pending_type": "RANGE_COMPRESSION",
-    "stable_count": 0,
-    "pending_count": 1,
-    "updated_at": "2026-06-25T12:45:48.290103+00:00"
+    "type": "RANGE_COMPRESSION",
+    "pending_type": "",
+    "stable_count": 1,
+    "pending_count": 2,
+    "updated_at": "2026-06-25T13:01:14.783711+00:00"
   },
   "latest_signal": {
-    "id": "7365b05c09",
-    "time": "2026-06-25T10:45:46.259867+00:00",
+    "id": "abe83f2580",
+    "time": "2026-06-25T13:01:14.784691+00:00",
     "action": "RISKY_ENTRY",
     "side": "LONG",
     "setup_type": "PULLBACK_CONTINUATION",
-    "quality": 68,
-    "reason": "Ризикований ранній вхід: Продовження тренду після ICT-відкату — NORMAL profile",
-    "regime": "TRANSITION",
+    "quality": 77,
+    "reason": "Ризикований ранній вхід: Продовження тренду після ICT-відкату — RANGE_COMPRESSION profile",
+    "regime": "RANGE",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
-    "version": "pro-hybrid-confluence-v6.4",
+    "version": "pro-hybrid-confluence-v6.5",
     "architecture_version": "HYBRID_CONFLUENCE_V6_4"
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "CLOSE",
-      "side": "SHORT",
-      "action": "STOP",
-      "price": 77.25,
-      "time": "2026-06-23T13:01:20.597130+00:00"
-    },
     {
       "type": "RISKY_ENTRY",
       "side": "SHORT",
@@ -1615,7 +1645,15 @@
       "action": "STOP",
       "price": 73.17,
       "time": "2026-06-25T12:45:48.752738+00:00"
+    },
+    {
+      "type": "RISKY_ENTRY",
+      "side": "LONG",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 77,
+      "price": 73.17,
+      "time": "2026-06-25T13:01:14.784710+00:00"
     }
   ],
-  "updated_at": "2026-06-25T12:45:48.752776+00:00"
+  "updated_at": "2026-06-25T13:01:15.335171+00:00"
 }
