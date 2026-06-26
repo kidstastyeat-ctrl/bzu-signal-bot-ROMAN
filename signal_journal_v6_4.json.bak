@@ -4136,6 +4136,13 @@
       "action": "TP1",
       "side": "SHORT",
       "price": 74.36
+    },
+    {
+      "time": "2026-06-26T03:45:45.691867+00:00",
+      "type": "FOLLOW",
+      "action": "HOLD",
+      "side": "SHORT",
+      "price": 74.25
     }
   ],
   "trades": [
@@ -4319,5 +4326,5 @@
     "expectancy_r": -0.001,
     "by_family": {}
   },
-  "updated_at": "2026-06-26T03:31:03.003751+00:00"
+  "updated_at": "2026-06-26T03:45:45.695500+00:00"
 }
