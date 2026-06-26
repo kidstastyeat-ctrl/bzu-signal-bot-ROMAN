@@ -3,36 +3,36 @@
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
   "active_trade": null,
   "opportunity": {
-    "side": "SHORT",
+    "side": "LONG",
     "setup_type": "PULLBACK_CONTINUATION",
     "setup_family": "CONTINUATION",
-    "created_at": "2026-06-26T11:01:11.290359+00:00",
-    "expires_at": "2026-06-27T05:01:11.290361+00:00",
-    "score": 65,
+    "created_at": "2026-06-26T11:15:47.273616+00:00",
+    "expires_at": "2026-06-27T05:15:47.273618+00:00",
+    "score": 63,
     "trigger_level": 83.06,
-    "invalidation_level": 74.1389,
+    "invalidation_level": 72.7314,
     "confirmations": [
       "біля свіжої зони",
       "біля OB 15m",
-      "біля OB 15m",
-      "біля OB 15m",
-      "біля FVG 15m"
+      "LONG у Discount зоні (PD Array)",
+      "15M структура підтримує",
+      "⚠️ Поза активними торговими сесіями"
     ],
     "evidence_families": [
       "ICT_LOCATION",
       "PRICE_STRUCTURE",
       "FORWARD_ICT_ZONE"
     ],
-    "execution_lane": "MISSED_IMPULSE_REENTRY",
+    "execution_lane": "STANDARD_CONFIRMED",
     "status": "ARMED",
-    "thesis_key": "SHORT|CONTINUATION|PULLBACK_CONTINUATION|737",
-    "thesis": "SHORT PULLBACK_CONTINUATION | HTF=NEUTRAL | 3M=READY",
+    "thesis_key": "LONG|CONTINUATION|PULLBACK_CONTINUATION|732",
+    "thesis": "LONG PULLBACK_CONTINUATION | HTF=NEUTRAL | 3M=READY",
     "missed_at": ""
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1782471600000,
+    "last_scanned_3m_ts": 1782472500000,
     "last_run_processed": 5,
-    "processed_count": 2428,
+    "processed_count": 2433,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -44,7 +44,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 73.17,
+        "extreme": 73.34,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -54,7 +54,7 @@
         "confirmation_quality": 59,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 2428,
+        "processed_bars": 2433,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -76,7 +76,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 73.27,
+        "extreme": 73.37,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -86,7 +86,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 2428,
+        "processed_bars": 2433,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -103,20 +103,20 @@
   },
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
-    "pending_type": "",
-    "stable_count": 5,
-    "pending_count": 0,
-    "updated_at": "2026-06-26T11:01:11.289289+00:00"
+    "pending_type": "NORMAL",
+    "stable_count": 0,
+    "pending_count": 1,
+    "updated_at": "2026-06-26T11:15:47.272497+00:00"
   },
   "latest_signal": {
-    "id": "9259f686a0",
-    "time": "2026-06-26T11:01:11.290330+00:00",
+    "id": "c335ee23ac",
+    "time": "2026-06-26T11:15:47.273587+00:00",
     "action": "ARMED",
-    "side": "SHORT",
+    "side": "LONG",
     "setup_type": "PULLBACK_CONTINUATION",
-    "quality": 65,
-    "reason": "Re-entry з пропущеного імпульсу — сформовано сигнал, чекаємо входу",
-    "regime": "RANGE",
+    "quality": 63,
+    "reason": "Продовження тренду після ICT-відкату сформовано; gate v6: WATCH | NORMAL",
+    "regime": "TRANSITION",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
     "version": "pro-hybrid-confluence-v6.6",
@@ -124,14 +124,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "ARMED",
-      "side": "SHORT",
-      "setup_type": "PULLBACK_CONTINUATION",
-      "quality": 61,
-      "price": 75.43,
-      "time": "2026-06-24T11:01:19.279556+00:00"
-    },
     {
       "type": "ARMED",
       "side": "SHORT",
@@ -1647,7 +1639,15 @@
       "quality": 65,
       "price": 73.13,
       "time": "2026-06-26T11:01:11.290347+00:00"
+    },
+    {
+      "type": "ARMED",
+      "side": "LONG",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 63,
+      "price": 73.25,
+      "time": "2026-06-26T11:15:47.273605+00:00"
     }
   ],
-  "updated_at": "2026-06-26T11:01:11.711743+00:00"
+  "updated_at": "2026-06-26T11:15:47.792523+00:00"
 }
