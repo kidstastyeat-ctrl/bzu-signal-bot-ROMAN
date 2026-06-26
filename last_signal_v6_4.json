@@ -6,8 +6,8 @@
     "side": "LONG",
     "setup_type": "PULLBACK_CONTINUATION",
     "setup_family": "CONTINUATION",
-    "created_at": "2026-06-26T12:15:46.243867+00:00",
-    "expires_at": "2026-06-27T06:15:46.243869+00:00",
+    "created_at": "2026-06-26T12:31:03.566830+00:00",
+    "expires_at": "2026-06-27T06:31:03.566832+00:00",
     "score": 70,
     "trigger_level": 83.06,
     "invalidation_level": 73.1546,
@@ -29,9 +29,9 @@
     "missed_at": ""
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1782476100000,
+    "last_scanned_3m_ts": 1782477000000,
     "last_run_processed": 5,
-    "processed_count": 2453,
+    "processed_count": 2458,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -43,17 +43,17 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 73.28,
+        "extreme": 73.21,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
         "hold_closes": 0,
         "previous_stage": "",
         "chain_quality": 50,
-        "confirmation_quality": 59,
+        "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 2453,
+        "processed_bars": 2458,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -75,7 +75,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 73.34,
+        "extreme": 73.25,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -85,7 +85,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 2453,
+        "processed_bars": 2458,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -101,15 +101,15 @@
     }
   },
   "regime_memory": {
-    "type": "NORMAL",
-    "pending_type": "RANGE_COMPRESSION",
-    "stable_count": 0,
-    "pending_count": 1,
-    "updated_at": "2026-06-26T12:15:46.242793+00:00"
+    "type": "RANGE_COMPRESSION",
+    "pending_type": "",
+    "stable_count": 1,
+    "pending_count": 2,
+    "updated_at": "2026-06-26T12:31:03.565750+00:00"
   },
   "latest_signal": {
-    "id": "d73bb53836",
-    "time": "2026-06-26T12:15:46.243840+00:00",
+    "id": "d2933774b9",
+    "time": "2026-06-26T12:31:03.566802+00:00",
     "action": "ARMED",
     "side": "LONG",
     "setup_type": "PULLBACK_CONTINUATION",
@@ -123,14 +123,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "ARMED",
-      "side": "SHORT",
-      "setup_type": "PULLBACK_CONTINUATION",
-      "quality": 62,
-      "price": 74.75,
-      "time": "2026-06-24T12:15:49.278031+00:00"
-    },
     {
       "type": "ARMED",
       "side": "SHORT",
@@ -1646,7 +1638,15 @@
       "quality": 70,
       "price": 73.22,
       "time": "2026-06-26T12:15:46.243857+00:00"
+    },
+    {
+      "type": "ARMED",
+      "side": "LONG",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 70,
+      "price": 73.12,
+      "time": "2026-06-26T12:31:03.566819+00:00"
     }
   ],
-  "updated_at": "2026-06-26T12:15:46.594183+00:00"
+  "updated_at": "2026-06-26T12:31:03.875699+00:00"
 }
