@@ -20,7 +20,7 @@
     "worst_price": 74.86,
     "thesis_key": "SHORT|CONTINUATION|PULLBACK_CONTINUATION|748",
     "thesis": "SHORT PULLBACK_CONTINUATION | HTF=NEUTRAL | 3M=READY",
-    "last_checked_3m_ts": 1782450075696,
+    "last_checked_3m_ts": 1782450945169,
     "tp1_hit": true,
     "tp2_hit": false,
     "tp3_hit": false,
@@ -41,9 +41,9 @@
   },
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1782450000000,
+    "last_scanned_3m_ts": 1782450900000,
     "last_run_processed": 5,
-    "processed_count": 2308,
+    "processed_count": 2313,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -65,7 +65,7 @@
         "confirmation_quality": 58,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 2308,
+        "processed_bars": 2313,
         "strong_displacement": false,
         "retest": false,
         "mitigation": false,
@@ -97,7 +97,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 2308,
+        "processed_bars": 2313,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -115,9 +115,9 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 2,
+    "stable_count": 3,
     "pending_count": 0,
-    "updated_at": "2026-06-26T05:01:15.695759+00:00"
+    "updated_at": "2026-06-26T05:15:45.169528+00:00"
   },
   "latest_signal": {
     "id": "94d43155d4",
@@ -135,14 +135,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "RISKY_ENTRY",
-      "side": "LONG",
-      "setup_type": "PULLBACK_CONTINUATION",
-      "quality": 68,
-      "price": 76.37,
-      "time": "2026-06-24T05:01:11.599641+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1656,7 +1648,14 @@
       "action": "HOLD",
       "price": 74.11,
       "time": "2026-06-26T05:01:16.101966+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "HOLD",
+      "price": 74.12,
+      "time": "2026-06-26T05:15:45.682401+00:00"
     }
   ],
-  "updated_at": "2026-06-26T05:01:16.102145+00:00"
+  "updated_at": "2026-06-26T05:15:45.682610+00:00"
 }
