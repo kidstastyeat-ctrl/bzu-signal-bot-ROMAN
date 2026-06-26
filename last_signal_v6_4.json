@@ -30,9 +30,9 @@
     "missed_at": ""
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1782462600000,
+    "last_scanned_3m_ts": 1782463500000,
     "last_run_processed": 5,
-    "processed_count": 2378,
+    "processed_count": 2383,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -44,7 +44,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 72.72,
+        "extreme": 73.08,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -54,7 +54,7 @@
         "confirmation_quality": 59,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 2378,
+        "processed_bars": 2383,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -76,7 +76,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 72.98,
+        "extreme": 73.13,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -86,7 +86,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 2378,
+        "processed_bars": 2383,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -104,13 +104,13 @@
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 5,
+    "stable_count": 6,
     "pending_count": 0,
-    "updated_at": "2026-06-26T08:31:09.854624+00:00"
+    "updated_at": "2026-06-26T08:45:46.136463+00:00"
   },
   "latest_signal": {
-    "id": "b0f4ddf5b5",
-    "time": "2026-06-26T08:31:09.855295+00:00",
+    "id": "d2b676a9b2",
+    "time": "2026-06-26T08:45:46.137579+00:00",
     "action": "NO_SETUP",
     "side": "LONG",
     "setup_type": "PULLBACK_CONTINUATION",
@@ -124,14 +124,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "ARMED",
-      "side": "SHORT",
-      "setup_type": "PULLBACK_CONTINUATION",
-      "quality": 62,
-      "price": 75.57,
-      "time": "2026-06-24T08:31:11.218627+00:00"
-    },
     {
       "type": "ARMED",
       "side": "SHORT",
@@ -1647,7 +1639,15 @@
       "quality": 56,
       "price": 72.84,
       "time": "2026-06-26T08:31:09.855307+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "LONG",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 56,
+      "price": 72.98,
+      "time": "2026-06-26T08:45:46.137597+00:00"
     }
   ],
-  "updated_at": "2026-06-26T08:31:10.390759+00:00"
+  "updated_at": "2026-06-26T08:45:46.718635+00:00"
 }
