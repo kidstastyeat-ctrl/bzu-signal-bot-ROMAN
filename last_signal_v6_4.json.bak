@@ -1,37 +1,49 @@
 {
   "version": "pro-hybrid-confluence-v6.6",
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
-  "active_trade": null,
-  "opportunity": {
+  "active_trade": {
+    "id": "719d9906ec",
     "side": "SHORT",
     "setup_type": "PULLBACK_CONTINUATION",
     "setup_family": "CONTINUATION",
-    "created_at": "2026-06-26T01:45:47.187511+00:00",
-    "expires_at": "2026-06-26T19:45:47.187514+00:00",
-    "score": 60,
-    "trigger_level": 83.06,
-    "invalidation_level": 75.3175,
-    "confirmations": [
-      "біля свіжої зони",
-      "біля OB 15m",
-      "біля OB 15m",
-      "біля OB 15m",
-      "біля OB 15m"
-    ],
-    "evidence_families": [
-      "ICT_LOCATION",
-      "PRICE_STRUCTURE"
-    ],
-    "execution_lane": "MISSED_IMPULSE_REENTRY",
-    "status": "ARMED",
-    "thesis_key": "SHORT|CONTINUATION|PULLBACK_CONTINUATION|750",
+    "opened_at": "2026-06-26T02:01:08.977520+00:00",
+    "entry": 74.86,
+    "stop_initial": 75.1429,
+    "stop_current": 75.1429,
+    "structural_invalidation": 75.1429,
+    "tp1": 74.2659,
+    "tp2": 73.983,
+    "tp3": 73.6718,
+    "quality": 77,
+    "position_risk_pct": 0.3,
+    "best_price": 74.86,
+    "worst_price": 74.86,
+    "thesis_key": "SHORT|CONTINUATION|PULLBACK_CONTINUATION|748",
     "thesis": "SHORT PULLBACK_CONTINUATION | HTF=NEUTRAL | 3M=READY",
-    "missed_at": ""
+    "last_checked_3m_ts": 0,
+    "tp1_hit": false,
+    "tp2_hit": false,
+    "tp3_hit": false,
+    "tp1_stop_locked": false,
+    "tp2_stop_locked": false,
+    "tp1_locked_stop": 0.0,
+    "tp2_locked_stop": 0.0,
+    "status": "OPEN",
+    "last_action": "ENTRY",
+    "notes": [],
+    "entry_integrity_score": 100,
+    "entry_fail_streak": 0,
+    "mfe_giveback_streak": 0,
+    "mfe_giveback_last_state": "OK",
+    "trigger_level": 83.06,
+    "opened_regime": "TRANSITION",
+    "entry_level": "RISKY_ENTRY"
   },
+  "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1782438300000,
+    "last_scanned_3m_ts": 1782439200000,
     "last_run_processed": 5,
-    "processed_count": 2243,
+    "processed_count": 2248,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -43,7 +55,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 75.07,
+        "extreme": 74.93,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -53,7 +65,7 @@
         "confirmation_quality": 58,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 2243,
+        "processed_bars": 2248,
         "strong_displacement": false,
         "retest": false,
         "mitigation": false,
@@ -75,7 +87,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 75.12,
+        "extreme": 74.98,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -85,7 +97,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 2243,
+        "processed_bars": 2248,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -102,20 +114,20 @@
   },
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
-    "pending_type": "",
-    "stable_count": 16,
-    "pending_count": 0,
-    "updated_at": "2026-06-26T01:45:47.186209+00:00"
+    "pending_type": "NORMAL",
+    "stable_count": 0,
+    "pending_count": 1,
+    "updated_at": "2026-06-26T02:01:08.976392+00:00"
   },
   "latest_signal": {
-    "id": "d3d6748afb",
-    "time": "2026-06-26T01:45:47.187479+00:00",
-    "action": "ARMED",
+    "id": "94d43155d4",
+    "time": "2026-06-26T02:01:08.977487+00:00",
+    "action": "RISKY_ENTRY",
     "side": "SHORT",
     "setup_type": "PULLBACK_CONTINUATION",
-    "quality": 60,
-    "reason": "Re-entry з пропущеного імпульсу — сформовано сигнал, чекаємо входу",
-    "regime": "RANGE",
+    "quality": 77,
+    "reason": "Ризикований ранній вхід: Продовження тренду після ICT-відкату — NORMAL profile",
+    "regime": "TRANSITION",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
     "version": "pro-hybrid-confluence-v6.6",
@@ -123,14 +135,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "ARMED",
-      "side": "SHORT",
-      "setup_type": "PULLBACK_CONTINUATION",
-      "quality": 62,
-      "price": 76.48,
-      "time": "2026-06-24T01:45:43.829469+00:00"
-    },
     {
       "type": "ARMED",
       "side": "SHORT",
@@ -1656,7 +1660,15 @@
       "quality": 60,
       "price": 75.01,
       "time": "2026-06-26T01:45:47.187499+00:00"
+    },
+    {
+      "type": "RISKY_ENTRY",
+      "side": "SHORT",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 77,
+      "price": 74.86,
+      "time": "2026-06-26T02:01:08.977504+00:00"
     }
   ],
-  "updated_at": "2026-06-26T01:45:47.609239+00:00"
+  "updated_at": "2026-06-26T02:01:09.342293+00:00"
 }
