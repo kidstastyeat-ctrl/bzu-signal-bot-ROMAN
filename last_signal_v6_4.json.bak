@@ -1,12 +1,49 @@
 {
   "version": "pro-hybrid-confluence-v6.6",
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
-  "active_trade": null,
+  "active_trade": {
+    "id": "956da97a7e",
+    "side": "SHORT",
+    "setup_type": "PULLBACK_CONTINUATION",
+    "setup_family": "CONTINUATION",
+    "opened_at": "2026-06-27T16:41:13.034686+00:00",
+    "entry": 74.22,
+    "stop_initial": 74.5406,
+    "stop_current": 74.5406,
+    "structural_invalidation": 74.5406,
+    "tp1": 73.5467,
+    "tp2": 73.2261,
+    "tp3": 72.8735,
+    "quality": 75,
+    "position_risk_pct": 0.3,
+    "best_price": 74.22,
+    "worst_price": 74.22,
+    "thesis_key": "SHORT|CONTINUATION|PULLBACK_CONTINUATION|742",
+    "thesis": "SHORT PULLBACK_CONTINUATION | HTF=NEUTRAL | 3M=READY",
+    "last_checked_3m_ts": 0,
+    "tp1_hit": false,
+    "tp2_hit": false,
+    "tp3_hit": false,
+    "tp1_stop_locked": false,
+    "tp2_stop_locked": false,
+    "tp1_locked_stop": 0.0,
+    "tp2_locked_stop": 0.0,
+    "status": "OPEN",
+    "last_action": "ENTRY",
+    "notes": [],
+    "entry_integrity_score": 100,
+    "entry_fail_streak": 0,
+    "mfe_giveback_streak": 0,
+    "mfe_giveback_last_state": "OK",
+    "trigger_level": 83.06,
+    "opened_regime": "RANGE",
+    "entry_level": "RISKY_ENTRY"
+  },
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1782577800000,
-    "last_run_processed": 5,
-    "processed_count": 3018,
+    "last_scanned_3m_ts": 1782578340000,
+    "last_run_processed": 3,
+    "processed_count": 3021,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -18,7 +55,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 74.4,
+        "extreme": 74.34,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -28,7 +65,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 3018,
+        "processed_bars": 3021,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -50,7 +87,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 74.4,
+        "extreme": 74.41,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -60,7 +97,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 3018,
+        "processed_bars": 3021,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -78,19 +115,19 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 2,
+    "stable_count": 3,
     "pending_count": 0,
-    "updated_at": "2026-06-27T16:30:59.234966+00:00"
+    "updated_at": "2026-06-27T16:41:13.033686+00:00"
   },
   "latest_signal": {
-    "id": "00c7b49c7c",
-    "time": "2026-06-27T15:30:56.767806+00:00",
+    "id": "0ae454efb2",
+    "time": "2026-06-27T16:41:13.034652+00:00",
     "action": "RISKY_ENTRY",
     "side": "SHORT",
     "setup_type": "PULLBACK_CONTINUATION",
-    "quality": 77,
-    "reason": "Ризикований ранній вхід: Продовження тренду після ICT-відкату — NORMAL profile",
-    "regime": "TRANSITION",
+    "quality": 75,
+    "reason": "Ризикований ранній вхід: Продовження тренду після ICT-відкату — RANGE_COMPRESSION profile",
+    "regime": "RANGE",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
     "version": "pro-hybrid-confluence-v6.6",
@@ -98,14 +135,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "NO_SETUP",
-      "side": "SHORT",
-      "setup_type": "PULLBACK_CONTINUATION",
-      "quality": 45,
-      "price": 75.12,
-      "time": "2026-06-25T16:31:02.873994+00:00"
-    },
     {
       "type": "ARMED",
       "side": "SHORT",
@@ -1575,7 +1604,15 @@
       "action": "STOP",
       "price": 74.28,
       "time": "2026-06-27T16:30:59.819348+00:00"
+    },
+    {
+      "type": "RISKY_ENTRY",
+      "side": "SHORT",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 75,
+      "price": 74.22,
+      "time": "2026-06-27T16:41:13.034669+00:00"
     }
   ],
-  "updated_at": "2026-06-27T16:30:59.819521+00:00"
+  "updated_at": "2026-06-27T16:41:13.459429+00:00"
 }
