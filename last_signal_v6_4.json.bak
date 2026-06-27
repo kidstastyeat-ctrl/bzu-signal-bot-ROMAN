@@ -6,8 +6,8 @@
     "side": "SHORT",
     "setup_type": "PULLBACK_CONTINUATION",
     "setup_family": "CONTINUATION",
-    "created_at": "2026-06-27T12:01:05.005351+00:00",
-    "expires_at": "2026-06-28T06:01:05.005354+00:00",
+    "created_at": "2026-06-27T12:17:45.040615+00:00",
+    "expires_at": "2026-06-28T06:17:45.040617+00:00",
     "score": 66,
     "trigger_level": 83.06,
     "invalidation_level": 74.091,
@@ -103,20 +103,20 @@
   },
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
-    "pending_type": "NORMAL",
-    "stable_count": 0,
-    "pending_count": 1,
-    "updated_at": "2026-06-27T12:15:44.637897+00:00"
+    "pending_type": "",
+    "stable_count": 1,
+    "pending_count": 0,
+    "updated_at": "2026-06-27T12:17:45.039727+00:00"
   },
   "latest_signal": {
-    "id": "e9a4333bbc",
-    "time": "2026-06-27T12:15:44.638568+00:00",
-    "action": "NO_SETUP",
+    "id": "de7e849535",
+    "time": "2026-06-27T12:17:45.040585+00:00",
+    "action": "ARMED",
     "side": "SHORT",
     "setup_type": "PULLBACK_CONTINUATION",
-    "quality": 56,
-    "reason": "Професійний сетап не пройшов gate'и якості",
-    "regime": "TRANSITION",
+    "quality": 66,
+    "reason": "Re-entry з пропущеного імпульсу — сформовано сигнал, чекаємо входу",
+    "regime": "RANGE",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
     "version": "pro-hybrid-confluence-v6.6",
@@ -124,13 +124,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "PROTECT",
-      "price": 73.3,
-      "time": "2026-06-25T12:15:49.881809+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1590,7 +1583,15 @@
       "quality": 56,
       "price": 74.28,
       "time": "2026-06-27T12:15:44.638580+00:00"
+    },
+    {
+      "type": "ARMED",
+      "side": "SHORT",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 66,
+      "price": 74.19,
+      "time": "2026-06-27T12:17:45.040604+00:00"
     }
   ],
-  "updated_at": "2026-06-27T12:15:45.275420+00:00"
+  "updated_at": "2026-06-27T12:17:45.521832+00:00"
 }
