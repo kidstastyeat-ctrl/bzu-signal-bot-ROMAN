@@ -4969,6 +4969,13 @@
       "macro_risk": "NORMAL",
       "version": "pro-hybrid-confluence-v6.6",
       "architecture_version": "HYBRID_CONFLUENCE_V6_4"
+    },
+    {
+      "time": "2026-06-27T02:45:44.001742+00:00",
+      "type": "FOLLOW",
+      "action": "HOLD",
+      "side": "SHORT",
+      "price": 73.42
     }
   ],
   "trades": [
@@ -5187,5 +5194,5 @@
     "expectancy_r": -0.001,
     "by_family": {}
   },
-  "updated_at": "2026-06-27T02:30:58.625578+00:00"
+  "updated_at": "2026-06-27T02:45:44.005495+00:00"
 }
