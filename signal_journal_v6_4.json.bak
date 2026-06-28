@@ -6488,6 +6488,13 @@
       "action": "PROTECT",
       "side": "LONG",
       "price": 75.34
+    },
+    {
+      "time": "2026-06-28T16:45:47.837330+00:00",
+      "type": "FOLLOW",
+      "action": "PROTECT",
+      "side": "LONG",
+      "price": 75.59
     }
   ],
   "trades": [
@@ -6755,5 +6762,5 @@
     "expectancy_r": -0.001,
     "by_family": {}
   },
-  "updated_at": "2026-06-28T16:31:04.664908+00:00"
+  "updated_at": "2026-06-28T16:45:47.840886+00:00"
 }
