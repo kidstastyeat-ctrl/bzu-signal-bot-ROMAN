@@ -102,15 +102,15 @@
     }
   },
   "regime_memory": {
-    "type": "RANGE_COMPRESSION",
-    "pending_type": "NORMAL",
-    "stable_count": 0,
-    "pending_count": 1,
-    "updated_at": "2026-06-28T00:15:50.493965+00:00"
+    "type": "NORMAL",
+    "pending_type": "",
+    "stable_count": 1,
+    "pending_count": 2,
+    "updated_at": "2026-06-28T00:18:00.058429+00:00"
   },
   "latest_signal": {
-    "id": "b6d0ad87b0",
-    "time": "2026-06-28T00:15:50.495021+00:00",
+    "id": "ffdafd1bf8",
+    "time": "2026-06-28T00:18:00.059213+00:00",
     "action": "NO_SETUP",
     "side": "SHORT",
     "setup_type": "PULLBACK_CONTINUATION",
@@ -124,13 +124,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "SHORT",
-      "action": "HOLD",
-      "price": 75.24,
-      "time": "2026-06-26T00:15:47.694767+00:00"
-    },
     {
       "type": "CLOSE",
       "side": "SHORT",
@@ -1594,7 +1587,15 @@
       "quality": 43,
       "price": 75.14,
       "time": "2026-06-28T00:15:50.495039+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "SHORT",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 43,
+      "price": 75.15,
+      "time": "2026-06-28T00:18:00.059230+00:00"
     }
   ],
-  "updated_at": "2026-06-28T00:15:51.056827+00:00"
+  "updated_at": "2026-06-28T00:18:00.566848+00:00"
 }
