@@ -20,7 +20,7 @@
     "worst_price": 74.5,
     "thesis_key": "LONG|CONTINUATION|PULLBACK_CONTINUATION|748",
     "thesis": "LONG PULLBACK_CONTINUATION | HTF=NEUTRAL | 3M=READY",
-    "last_checked_3m_ts": 1782646261774,
+    "last_checked_3m_ts": 1782647148123,
     "tp1_hit": false,
     "tp2_hit": false,
     "tp3_hit": false,
@@ -41,9 +41,9 @@
   },
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1782646200000,
+    "last_scanned_3m_ts": 1782647100000,
     "last_run_processed": 5,
-    "processed_count": 3398,
+    "processed_count": 3403,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -55,7 +55,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 74.89,
+        "extreme": 74.94,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -65,7 +65,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 3398,
+        "processed_bars": 3403,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -97,7 +97,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 3398,
+        "processed_bars": 3403,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -115,9 +115,9 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 8,
+    "stable_count": 9,
     "pending_count": 0,
-    "updated_at": "2026-06-28T11:31:01.774429+00:00"
+    "updated_at": "2026-06-28T11:45:48.123055+00:00"
   },
   "latest_signal": {
     "id": "c854846c51",
@@ -135,14 +135,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "NO_SETUP",
-      "side": "LONG",
-      "setup_type": "PULLBACK_CONTINUATION",
-      "quality": 57,
-      "price": 73.58,
-      "time": "2026-06-26T11:45:47.426856+00:00"
-    },
     {
       "type": "ARMED",
       "side": "LONG",
@@ -1599,7 +1591,14 @@
       "action": "HOLD",
       "price": 74.8,
       "time": "2026-06-28T11:31:02.203634+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "HOLD",
+      "price": 74.85,
+      "time": "2026-06-28T11:45:48.637528+00:00"
     }
   ],
-  "updated_at": "2026-06-28T11:31:02.203670+00:00"
+  "updated_at": "2026-06-28T11:45:48.637556+00:00"
 }
