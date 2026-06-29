@@ -2,11 +2,37 @@
   "version": "pro-hybrid-confluence-v6.6",
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
   "active_trade": null,
-  "opportunity": null,
+  "opportunity": {
+    "side": "LONG",
+    "setup_type": "PULLBACK_CONTINUATION",
+    "setup_family": "CONTINUATION",
+    "created_at": "2026-06-29T10:31:00.686881+00:00",
+    "expires_at": "2026-06-30T04:31:00.686883+00:00",
+    "score": 61,
+    "trigger_level": 83.06,
+    "invalidation_level": 72.7844,
+    "confirmations": [
+      "біля свіжої зони",
+      "біля OB 15m",
+      "біля OB 15m",
+      "біля OB 15m",
+      "біля OB 15m"
+    ],
+    "evidence_families": [
+      "ICT_LOCATION",
+      "PRICE_STRUCTURE",
+      "FORWARD_ICT_ZONE"
+    ],
+    "execution_lane": "STANDARD_CONFIRMED",
+    "status": "ARMED",
+    "thesis_key": "LONG|CONTINUATION|PULLBACK_CONTINUATION|732",
+    "thesis": "LONG PULLBACK_CONTINUATION | HTF=NEUTRAL | 3M=READY",
+    "missed_at": ""
+  },
   "scan_3m": {
-    "last_scanned_3m_ts": 1782728100000,
+    "last_scanned_3m_ts": 1782729000000,
     "last_run_processed": 5,
-    "processed_count": 3853,
+    "processed_count": 3858,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -18,7 +44,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 73.39,
+        "extreme": 73.34,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -28,7 +54,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 3853,
+        "processed_bars": 3858,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -50,7 +76,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 73.43,
+        "extreme": 73.38,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -60,7 +86,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 3853,
+        "processed_bars": 3858,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -76,21 +102,21 @@
     }
   },
   "regime_memory": {
-    "type": "NORMAL",
-    "pending_type": "RANGE_COMPRESSION",
-    "stable_count": 0,
-    "pending_count": 1,
-    "updated_at": "2026-06-29T10:15:43.478014+00:00"
+    "type": "RANGE_COMPRESSION",
+    "pending_type": "",
+    "stable_count": 1,
+    "pending_count": 2,
+    "updated_at": "2026-06-29T10:31:00.685805+00:00"
   },
   "latest_signal": {
-    "id": "67a9f468db",
-    "time": "2026-06-29T07:15:43.366010+00:00",
-    "action": "RISKY_ENTRY",
+    "id": "ddc7faa7a5",
+    "time": "2026-06-29T10:31:00.686854+00:00",
+    "action": "ARMED",
     "side": "LONG",
     "setup_type": "PULLBACK_CONTINUATION",
-    "quality": 76,
-    "reason": "Ризикований ранній вхід: Продовження тренду після ICT-відкату — NORMAL profile",
-    "regime": "TRANSITION",
+    "quality": 61,
+    "reason": "Продовження тренду після ICT-відкату сформовано; gate v6: WATCH | RANGE_COMPRESSION",
+    "regime": "RANGE",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
     "version": "pro-hybrid-confluence-v6.6",
@@ -98,14 +124,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "ARMED",
-      "side": "SHORT",
-      "setup_type": "PULLBACK_CONTINUATION",
-      "quality": 66,
-      "price": 73.91,
-      "time": "2026-06-27T10:31:01.122516+00:00"
-    },
     {
       "type": "ARMED",
       "side": "SHORT",
@@ -1584,7 +1602,15 @@
       "action": "STOP",
       "price": 73.32,
       "time": "2026-06-29T10:15:43.988174+00:00"
+    },
+    {
+      "type": "ARMED",
+      "side": "LONG",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 61,
+      "price": 73.27,
+      "time": "2026-06-29T10:31:00.686870+00:00"
     }
   ],
-  "updated_at": "2026-06-29T10:15:43.988402+00:00"
+  "updated_at": "2026-06-29T10:31:01.094862+00:00"
 }
