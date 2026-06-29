@@ -7160,6 +7160,20 @@
       "macro_risk": "NORMAL",
       "version": "pro-hybrid-confluence-v6.6",
       "architecture_version": "HYBRID_CONFLUENCE_V6_4"
+    },
+    {
+      "id": "3e8a8084db",
+      "time": "2026-06-29T07:01:11.277131+00:00",
+      "action": "ARMED",
+      "side": "LONG",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 63,
+      "reason": "Re-entry з пропущеного імпульсу — сформовано сигнал, чекаємо входу",
+      "regime": "RANGE",
+      "news_bias": "NEUTRAL",
+      "macro_risk": "NORMAL",
+      "version": "pro-hybrid-confluence-v6.6",
+      "architecture_version": "HYBRID_CONFLUENCE_V6_4"
     }
   ],
   "trades": [
@@ -7448,5 +7462,5 @@
     "expectancy_r": -0.002,
     "by_family": {}
   },
-  "updated_at": "2026-06-29T06:45:47.675073+00:00"
+  "updated_at": "2026-06-29T07:01:11.732126+00:00"
 }
