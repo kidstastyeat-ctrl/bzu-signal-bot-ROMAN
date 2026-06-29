@@ -30,9 +30,9 @@
     "missed_at": ""
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1782694800000,
+    "last_scanned_3m_ts": 1782695700000,
     "last_run_processed": 5,
-    "processed_count": 3668,
+    "processed_count": 3673,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -44,7 +44,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 73.18,
+        "extreme": 73.59,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -54,7 +54,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 3668,
+        "processed_bars": 3673,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -76,7 +76,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 73.31,
+        "extreme": 73.63,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -86,7 +86,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 3668,
+        "processed_bars": 3673,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -103,20 +103,20 @@
   },
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
-    "pending_type": "",
-    "stable_count": 2,
-    "pending_count": 0,
-    "updated_at": "2026-06-29T01:01:08.441921+00:00"
+    "pending_type": "NORMAL",
+    "stable_count": 0,
+    "pending_count": 1,
+    "updated_at": "2026-06-29T01:15:47.717643+00:00"
   },
   "latest_signal": {
-    "id": "58048322b9",
-    "time": "2026-06-29T01:01:08.442966+00:00",
-    "action": "ARMED",
+    "id": "48f790693c",
+    "time": "2026-06-29T01:15:47.718768+00:00",
+    "action": "NO_SETUP",
     "side": "LONG",
     "setup_type": "PULLBACK_CONTINUATION",
-    "quality": 62,
-    "reason": "Re-entry з пропущеного імпульсу — сформовано сигнал, чекаємо входу",
-    "regime": "RANGE",
+    "quality": 53,
+    "reason": "Професійний сетап не пройшов gate'и якості",
+    "regime": "TRANSITION",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
     "version": "pro-hybrid-confluence-v6.6",
@@ -124,13 +124,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 73.82,
-      "time": "2026-06-27T01:30:58.640808+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1596,7 +1589,15 @@
       "quality": 62,
       "price": 73.15,
       "time": "2026-06-29T01:01:08.442983+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "LONG",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 53,
+      "price": 73.54,
+      "time": "2026-06-29T01:15:47.718785+00:00"
     }
   ],
-  "updated_at": "2026-06-29T01:01:08.969794+00:00"
+  "updated_at": "2026-06-29T01:15:48.313355+00:00"
 }
