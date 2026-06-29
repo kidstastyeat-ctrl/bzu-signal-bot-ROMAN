@@ -1,38 +1,49 @@
 {
   "version": "pro-hybrid-confluence-v6.6",
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
-  "active_trade": null,
-  "opportunity": {
+  "active_trade": {
+    "id": "e18c63d1b1",
     "side": "SHORT",
     "setup_type": "PULLBACK_CONTINUATION",
     "setup_family": "CONTINUATION",
-    "created_at": "2026-06-29T14:31:00.832663+00:00",
-    "expires_at": "2026-06-30T08:31:00.832666+00:00",
-    "score": 66,
-    "trigger_level": 83.06,
-    "invalidation_level": 74.1201,
-    "confirmations": [
-      "біля свіжої зони",
-      "біля OB 15m",
-      "біля OB 15m",
-      "біля OB 15m",
-      "біля OB 15m"
-    ],
-    "evidence_families": [
-      "ICT_LOCATION",
-      "PRICE_STRUCTURE",
-      "FORWARD_ICT_ZONE"
-    ],
-    "execution_lane": "EARLY_TACTICAL",
-    "status": "ARMED",
-    "thesis_key": "SHORT|CONTINUATION|PULLBACK_CONTINUATION|737",
+    "opened_at": "2026-06-29T14:45:45.224894+00:00",
+    "entry": 73.63,
+    "stop_initial": 74.0366,
+    "stop_current": 74.0366,
+    "structural_invalidation": 74.0366,
+    "tp1": 72.7761,
+    "tp2": 72.3695,
+    "tp3": 71.9223,
+    "quality": 71,
+    "position_risk_pct": 0.3,
+    "best_price": 73.63,
+    "worst_price": 73.63,
+    "thesis_key": "SHORT|CONTINUATION|PULLBACK_CONTINUATION|736",
     "thesis": "SHORT PULLBACK_CONTINUATION | HTF=NEUTRAL | 3M=READY",
-    "missed_at": ""
+    "last_checked_3m_ts": 0,
+    "tp1_hit": false,
+    "tp2_hit": false,
+    "tp3_hit": false,
+    "tp1_stop_locked": false,
+    "tp2_stop_locked": false,
+    "tp1_locked_stop": 0.0,
+    "tp2_locked_stop": 0.0,
+    "status": "OPEN",
+    "last_action": "ENTRY",
+    "notes": [],
+    "entry_integrity_score": 100,
+    "entry_fail_streak": 0,
+    "mfe_giveback_streak": 0,
+    "mfe_giveback_last_state": "OK",
+    "trigger_level": 83.06,
+    "opened_regime": "TRANSITION",
+    "entry_level": "RISKY_ENTRY"
   },
+  "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1782743400000,
+    "last_scanned_3m_ts": 1782744300000,
     "last_run_processed": 5,
-    "processed_count": 3938,
+    "processed_count": 3943,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -44,7 +55,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 73.8,
+        "extreme": 73.72,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -54,7 +65,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 3938,
+        "processed_bars": 3943,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -76,7 +87,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 73.85,
+        "extreme": 73.77,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -86,7 +97,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 3938,
+        "processed_bars": 3943,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -104,18 +115,18 @@
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 1,
-    "pending_count": 2,
-    "updated_at": "2026-06-29T14:31:00.831518+00:00"
+    "stable_count": 2,
+    "pending_count": 0,
+    "updated_at": "2026-06-29T14:45:45.223540+00:00"
   },
   "latest_signal": {
-    "id": "6c3483f851",
-    "time": "2026-06-29T14:31:00.832634+00:00",
-    "action": "ARMED",
+    "id": "e274e78f32",
+    "time": "2026-06-29T14:45:45.224859+00:00",
+    "action": "RISKY_ENTRY",
     "side": "SHORT",
     "setup_type": "PULLBACK_CONTINUATION",
-    "quality": 66,
-    "reason": "Продовження тренду після ICT-відкату сформовано; gate v6: WATCH | NORMAL",
+    "quality": 71,
+    "reason": "Ризикований ранній вхід: Продовження тренду після ICT-відкату — NORMAL profile",
     "regime": "TRANSITION",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
@@ -124,14 +135,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "ARMED",
-      "side": "SHORT",
-      "setup_type": "PULLBACK_CONTINUATION",
-      "quality": 65,
-      "price": 74.36,
-      "time": "2026-06-27T14:30:58.797939+00:00"
-    },
     {
       "type": "ARMED",
       "side": "SHORT",
@@ -1610,7 +1613,15 @@
       "quality": 66,
       "price": 73.71,
       "time": "2026-06-29T14:31:00.832651+00:00"
+    },
+    {
+      "type": "RISKY_ENTRY",
+      "side": "SHORT",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 71,
+      "price": 73.63,
+      "time": "2026-06-29T14:45:45.224877+00:00"
     }
   ],
-  "updated_at": "2026-06-29T14:31:01.347394+00:00"
+  "updated_at": "2026-06-29T14:45:45.803348+00:00"
 }
