@@ -6810,6 +6810,20 @@
       "macro_risk": "NORMAL",
       "version": "pro-hybrid-confluence-v6.6",
       "architecture_version": "HYBRID_CONFLUENCE_V6_4"
+    },
+    {
+      "id": "6d293da226",
+      "time": "2026-06-29T00:45:41.779123+00:00",
+      "action": "ARMED",
+      "side": "LONG",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 62,
+      "reason": "Продовження тренду після ICT-відкату сформовано; gate v6: WATCH | RANGE_COMPRESSION",
+      "regime": "RANGE",
+      "news_bias": "NEUTRAL",
+      "macro_risk": "NORMAL",
+      "version": "pro-hybrid-confluence-v6.6",
+      "architecture_version": "HYBRID_CONFLUENCE_V6_4"
     }
   ],
   "trades": [
@@ -7098,5 +7112,5 @@
     "expectancy_r": -0.002,
     "by_family": {}
   },
-  "updated_at": "2026-06-29T00:30:59.488239+00:00"
+  "updated_at": "2026-06-29T00:45:42.167761+00:00"
 }
