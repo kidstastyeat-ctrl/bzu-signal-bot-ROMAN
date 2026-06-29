@@ -3,14 +3,14 @@
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
   "active_trade": null,
   "opportunity": {
-    "side": "LONG",
+    "side": "SHORT",
     "setup_type": "PULLBACK_CONTINUATION",
     "setup_family": "CONTINUATION",
-    "created_at": "2026-06-29T14:01:12.008118+00:00",
-    "expires_at": "2026-06-30T08:01:12.008120+00:00",
-    "score": 61,
+    "created_at": "2026-06-29T14:15:44.963777+00:00",
+    "expires_at": "2026-06-30T08:15:44.963779+00:00",
+    "score": 66,
     "trigger_level": 83.06,
-    "invalidation_level": 72.7844,
+    "invalidation_level": 73.9331,
     "confirmations": [
       "біля свіжої зони",
       "біля OB 15m",
@@ -23,16 +23,16 @@
       "PRICE_STRUCTURE",
       "FORWARD_ICT_ZONE"
     ],
-    "execution_lane": "MISSED_IMPULSE_REENTRY",
+    "execution_lane": "EARLY_TACTICAL",
     "status": "ARMED",
-    "thesis_key": "LONG|CONTINUATION|PULLBACK_CONTINUATION|732",
-    "thesis": "LONG PULLBACK_CONTINUATION | HTF=NEUTRAL | 3M=READY",
+    "thesis_key": "SHORT|CONTINUATION|PULLBACK_CONTINUATION|735",
+    "thesis": "SHORT PULLBACK_CONTINUATION | HTF=NEUTRAL | 3M=READY",
     "missed_at": ""
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1782741600000,
+    "last_scanned_3m_ts": 1782742500000,
     "last_run_processed": 5,
-    "processed_count": 3928,
+    "processed_count": 3933,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -44,7 +44,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 73.45,
+        "extreme": 73.59,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -54,7 +54,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 3928,
+        "processed_bars": 3933,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -76,7 +76,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 73.52,
+        "extreme": 73.81,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -86,7 +86,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 3928,
+        "processed_bars": 3933,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -103,20 +103,20 @@
   },
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
-    "pending_type": "",
-    "stable_count": 9,
-    "pending_count": 0,
-    "updated_at": "2026-06-29T14:01:12.007247+00:00"
+    "pending_type": "NORMAL",
+    "stable_count": 0,
+    "pending_count": 1,
+    "updated_at": "2026-06-29T14:15:44.962516+00:00"
   },
   "latest_signal": {
-    "id": "b9a1c18387",
-    "time": "2026-06-29T14:01:12.008093+00:00",
+    "id": "35574797c5",
+    "time": "2026-06-29T14:15:44.963745+00:00",
     "action": "ARMED",
-    "side": "LONG",
+    "side": "SHORT",
     "setup_type": "PULLBACK_CONTINUATION",
-    "quality": 61,
-    "reason": "Re-entry з пропущеного імпульсу — сформовано сигнал, чекаємо входу",
-    "regime": "RANGE",
+    "quality": 66,
+    "reason": "Продовження тренду після ICT-відкату сформовано; gate v6: WATCH | NORMAL",
+    "regime": "TRANSITION",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
     "version": "pro-hybrid-confluence-v6.6",
@@ -124,14 +124,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "ARMED",
-      "side": "SHORT",
-      "setup_type": "PULLBACK_CONTINUATION",
-      "quality": 65,
-      "price": 74.34,
-      "time": "2026-06-27T14:01:10.962396+00:00"
-    },
     {
       "type": "ARMED",
       "side": "SHORT",
@@ -1610,7 +1602,15 @@
       "quality": 61,
       "price": 73.39,
       "time": "2026-06-29T14:01:12.008108+00:00"
+    },
+    {
+      "type": "ARMED",
+      "side": "SHORT",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 66,
+      "price": 73.51,
+      "time": "2026-06-29T14:15:44.963765+00:00"
     }
   ],
-  "updated_at": "2026-06-29T14:01:12.586999+00:00"
+  "updated_at": "2026-06-29T14:15:45.513988+00:00"
 }
