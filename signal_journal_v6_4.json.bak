@@ -7104,6 +7104,20 @@
       "macro_risk": "NORMAL",
       "version": "pro-hybrid-confluence-v6.6",
       "architecture_version": "HYBRID_CONFLUENCE_V6_4"
+    },
+    {
+      "id": "691f72d898",
+      "time": "2026-06-29T06:01:13.226309+00:00",
+      "action": "NO_SETUP",
+      "side": "SHORT",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 41,
+      "reason": "Професійний сетап не пройшов gate'и якості",
+      "regime": "TRANSITION",
+      "news_bias": "NEUTRAL",
+      "macro_risk": "NORMAL",
+      "version": "pro-hybrid-confluence-v6.6",
+      "architecture_version": "HYBRID_CONFLUENCE_V6_4"
     }
   ],
   "trades": [
@@ -7392,5 +7406,5 @@
     "expectancy_r": -0.002,
     "by_family": {}
   },
-  "updated_at": "2026-06-29T05:45:42.318117+00:00"
+  "updated_at": "2026-06-29T06:01:13.825024+00:00"
 }
