@@ -3,29 +3,29 @@
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
   "active_trade": null,
   "opportunity": {
-    "side": "LONG",
+    "side": "SHORT",
     "setup_type": "PULLBACK_CONTINUATION",
     "setup_family": "CONTINUATION",
-    "created_at": "2026-06-30T17:30:55.125468+00:00",
-    "expires_at": "2026-07-01T11:30:55.125470+00:00",
-    "score": 74,
+    "created_at": "2026-06-30T17:45:39.272586+00:00",
+    "expires_at": "2026-07-01T11:45:39.272589+00:00",
+    "score": 80,
     "trigger_level": 83.06,
-    "invalidation_level": 72.8146,
+    "invalidation_level": 73.51,
     "confirmations": [],
     "evidence_families": [
       "ICT_LOCATION",
       "PRICE_STRUCTURE"
     ],
-    "execution_lane": "STANDARD_CONFIRMED",
+    "execution_lane": "EARLY_TACTICAL",
     "status": "ARMED",
-    "thesis_key": "LONG|PULLBACK_CONTINUATION|731",
-    "thesis": "LONG PULLBACK_CONTINUATION | 3M=READY",
+    "thesis_key": "SHORT|PULLBACK_CONTINUATION|731",
+    "thesis": "SHORT PULLBACK_CONTINUATION | 3M=READY",
     "missed_at": ""
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1782840600000,
+    "last_scanned_3m_ts": 1782841500000,
     "last_run_processed": 5,
-    "processed_count": 4478,
+    "processed_count": 4483,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -37,7 +37,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 73.29,
+        "extreme": 73.27,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -47,7 +47,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 4478,
+        "processed_bars": 4483,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -79,7 +79,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 4478,
+        "processed_bars": 4483,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -96,20 +96,20 @@
   },
   "regime_memory": {
     "type": "NORMAL",
-    "pending_type": "RANGE_EDGE",
-    "stable_count": 0,
-    "pending_count": 1,
-    "updated_at": "2026-06-30T17:30:55.123739+00:00"
+    "pending_type": "",
+    "stable_count": 1,
+    "pending_count": 0,
+    "updated_at": "2026-06-30T17:45:39.267716+00:00"
   },
   "latest_signal": {
-    "id": "31458afb49",
-    "time": "2026-06-30T17:30:55.125408+00:00",
+    "id": "368c770ec0",
+    "time": "2026-06-30T17:45:39.272559+00:00",
     "action": "ARMED",
-    "side": "LONG",
+    "side": "SHORT",
     "setup_type": "PULLBACK_CONTINUATION",
-    "quality": 74,
+    "quality": 80,
     "reason": "[NONE] Продовження тренду після ICT-відкату сформовано; gate v6: WATCH",
-    "regime": "RANGE",
+    "regime": "TRANSITION",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
     "version": "pro-hybrid-confluence-v6.6",
@@ -117,14 +117,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "RISKY_ENTRY",
-      "side": "LONG",
-      "setup_type": "PULLBACK_CONTINUATION",
-      "quality": 69,
-      "price": 74.96,
-      "time": "2026-06-28T18:01:14.126786+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1631,7 +1623,15 @@
       "quality": 74,
       "price": 73.18,
       "time": "2026-06-30T17:30:55.125455+00:00"
+    },
+    {
+      "type": "ARMED",
+      "side": "SHORT",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 80,
+      "price": 73.16,
+      "time": "2026-06-30T17:45:39.272575+00:00"
     }
   ],
-  "updated_at": "2026-06-30T17:30:55.706398+00:00"
+  "updated_at": "2026-06-30T17:45:39.672674+00:00"
 }
