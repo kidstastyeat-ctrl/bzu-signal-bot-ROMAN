@@ -8329,6 +8329,13 @@
       "action": "TP1",
       "side": "LONG",
       "price": 74.0
+    },
+    {
+      "time": "2026-06-30T08:48:06.257111+00:00",
+      "type": "FOLLOW",
+      "action": "HOLD",
+      "side": "LONG",
+      "price": 74.0
     }
   ],
   "trades": [
@@ -8638,5 +8645,5 @@
     "expectancy_r": -0.001,
     "by_family": {}
   },
-  "updated_at": "2026-06-30T08:45:47.689079+00:00"
+  "updated_at": "2026-06-30T08:48:06.260720+00:00"
 }
