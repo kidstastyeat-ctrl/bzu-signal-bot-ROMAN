@@ -8336,6 +8336,13 @@
       "action": "HOLD",
       "side": "LONG",
       "price": 74.0
+    },
+    {
+      "time": "2026-06-30T09:01:12.413784+00:00",
+      "type": "FOLLOW",
+      "action": "STOP",
+      "side": "LONG",
+      "price": 73.82
     }
   ],
   "trades": [
@@ -8632,18 +8639,25 @@
       "setup_type": "PULLBACK_CONTINUATION",
       "result_pct": 0.08005960444322217,
       "mfe_pct": 0.4741262530479468
+    },
+    {
+      "id": "e4e9969a20",
+      "side": "LONG",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "result_pct": 0.39360978925901274,
+      "mfe_pct": 0.611828687967373
     }
   ],
   "version": "pro-hybrid-confluence-v6.6",
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
   "analytics": {
-    "closed_trades": 42,
-    "wins": 17,
+    "closed_trades": 43,
+    "wins": 18,
     "losses": 25,
-    "win_rate": 40.5,
-    "net_r": -0.06,
+    "win_rate": 41.9,
+    "net_r": -0.05,
     "expectancy_r": -0.001,
     "by_family": {}
   },
-  "updated_at": "2026-06-30T08:48:06.260720+00:00"
+  "updated_at": "2026-06-30T09:01:12.417275+00:00"
 }
