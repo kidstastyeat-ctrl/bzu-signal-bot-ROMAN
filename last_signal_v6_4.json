@@ -3,36 +3,29 @@
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
   "active_trade": null,
   "opportunity": {
-    "side": "SHORT",
+    "side": "LONG",
     "setup_type": "PULLBACK_CONTINUATION",
     "setup_family": "CONTINUATION",
-    "created_at": "2026-06-30T11:45:41.093008+00:00",
-    "expires_at": "2026-07-01T05:45:41.093011+00:00",
-    "score": 66,
+    "created_at": "2026-06-30T12:01:07.875687+00:00",
+    "expires_at": "2026-07-01T06:01:07.875690+00:00",
+    "score": 83,
     "trigger_level": 83.06,
-    "invalidation_level": 74.4484,
-    "confirmations": [
-      "біля свіжої зони",
-      "біля OB 15m",
-      "біля OB 15m",
-      "біля OB 15m",
-      "біля OB 15m"
-    ],
+    "invalidation_level": 74.0276,
+    "confirmations": [],
     "evidence_families": [
       "ICT_LOCATION",
-      "PRICE_STRUCTURE",
-      "FORWARD_ICT_ZONE"
+      "PRICE_STRUCTURE"
     ],
-    "execution_lane": "MISSED_IMPULSE_REENTRY",
+    "execution_lane": "STANDARD_CONFIRMED",
     "status": "ARMED",
-    "thesis_key": "SHORT|CONTINUATION|PULLBACK_CONTINUATION|740",
-    "thesis": "SHORT PULLBACK_CONTINUATION | HTF=NEUTRAL | 3M=READY",
+    "thesis_key": "LONG|PULLBACK_CONTINUATION|744",
+    "thesis": "LONG PULLBACK_CONTINUATION | 3M=READY",
     "missed_at": ""
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1782819900000,
+    "last_scanned_3m_ts": 1782820800000,
     "last_run_processed": 5,
-    "processed_count": 4363,
+    "processed_count": 4368,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -44,7 +37,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 74.3,
+        "extreme": 74.49,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -54,7 +47,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 4363,
+        "processed_bars": 4368,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -76,7 +69,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 74.33,
+        "extreme": 74.58,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -86,7 +79,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 4363,
+        "processed_bars": 4368,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -103,20 +96,20 @@
   },
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
-    "pending_type": "",
-    "stable_count": 5,
-    "pending_count": 0,
-    "updated_at": "2026-06-30T11:45:41.084840+00:00"
+    "pending_type": "NORMAL",
+    "stable_count": 0,
+    "pending_count": 1,
+    "updated_at": "2026-06-30T12:01:07.873956+00:00"
   },
   "latest_signal": {
-    "id": "47861295ad",
-    "time": "2026-06-30T11:45:41.092982+00:00",
+    "id": "bff9a86324",
+    "time": "2026-06-30T12:01:07.875660+00:00",
     "action": "ARMED",
-    "side": "SHORT",
+    "side": "LONG",
     "setup_type": "PULLBACK_CONTINUATION",
-    "quality": 66,
-    "reason": "Re-entry з пропущеного імпульсу",
-    "regime": "RANGE",
+    "quality": 83,
+    "reason": "[NONE] Продовження тренду після ICT-відкату сформовано; gate v6: WATCH",
+    "regime": "TRANSITION",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
     "version": "pro-hybrid-confluence-v6.6",
@@ -124,13 +117,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 74.85,
-      "time": "2026-06-28T11:45:48.637528+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1633,7 +1619,15 @@
       "quality": 66,
       "price": 74.19,
       "time": "2026-06-30T11:45:41.092998+00:00"
+    },
+    {
+      "type": "ARMED",
+      "side": "LONG",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 83,
+      "price": 74.4,
+      "time": "2026-06-30T12:01:07.875677+00:00"
     }
   ],
-  "updated_at": "2026-06-30T11:45:41.545185+00:00"
+  "updated_at": "2026-06-30T12:01:08.676353+00:00"
 }
