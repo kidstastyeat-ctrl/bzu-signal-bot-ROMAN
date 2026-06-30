@@ -2,11 +2,32 @@
   "version": "pro-hybrid-confluence-v6.6",
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
   "active_trade": null,
-  "opportunity": null,
+  "opportunity": {
+    "side": "LONG",
+    "setup_type": "PULLBACK_CONTINUATION",
+    "setup_family": "CONTINUATION",
+    "created_at": "2026-06-30T15:04:14.185254+00:00",
+    "expires_at": "2026-07-01T09:04:14.185256+00:00",
+    "score": 92,
+    "trigger_level": 83.06,
+    "invalidation_level": 73.382,
+    "confirmations": [
+      "Модель: Silver Bullet"
+    ],
+    "evidence_families": [
+      "ICT_LOCATION",
+      "PRICE_STRUCTURE"
+    ],
+    "execution_lane": "STANDARD_CONFIRMED",
+    "status": "ARMED",
+    "thesis_key": "LONG|PULLBACK_CONTINUATION|739",
+    "thesis": "LONG PULLBACK_CONTINUATION | 3M=READY",
+    "missed_at": ""
+  },
   "scan_3m": {
-    "last_scanned_3m_ts": 1782831600000,
-    "last_run_processed": 5,
-    "processed_count": 4428,
+    "last_scanned_3m_ts": 1782831780000,
+    "last_run_processed": 1,
+    "processed_count": 4429,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -18,7 +39,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 73.98,
+        "extreme": 73.97,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -28,7 +49,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 4428,
+        "processed_bars": 4429,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -50,7 +71,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 74.09,
+        "extreme": 74.01,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -60,7 +81,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 4428,
+        "processed_bars": 4429,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -78,18 +99,18 @@
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 1,
-    "pending_count": 2,
-    "updated_at": "2026-06-30T15:01:16.524363+00:00"
+    "stable_count": 2,
+    "pending_count": 0,
+    "updated_at": "2026-06-30T15:04:14.183688+00:00"
   },
   "latest_signal": {
-    "id": "de642aeebb",
-    "time": "2026-06-30T12:15:43.177948+00:00",
-    "action": "RISKY_ENTRY",
+    "id": "709c5b8636",
+    "time": "2026-06-30T15:04:14.185228+00:00",
+    "action": "ARMED",
     "side": "LONG",
     "setup_type": "PULLBACK_CONTINUATION",
-    "quality": 83,
-    "reason": "Re-entry з пропущеного імпульсу",
+    "quality": 92,
+    "reason": "[SILVER_BULLET] Продовження тренду після ICT-відкату сформовано; gate v6: WATCH",
     "regime": "TRANSITION",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
@@ -98,13 +119,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 75.09,
-      "time": "2026-06-28T15:01:38.275018+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1609,7 +1623,15 @@
       "action": "STOP",
       "price": 73.95,
       "time": "2026-06-30T15:01:17.080898+00:00"
+    },
+    {
+      "type": "ARMED",
+      "side": "LONG",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 92,
+      "price": 73.91,
+      "time": "2026-06-30T15:04:14.185244+00:00"
     }
   ],
-  "updated_at": "2026-06-30T15:01:17.080937+00:00"
+  "updated_at": "2026-06-30T15:04:14.631941+00:00"
 }
