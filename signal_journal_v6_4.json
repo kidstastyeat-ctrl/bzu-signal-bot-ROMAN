@@ -8343,6 +8343,20 @@
       "action": "STOP",
       "side": "LONG",
       "price": 73.82
+    },
+    {
+      "id": "a9b07e8b35",
+      "time": "2026-06-30T09:15:41.534964+00:00",
+      "action": "ARMED",
+      "side": "SHORT",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 66,
+      "reason": "Продовження тренду після ICT-відкату сформовано; gate v6: WATCH | NORMAL",
+      "regime": "TRANSITION",
+      "news_bias": "NEUTRAL",
+      "macro_risk": "NORMAL",
+      "version": "pro-hybrid-confluence-v6.6",
+      "architecture_version": "HYBRID_CONFLUENCE_V6_4"
     }
   ],
   "trades": [
@@ -8659,5 +8673,5 @@
     "expectancy_r": -0.001,
     "by_family": {}
   },
-  "updated_at": "2026-06-30T09:01:12.417275+00:00"
+  "updated_at": "2026-06-30T09:15:41.938988+00:00"
 }
