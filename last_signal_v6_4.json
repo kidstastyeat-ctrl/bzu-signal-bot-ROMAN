@@ -17,10 +17,10 @@
     "quality": 83,
     "position_risk_pct": 0.5,
     "best_price": 74.83,
-    "worst_price": 74.13,
+    "worst_price": 74.09,
     "thesis_key": "LONG|PULLBACK_CONTINUATION|744",
     "thesis": "LONG PULLBACK_CONTINUATION | 3M=READY",
-    "last_checked_3m_ts": 1782829857611,
+    "last_checked_3m_ts": 1782830740544,
     "tp1_hit": false,
     "tp2_hit": false,
     "tp3_hit": false,
@@ -33,7 +33,7 @@
     "notes": [],
     "entry_integrity_score": 100,
     "entry_fail_streak": 0,
-    "mfe_giveback_streak": 5,
+    "mfe_giveback_streak": 6,
     "mfe_giveback_last_state": "OK",
     "trigger_level": 83.06,
     "opened_regime": "TRANSITION",
@@ -41,9 +41,9 @@
   },
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1782829800000,
+    "last_scanned_3m_ts": 1782830700000,
     "last_run_processed": 5,
-    "processed_count": 4418,
+    "processed_count": 4423,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -55,7 +55,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 74.28,
+        "extreme": 74.12,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -65,7 +65,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 4418,
+        "processed_bars": 4423,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -87,7 +87,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 74.36,
+        "extreme": 74.13,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -97,7 +97,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 4418,
+        "processed_bars": 4423,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -114,10 +114,10 @@
   },
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
-    "pending_type": "",
-    "stable_count": 2,
-    "pending_count": 0,
-    "updated_at": "2026-06-30T14:30:57.610942+00:00"
+    "pending_type": "NORMAL",
+    "stable_count": 0,
+    "pending_count": 1,
+    "updated_at": "2026-06-30T14:45:40.544374+00:00"
   },
   "latest_signal": {
     "id": "de642aeebb",
@@ -135,13 +135,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 75.0,
-      "time": "2026-06-28T14:31:27.734510+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1646,7 +1639,14 @@
       "action": "PROTECT",
       "price": 74.21,
       "time": "2026-06-30T14:30:58.237139+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "PROTECT",
+      "price": 74.09,
+      "time": "2026-06-30T14:45:40.886036+00:00"
     }
   ],
-  "updated_at": "2026-06-30T14:30:58.237343+00:00"
+  "updated_at": "2026-06-30T14:45:40.886224+00:00"
 }
