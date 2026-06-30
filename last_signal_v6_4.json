@@ -20,7 +20,7 @@
     "worst_price": 73.36,
     "thesis_key": "LONG|PULLBACK_CONTINUATION|733",
     "thesis": "LONG PULLBACK_CONTINUATION | 3M=READY",
-    "last_checked_3m_ts": 1782856865051,
+    "last_checked_3m_ts": 1782856972686,
     "tp1_hit": false,
     "tp2_hit": false,
     "tp3_hit": false,
@@ -115,9 +115,9 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 1,
-    "pending_count": 2,
-    "updated_at": "2026-06-30T22:01:05.051346+00:00"
+    "stable_count": 2,
+    "pending_count": 0,
+    "updated_at": "2026-06-30T22:02:52.685942+00:00"
   },
   "latest_signal": {
     "id": "924bd14851",
@@ -135,13 +135,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "CLOSE",
-      "side": "LONG",
-      "action": "STOP",
-      "price": 73.54,
-      "time": "2026-06-28T22:15:43.220087+00:00"
-    },
     {
       "type": "NO_SETUP",
       "side": "SHORT",
@@ -1651,7 +1644,14 @@
       "action": "HOLD",
       "price": 73.36,
       "time": "2026-06-30T22:01:05.370433+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "HOLD",
+      "price": 73.4,
+      "time": "2026-06-30T22:02:53.203468+00:00"
     }
   ],
-  "updated_at": "2026-06-30T22:01:05.370637+00:00"
+  "updated_at": "2026-06-30T22:02:53.203692+00:00"
 }
