@@ -9211,6 +9211,20 @@
       "macro_risk": "NORMAL",
       "version": "pro-hybrid-confluence-v6.6",
       "architecture_version": "HYBRID_CONFLUENCE_V6_4"
+    },
+    {
+      "id": "5e68d6faf3",
+      "time": "2026-07-01T08:45:39.871212+00:00",
+      "action": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "reason": "Ринок не сформував професійного ICT + 3M execution-package",
+      "regime": "TRANSITION",
+      "news_bias": "NEUTRAL",
+      "macro_risk": "NORMAL",
+      "version": "pro-hybrid-confluence-v6.6",
+      "architecture_version": "HYBRID_CONFLUENCE_V6_4"
     }
   ],
   "trades": [
@@ -9555,5 +9569,5 @@
     "expectancy_r": -0.001,
     "by_family": {}
   },
-  "updated_at": "2026-07-01T08:30:58.324714+00:00"
+  "updated_at": "2026-07-01T08:45:40.308674+00:00"
 }
