@@ -1,31 +1,49 @@
 {
   "version": "pro-hybrid-confluence-v6.6",
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
-  "active_trade": null,
-  "opportunity": {
-    "side": "LONG",
-    "setup_type": "PULLBACK_CONTINUATION",
-    "setup_family": "CONTINUATION",
-    "created_at": "2026-07-01T08:15:42.986140+00:00",
-    "expires_at": "2026-07-02T02:15:42.986143+00:00",
-    "score": 65,
+  "active_trade": {
+    "id": "6a2b5c2fce",
+    "side": "SHORT",
+    "setup_type": "CAPITULATION_RECOVERY",
+    "setup_family": "LIQUIDITY_RECOVERY",
+    "opened_at": "2026-07-01T09:01:06.138266+00:00",
+    "entry": 71.83,
+    "stop_initial": 72.2366,
+    "stop_current": 72.2366,
+    "structural_invalidation": 72.2366,
+    "tp1": 71.3827,
+    "tp2": 71.0168,
+    "tp3": 70.2646,
+    "quality": 79,
+    "position_risk_pct": 0.3,
+    "best_price": 71.83,
+    "worst_price": 71.83,
+    "thesis_key": "SHORT|CAPITULATION_RECOVERY|718",
+    "thesis": "SHORT CAPITULATION_RECOVERY | 3M=READY",
+    "last_checked_3m_ts": 0,
+    "tp1_hit": false,
+    "tp2_hit": false,
+    "tp3_hit": false,
+    "tp1_stop_locked": false,
+    "tp2_stop_locked": false,
+    "tp1_locked_stop": 0.0,
+    "tp2_locked_stop": 0.0,
+    "status": "OPEN",
+    "last_action": "ENTRY",
+    "notes": [],
+    "entry_integrity_score": 100,
+    "entry_fail_streak": 0,
+    "mfe_giveback_streak": 0,
+    "mfe_giveback_last_state": "OK",
     "trigger_level": 83.06,
-    "invalidation_level": 72.7201,
-    "confirmations": [],
-    "evidence_families": [
-      "ICT_LOCATION",
-      "PRICE_STRUCTURE"
-    ],
-    "execution_lane": "MISSED_IMPULSE_REENTRY",
-    "status": "ARMED",
-    "thesis_key": "LONG|PULLBACK_CONTINUATION|729",
-    "thesis": "LONG PULLBACK_CONTINUATION | 3M=READY",
-    "missed_at": ""
+    "opened_regime": "TRANSITION",
+    "entry_level": "RISKY_ENTRY"
   },
+  "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1782895500000,
+    "last_scanned_3m_ts": 1782896400000,
     "last_run_processed": 5,
-    "processed_count": 4783,
+    "processed_count": 4788,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -37,7 +55,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 72.4,
+        "extreme": 71.89,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -47,7 +65,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 4783,
+        "processed_bars": 4788,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -69,7 +87,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 72.42,
+        "extreme": 71.98,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -79,7 +97,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 4783,
+        "processed_bars": 4788,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -87,8 +105,8 @@
         "impulse_strength": {
           "score": 3,
           "level": "EXTREME",
-          "body_strength": 0.95,
-          "consecutive": 0
+          "body_strength": 0.85,
+          "consecutive": 2
         },
         "time_warp_opportunity": true
       }
@@ -97,18 +115,18 @@
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 1,
-    "pending_count": 2,
-    "updated_at": "2026-07-01T08:45:39.869843+00:00"
+    "stable_count": 2,
+    "pending_count": 0,
+    "updated_at": "2026-07-01T09:01:06.131267+00:00"
   },
   "latest_signal": {
-    "id": "5e68d6faf3",
-    "time": "2026-07-01T08:45:39.871212+00:00",
-    "action": "NO_SETUP",
-    "side": "NEUTRAL",
-    "setup_type": "NONE",
-    "quality": 12,
-    "reason": "Ринок не сформував професійного ICT + 3M execution-package",
+    "id": "c97af4024c",
+    "time": "2026-07-01T09:01:06.138217+00:00",
+    "action": "RISKY_ENTRY",
+    "side": "SHORT",
+    "setup_type": "CAPITULATION_RECOVERY",
+    "quality": 79,
+    "reason": "[JUDAS_SWING] Ризикований вхід: Відновлення після капітуляційного імпульсу — NORMAL profile",
     "regime": "TRANSITION",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
@@ -117,13 +135,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "PROTECT",
-      "price": 73.34,
-      "time": "2026-06-29T09:01:24.768789+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1601,7 +1612,15 @@
       "quality": 12,
       "price": 72.32,
       "time": "2026-07-01T08:45:39.871231+00:00"
+    },
+    {
+      "type": "RISKY_ENTRY",
+      "side": "SHORT",
+      "setup_type": "CAPITULATION_RECOVERY",
+      "quality": 79,
+      "price": 71.83,
+      "time": "2026-07-01T09:01:06.138237+00:00"
     }
   ],
-  "updated_at": "2026-07-01T08:45:40.305091+00:00"
+  "updated_at": "2026-07-01T09:01:06.709449+00:00"
 }
