@@ -9183,6 +9183,20 @@
       "macro_risk": "NORMAL",
       "version": "pro-hybrid-confluence-v6.6",
       "architecture_version": "HYBRID_CONFLUENCE_V6_4"
+    },
+    {
+      "id": "ee21d815b5",
+      "time": "2026-07-01T08:15:42.986111+00:00",
+      "action": "ARMED",
+      "side": "LONG",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 65,
+      "reason": "Re-entry з пропущеного імпульсу",
+      "regime": "RANGE",
+      "news_bias": "NEUTRAL",
+      "macro_risk": "NORMAL",
+      "version": "pro-hybrid-confluence-v6.6",
+      "architecture_version": "HYBRID_CONFLUENCE_V6_4"
     }
   ],
   "trades": [
@@ -9527,5 +9541,5 @@
     "expectancy_r": -0.001,
     "by_family": {}
   },
-  "updated_at": "2026-07-01T08:01:06.660332+00:00"
+  "updated_at": "2026-07-01T08:15:43.375799+00:00"
 }
