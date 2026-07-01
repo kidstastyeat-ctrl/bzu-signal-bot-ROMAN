@@ -20,7 +20,7 @@
     "worst_price": 72.42,
     "thesis_key": "SHORT|SWEEP_RECLAIM|722",
     "thesis": "SHORT SWEEP_RECLAIM | 3M=READY",
-    "last_checked_3m_ts": 1782925265037,
+    "last_checked_3m_ts": 1782926140374,
     "tp1_hit": true,
     "tp2_hit": true,
     "tp3_hit": false,
@@ -41,9 +41,9 @@
   },
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1782925200000,
+    "last_scanned_3m_ts": 1782926100000,
     "last_run_processed": 5,
-    "processed_count": 4948,
+    "processed_count": 4953,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -55,7 +55,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 71.48,
+        "extreme": 71.44,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -65,7 +65,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 4948,
+        "processed_bars": 4953,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -87,7 +87,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 71.53,
+        "extreme": 71.49,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -97,7 +97,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 4948,
+        "processed_bars": 4953,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -115,9 +115,9 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 2,
+    "stable_count": 3,
     "pending_count": 0,
-    "updated_at": "2026-07-01T17:01:05.037034+00:00"
+    "updated_at": "2026-07-01T17:15:40.374628+00:00"
   },
   "latest_signal": {
     "id": "27b2493ff6",
@@ -135,14 +135,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "ARMED",
-      "side": "SHORT",
-      "setup_type": "PULLBACK_CONTINUATION",
-      "quality": 61,
-      "price": 74.11,
-      "time": "2026-06-29T17:15:42.008044+00:00"
-    },
     {
       "type": "ARMED",
       "side": "SHORT",
@@ -1599,7 +1591,14 @@
       "action": "HOLD",
       "price": 71.43,
       "time": "2026-07-01T17:01:05.475033+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "HOLD",
+      "price": 71.34,
+      "time": "2026-07-01T17:15:40.764737+00:00"
     }
   ],
-  "updated_at": "2026-07-01T17:01:05.475221+00:00"
+  "updated_at": "2026-07-01T17:15:40.764907+00:00"
 }
