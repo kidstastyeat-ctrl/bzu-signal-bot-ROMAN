@@ -23,9 +23,9 @@
     "missed_at": ""
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1782893700000,
+    "last_scanned_3m_ts": 1782894600000,
     "last_run_processed": 5,
-    "processed_count": 4773,
+    "processed_count": 4778,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -37,7 +37,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 73.0,
+        "extreme": 72.53,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -47,7 +47,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 4773,
+        "processed_bars": 4778,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -69,7 +69,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 73.02,
+        "extreme": 72.64,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -79,7 +79,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 4773,
+        "processed_bars": 4778,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -96,20 +96,20 @@
   },
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
-    "pending_type": "",
-    "stable_count": 13,
-    "pending_count": 0,
-    "updated_at": "2026-07-01T08:15:42.984301+00:00"
+    "pending_type": "NORMAL",
+    "stable_count": 0,
+    "pending_count": 1,
+    "updated_at": "2026-07-01T08:30:57.992864+00:00"
   },
   "latest_signal": {
-    "id": "ee21d815b5",
-    "time": "2026-07-01T08:15:42.986111+00:00",
-    "action": "ARMED",
-    "side": "LONG",
-    "setup_type": "PULLBACK_CONTINUATION",
-    "quality": 65,
-    "reason": "Re-entry з пропущеного імпульсу",
-    "regime": "RANGE",
+    "id": "d2361efa32",
+    "time": "2026-07-01T08:30:57.999020+00:00",
+    "action": "NO_SETUP",
+    "side": "NEUTRAL",
+    "setup_type": "NONE",
+    "quality": 12,
+    "reason": "Ринок не сформував професійного ICT + 3M execution-package",
+    "regime": "TRANSITION",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
     "version": "pro-hybrid-confluence-v6.6",
@@ -117,13 +117,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 73.47,
-      "time": "2026-06-29T08:30:58.344204+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1599,7 +1592,15 @@
       "quality": 65,
       "price": 72.92,
       "time": "2026-07-01T08:15:42.986128+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 72.44,
+      "time": "2026-07-01T08:30:57.999039+00:00"
     }
   ],
-  "updated_at": "2026-07-01T08:15:43.371548+00:00"
+  "updated_at": "2026-07-01T08:30:58.320912+00:00"
 }
