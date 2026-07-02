@@ -5917,7 +5917,7 @@
       }
     }
   },
-  "updated_at": "2026-07-02T15:45:45.629616+00:00",
+  "updated_at": "2026-07-02T16:01:07.816454+00:00",
   "training_signals": [],
   "signal_events": [
     {
@@ -5955,6 +5955,37 @@
       "price": 70.59,
       "trade_id": "c430c1a156",
       "signal_id": ""
+    },
+    {
+      "time": "2026-07-02T16:01:07.811845+00:00",
+      "type": "FOLLOW",
+      "action": "HOLD",
+      "side": "SHORT",
+      "price": 70.81,
+      "trade_id": "c430c1a156",
+      "signal_id": ""
     }
-  ]
+  ],
+  "learning_status": {
+    "updated_at": "2026-07-02T16:01:07.816728+00:00",
+    "journal_file": "/home/runner/work/bzu-signal-bot-ROMAN/bzu-signal-bot-ROMAN/signal_journal_v6_4.json",
+    "state_file": "/home/runner/work/bzu-signal-bot-ROMAN/bzu-signal-bot-ROMAN/last_signal_v6_4.json",
+    "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
+    "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
+    "training_signals": 0,
+    "signal_events": 5,
+    "closed_trades": 50,
+    "training_rows": 0,
+    "global_ready": false,
+    "global_learned_weight": 0.0,
+    "by_family": {},
+    "validation": {
+      "enabled": false,
+      "reason": "not_enough_rows"
+    },
+    "github_actions": true,
+    "journal_persistence_confirmed": false,
+    "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
+    "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY"
+  }
 }
