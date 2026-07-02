@@ -1,7 +1,22 @@
 #!/usr/bin/env python3
 """
-BZU Professional Hybrid Confluence Signal Bot v6.6 (Time-Warp Edition)
+BZU Professional Hybrid Confluence Signal Bot v6.8 (Data-Integrity Edition)
 ================================================================================
+Виправлення v6.8 (інфраструктурний борг):
+- КРИТИЧНО: ActiveTrade/Opportunity тепер несуть signal_id = Decision.id.
+  Раніше trade.id генерувався НЕЗАЛЕЖНИМ uuid.uuid4(), тому жоден запис
+  journal["trades"] не збігався за id з жодним journal["signals"] (0/64) —
+  будь-яка аналітика "модель/score/regime -> результат" трималась лише на
+  крихкому зіставленні "за порядком у часі". Тепер signal_id — надійний
+  зовнішній ключ, присутній у trades, у FOLLOW/CLOSE записах journal["signals"]
+  і в history.
+- Прибрано orphaned-код незавершених рефакторів у detect_candidates()
+  (eq_level з PD Array-логіки, k_hour зі старої killzone-формули, дубльований
+  move8 — усе рахувалось і одразу відкидалось) та у manage_active_trade()
+  (локальний atr15, якого жоден хелпер уже не приймає аргументом).
+- has_forward_zone тепер справді записується в Candidate (поле існувало в
+  dataclass, але ніколи не заповнювалось) — без зміни формул скорингу.
+
 Виправлення v6.6:
 - Інновація: Time-Warp Validation (Ретроспективний 3M Пул-Аналіз)
 - Інтеграція Premium/Discount (PD Arrays)
@@ -34,7 +49,7 @@ import requests
 # CONFIGURATION
 # ==========================================================
 
-BOT_VERSION = "pro-hybrid-confluence-v6.6"
+BOT_VERSION = "pro-hybrid-confluence-v6.8"
 ARCHITECTURE_VERSION = "HYBRID_CONFLUENCE_V6_4"
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "")
@@ -84,6 +99,90 @@ PRO_ENTRY_MIN = 74
 PRO_RISKY_MIN = 66
 MIN_PRO_LAYERS_ENTRY = 4
 A_PLUS_ENTRY_MIN = 82
+
+# === Vector Scoring Weights (v6.7 — Pattern-Specific Weights) ===
+# Reversal-родина (LIQUIDITY_RECOVERY / STRUCTURAL_TRANSITION / RANGE_EXECUTION):
+# ідеальне вирівнювання HTF у бік входу означає ПІЗНІЙ вхід — штрафуємо його,
+# натомість максимізуємо вагу ліквідності/тригера/SMT.
+REVERSAL_LIQ_WEIGHT = float(os.getenv("REVERSAL_LIQ_WEIGHT", "1.35") or 1.35)
+REVERSAL_TRIGGER_WEIGHT = float(os.getenv("REVERSAL_TRIGGER_WEIGHT", "1.30") or 1.30)
+REVERSAL_HTF_WEIGHT = float(os.getenv("REVERSAL_HTF_WEIGHT", "0.35") or 0.35)
+REVERSAL_SMT_BONUS = int(os.getenv("REVERSAL_SMT_BONUS", "9") or 9)
+REVERSAL_LATE_ENTRY_PENALTY = int(os.getenv("REVERSAL_LATE_ENTRY_PENALTY", "9") or 9)
+
+# Trend/Expansion-родина (CONTINUATION / EXPANSION): HTF і CVD критичні,
+# преміюємо узгодження; додатково штрафуємо "погоню" за виснаженим рухом.
+TREND_STRUCTURE_WEIGHT = float(os.getenv("TREND_STRUCTURE_WEIGHT", "1.15") or 1.15)
+TREND_FLOW_WEIGHT = float(os.getenv("TREND_FLOW_WEIGHT", "1.30") or 1.30)
+TREND_HTF_WEIGHT = float(os.getenv("TREND_HTF_WEIGHT", "1.25") or 1.25)
+TREND_SMT_BONUS = int(os.getenv("TREND_SMT_BONUS", "4") or 4)
+EXHAUSTION_ATR_THRESHOLD = float(os.getenv("EXHAUSTION_ATR_THRESHOLD", "1.5") or 1.5)
+EXHAUSTION_SCORE_MULTIPLIER = float(os.getenv("EXHAUSTION_SCORE_MULTIPLIER", "0.5") or 0.5)
+
+# No-Pattern Fallback Penalty: коли ЖОДНА з 10 іменних ICT-моделей не
+# підтверджена, сетап деградує до generic PULLBACK_CONTINUATION — раніше це
+# траплялось з майже нормальною впевненістю (16 угод, 12.5% winrate, -5.63%).
+NO_PATTERN_PENALTY = int(os.getenv("NO_PATTERN_PENALTY", "14") or 14)
+
+# === Data-Driven Quality Calibration ===
+# Старі loc/str/liq/... більше не складаються як взаємозамінні бали. Вони стають
+# ознаками для логістичної моделі, а критичні execution-умови застосовуються як
+# мультиплікативні вентилі. Якщо журнал ще малий, працюють консервативні стартові
+# коефіцієнти; коли назбираються закриті угоди з feature snapshot, бот навчає
+# просту logistic regression локально без зовнішніх залежностей.
+SCORING_MODEL_MIN_TRADES = int(os.getenv("SCORING_MODEL_MIN_TRADES", "60") or 60)
+SCORING_MODEL_MIN_FAMILY_TRADES = int(os.getenv("SCORING_MODEL_MIN_FAMILY_TRADES", "45") or 45)
+SCORING_MODEL_FULL_TRADES = int(os.getenv("SCORING_MODEL_FULL_TRADES", "160") or 160)
+SCORING_MODEL_FULL_FAMILY_TRADES = int(os.getenv("SCORING_MODEL_FULL_FAMILY_TRADES", "120") or 120)
+SCORING_MODEL_EPOCHS = int(os.getenv("SCORING_MODEL_EPOCHS", "180") or 180)
+SCORING_MODEL_LR = float(os.getenv("SCORING_MODEL_LR", "0.08") or 0.08)
+SCORING_MODEL_L2 = float(os.getenv("SCORING_MODEL_L2", "0.015") or 0.015)
+SCORING_MODEL_INITIAL_LEARNED_WEIGHT = float(os.getenv("SCORING_MODEL_INITIAL_LEARNED_WEIGHT", "0.30") or 0.30)
+SCORING_MODEL_MAX_LEARNED_WEIGHT = float(os.getenv("SCORING_MODEL_MAX_LEARNED_WEIGHT", "0.80") or 0.80)
+
+QUALITY_FEATURE_KEYS = [
+    "loc", "structure", "liquidity", "flow", "trigger", "htf", "pattern",
+    "session", "smt", "regime_fit", "freshness", "exhaustion", "no_pattern",
+]
+
+DEFAULT_QUALITY_COEFFICIENTS = {
+    "_global": {
+        "bias": -1.65, "loc": 1.15, "structure": 0.75, "liquidity": 0.95,
+        "flow": 0.60, "trigger": 1.30, "htf": 0.55, "pattern": 0.85,
+        "session": 0.35, "smt": 0.35, "regime_fit": 0.45, "freshness": 0.40,
+        "exhaustion": -1.00, "no_pattern": -1.25,
+    },
+    "LIQUIDITY_RECOVERY": {
+        "bias": -1.70, "loc": 1.25, "structure": 0.70, "liquidity": 1.45,
+        "flow": 0.30, "trigger": 1.55, "htf": 0.10, "pattern": 0.95,
+        "session": 0.55, "smt": 0.70, "regime_fit": 0.45, "freshness": 0.60,
+        "exhaustion": -0.70, "no_pattern": -1.40,
+    },
+    "STRUCTURAL_TRANSITION": {
+        "bias": -1.60, "loc": 1.05, "structure": 1.15, "liquidity": 1.05,
+        "flow": 0.55, "trigger": 1.30, "htf": 0.35, "pattern": 1.05,
+        "session": 0.35, "smt": 0.55, "regime_fit": 0.60, "freshness": 0.45,
+        "exhaustion": -0.85, "no_pattern": -1.45,
+    },
+    "CONTINUATION": {
+        "bias": -1.75, "loc": 0.80, "structure": 1.10, "liquidity": 0.45,
+        "flow": 1.05, "trigger": 1.10, "htf": 1.25, "pattern": 0.75,
+        "session": 0.20, "smt": 0.20, "regime_fit": 0.70, "freshness": 0.30,
+        "exhaustion": -1.45, "no_pattern": -1.15,
+    },
+    "EXPANSION": {
+        "bias": -1.80, "loc": 0.75, "structure": 1.25, "liquidity": 0.45,
+        "flow": 1.00, "trigger": 1.20, "htf": 1.15, "pattern": 0.80,
+        "session": 0.25, "smt": 0.20, "regime_fit": 0.65, "freshness": 0.35,
+        "exhaustion": -1.55, "no_pattern": -1.20,
+    },
+    "RANGE_EXECUTION": {
+        "bias": -1.70, "loc": 1.45, "structure": 0.75, "liquidity": 1.25,
+        "flow": 0.35, "trigger": 1.40, "htf": 0.05, "pattern": 1.00,
+        "session": 0.50, "smt": 0.55, "regime_fit": 0.70, "freshness": 0.55,
+        "exhaustion": -0.80, "no_pattern": -1.50,
+    },
+}
 
 # === 3M Scanner ===
 TRIGGER_MAX_AGE_MINUTES = int(os.getenv("TRIGGER_MAX_AGE_MINUTES", "35") or 35)
@@ -198,7 +297,7 @@ class Candidate:
     setup_family: str
     raw_score: int
     final_score: int
-    score_components: dict[str, int] = field(default_factory=dict)
+    score_components: dict[str, Any] = field(default_factory=dict)
     evidence_families: list[str] = field(default_factory=list)
     confirmations: list[str] = field(default_factory=list)
     risks: list[str] = field(default_factory=list)
@@ -285,6 +384,10 @@ class Opportunity:
     thesis_key: str = ""
     thesis: str = ""
     missed_at: str = ""
+    # ID сигналу (Decision.id), яким цю можливість було породжено. Дозволяє
+    # відстежити ланцюжок ARMED-сигнал -> (можливий) re-entry Decision, навіть
+    # якщо сама Opportunity так і не конвертувалась у ActiveTrade.
+    signal_id: str = ""
 
 
 @dataclass
@@ -325,6 +428,15 @@ class ActiveTrade:
     trigger_level: float = 0.0
     opened_regime: str = ""
     entry_level: str = "ENTRY"
+    # ID вихідного сигналу (Decision.id з evaluate_new_setup), який відкрив цю
+    # угоду. Це надійний зовнішній ключ для аналітики "сигнал -> угода":
+    # journal["signals"] містить запис з id == signal_id, journal["trades"]
+    # містить запис з id == trade.id і signal_id == signal_id. Раніше trade.id
+    # генерувався ЗАНОВО (uuid.uuid4()) і ніяк не збігався з id сигналу, тому
+    # 0 з 64 угод у журналі можна було приєднати до сигналу, що їх породив —
+    # будь-яка аналітика "яка модель/score/regime дає найкращий результат"
+    # трималась лише на крихкому зіставленні "за порядком у часі".
+    signal_id: str = ""
 
 
 # ==========================================================
@@ -778,6 +890,11 @@ def evaluate_professional_gate(context: dict, candidate: Candidate) -> dict:
     layers = len(candidate.evidence_families)
     trigger_ready = candidate.trigger_ready
     strong_ict = "ICT_LOCATION" in candidate.evidence_families or "PRICE_STRUCTURE" in candidate.evidence_families
+    gates = ((candidate.score_components or {}).get("gates") or {})
+    gate_product = safe_float(gates.get("product"), 1.0)
+    trigger_gate = safe_float(gates.get("trigger_gate"), 1.0)
+    pattern_gate = safe_float(gates.get("pattern_gate"), 1.0)
+    location_gate = safe_float(gates.get("location_gate"), 1.0)
     
     # ПЕРЕВІРКА ТРЕНДУ (Новий логічний блок)
     tf1h_bias = context.get("tf1h", {}).get("bias")
@@ -789,6 +906,10 @@ def evaluate_professional_gate(context: dict, candidate: Candidate) -> dict:
         and layers >= MIN_PRO_LAYERS_ENTRY
         and trigger_ready
         and strong_ict
+        and gate_product >= 0.62
+        and trigger_gate >= 0.95
+        and pattern_gate >= 0.95
+        and location_gate >= 0.74
     )
 
     allow_risky = bool(
@@ -796,6 +917,8 @@ def evaluate_professional_gate(context: dict, candidate: Candidate) -> dict:
         and layers >= max(3, MIN_PRO_LAYERS_ENTRY - 1)
         and (trigger_ready or strong_ict)
         and htf_aligned
+        and gate_product >= 0.46
+        and pattern_gate >= 0.70
     )
 
     if allow_entry and score >= A_PLUS_ENTRY_MIN and strong_ict:
@@ -807,9 +930,11 @@ def evaluate_professional_gate(context: dict, candidate: Candidate) -> dict:
     else:
         grade = "WATCH"
 
-    reason = f"gate v6: {grade} | {layers} шарів | score {score}"
+    reason = f"gate v7 data-driven: {grade} | {layers} шарів | score {score} | gates x{gate_product:.2f}"
     if not htf_aligned and not allow_entry:
         reason += " | БЛОК: HTF проти risky-входу"
+    if pattern_gate < 0.95 and not allow_entry:
+        reason += " | generic pattern penalty"
 
     return {
         "allow_entry": allow_entry,
@@ -817,6 +942,7 @@ def evaluate_professional_gate(context: dict, candidate: Candidate) -> dict:
         "grade": grade,
         "score": score,
         "layers": layers,
+        "gate_product": gate_product,
         "reason": reason,
     }
 
@@ -1973,6 +2099,242 @@ def analyze_session_profile(c15: list, now_kyiv: datetime, atr15: float) -> dict
     return result
 
 
+def _sigmoid(value: float) -> float:
+    if value >= 0:
+        z = math.exp(-min(value, 60.0))
+        return 1.0 / (1.0 + z)
+    z = math.exp(max(value, -60.0))
+    return z / (1.0 + z)
+
+
+def _trade_ground_truth(trade: dict) -> tuple[int, float, str]:
+    result_pct = safe_float(trade.get("result_pct"), 0.0)
+    mfe_pct = safe_float(trade.get("mfe_pct"), 0.0)
+    has_tp_fields = any(key in trade for key in ("tp1_hit", "tp2_hit", "tp3_hit"))
+    tp1_hit = bool(trade.get("tp1_hit"))
+    tp2_hit = bool(trade.get("tp2_hit"))
+    tp3_hit = bool(trade.get("tp3_hit"))
+
+    if not has_tp_fields:
+        if result_pct >= 0.35:
+            return 1, 0.70, "legacy_realized_profit"
+        if result_pct > 0.0:
+            return 1, 0.55, "legacy_small_profit"
+        if mfe_pct >= 0.55 and result_pct >= -0.10:
+            return 1, 0.20, "legacy_mfe_only"
+        if result_pct <= -0.35:
+            return 0, 0.85, "legacy_hard_loss"
+        return 0, 0.60, "legacy_loss_or_noise"
+
+    if tp3_hit:
+        return 1, 1.60, "tp3"
+    if tp2_hit:
+        return 1, 1.35, "tp2"
+    if tp1_hit and result_pct > 0.0:
+        return 1, 1.10, "tp1_realized"
+    if result_pct >= 0.35:
+        return 1, 1.00, "realized_profit"
+    if result_pct > 0.0:
+        return 1, 0.75, "small_realized_profit"
+    if mfe_pct >= 0.55 and result_pct >= -0.10:
+        return 1, 0.35, "mfe_only_weak_positive"
+    if result_pct <= -0.35:
+        return 0, 1.25, "hard_loss"
+    return 0, 1.00, "loss_or_noise"
+
+
+def _quality_training_rows(journal: dict, family: str = "") -> list[tuple[dict[str, float], int, float]]:
+    signals = {
+        str(s.get("id")): s for s in journal.get("signals", [])
+        if isinstance(s, dict) and s.get("id") and isinstance(s.get("score_features"), dict)
+    }
+    rows: list[tuple[dict[str, float], int, float]] = []
+    for trade in journal.get("trades", []):
+        if not isinstance(trade, dict):
+            continue
+        signal = signals.get(str(trade.get("signal_id") or trade.get("id") or ""))
+        if not signal:
+            continue
+        if family and signal.get("setup_family") != family:
+            continue
+        has_tp_fields = any(key in trade for key in ("tp1_hit", "tp2_hit", "tp3_hit"))
+        if family and not has_tp_fields:
+            continue
+        label, sample_weight, _ = _trade_ground_truth(trade)
+        features = {
+            key: clamp(safe_float(signal["score_features"].get(key), 0.0), -1.0, 1.0)
+            for key in QUALITY_FEATURE_KEYS
+        }
+        rows.append((features, label, sample_weight))
+    return rows
+
+
+def _fit_logistic_coefficients(rows: list[tuple[dict[str, float], int, float]], default: dict[str, float]) -> dict[str, float]:
+    if len(rows) < 2:
+        return dict(default)
+    coef = {key: float(default.get(key, 0.0)) for key in ["bias", *QUALITY_FEATURE_KEYS]}
+    for epoch in range(SCORING_MODEL_EPOCHS):
+        grad = {key: 0.0 for key in coef}
+        total_weight = 0.0
+        for features, label, sample_weight in rows:
+            weight = max(float(sample_weight or 0.0), 0.05)
+            z = coef["bias"] + sum(coef[key] * features.get(key, 0.0) for key in QUALITY_FEATURE_KEYS)
+            error = (_sigmoid(z) - label) * weight
+            grad["bias"] += error
+            for key in QUALITY_FEATURE_KEYS:
+                grad[key] += error * features.get(key, 0.0)
+            total_weight += weight
+        normalizer = max(total_weight, 1.0)
+        lr = SCORING_MODEL_LR / math.sqrt(1.0 + epoch * 0.08)
+        for key in coef:
+            regularization = 0.0 if key == "bias" else SCORING_MODEL_L2 * coef[key]
+            coef[key] -= lr * ((grad[key] / normalizer) + regularization)
+    return coef
+
+
+def _learned_model_weight(sample_size: int, min_rows: int, full_rows: int) -> float:
+    if sample_size < min_rows:
+        return 0.0
+    if full_rows <= min_rows:
+        return SCORING_MODEL_MAX_LEARNED_WEIGHT
+    progress = clamp((sample_size - min_rows) / (full_rows - min_rows), 0.0, 1.0)
+    return clamp(
+        SCORING_MODEL_INITIAL_LEARNED_WEIGHT +
+        (SCORING_MODEL_MAX_LEARNED_WEIGHT - SCORING_MODEL_INITIAL_LEARNED_WEIGHT) * progress,
+        0.0,
+        SCORING_MODEL_MAX_LEARNED_WEIGHT,
+    )
+
+
+def _blend_coefficients(default: dict[str, float], learned: dict[str, float], learned_weight: float) -> dict[str, float]:
+    weight = clamp(learned_weight, 0.0, 1.0)
+    return {
+        key: float(default.get(key, 0.0)) * (1.0 - weight) + float(learned.get(key, 0.0)) * weight
+        for key in ["bias", *QUALITY_FEATURE_KEYS]
+    }
+
+
+def _quality_coefficients(journal: dict, setup_family: str) -> tuple[dict[str, float], str, int, float]:
+    family_default = DEFAULT_QUALITY_COEFFICIENTS.get(setup_family, DEFAULT_QUALITY_COEFFICIENTS["_global"])
+    family_rows = _quality_training_rows(journal, setup_family)
+    if len(family_rows) >= SCORING_MODEL_MIN_FAMILY_TRADES:
+        rows = family_rows
+        source = f"journal:{setup_family}"
+        min_rows = SCORING_MODEL_MIN_FAMILY_TRADES
+        full_rows = SCORING_MODEL_FULL_FAMILY_TRADES
+    else:
+        rows = _quality_training_rows(journal)
+        source = "journal:global" if len(rows) >= SCORING_MODEL_MIN_TRADES else "bootstrap"
+        min_rows = SCORING_MODEL_MIN_TRADES
+        full_rows = SCORING_MODEL_FULL_TRADES
+
+    if len(rows) < min_rows:
+        return dict(family_default), "bootstrap", len(rows), 0.0
+    learned = _fit_logistic_coefficients(rows, family_default)
+    learned_weight = _learned_model_weight(len(rows), min_rows, full_rows)
+    blended = _blend_coefficients(family_default, learned, learned_weight)
+    return blended, f"{source}:blend{learned_weight:.2f}", len(rows), learned_weight
+
+
+def _build_quality_features(
+    *,
+    loc_score: float,
+    str_score: float,
+    liq_score: float,
+    flw_score: float,
+    trig_score: float,
+    htf_score: float,
+    raw_bonus: float,
+    session_bonus: float,
+    vector_bonus: float,
+    trigger_age: float,
+    trigger_ready: bool,
+    best_pattern: Optional[str],
+    regime_matched: int,
+    regime_conflict: int,
+    exhaustion_multiplier: float,
+    pattern_family: str,
+) -> dict[str, float]:
+    family_is_reversal = pattern_family in {
+        SetupFamily.LIQUIDITY_RECOVERY.value,
+        SetupFamily.STRUCTURAL_TRANSITION.value,
+        SetupFamily.RANGE_EXECUTION.value,
+    }
+    trigger_window = max(float(TRIGGER_MAX_AGE_MINUTES), 1.0)
+    freshness = 1.0 - clamp(trigger_age / trigger_window, 0.0, 1.0) if trigger_ready else 0.0
+    return {
+        "loc": clamp(loc_score / 45.0, 0.0, 1.0),
+        "structure": clamp(str_score / 24.0, 0.0, 1.0),
+        "liquidity": clamp(liq_score / 24.0, 0.0, 1.0),
+        "flow": clamp(flw_score / 24.0, 0.0, 1.0),
+        "trigger": 1.0 if trigger_ready else 0.0,
+        "htf": clamp(htf_score / (24.0 if not family_is_reversal else 12.0), 0.0, 1.0),
+        "pattern": clamp((raw_bonus + NO_PATTERN_PENALTY) / 42.0, 0.0, 1.0),
+        "session": clamp(session_bonus / max(JUDAS_MAX_BONUS, 1.0), -1.0, 1.0),
+        "smt": clamp(vector_bonus / 12.0, -1.0, 1.0),
+        "regime_fit": clamp((regime_matched - regime_conflict), -1.0, 1.0),
+        "freshness": freshness,
+        "exhaustion": clamp(1.0 - exhaustion_multiplier, 0.0, 1.0),
+        "no_pattern": 0.0 if best_pattern else 1.0,
+    }
+
+
+def _multiplicative_quality_gates(features: dict[str, float], setup_family: str, trigger_ready: bool,
+                                  is_limit_armed: bool, has_forward_zone: bool) -> dict[str, float]:
+    family_is_reversal = setup_family in {
+        SetupFamily.LIQUIDITY_RECOVERY.value,
+        SetupFamily.STRUCTURAL_TRANSITION.value,
+        SetupFamily.RANGE_EXECUTION.value,
+    }
+    family_is_trend = setup_family in {SetupFamily.CONTINUATION.value, SetupFamily.EXPANSION.value}
+    trigger_gate = 1.0 if (trigger_ready or is_limit_armed) else 0.58
+    location_gate = 0.62 + 0.38 * features["loc"]
+    pattern_gate = 0.70 if features["no_pattern"] >= 1.0 else 1.0
+    forward_zone_gate = 1.0 if has_forward_zone else 0.90
+    exhaustion_gate = 1.0 - (0.45 * features["exhaustion"])
+    liquidity_gate = 0.58 + 0.42 * features["liquidity"] if family_is_reversal else 1.0
+    trend_gate = 0.55 + 0.45 * max(features["flow"], features["htf"]) if family_is_trend else 1.0
+    htf_late_gate = 1.0
+    if family_is_reversal and features["htf"] > 0.85 and features["smt"] <= 0:
+        htf_late_gate = 0.82
+    product = (
+        trigger_gate * location_gate * pattern_gate * forward_zone_gate *
+        exhaustion_gate * liquidity_gate * trend_gate * htf_late_gate
+    )
+    return {
+        "trigger_gate": round(trigger_gate, 3),
+        "location_gate": round(location_gate, 3),
+        "pattern_gate": round(pattern_gate, 3),
+        "forward_zone_gate": round(forward_zone_gate, 3),
+        "exhaustion_gate": round(exhaustion_gate, 3),
+        "liquidity_gate": round(liquidity_gate, 3),
+        "trend_gate": round(trend_gate, 3),
+        "htf_late_gate": round(htf_late_gate, 3),
+        "product": round(clamp(product, 0.0, 1.0), 3),
+    }
+
+
+def calibrate_candidate_quality(journal: dict, features: dict[str, float], setup_family: str,
+                                trigger_ready: bool, is_limit_armed: bool,
+                                has_forward_zone: bool) -> dict[str, Any]:
+    coef, model_source, sample_size, learned_weight = _quality_coefficients(journal, setup_family)
+    logit = coef.get("bias", 0.0) + sum(coef.get(key, 0.0) * features.get(key, 0.0) for key in QUALITY_FEATURE_KEYS)
+    base_probability = _sigmoid(logit)
+    gates = _multiplicative_quality_gates(features, setup_family, trigger_ready, is_limit_armed, has_forward_zone)
+    gated_probability = clamp(base_probability * gates["product"], 0.02, 0.98)
+    score = int(round(100.0 * gated_probability))
+    return {
+        "score": int(clamp(score, 12, 98)),
+        "probability": round(gated_probability, 4),
+        "base_probability": round(base_probability, 4),
+        "model_source": model_source,
+        "sample_size": sample_size,
+        "learned_weight": round(learned_weight, 4),
+        "features": {key: round(float(features.get(key, 0.0)), 4) for key in QUALITY_FEATURE_KEYS},
+        "gates": gates,
+    }
+
+
 def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candidate]:
     price = context["price"]
     atr15 = context["atr15"] or 0.6
@@ -1988,13 +2350,16 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
     smt_c15 = (context.get("smt_candles", {}) or {}).get("15m", [])
 
     # === ICT PD Array / SMT Data ===
+    # ПРИМІТКА: identify_liquidity_and_range() тут викликається лише заради
+    # SMT/range-контексту нижче; поле "eq" (рівень рівноваги PD Array) раніше
+    # рахувалось у eq_level, але ніде не читалось — приберено як orphaned-код
+    # незавершеного PD Array рефактору (Premium/Discount вирівнювання зараз
+    # не входить у vector scoring нижче).
     range_data = identify_liquidity_and_range(c15)
-    eq_level = range_data.get("eq", 0.0)
     smt_bias = detect_smt_divergence(c15, smt_c15)
-    
+
     kyiv_tz = zoneinfo.ZoneInfo("Europe/Kyiv")
     now_kyiv = datetime.now(kyiv_tz)
-    k_hour = now_kyiv.hour
     session_profile = analyze_session_profile(c15, now_kyiv, atr15)
     # is_killzone тепер відображає ПОВЕДІНКОВУ фазу (маніпуляція/дистрибуція
     # Лондона чи Нью-Йорка), а не сирий діапазон годин — раніше формула
@@ -2031,10 +2396,11 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
 
         has_forward_zone = has_forward_ict_zone(price, zones, side, atr15)
         recent_struct = detect_recent_structure_shift(c15, lookback=7)
-        move8 = pct(c15[-1].close, c15[-8].close) if len(c15) >= 8 else 0.0
 
         # Довший лукбек тренду (20 свічок 15m ≈ 5 годин) — на додачу до короткого
-        # move8 (8 свічок), який regime_detection() використовує для класифікації RANGE.
+        # 8-свічкового руху, який regime_detection() використовує для класифікації RANGE
+        # (тут локально він більше не рахується — недороблений refactor лишав "move8"
+        # обчисленим, але непрочитаним; сама метрика й досі жива в regime_detection()).
         # Повільний, розтягнутий у часі рух (напр. -0.6% за 2 години) може НЕ перевищити
         # короткий 8-свічковий поріг у кожен окремий момент, тож regime лишається "RANGE",
         # хоча по суті це вже м'який тренд. PO3/RANGE_EDGE_REVERSAL — це купівля "відкату
@@ -2085,6 +2451,8 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
         best_priority = 0
         pattern_conf = []
         raw_bonus = 0
+        regime_matched = 0
+        regime_conflict = 0
 
         for pat_id in active_patterns:
             p_data = pattern_registry[pat_id]
@@ -2092,28 +2460,83 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
                 best_priority = p_data["priority"]
                 best_pattern = pat_id
 
+        # ==========================================================
+        # VECTOR SCORING (v6.7): кожна родина сетапів рахується за
+        # власною логікою замість єдиної лінійної формули.
+        #   - REVERSAL (SWEEP_RECLAIM/JUDAS_SWING/TURTLE_SOUP/PO3/MMBM/2022_MODEL):
+        #     штраф за ідеальне вирівнювання HTF (= пізній вхід), максимум ваги
+        #     на ліквідність/тригер/SMT Divergence.
+        #   - TREND (BREAKOUT_RETEST/FVG_ENTRY/BREAKER_BLOCK/OB_RECLAIM/BMS_RETEST):
+        #     HTF і CVD критичні, але Exhaustion Penalty ріже скор навпіл, якщо
+        #     рух вже пройшов > EXHAUSTION_ATR_THRESHOLD ATR без глибокого відкату.
+        #   - Fallback без жодної підтвердженої моделі (генерик PULLBACK_CONTINUATION)
+        #     отримує NO_PATTERN_PENALTY — саме ця комбінація була "дірою" v6.6
+        #     (16 угод, 12.5% winrate, -5.63%), бо торгувалась з майже нормальною
+        #     впевненістю, хоча по суті означає "нічого конкретного не спрацювало".
+        # ==========================================================
+        reversal_families = {SetupFamily.LIQUIDITY_RECOVERY.value, SetupFamily.STRUCTURAL_TRANSITION.value, SetupFamily.RANGE_EXECUTION.value}
+        trend_families = {SetupFamily.CONTINUATION.value, SetupFamily.EXPANSION.value}
+
+        pattern_family = None
         if best_pattern:
             p_data = pattern_registry[best_pattern]
             raw_bonus = p_data["score_bonus"]
             pattern_conf.append(f"Модель: {p_data['name']}")
-            
+            pattern_family = SETUP_FAMILY_MAP.get(p_data["preferred_setup"], SetupFamily.CONTINUATION.value)
+
             # Органічна стабільність (Regime Matching)
             if regime in p_data["favored"]:
                 raw_bonus += 5
+                regime_matched = 1
                 pattern_conf.append("✅ Модель узгоджена з режимом ринку (+5)")
             elif regime in p_data["penalty"]:
                 raw_bonus -= 10
+                regime_conflict = 1
                 pattern_conf.append("⚠️ Конфлікт моделі з режимом ринку (-10)")
+        else:
+            raw_bonus -= NO_PATTERN_PENALTY
+            pattern_conf.append(f"⚠️ Жодна з 10 ICT-моделей не підтверджена — generic fallback (-{NO_PATTERN_PENALTY})")
 
-        # Базові обчислення якості (збережено існуючу логіку)
+        htf_aligned_strong = (tf4h.get("bias") == side) and (tf1h.get("bias") == side)
+        liq_weight = trig_weight = htf_weight = str_weight = flw_weight = 1.0
+        vector_bonus = 0.0
+        exhaustion_multiplier = 1.0
+
+        if pattern_family in reversal_families:
+            liq_weight, trig_weight, htf_weight = REVERSAL_LIQ_WEIGHT, REVERSAL_TRIGGER_WEIGHT, REVERSAL_HTF_WEIGHT
+            if smt_bias == side:
+                vector_bonus += REVERSAL_SMT_BONUS
+                pattern_conf.append(f"🧭 SMT Divergence на користь входу (+{REVERSAL_SMT_BONUS})")
+            elif smt_bias == opposite(side):
+                vector_bonus -= REVERSAL_SMT_BONUS
+                pattern_conf.append(f"⚠️ SMT Divergence проти входу (-{REVERSAL_SMT_BONUS})")
+            if htf_aligned_strong:
+                # Ідеальне вирівнювання HTF по розворотній моделі означає, що ринок
+                # вже розвернувся і ми заходимо пізно — це не підтвердження, а ризик.
+                vector_bonus -= REVERSAL_LATE_ENTRY_PENALTY
+                pattern_conf.append(f"⏱️ Ідеальне вирівнювання HTF для розвороту = пізній вхід (-{REVERSAL_LATE_ENTRY_PENALTY})")
+        elif pattern_family in trend_families:
+            str_weight, flw_weight, htf_weight = TREND_STRUCTURE_WEIGHT, TREND_FLOW_WEIGHT, TREND_HTF_WEIGHT
+            if smt_bias == side:
+                vector_bonus += TREND_SMT_BONUS
+                pattern_conf.append(f"🧭 SMT Divergence підтверджує тренд (+{TREND_SMT_BONUS})")
+            if len(c15) >= 8 and atr15:
+                impulse_run_atr = abs(c15[-1].close - c15[-8].close) / atr15
+                extreme8 = max(c.high for c in c15[-8:]) if side == Side.LONG.value else min(c.low for c in c15[-8:])
+                retracement_atr = abs(price - extreme8) / atr15
+                if impulse_run_atr > EXHAUSTION_ATR_THRESHOLD and retracement_atr < 0.35:
+                    exhaustion_multiplier = EXHAUSTION_SCORE_MULTIPLIER
+                    pattern_conf.append(f"🔻 Exhaustion Penalty: рух {impulse_run_atr:.2f} ATR без відкату — скор x{EXHAUSTION_SCORE_MULTIPLIER}")
+
+        # Базові обчислення якості (збережено існуючу логіку, зважено за родиною сетапу)
         loc_score = calculate_location_score(price, zones, side, atr15, tf15, tf1h)
-        str_score = 19 if tf15.get("bias") == side else 10
-        liq_score = 16 if event.get("source") == "LIQUIDITY_SWEEP" and trigger_ready else 6
-        flw_score = 17 if flow.get("bias") == side and cvd.get("bias") == side else 0
-        trig_score = 22 if trigger_ready else 8
-        htf_score = 20 if tf4h.get("bias") == side else 6
+        str_score = (19 if tf15.get("bias") == side else 10) * str_weight
+        liq_score = (16 if event.get("source") == "LIQUIDITY_SWEEP" and trigger_ready else 6) * liq_weight
+        flw_score = (17 if flow.get("bias") == side and cvd.get("bias") == side else 0) * flw_weight
+        trig_score = (22 if trigger_ready else 8) * trig_weight
+        htf_score = (20 if tf4h.get("bias") == side else 6) * htf_weight
         
-        raw = loc_score + str_score + liq_score + flw_score + trig_score + htf_score + raw_bonus
+        raw = loc_score + str_score + liq_score + flw_score + trig_score + htf_score + raw_bonus + vector_bonus
 
         # === Session Profiling & AMD: макро-скор-коригування найвищого рівня ===
         # Це БАЛОВЕ коригування (як і всі інші бонуси/штрафи вище), не жорсткий
@@ -2128,6 +2551,9 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
             session_bonus -= chop["penalty_magnitude"]
             pattern_conf.extend(session_profile["notes"])
         raw += session_bonus
+
+        if exhaustion_multiplier < 1.0:
+            raw *= exhaustion_multiplier
 
         if is_limit_armed:
             trigger_ready = True  # Ігноруємо відсутність 3M сигналу
@@ -2145,17 +2571,62 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
         evidence = ["ICT_LOCATION", "PRICE_STRUCTURE"]
         if flw_score > 0: evidence.append("ORDER_FLOW_CVD")
         if trigger_ready: evidence.append("EXECUTION_TRIGGER_3M")
-        
-        final = int(clamp(raw + (len(evidence) - 3) * 2.8, 12, 98))
+
+        setup_family = SETUP_FAMILY_MAP.get(setup_type, SetupFamily.CONTINUATION.value)
+        quality_features = _build_quality_features(
+            loc_score=loc_score,
+            str_score=str_score,
+            liq_score=liq_score,
+            flw_score=flw_score,
+            trig_score=trig_score,
+            htf_score=htf_score,
+            raw_bonus=raw_bonus,
+            session_bonus=session_bonus,
+            vector_bonus=vector_bonus,
+            trigger_age=trigger_age,
+            trigger_ready=trigger_ready,
+            best_pattern=best_pattern,
+            regime_matched=regime_matched,
+            regime_conflict=regime_conflict,
+            exhaustion_multiplier=exhaustion_multiplier,
+            pattern_family=setup_family,
+        )
+        calibration = calibrate_candidate_quality(
+            journal, quality_features, setup_family, trigger_ready, is_limit_armed, has_forward_zone
+        )
+        final = int(calibration["score"])
+        pattern_conf.append(
+            f"📊 Quality model: {calibration['model_source']} n={calibration['sample_size']} "
+            f"| p={calibration['probability']:.2f} | gates x{calibration['gates']['product']:.2f}"
+        )
         
         lane = ExecutionLane.EARLY_TACTICAL.value if (best_pattern and pattern_registry[best_pattern]["allow_early"]) or time_warp_opportunity else ExecutionLane.STANDARD_CONFIRMED.value
 
         cand = Candidate(
             side=side,
             setup_type=setup_type,
-            setup_family=SETUP_FAMILY_MAP.get(setup_type, SetupFamily.CONTINUATION.value),
-            raw_score=raw,
+            setup_family=setup_family,
+            raw_score=int(round(raw)),
             final_score=final,
+            score_components={
+                "legacy_raw_score": round(raw, 2),
+                "loc_score": round(loc_score, 2),
+                "str_score": round(str_score, 2),
+                "liq_score": round(liq_score, 2),
+                "flw_score": round(flw_score, 2),
+                "trig_score": round(trig_score, 2),
+                "htf_score": round(htf_score, 2),
+                "pattern_bonus": round(raw_bonus, 2),
+                "session_bonus": round(session_bonus, 2),
+                "vector_bonus": round(vector_bonus, 2),
+                "features": calibration["features"],
+                "gates": calibration["gates"],
+                "probability": calibration["probability"],
+                "base_probability": calibration["base_probability"],
+                "model_source": calibration["model_source"],
+                "sample_size": calibration["sample_size"],
+                "learned_weight": calibration["learned_weight"],
+            },
             evidence_families=evidence,
             confirmations=pattern_conf,
             trigger_ready=trigger_ready,
@@ -2170,7 +2641,8 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
             trigger_age_minutes=trigger_age,
             thesis_key=f"{side}|{setup_type}|{int(price*10)}",
             thesis=f"{side} {setup_type} | 3M={scan_stage}",
-            professional_gate={}
+            professional_gate={},
+            has_forward_zone=has_forward_zone,
         )
         cand.professional_gate = evaluate_professional_gate(context, cand)
         
@@ -2772,30 +3244,38 @@ def manage_active_trade(trade: ActiveTrade, context: dict) -> dict:
     if price is None:
         return {"action": Action.HOLD.value, "closed": False, "notes": ["Очікування даних ціни..."]}
         
-    atr15 = context.get("atr15", 0.6) or 0.6
+    # ПРИМІТКА: atr15 тут раніше рахувався локально, але жоден з хелперів
+    # нижче (_stop_hit, _target_hit, _mfe_guard_stop, _post_tp1_guard_stop,
+    # trade_mode_profile) не приймає його аргументом — усі й так читають
+    # atr15 напряму з context. Orphaned-змінна від старішої версії видалена.
     side = trade.side
 
+    # 1. Спочатку оновлюємо екстремуми ціни ДО формування словника результату
+    if (side == Side.LONG.value and price > trade.best_price) or (side == Side.SHORT.value and price < trade.best_price):
+        trade.best_price = price
+    if (side == Side.LONG.value and price < trade.worst_price) or (side == Side.SHORT.value and price > trade.worst_price):
+        trade.worst_price = price
+
+    # 2. Виконуємо розрахунки відсотків один раз
+    current_pct = _trade_pct(side, trade.entry, price)
+    best_pct = _trade_pct(side, trade.entry, trade.best_price)
+    worst_pct = max(0.0, _trade_pct(opposite(side), trade.entry, trade.worst_price))
+
+    # 3. Формуємо чистий словник результату без дублювання та перезапису полів
     result = {
         "action": Action.HOLD.value,
         "title": "УГОДА ВІДКРИТА — HYBRID ICT v6.6",
         "recommendation": "Структура та теза на боці — тримаємо",
-        "current_pct": ((price - trade.entry) / trade.entry * 100) if side == Side.LONG.value else ((trade.entry - price) / trade.entry * 100),
-        "best_pct": ((trade.best_price - trade.entry) / trade.entry * 100) if side == Side.LONG.value else ((trade.entry - trade.best_price) / trade.entry * 100),
+        "current_pct": current_pct,
+        "best_pct": best_pct,
+        "worst_pct": worst_pct,
+        "giveback_pct": max(0.0, best_pct - current_pct),
         "closed": False,
         "exit_price": None,
         "notes": [],
         "recommended_stop": None,
         "recommended_stop_reason": "",
     }
-
-    if (side == Side.LONG.value and price > trade.best_price) or (side == Side.SHORT.value and price < trade.best_price):
-        trade.best_price = price
-    if (side == Side.LONG.value and price < trade.worst_price) or (side == Side.SHORT.value and price > trade.worst_price):
-        trade.worst_price = price
-
-    result["best_pct"] = ((trade.best_price - trade.entry) / trade.entry * 100) if side == Side.LONG.value else ((trade.entry - trade.best_price) / trade.entry * 100)
-    result["worst_pct"] = max(0.0, ((trade.entry - trade.worst_price) / trade.entry * 100) if side == Side.LONG.value else ((trade.worst_price - trade.entry) / trade.entry * 100))
-    result["giveback_pct"] = max(0.0, result["best_pct"] - result["current_pct"])
 
     # --- MFE Guard (органічно доповнює Wick Defense + Delayed BE) ---
     # Працює тільки до TP1 — саме там зараз "сліпа зона": Delayed BE свідомо
@@ -3022,13 +3502,28 @@ def run_bot() -> None:
             send_telegram(msg)
         
         if res.get("closed"):
-            journal["trades"].append({"id": active.id, "side": active.side, "setup_type": active.setup_type, "result_pct": res.get("current_pct"), "mfe_pct": res.get("best_pct")})
+            journal["trades"].append({
+                "id": active.id,
+                "signal_id": active.signal_id,
+                "side": active.side,
+                "setup_type": active.setup_type,
+                "setup_family": active.setup_family,
+                "opened_regime": active.opened_regime,
+                "entry_level": active.entry_level,
+                "quality": active.quality,
+                "result_pct": res.get("current_pct"),
+                "mfe_pct": res.get("best_pct"),
+                "tp1_hit": active.tp1_hit,
+                "tp2_hit": active.tp2_hit,
+                "tp3_hit": active.tp3_hit,
+                "close_action": res.get("action"),
+            })
             store_active_trade(state, None)
             state["opportunity"] = None
         else:
             store_active_trade(state, active)
-        append_history(state, {"type": "FOLLOW" if not res.get("closed") else "CLOSE", "side": active.side, "action": res.get("action"), "price": context["price"]})
-        journal["signals"].append({"time": iso_now(), "type": "FOLLOW", "action": res.get("action"), "side": active.side, "price": context["price"]})
+        append_history(state, {"type": "FOLLOW" if not res.get("closed") else "CLOSE", "side": active.side, "action": res.get("action"), "price": context["price"], "trade_id": active.id, "signal_id": active.signal_id})
+        journal["signals"].append({"time": iso_now(), "type": "FOLLOW", "action": res.get("action"), "side": active.side, "price": context["price"], "trade_id": active.id, "signal_id": active.signal_id})
         save_state(state)
         save_journal(journal)
         print("BOT COMPLETE: ACTIVE TRADE MANAGED")
@@ -3036,17 +3531,36 @@ def run_bot() -> None:
 
     decision = evaluate_new_setup(context, state, journal)
     payload = {"id": decision.id, "time": decision.time, "action": decision.action, "side": decision.side, "setup_type": decision.setup_type, "quality": decision.quality, "reason": decision.reason, "regime": decision.regime, "news_bias": decision.news_bias, "macro_risk": decision.macro_risk, "version": BOT_VERSION, "architecture_version": ARCHITECTURE_VERSION}
+    if decision.candidate:
+        components = decision.candidate.score_components or {}
+        payload.update({
+            "setup_family": decision.candidate.setup_family,
+            "ict_model": decision.candidate.ict_model,
+            "execution_lane": decision.candidate.execution_lane,
+            "trigger_ready": decision.candidate.trigger_ready,
+            "trigger_age_minutes": round(float(decision.candidate.trigger_age_minutes or 0.0), 2),
+            "score_components": components,
+            "score_features": components.get("features", {}),
+            "score_gates": components.get("gates", {}),
+            "score_model_source": components.get("model_source", ""),
+            "score_model_sample_size": components.get("sample_size", 0),
+            "score_model_learned_weight": components.get("learned_weight", 0.0),
+        })
     state["latest_signal"] = payload
     append_history(state, {"type": decision.action, "side": decision.side, "setup_type": decision.setup_type, "quality": decision.quality, "price": context["price"]})
     journal["signals"].append(payload)
 
     if decision.action in (Action.ENTRY.value, Action.RISKY_ENTRY.value) and decision.candidate and decision.plan:
-        active = ActiveTrade(id=uuid.uuid4().hex[:10], side=decision.side, setup_type=decision.setup_type, setup_family=decision.candidate.setup_family, opened_at=iso_now(), entry=decision.plan.entry, stop_initial=decision.plan.stop, stop_current=decision.plan.stop, structural_invalidation=decision.plan.structural_invalidation, tp1=decision.plan.tp1, tp2=decision.plan.tp2, tp3=decision.plan.tp3, quality=decision.quality, position_risk_pct=decision.plan.position_risk_pct, best_price=decision.plan.entry, worst_price=decision.plan.entry, trigger_level=decision.candidate.trigger_level, thesis_key=decision.candidate.thesis_key, thesis=decision.candidate.thesis, opened_regime=decision.regime, entry_level=decision.action)
+        # signal_id = decision.id: угода тепер завжди трасується до сигналу,
+        # який її відкрив. trade.id лишається окремим (власним) ідентифікатором
+        # угоди — це важливо для re-entry-сценаріїв, де одна Opportunity/сигнал
+        # може породжувати кілька спроб входу.
+        active = ActiveTrade(id=uuid.uuid4().hex[:10], signal_id=decision.id, side=decision.side, setup_type=decision.setup_type, setup_family=decision.candidate.setup_family, opened_at=iso_now(), entry=decision.plan.entry, stop_initial=decision.plan.stop, stop_current=decision.plan.stop, structural_invalidation=decision.plan.structural_invalidation, tp1=decision.plan.tp1, tp2=decision.plan.tp2, tp3=decision.plan.tp3, quality=decision.quality, position_risk_pct=decision.plan.position_risk_pct, best_price=decision.plan.entry, worst_price=decision.plan.entry, trigger_level=decision.candidate.trigger_level, thesis_key=decision.candidate.thesis_key, thesis=decision.candidate.thesis, opened_regime=decision.regime, entry_level=decision.action)
         store_active_trade(state, active)
         state["opportunity"] = None
-        print(f"[INFO] Угода відкрита: {decision.side} {decision.setup_type}")
+        print(f"[INFO] Угода відкрита: {decision.side} {decision.setup_type} | signal_id={active.signal_id} trade_id={active.id}")
     elif decision.action == Action.ARMED.value and decision.candidate:
-        opp = Opportunity(side=decision.side, setup_type=decision.setup_type, setup_family=decision.candidate.setup_family, created_at=iso_now(), expires_at=(now_utc() + timedelta(hours=18)).isoformat(), score=decision.quality, trigger_level=decision.candidate.trigger_level, invalidation_level=decision.candidate.invalidation_level, confirmations=decision.candidate.confirmations[:5], evidence_families=decision.candidate.evidence_families, execution_lane=decision.candidate.execution_lane, status="ARMED", thesis_key=decision.candidate.thesis_key, thesis=decision.candidate.thesis)
+        opp = Opportunity(side=decision.side, setup_type=decision.setup_type, setup_family=decision.candidate.setup_family, created_at=iso_now(), expires_at=(now_utc() + timedelta(hours=18)).isoformat(), score=decision.quality, trigger_level=decision.candidate.trigger_level, invalidation_level=decision.candidate.invalidation_level, confirmations=decision.candidate.confirmations[:5], evidence_families=decision.candidate.evidence_families, execution_lane=decision.candidate.execution_lane, status="ARMED", thesis_key=decision.candidate.thesis_key, thesis=decision.candidate.thesis, signal_id=decision.id)
         store_opportunity(state, opp)
         store_active_trade(state, None)
     else:
