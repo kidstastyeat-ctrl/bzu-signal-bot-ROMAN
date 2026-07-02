@@ -10340,6 +10340,15 @@
       "price": 70.95,
       "trade_id": "c430c1a156",
       "signal_id": ""
+    },
+    {
+      "time": "2026-07-02T15:01:10.120160+00:00",
+      "type": "FOLLOW",
+      "action": "HOLD",
+      "side": "SHORT",
+      "price": 70.9,
+      "trade_id": "c430c1a156",
+      "signal_id": ""
     }
   ],
   "trades": [
@@ -10705,5 +10714,5 @@
     "expectancy_r": -0.001,
     "by_family": {}
   },
-  "updated_at": "2026-07-02T14:46:51.477831+00:00"
+  "updated_at": "2026-07-02T15:01:10.123531+00:00"
 }
