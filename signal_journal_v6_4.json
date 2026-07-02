@@ -5895,17 +5895,33 @@
       "setup_type": "CAPITULATION_RECOVERY",
       "result_pct": -0.4636133745434286,
       "mfe_pct": 0.042146670413019
+    },
+    {
+      "id": "c430c1a156",
+      "signal_id": "",
+      "side": "SHORT",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "setup_family": "CONTINUATION",
+      "opened_regime": "TRANSITION",
+      "entry_level": "RISKY_ENTRY",
+      "quality": 83,
+      "result_pct": -0.8437234344006818,
+      "mfe_pct": 0.3117030320204008,
+      "tp1_hit": false,
+      "tp2_hit": false,
+      "tp3_hit": false,
+      "close_action": "STOP"
     }
   ],
   "version": "pro-hybrid-confluence-v6.8",
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
   "analytics": {
-    "closed_trades": 50,
+    "closed_trades": 51,
     "wins": 19,
-    "losses": 31,
-    "win_rate": 38.0,
-    "net_r": -0.07,
-    "expectancy_r": -0.001,
+    "losses": 32,
+    "win_rate": 37.3,
+    "net_r": -0.08,
+    "expectancy_r": -0.002,
     "by_family": {
       "NONE": {
         "closed_trades": 50,
@@ -5914,10 +5930,18 @@
         "net_r": -0.07,
         "win_rate": 38.0,
         "expectancy_r": -0.001
+      },
+      "CONTINUATION": {
+        "closed_trades": 1,
+        "wins": 0,
+        "losses": 1,
+        "net_r": -0.01,
+        "win_rate": 0.0,
+        "expectancy_r": -0.01
       }
     }
   },
-  "updated_at": "2026-07-02T16:01:07.816454+00:00",
+  "updated_at": "2026-07-02T16:15:45.456508+00:00",
   "training_signals": [],
   "signal_events": [
     {
@@ -5964,17 +5988,26 @@
       "price": 70.81,
       "trade_id": "c430c1a156",
       "signal_id": ""
+    },
+    {
+      "time": "2026-07-02T16:15:45.452617+00:00",
+      "type": "CLOSE",
+      "action": "STOP",
+      "side": "SHORT",
+      "price": 71.2,
+      "trade_id": "c430c1a156",
+      "signal_id": ""
     }
   ],
   "learning_status": {
-    "updated_at": "2026-07-02T16:01:07.816728+00:00",
+    "updated_at": "2026-07-02T16:15:45.456780+00:00",
     "journal_file": "/home/runner/work/bzu-signal-bot-ROMAN/bzu-signal-bot-ROMAN/signal_journal_v6_4.json",
     "state_file": "/home/runner/work/bzu-signal-bot-ROMAN/bzu-signal-bot-ROMAN/last_signal_v6_4.json",
     "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
     "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
     "training_signals": 0,
-    "signal_events": 5,
-    "closed_trades": 50,
+    "signal_events": 6,
+    "closed_trades": 51,
     "training_rows": 0,
     "global_ready": false,
     "global_learned_weight": 0.0,
