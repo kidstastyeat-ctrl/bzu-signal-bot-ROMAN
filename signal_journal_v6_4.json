@@ -5589,6 +5589,52 @@
       ],
       "version": "pro-hybrid-confluence-v6.8",
       "architecture_version": "HYBRID_CONFLUENCE_V6_4"
+    },
+    {
+      "id": "09bfb87d39",
+      "time": "2026-07-02T16:45:45.094546+00:00",
+      "action": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "decision_quality": 12,
+      "reason": "Ринок не сформував професійного ICT + 3M execution-package",
+      "regime": "TRANSITION",
+      "news_bias": "NEUTRAL",
+      "macro_risk": "NORMAL",
+      "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
+      "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
+      "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
+      "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY",
+      "learning_status": {
+        "updated_at": "2026-07-02T16:45:43.810567+00:00",
+        "journal_file": "/home/runner/work/bzu-signal-bot-ROMAN/bzu-signal-bot-ROMAN/signal_journal_v6_4.json",
+        "state_file": "/home/runner/work/bzu-signal-bot-ROMAN/bzu-signal-bot-ROMAN/last_signal_v6_4.json",
+        "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
+        "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
+        "training_signals": 0,
+        "signal_events": 6,
+        "closed_trades": 51,
+        "training_rows": 0,
+        "global_ready": false,
+        "global_learned_weight": 0.0,
+        "by_family": {},
+        "validation": {
+          "enabled": false,
+          "reason": "not_enough_rows"
+        },
+        "github_actions": true,
+        "journal_persistence_confirmed": false,
+        "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
+        "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY"
+      },
+      "learning_warnings": [
+        "ML dataset порожній: training_signals ще не накопичені.",
+        "Closed trades є, але signal_id не з'єднався з training_signals.",
+        "GitHub Actions: не підтверджено commit/cache persistence для journal/state."
+      ],
+      "version": "pro-hybrid-confluence-v6.8",
+      "architecture_version": "HYBRID_CONFLUENCE_V6_4"
     }
   ],
   "trades": [
@@ -5987,7 +6033,7 @@
       }
     }
   },
-  "updated_at": "2026-07-02T16:30:59.921043+00:00",
+  "updated_at": "2026-07-02T16:45:45.693482+00:00",
   "training_signals": [],
   "signal_events": [
     {
@@ -6046,7 +6092,7 @@
     }
   ],
   "learning_status": {
-    "updated_at": "2026-07-02T16:30:59.921300+00:00",
+    "updated_at": "2026-07-02T16:45:45.693754+00:00",
     "journal_file": "/home/runner/work/bzu-signal-bot-ROMAN/bzu-signal-bot-ROMAN/signal_journal_v6_4.json",
     "state_file": "/home/runner/work/bzu-signal-bot-ROMAN/bzu-signal-bot-ROMAN/last_signal_v6_4.json",
     "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
