@@ -20,7 +20,7 @@
     "worst_price": 70.73,
     "thesis_key": "SHORT|PULLBACK_CONTINUATION|707",
     "thesis": "SHORT PULLBACK_CONTINUATION | 3M=READY",
-    "last_checked_3m_ts": 1782988255075,
+    "last_checked_3m_ts": 1782989139410,
     "tp1_hit": false,
     "tp2_hit": false,
     "tp3_hit": false,
@@ -41,9 +41,9 @@
   },
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1782988200000,
+    "last_scanned_3m_ts": 1782989100000,
     "last_run_processed": 5,
-    "processed_count": 5298,
+    "processed_count": 5303,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -55,7 +55,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 70.81,
+        "extreme": 70.8,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -65,7 +65,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 5298,
+        "processed_bars": 5303,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -97,7 +97,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 5298,
+        "processed_bars": 5303,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -113,11 +113,11 @@
     }
   },
   "regime_memory": {
-    "type": "NORMAL",
-    "pending_type": "RANGE_COMPRESSION",
-    "stable_count": 0,
-    "pending_count": 1,
-    "updated_at": "2026-07-02T10:30:55.074694+00:00"
+    "type": "RANGE_COMPRESSION",
+    "pending_type": "",
+    "stable_count": 1,
+    "pending_count": 2,
+    "updated_at": "2026-07-02T10:45:39.410357+00:00"
   },
   "latest_signal": {
     "id": "e8e7038b26",
@@ -135,14 +135,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "ARMED",
-      "side": "SHORT",
-      "setup_type": "PULLBACK_CONTINUATION",
-      "quality": 66,
-      "price": 74.02,
-      "time": "2026-06-30T11:09:18.269141+00:00"
-    },
     {
       "type": "ARMED",
       "side": "SHORT",
@@ -1585,7 +1577,14 @@
       "action": "HOLD",
       "price": 70.73,
       "time": "2026-07-02T10:30:55.560853+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "HOLD",
+      "price": 70.72,
+      "time": "2026-07-02T10:45:39.944179+00:00"
     }
   ],
-  "updated_at": "2026-07-02T10:30:55.560887+00:00"
+  "updated_at": "2026-07-02T10:45:39.944371+00:00"
 }
