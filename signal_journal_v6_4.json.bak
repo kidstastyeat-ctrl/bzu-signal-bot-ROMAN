@@ -5917,7 +5917,7 @@
       }
     }
   },
-  "updated_at": "2026-07-02T15:15:41.305658+00:00",
+  "updated_at": "2026-07-02T15:31:03.165218+00:00",
   "training_signals": [],
   "signal_events": [
     {
@@ -5935,6 +5935,15 @@
       "action": "HOLD",
       "side": "SHORT",
       "price": 70.7,
+      "trade_id": "c430c1a156",
+      "signal_id": ""
+    },
+    {
+      "time": "2026-07-02T15:31:03.161713+00:00",
+      "type": "FOLLOW",
+      "action": "HOLD",
+      "side": "SHORT",
+      "price": 70.76,
       "trade_id": "c430c1a156",
       "signal_id": ""
     }
