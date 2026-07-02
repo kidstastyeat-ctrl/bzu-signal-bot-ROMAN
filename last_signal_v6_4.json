@@ -20,7 +20,7 @@
     "worst_price": 71.58,
     "thesis_key": "LONG|SWEEP_RECLAIM|715",
     "thesis": "LONG SWEEP_RECLAIM | 3M=READY",
-    "last_checked_3m_ts": 1783020664718,
+    "last_checked_3m_ts": 1783021541196,
     "tp1_hit": false,
     "tp2_hit": false,
     "tp3_hit": false,
@@ -42,9 +42,9 @@
   },
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1783020600000,
+    "last_scanned_3m_ts": 1783021500000,
     "last_run_processed": 5,
-    "processed_count": 5478,
+    "processed_count": 5483,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -66,7 +66,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 5478,
+        "processed_bars": 5483,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -88,7 +88,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 71.76,
+        "extreme": 71.74,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -98,7 +98,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 5478,
+        "processed_bars": 5483,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -116,9 +116,9 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 3,
+    "stable_count": 4,
     "pending_count": 0,
-    "updated_at": "2026-07-02T19:31:04.718487+00:00"
+    "updated_at": "2026-07-02T19:45:41.196281+00:00"
   },
   "latest_signal": {
     "id": "ba6e3c6649",
@@ -251,13 +251,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 73.44,
-      "time": "2026-06-30T21:01:06.176019+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1729,7 +1722,16 @@
       "trade_id": "53098798c2",
       "signal_id": "ba6e3c6649",
       "time": "2026-07-02T19:31:05.231744+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "HOLD",
+      "price": 71.65,
+      "trade_id": "53098798c2",
+      "signal_id": "ba6e3c6649",
+      "time": "2026-07-02T19:45:41.838384+00:00"
     }
   ],
-  "updated_at": "2026-07-02T19:31:05.231975+00:00"
+  "updated_at": "2026-07-02T19:45:41.838568+00:00"
 }
