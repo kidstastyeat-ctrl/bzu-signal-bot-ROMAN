@@ -9708,6 +9708,20 @@
       "action": "TP3",
       "side": "SHORT",
       "price": 70.98
+    },
+    {
+      "id": "4dd04a14c4",
+      "time": "2026-07-02T01:01:01.058813+00:00",
+      "action": "ARMED",
+      "side": "SHORT",
+      "setup_type": "PULLBACK_CONTINUATION",
+      "quality": 64,
+      "reason": "[NONE] Продовження тренду після ICT-відкату сформовано; gate v6: WATCH",
+      "regime": "RANGE",
+      "news_bias": "NEUTRAL",
+      "macro_risk": "NORMAL",
+      "version": "pro-hybrid-confluence-v6.6",
+      "architecture_version": "HYBRID_CONFLUENCE_V6_4"
     }
   ],
   "trades": [
@@ -10066,5 +10080,5 @@
     "expectancy_r": -0.001,
     "by_family": {}
   },
-  "updated_at": "2026-07-02T00:45:42.002569+00:00"
+  "updated_at": "2026-07-02T01:01:01.590431+00:00"
 }
