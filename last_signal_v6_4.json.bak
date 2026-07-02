@@ -23,9 +23,9 @@
     "missed_at": ""
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1782974700000,
+    "last_scanned_3m_ts": 1782975600000,
     "last_run_processed": 5,
-    "processed_count": 5223,
+    "processed_count": 5228,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -37,7 +37,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 70.93,
+        "extreme": 70.69,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -47,7 +47,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 5223,
+        "processed_bars": 5228,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -69,7 +69,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 70.98,
+        "extreme": 70.76,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -79,7 +79,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 5223,
+        "processed_bars": 5228,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -96,20 +96,20 @@
   },
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
-    "pending_type": "",
-    "stable_count": 21,
-    "pending_count": 0,
-    "updated_at": "2026-07-02T06:45:42.028247+00:00"
+    "pending_type": "NORMAL",
+    "stable_count": 0,
+    "pending_count": 1,
+    "updated_at": "2026-07-02T07:01:11.419410+00:00"
   },
   "latest_signal": {
-    "id": "1c78fb3ce9",
-    "time": "2026-07-02T06:45:42.034065+00:00",
-    "action": "ARMED",
-    "side": "SHORT",
-    "setup_type": "PULLBACK_CONTINUATION",
-    "quality": 64,
-    "reason": "Re-entry з пропущеного імпульсу",
-    "regime": "RANGE",
+    "id": "fcc77a627b",
+    "time": "2026-07-02T07:01:11.425406+00:00",
+    "action": "NO_SETUP",
+    "side": "NEUTRAL",
+    "setup_type": "NONE",
+    "quality": 12,
+    "reason": "Ринок не сформував професійного ICT + 3M execution-package",
+    "regime": "TRANSITION",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
     "version": "pro-hybrid-confluence-v6.6",
@@ -117,14 +117,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "ARMED",
-      "side": "LONG",
-      "setup_type": "PULLBACK_CONTINUATION",
-      "quality": 62,
-      "price": 73.57,
-      "time": "2026-06-30T07:31:00.441161+00:00"
-    },
     {
       "type": "ARMED",
       "side": "LONG",
@@ -1572,7 +1564,15 @@
       "quality": 64,
       "price": 70.85,
       "time": "2026-07-02T06:45:42.034089+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 70.65,
+      "time": "2026-07-02T07:01:11.425426+00:00"
     }
   ],
-  "updated_at": "2026-07-02T06:45:42.564025+00:00"
+  "updated_at": "2026-07-02T07:01:12.112102+00:00"
 }
