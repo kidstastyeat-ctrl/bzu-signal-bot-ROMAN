@@ -4,9 +4,9 @@
   "active_trade": null,
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1783008900000,
+    "last_scanned_3m_ts": 1783009800000,
     "last_run_processed": 5,
-    "processed_count": 5413,
+    "processed_count": 5418,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -18,7 +18,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 71.26,
+        "extreme": 71.28,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -28,7 +28,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 5413,
+        "processed_bars": 5418,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -50,7 +50,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 71.31,
+        "extreme": 71.32,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -60,7 +60,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 5413,
+        "processed_bars": 5418,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -76,35 +76,60 @@
     }
   },
   "regime_memory": {
-    "type": "RANGE_COMPRESSION",
-    "pending_type": "NORMAL",
-    "stable_count": 0,
-    "pending_count": 1,
-    "updated_at": "2026-07-02T16:15:45.014395+00:00"
+    "type": "NORMAL",
+    "pending_type": "",
+    "stable_count": 1,
+    "pending_count": 2,
+    "updated_at": "2026-07-02T16:30:59.348273+00:00"
   },
   "latest_signal": {
-    "id": "e8e7038b26",
-    "time": "2026-07-02T09:30:53.865808+00:00",
-    "action": "RISKY_ENTRY",
-    "side": "SHORT",
-    "setup_type": "PULLBACK_CONTINUATION",
-    "quality": 83,
-    "reason": "Re-entry з пропущеного імпульсу",
+    "id": "343839efa9",
+    "time": "2026-07-02T16:30:59.355444+00:00",
+    "action": "NO_SETUP",
+    "side": "NEUTRAL",
+    "setup_type": "NONE",
+    "quality": 12,
+    "decision_quality": 12,
+    "reason": "Ринок не сформував професійного ICT + 3M execution-package",
     "regime": "TRANSITION",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
-    "version": "pro-hybrid-confluence-v6.6",
+    "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
+    "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
+    "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
+    "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY",
+    "learning_status": {
+      "updated_at": "2026-07-02T16:30:57.909399+00:00",
+      "journal_file": "/home/runner/work/bzu-signal-bot-ROMAN/bzu-signal-bot-ROMAN/signal_journal_v6_4.json",
+      "state_file": "/home/runner/work/bzu-signal-bot-ROMAN/bzu-signal-bot-ROMAN/last_signal_v6_4.json",
+      "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
+      "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
+      "training_signals": 0,
+      "signal_events": 6,
+      "closed_trades": 51,
+      "training_rows": 0,
+      "global_ready": false,
+      "global_learned_weight": 0.0,
+      "by_family": {},
+      "validation": {
+        "enabled": false,
+        "reason": "not_enough_rows"
+      },
+      "github_actions": true,
+      "journal_persistence_confirmed": false,
+      "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
+      "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY"
+    },
+    "learning_warnings": [
+      "ML dataset порожній: training_signals ще не накопичені.",
+      "Closed trades є, але signal_id не з'єднався з training_signals.",
+      "GitHub Actions: не підтверджено commit/cache persistence для journal/state."
+    ],
+    "version": "pro-hybrid-confluence-v6.8",
     "architecture_version": "HYBRID_CONFLUENCE_V6_4"
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 73.48,
-      "time": "2026-06-30T16:38:38.620519+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1556,7 +1581,15 @@
       "trade_id": "c430c1a156",
       "signal_id": "",
       "time": "2026-07-02T16:15:45.452469+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 71.2,
+      "time": "2026-07-02T16:30:59.355465+00:00"
     }
   ],
-  "updated_at": "2026-07-02T16:15:45.452621+00:00"
+  "updated_at": "2026-07-02T16:30:59.916454+00:00"
 }
