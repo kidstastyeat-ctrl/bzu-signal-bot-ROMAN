@@ -23,9 +23,9 @@
     "missed_at": ""
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1782954900000,
+    "last_scanned_3m_ts": 1782955800000,
     "last_run_processed": 5,
-    "processed_count": 5113,
+    "processed_count": 5118,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -37,7 +37,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 70.98,
+        "extreme": 70.83,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -47,7 +47,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 5113,
+        "processed_bars": 5118,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -69,7 +69,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 71.01,
+        "extreme": 70.87,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -79,7 +79,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 5113,
+        "processed_bars": 5118,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -95,15 +95,15 @@
     }
   },
   "regime_memory": {
-    "type": "RANGE_COMPRESSION",
-    "pending_type": "NORMAL",
-    "stable_count": 0,
-    "pending_count": 1,
-    "updated_at": "2026-07-02T01:15:38.024455+00:00"
+    "type": "NORMAL",
+    "pending_type": "",
+    "stable_count": 1,
+    "pending_count": 2,
+    "updated_at": "2026-07-02T01:30:51.861153+00:00"
   },
   "latest_signal": {
-    "id": "3172c19eef",
-    "time": "2026-07-02T01:15:38.026012+00:00",
+    "id": "9842de3f88",
+    "time": "2026-07-02T01:30:51.862650+00:00",
     "action": "NO_SETUP",
     "side": "NEUTRAL",
     "setup_type": "NONE",
@@ -117,14 +117,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "ARMED",
-      "side": "LONG",
-      "setup_type": "PULLBACK_CONTINUATION",
-      "quality": 62,
-      "price": 73.67,
-      "time": "2026-06-30T01:45:44.093960+00:00"
-    },
     {
       "type": "ARMED",
       "side": "LONG",
@@ -1572,7 +1564,15 @@
       "quality": 12,
       "price": 70.9,
       "time": "2026-07-02T01:15:38.026032+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 70.77,
+      "time": "2026-07-02T01:30:51.862669+00:00"
     }
   ],
-  "updated_at": "2026-07-02T01:15:38.580770+00:00"
+  "updated_at": "2026-07-02T01:30:52.251788+00:00"
 }
