@@ -1,5 +1,5 @@
 {
-  "version": "pro-hybrid-confluence-v6.6",
+  "version": "pro-hybrid-confluence-v6.8",
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
   "active_trade": {
     "id": "c430c1a156",
@@ -20,7 +20,7 @@
     "worst_price": 70.98,
     "thesis_key": "SHORT|PULLBACK_CONTINUATION|707",
     "thesis": "SHORT PULLBACK_CONTINUATION | 3M=READY",
-    "last_checked_3m_ts": 1783003539616,
+    "last_checked_3m_ts": 1783003611111,
     "tp1_hit": false,
     "tp2_hit": false,
     "tp3_hit": false,
@@ -37,7 +37,8 @@
     "mfe_giveback_last_state": "OK",
     "trigger_level": 83.06,
     "opened_regime": "TRANSITION",
-    "entry_level": "RISKY_ENTRY"
+    "entry_level": "RISKY_ENTRY",
+    "signal_id": ""
   },
   "opportunity": null,
   "scan_3m": {
@@ -115,9 +116,9 @@
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 1,
+    "stable_count": 2,
     "pending_count": 0,
-    "updated_at": "2026-07-02T14:45:39.616578+00:00"
+    "updated_at": "2026-07-02T14:46:51.111586+00:00"
   },
   "latest_signal": {
     "id": "e8e7038b26",
@@ -135,14 +136,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "ARMED",
-      "side": "LONG",
-      "setup_type": "PULLBACK_CONTINUATION",
-      "quality": 92,
-      "price": 73.91,
-      "time": "2026-06-30T15:04:14.185244+00:00"
-    },
     {
       "type": "RISKY_ENTRY",
       "side": "LONG",
@@ -1579,7 +1572,16 @@
       "action": "HOLD",
       "price": 70.92,
       "time": "2026-07-02T14:45:39.971828+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "HOLD",
+      "price": 70.95,
+      "trade_id": "c430c1a156",
+      "signal_id": "",
+      "time": "2026-07-02T14:46:51.474132+00:00"
     }
   ],
-  "updated_at": "2026-07-02T14:45:39.972025+00:00"
+  "updated_at": "2026-07-02T14:46:51.474341+00:00"
 }
