@@ -20,7 +20,7 @@
     "worst_price": 71.55,
     "thesis_key": "LONG|SWEEP_RECLAIM|715",
     "thesis": "LONG SWEEP_RECLAIM | 3M=READY",
-    "last_checked_3m_ts": 1783049465436,
+    "last_checked_3m_ts": 1783050343458,
     "tp1_hit": true,
     "tp2_hit": true,
     "tp3_hit": false,
@@ -42,9 +42,9 @@
   },
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1783049400000,
+    "last_scanned_3m_ts": 1783050300000,
     "last_run_processed": 5,
-    "processed_count": 5638,
+    "processed_count": 5643,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -56,7 +56,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 72.36,
+        "extreme": 72.32,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -66,7 +66,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 5638,
+        "processed_bars": 5643,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -88,7 +88,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 72.44,
+        "extreme": 72.33,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -98,7 +98,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 5638,
+        "processed_bars": 5643,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -114,11 +114,11 @@
     }
   },
   "regime_memory": {
-    "type": "NORMAL",
-    "pending_type": "RANGE_COMPRESSION",
-    "stable_count": 0,
-    "pending_count": 1,
-    "updated_at": "2026-07-03T03:31:05.436334+00:00"
+    "type": "RANGE_COMPRESSION",
+    "pending_type": "",
+    "stable_count": 1,
+    "pending_count": 2,
+    "updated_at": "2026-07-03T03:45:43.457861+00:00"
   },
   "latest_signal": {
     "id": "ba6e3c6649",
@@ -251,13 +251,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 73.19,
-      "time": "2026-07-01T05:01:06.159518+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1795,7 +1788,16 @@
       "trade_id": "53098798c2",
       "signal_id": "ba6e3c6649",
       "time": "2026-07-03T03:31:05.765459+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "HOLD",
+      "price": 72.24,
+      "trade_id": "53098798c2",
+      "signal_id": "ba6e3c6649",
+      "time": "2026-07-03T03:45:44.010426+00:00"
     }
   ],
-  "updated_at": "2026-07-03T03:31:05.765670+00:00"
+  "updated_at": "2026-07-03T03:45:44.010663+00:00"
 }
