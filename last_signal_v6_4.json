@@ -4,9 +4,9 @@
   "active_trade": null,
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1783067760000,
-    "last_run_processed": 2,
-    "processed_count": 5740,
+    "last_scanned_3m_ts": 1783068300000,
+    "last_run_processed": 3,
+    "processed_count": 5743,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -18,7 +18,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 71.52,
+        "extreme": 71.77,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -28,7 +28,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 5740,
+        "processed_bars": 5743,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -50,7 +50,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 71.66,
+        "extreme": 71.78,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -60,7 +60,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 5740,
+        "processed_bars": 5743,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -77,21 +77,21 @@
   },
   "regime_memory": {
     "type": "NORMAL",
-    "pending_type": "",
-    "stable_count": 8,
-    "pending_count": 0,
-    "updated_at": "2026-07-03T08:38:30.366120+00:00"
+    "pending_type": "RANGE_COMPRESSION",
+    "stable_count": 0,
+    "pending_count": 1,
+    "updated_at": "2026-07-03T08:45:40.432242+00:00"
   },
   "latest_signal": {
-    "id": "003a155a3f",
-    "time": "2026-07-03T08:38:30.372055+00:00",
+    "id": "8ffc7594a6",
+    "time": "2026-07-03T08:45:40.434327+00:00",
     "action": "NO_SETUP",
     "side": "NEUTRAL",
     "setup_type": "NONE",
     "quality": 12,
     "decision_quality": 12,
     "reason": "Ринок не сформував професійного ICT + 3M execution-package",
-    "regime": "TRANSITION",
+    "regime": "RANGE",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
     "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -99,7 +99,7 @@
     "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
     "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY",
     "learning_status": {
-      "updated_at": "2026-07-03T08:38:28.595218+00:00",
+      "updated_at": "2026-07-03T08:45:38.567194+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -134,13 +134,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "SHORT",
-      "action": "HOLD",
-      "price": 72.28,
-      "time": "2026-07-01T10:45:40.257964+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "SHORT",
@@ -1709,7 +1702,15 @@
       "quality": 12,
       "price": 71.56,
       "time": "2026-07-03T08:38:30.372083+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 71.69,
+      "time": "2026-07-03T08:45:40.434349+00:00"
     }
   ],
-  "updated_at": "2026-07-03T08:38:30.770965+00:00"
+  "updated_at": "2026-07-03T08:45:40.750396+00:00"
 }
