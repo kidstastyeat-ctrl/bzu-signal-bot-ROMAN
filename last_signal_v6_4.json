@@ -20,7 +20,7 @@
     "worst_price": 71.89,
     "thesis_key": "LONG|SWEEP_RECLAIM|719",
     "thesis": "LONG SWEEP_RECLAIM | 3M=READY",
-    "last_checked_3m_ts": 1783179943637,
+    "last_checked_3m_ts": 1783180029233,
     "tp1_hit": true,
     "tp2_hit": true,
     "tp3_hit": false,
@@ -116,9 +116,9 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 20,
+    "stable_count": 21,
     "pending_count": 0,
-    "updated_at": "2026-07-04T15:45:43.637263+00:00"
+    "updated_at": "2026-07-04T15:47:09.233026+00:00"
   },
   "latest_signal": {
     "id": "f72e362827",
@@ -251,14 +251,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "NO_SETUP",
-      "side": "NEUTRAL",
-      "setup_type": "NONE",
-      "quality": 12,
-      "price": 71.23,
-      "time": "2026-07-02T16:59:23.430558+00:00"
-    },
     {
       "type": "NO_SETUP",
       "side": "NEUTRAL",
@@ -1983,7 +1975,16 @@
       "trade_id": "ab515ab178",
       "signal_id": "f72e362827",
       "time": "2026-07-04T15:45:44.193703+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "HOLD",
+      "price": 72.16,
+      "trade_id": "ab515ab178",
+      "signal_id": "f72e362827",
+      "time": "2026-07-04T15:47:09.812904+00:00"
     }
   ],
-  "updated_at": "2026-07-04T15:45:44.193883+00:00"
+  "updated_at": "2026-07-04T15:47:09.812945+00:00"
 }
