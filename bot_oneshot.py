@@ -3304,6 +3304,82 @@ def _apply_protective_stop(trade: ActiveTrade, context: dict, stop: Optional[flo
     return True
 
 
+def _structural_stop_candidate(trade: ActiveTrade, context: dict) -> tuple[Optional[float], str]:
+    """
+    Технічний (ICT) трейлінг-стоп після TP1.
+
+    Замість довільного рівня (беззбиток / TP1 за фіксованим правилом) шукаємо
+    ОСТАННІЙ підтверджений структурний рівень у напрямку угоди, сформований
+    ВЖЕ ПІД ЧАС угоди (не стара історія до входу):
+      - Order Block (15m) свого напрямку — низ бичачого / верх ведмежого блоку;
+      - непокритий FVG (15m) свого напрямку — межа, що ще не мітигована;
+      - SSL/BSL swing-ліквідність (останній pivot high/low) на 15m.
+
+    Обирається НАЙБЛИЖЧИЙ до ціни (а не найглибший) валідний рівень —
+    це відповідає ICT-принципу "trail to last higher low / lower high":
+    максимізує зафіксований прибуток, але залишає природний, структурно
+    обґрунтований запас на відкат (а не довільний % чи фіксований ATR),
+    тому що відстань до реального pivot-у й так відображає волатильність
+    активу в поточний момент.
+
+    Рівень зміщується на невеликий буфер (0.15×ATR) — щоб не стояти
+    рівно "на" рівні, де ймовірний stop-hunt.
+
+    Повертає (рівень, опис) або (None, "") якщо ще не сформувалась жодна
+    придатна структура (тоді лишається чинним попередній fixed-lock стоп —
+    ця функція лише ДОПОВНЮЄ його через ratchet у _apply_protective_stop,
+    ніколи не послаблюючи).
+    """
+    if not trade.tp1_hit:
+        return None, ""
+
+    side = trade.side
+    c15 = (context.get("candles", {}) or {}).get("15m", []) or []
+    atr15 = float(context.get("atr15") or 0.6)
+    price = float(context.get("price") or trade.best_price or trade.entry)
+    opened_ms = _opened_at_ms(trade.opened_at)
+
+    # Структура, що встигла сформуватись ПІД ЧАС угоди. Якщо занадто мало барів
+    # (угода щойно відкрита), тимчасово беремо трохи ширший хвіст як fallback —
+    # але це все одно недавня, а не "історична" структура.
+    relevant = [c for c in c15 if c.ts >= opened_ms]
+    if len(relevant) < 6:
+        relevant = c15[-15:] if c15 else []
+    if len(relevant) < 6:
+        return None, ""
+
+    candidates: list[tuple[float, str]] = []
+
+    for z in detect_zones(relevant, "15m"):
+        if z.side != side:
+            continue
+        if side == Side.LONG.value and z.low < price:
+            candidates.append((z.low, f"{z.kind} 15m [{z.low:.4f}-{z.high:.4f}]"))
+        elif side == Side.SHORT.value and z.high > price:
+            candidates.append((z.high, f"{z.kind} 15m [{z.low:.4f}-{z.high:.4f}]"))
+
+    liq = identify_liquidity_and_range(relevant, left_bars=2, right_bars=2)
+    if side == Side.LONG.value:
+        for lvl in liq.get("ssl", []):
+            if lvl < price:
+                candidates.append((lvl, f"SSL swing-low 15m ({lvl:.4f})"))
+    else:
+        for lvl in liq.get("bsl", []):
+            if lvl > price:
+                candidates.append((lvl, f"BSL swing-high 15m ({lvl:.4f})"))
+
+    if not candidates:
+        return None, ""
+
+    buffer = atr15 * 0.15
+    if side == Side.LONG.value:
+        level, desc = max(candidates, key=lambda x: x[0])  # найближчий знизу до ціни
+        return level - buffer, desc
+    else:
+        level, desc = min(candidates, key=lambda x: x[0])  # найближчий згори до ціни
+        return level + buffer, desc
+
+
 def _mfe_guard_stop(trade: ActiveTrade, context: dict, profile: dict, best_pct: float, current_pct: float) -> Optional[float]:
     """
     MFE Guard — закриває "сліпу зону" ДО TP1, де Delayed BE ще не діє і стоп
@@ -3465,21 +3541,38 @@ def _stop_hit(trade: ActiveTrade, context: dict) -> tuple[bool, str]:
     candles_to_check = unchecked or c3[-1:]
 
     hard_stop_dist = atr15 * 1.5
+    # Якщо стоп уже підтягнутий у беззбиток/прибуток (після TP1/TP2), це більше
+    # не "початковий ризиковий стоп, який треба захистити від шуму" — це вже
+    # захист зафіксованого прибутку. Тут пріоритет — швидкість виходу, а не
+    # терпимість до фітилів, тож перевіряємо по тіні одразу, без очікування
+    # закриття свічки.
+    stop_is_locked = bool(getattr(trade, "tp1_stop_locked", False) or getattr(trade, "tp2_stop_locked", False))
 
     for candle in candles_to_check:
         if trade.side == Side.LONG.value:
-            hard_stop = trade.stop_initial - hard_stop_dist
-            # Hard Stop (вибивання по тіні)
-            if candle.low <= hard_stop:
-                return True, f"Hard Stop hit ({candle.low} <= {hard_stop}, ts={candle.ts})"
+            if stop_is_locked:
+                # Locked-стоп: миттєвий вихід по тіні, без буфера і без очікування close.
+                if candle.low <= stop:
+                    return True, f"Locked Stop hit по тіні ({candle.low} <= {stop}, ts={candle.ts})"
+            else:
+                hard_stop = stop - hard_stop_dist
+                # Hard Stop (вибивання по тіні) — тепер рахується від ПОТОЧНОГО стопу,
+                # а не від застарілого stop_initial.
+                if candle.low <= hard_stop:
+                    return True, f"Hard Stop hit ({candle.low} <= {hard_stop}, ts={candle.ts})"
             # Soft Stop (вибивання ТІЛЬКИ по тілу свічки)
             if candle.close <= stop:
                 return True, f"Soft Stop hit: свічка закрилася нижче ({candle.close} <= {stop}, ts={candle.ts})"
         else:
-            hard_stop = trade.stop_initial + hard_stop_dist
-            # Hard Stop (вибивання по тіні)
-            if candle.high >= hard_stop:
-                return True, f"Hard Stop hit ({candle.high} >= {hard_stop}, ts={candle.ts})"
+            if stop_is_locked:
+                if candle.high >= stop:
+                    return True, f"Locked Stop hit по тіні ({candle.high} >= {stop}, ts={candle.ts})"
+            else:
+                hard_stop = stop + hard_stop_dist
+                # Hard Stop (вибивання по тіні) — тепер рахується від ПОТОЧНОГО стопу,
+                # а не від застарілого stop_initial.
+                if candle.high >= hard_stop:
+                    return True, f"Hard Stop hit ({candle.high} >= {hard_stop}, ts={candle.ts})"
             # Soft Stop (вибивання ТІЛЬКИ по тілу свічки)
             if candle.close >= stop:
                 return True, f"Soft Stop hit: свічка закрилася вище ({candle.close} >= {stop}, ts={candle.ts})"
@@ -3642,6 +3735,17 @@ def manage_active_trade(trade: ActiveTrade, context: dict) -> dict:
         trade.stop_current = trade.tp2_locked_stop
         result["action"] = Action.TP2.value
         result["notes"].append("TP2 досягнуто — стоп перенесено на TP1")
+
+    # --- Structural Trailing Stop (ICT): після TP1 щоцикл підтягуємо стоп до
+    # останнього підтвердженого OB/FVG/SSL-BSL рівня, якщо він тісніший за
+    # поточний fixed-lock (BE/TP1/TP2). Ніколи не послаблює стоп — лише
+    # ratchet через _apply_protective_stop.
+    if not result["closed"] and trade.tp1_hit:
+        struct_stop, struct_desc = _structural_stop_candidate(trade, context)
+        if _apply_protective_stop(trade, context, struct_stop):
+            result["notes"].append(f"Структурний трейлінг: стоп підтягнуто до {trade.stop_current} ({struct_desc})")
+            result["recommended_stop"] = round_price(trade.stop_current)
+            result["recommended_stop_reason"] = f"Структурний рівень: {struct_desc}"
 
     # --- 4. Фіксація TP3 (Повне закриття) ---
     if not result["closed"] and trade.tp2_hit and not trade.tp3_hit and _target_hit(side, context, trade.tp3):
