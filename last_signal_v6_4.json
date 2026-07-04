@@ -4,9 +4,9 @@
   "active_trade": null,
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1783199700000,
+    "last_scanned_3m_ts": 1783200600000,
     "last_run_processed": 5,
-    "processed_count": 6473,
+    "processed_count": 6478,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -28,7 +28,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 6473,
+        "processed_bars": 6478,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -60,7 +60,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 6473,
+        "processed_bars": 6478,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -78,13 +78,13 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 45,
+    "stable_count": 46,
     "pending_count": 0,
-    "updated_at": "2026-07-04T21:15:40.412077+00:00"
+    "updated_at": "2026-07-04T21:31:05.957941+00:00"
   },
   "latest_signal": {
-    "id": "0d0ded2fd7",
-    "time": "2026-07-04T21:15:40.420941+00:00",
+    "id": "46f6c1cee4",
+    "time": "2026-07-04T21:31:05.966409+00:00",
     "action": "NO_SETUP",
     "side": "NEUTRAL",
     "setup_type": "NONE",
@@ -99,7 +99,7 @@
     "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
     "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY",
     "learning_status": {
-      "updated_at": "2026-07-04T21:15:38.808917+00:00",
+      "updated_at": "2026-07-04T21:31:03.872552+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -134,15 +134,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 71.58,
-      "trade_id": "53098798c2",
-      "signal_id": "ba6e3c6649",
-      "time": "2026-07-02T22:01:13.606181+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1865,7 +1856,15 @@
       "quality": 12,
       "price": 72.01,
       "time": "2026-07-04T21:15:40.420969+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 71.99,
+      "time": "2026-07-04T21:31:05.966434+00:00"
     }
   ],
-  "updated_at": "2026-07-04T21:15:40.966564+00:00"
+  "updated_at": "2026-07-04T21:31:06.366900+00:00"
 }
