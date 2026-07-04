@@ -4,9 +4,9 @@
   "active_trade": null,
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1783203300000,
+    "last_scanned_3m_ts": 1783204200000,
     "last_run_processed": 5,
-    "processed_count": 6493,
+    "processed_count": 6498,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -18,7 +18,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 72.13,
+        "extreme": 72.19,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -28,7 +28,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 6493,
+        "processed_bars": 6498,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -50,7 +50,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 72.13,
+        "extreme": 72.21,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -60,7 +60,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 6493,
+        "processed_bars": 6498,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -78,13 +78,13 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 49,
+    "stable_count": 50,
     "pending_count": 0,
-    "updated_at": "2026-07-04T22:15:40.119136+00:00"
+    "updated_at": "2026-07-04T22:31:01.463803+00:00"
   },
   "latest_signal": {
-    "id": "5024f04cee",
-    "time": "2026-07-04T22:15:40.121355+00:00",
+    "id": "6996cf9c0b",
+    "time": "2026-07-04T22:31:01.465911+00:00",
     "action": "NO_SETUP",
     "side": "NEUTRAL",
     "setup_type": "NONE",
@@ -99,7 +99,7 @@
     "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
     "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY",
     "learning_status": {
-      "updated_at": "2026-07-04T22:15:38.848855+00:00",
+      "updated_at": "2026-07-04T22:30:59.389655+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -134,15 +134,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 71.63,
-      "trade_id": "53098798c2",
-      "signal_id": "ba6e3c6649",
-      "time": "2026-07-02T23:01:13.915835+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1861,7 +1852,15 @@
       "quality": 12,
       "price": 72.02,
       "time": "2026-07-04T22:15:40.121380+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 72.06,
+      "time": "2026-07-04T22:31:01.465935+00:00"
     }
   ],
-  "updated_at": "2026-07-04T22:15:40.746106+00:00"
+  "updated_at": "2026-07-04T22:31:01.802425+00:00"
 }
