@@ -4,9 +4,9 @@
   "active_trade": null,
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1783253700000,
+    "last_scanned_3m_ts": 1783254600000,
     "last_run_processed": 5,
-    "processed_count": 6773,
+    "processed_count": 6778,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -18,7 +18,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 72.27,
+        "extreme": 72.23,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -28,7 +28,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 6773,
+        "processed_bars": 6778,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -50,7 +50,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 72.27,
+        "extreme": 72.25,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -60,7 +60,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 6773,
+        "processed_bars": 6778,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -78,19 +78,19 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 109,
+    "stable_count": 110,
     "pending_count": 0,
-    "updated_at": "2026-07-05T12:15:41.848819+00:00"
+    "updated_at": "2026-07-05T12:31:08.222081+00:00"
   },
   "latest_signal": {
-    "id": "0478f8c4b4",
-    "time": "2026-07-05T07:45:38.305583+00:00",
-    "action": "RISKY_ENTRY",
-    "side": "LONG",
-    "setup_type": "SWEEP_RECLAIM",
-    "quality": 64,
-    "decision_quality": 64,
-    "reason": "[2022_MODEL] Ризикований вхід: Зняття ліквідності + повернення за рівень — RANGE_COMPRESSION profile",
+    "id": "ed29c7f398",
+    "time": "2026-07-05T12:31:08.228586+00:00",
+    "action": "NO_SETUP",
+    "side": "NEUTRAL",
+    "setup_type": "NONE",
+    "quality": 12,
+    "decision_quality": 12,
+    "reason": "Ринок не сформував професійного ICT + 3M execution-package",
     "regime": "RANGE",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
@@ -99,20 +99,20 @@
     "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
     "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY",
     "learning_status": {
-      "updated_at": "2026-07-05T07:45:37.014888+00:00",
+      "updated_at": "2026-07-05T12:31:06.315369+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
       "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
-      "training_signals": 9,
-      "signal_events": 189,
-      "closed_trades": 60,
-      "training_rows": 9,
+      "training_signals": 10,
+      "signal_events": 209,
+      "closed_trades": 61,
+      "training_rows": 10,
       "global_ready": false,
       "global_learned_weight": 0.0,
       "by_family": {
         "LIQUIDITY_RECOVERY": {
-          "rows": 9,
+          "rows": 10,
           "ready": false,
           "learned_weight": 0.0
         }
@@ -127,100 +127,13 @@
       "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY"
     },
     "learning_warnings": [
-      "ML ще в bootstrap: 9/60 training rows."
+      "ML ще в bootstrap: 10/60 training rows."
     ],
     "version": "pro-hybrid-confluence-v6.8",
-    "architecture_version": "HYBRID_CONFLUENCE_V6_4",
-    "setup_family": "LIQUIDITY_RECOVERY",
-    "ict_model": "2022_MODEL",
-    "candidate_final_score": 66,
-    "candidate_raw_score": 122,
-    "execution_lane": "EARLY_TACTICAL",
-    "trigger_ready": true,
-    "trigger_age_minutes": 16860.64,
-    "score_components": {
-      "legacy_raw_score": 121.6,
-      "loc_score": 45,
-      "str_score": 19.0,
-      "liq_score": 8.1,
-      "flw_score": 0.0,
-      "trig_score": 10.4,
-      "htf_score": 2.1,
-      "pattern_bonus": 12,
-      "session_bonus": 0.0,
-      "vector_bonus": 0.0,
-      "features": {
-        "loc": 1.0,
-        "structure": 0.7917,
-        "liquidity": 0.3375,
-        "flow": 0.0,
-        "trigger": 1.0,
-        "htf": 0.175,
-        "pattern": 0.619,
-        "session": 0.0,
-        "smt": 0.0,
-        "regime_fit": -1.0,
-        "freshness": 0.0,
-        "exhaustion": 0.0,
-        "no_pattern": 0.0
-      },
-      "gates": {
-        "trigger_gate": 1.0,
-        "location_gate": 1.0,
-        "pattern_gate": 1.0,
-        "forward_zone_gate": 1.0,
-        "exhaustion_gate": 1.0,
-        "liquidity_gate": 0.722,
-        "trend_gate": 1.0,
-        "htf_late_gate": 1.0,
-        "product": 0.722
-      },
-      "probability": 0.6562,
-      "base_probability": 0.9088,
-      "model_source": "bootstrap",
-      "sample_size": 9,
-      "learned_weight": 0.0
-    },
-    "score_features": {
-      "loc": 1.0,
-      "structure": 0.7917,
-      "liquidity": 0.3375,
-      "flow": 0.0,
-      "trigger": 1.0,
-      "htf": 0.175,
-      "pattern": 0.619,
-      "session": 0.0,
-      "smt": 0.0,
-      "regime_fit": -1.0,
-      "freshness": 0.0,
-      "exhaustion": 0.0,
-      "no_pattern": 0.0
-    },
-    "score_gates": {
-      "trigger_gate": 1.0,
-      "location_gate": 1.0,
-      "pattern_gate": 1.0,
-      "forward_zone_gate": 1.0,
-      "exhaustion_gate": 1.0,
-      "liquidity_gate": 0.722,
-      "trend_gate": 1.0,
-      "htf_late_gate": 1.0,
-      "product": 0.722
-    },
-    "score_model_source": "bootstrap",
-    "score_model_sample_size": 9,
-    "score_model_learned_weight": 0.0
+    "architecture_version": "HYBRID_CONFLUENCE_V6_4"
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "NO_SETUP",
-      "side": "NEUTRAL",
-      "setup_type": "NONE",
-      "quality": 12,
-      "price": 71.88,
-      "time": "2026-07-03T13:15:43.654159+00:00"
-    },
     {
       "type": "NO_SETUP",
       "side": "NEUTRAL",
@@ -1948,7 +1861,15 @@
       "trade_id": "37c922f5a9",
       "signal_id": "0478f8c4b4",
       "time": "2026-07-05T12:15:42.191188+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 72.12,
+      "time": "2026-07-05T12:31:08.228614+00:00"
     }
   ],
-  "updated_at": "2026-07-05T12:15:42.191403+00:00"
+  "updated_at": "2026-07-05T12:31:08.637130+00:00"
 }
