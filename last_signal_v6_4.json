@@ -78,13 +78,13 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 120,
+    "stable_count": 121,
     "pending_count": 0,
-    "updated_at": "2026-07-05T15:01:20.098670+00:00"
+    "updated_at": "2026-07-05T15:01:35.002953+00:00"
   },
   "latest_signal": {
-    "id": "3dab7830d9",
-    "time": "2026-07-05T15:01:20.105912+00:00",
+    "id": "c00c0df507",
+    "time": "2026-07-05T15:01:35.009359+00:00",
     "action": "NO_SETUP",
     "side": "NEUTRAL",
     "setup_type": "NONE",
@@ -99,7 +99,7 @@
     "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
     "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY",
     "learning_status": {
-      "updated_at": "2026-07-05T15:01:18.740130+00:00",
+      "updated_at": "2026-07-05T15:01:33.314197+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -134,15 +134,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 72.03,
-      "trade_id": "a5392cbd68",
-      "signal_id": "437be9b816",
-      "time": "2026-07-03T15:57:19.294248+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1867,7 +1858,15 @@
       "quality": 12,
       "price": 72.11,
       "time": "2026-07-05T15:01:20.105934+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 72.11,
+      "time": "2026-07-05T15:01:35.009387+00:00"
     }
   ],
-  "updated_at": "2026-07-05T15:01:20.659289+00:00"
+  "updated_at": "2026-07-05T15:01:35.370649+00:00"
 }
