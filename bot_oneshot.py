@@ -1598,6 +1598,24 @@ def build_context(data: dict, state: dict) -> dict:
     scan_result = scan_closed_3m_sequence(state, ctx)
     ctx["scan_3m"] = state.get("scan_3m", {})
     ctx["scan_3m_events"] = scan_result.get("events", {})
+
+    # Сесія (Київ) — потрібна протективним гардам (MFE/Post-TP1 Guard), щоб не
+    # стискати ATR-буфер до шуму саме в тихі години Азії. Рахується напряму з
+    # годинника, без залежності від наявності свічок, тож завжди визначена.
+    try:
+        _now_kyiv = datetime.now(zoneinfo.ZoneInfo("Europe/Kyiv"))
+        _hour = _now_kyiv.hour
+        if ASIA_START_H <= _hour < ASIA_END_H:
+            ctx["session_name"] = "ASIA"
+        elif LONDON_START_H <= _hour < LONDON_END_H:
+            ctx["session_name"] = "LONDON"
+        elif NY_START_H <= _hour < NY_END_H:
+            ctx["session_name"] = "NY"
+        else:
+            ctx["session_name"] = "OFF_HOURS"
+    except Exception:
+        ctx["session_name"] = "UNKNOWN"
+
     return ctx
 
 
@@ -3064,6 +3082,104 @@ def find_technical_targets(side: str, price: float, zones: list, liquidity: dict
     return clustered
 
 
+def find_protective_stop_level(side: str, price: float, zones: list, liquidity: dict,
+                                min_dist: float, max_dist: float) -> Optional[dict]:
+    """
+    ICT-якір для трейлінгу стопа: шукає найближчий структурний рівень ПОЗАДУ ціни
+    (той бік, куди був би виставлений стоп) — той самий Order Block / FVG / SSL-SSL
+    liquidity sweep, що вже використовується для розміщення TP у find_technical_targets(),
+    але тепер застосований до захисту стопа замість довільної частки ATR/RR.
+
+    Для LONG шукаємо demand-зони (z.side == LONG) та SSL-свіпи нижче ціни, повертаємо
+    рівень ТРОХИ НИЖЧЕ нижньої межі зони (щоб стоп не лежав усередині зони, яку ринок
+    ще може легітимно протестувати вудом). Для SHORT — дзеркально, supply-зони/BSL вище ціни.
+
+    min_dist / max_dist — коридор допустимих відстаней від ціни (щоб не тягнути стоп
+    до занадто близького чи занадто далекого рівня). Якщо кваліфікованого рівня немає —
+    повертає None, і виклик має впасти на попередній ATR/RR-fallback (вхід/трейлінг
+    ніколи не блокується через "немає зручного рівня").
+    """
+    if min_dist <= 0 or max_dist <= 0 or max_dist < min_dist:
+        return None
+
+    candidates: list[dict] = []
+    buffer = max(min_dist * 0.12, price * 0.0003)
+
+    for z in zones:
+        if z.side != side:
+            continue
+        if side == Side.LONG.value:
+            level = z.low - buffer
+            if level >= price:
+                continue
+        else:
+            level = z.high + buffer
+            if level <= price:
+                continue
+        dist = abs(price - level)
+        if dist < min_dist or dist > max_dist:
+            continue
+        tf_weight = {"4h": 1.35, "1h": 1.15, "15m": 1.0}.get(z.timeframe, 1.0)
+        candidates.append({"level": level, "kind": z.kind, "timeframe": z.timeframe,
+                            "strength": float(z.strength) * tf_weight, "distance": dist})
+
+    for tf_label, tf_weight in (("15m", 1.0), ("1h", 1.30)):
+        liq = liquidity.get(tf_label, {}) if isinstance(liquidity, dict) else {}
+        if side == Side.LONG.value:
+            for lvl in liq.get("ssl", []) or []:
+                level = lvl - buffer
+                if not (0 < level < price):
+                    continue
+                dist = price - level
+                if min_dist <= dist <= max_dist:
+                    candidates.append({"level": level, "kind": "SSL_SWEEP", "timeframe": tf_label,
+                                        "strength": 1.3 * tf_weight, "distance": dist})
+        else:
+            for lvl in liq.get("bsl", []) or []:
+                level = lvl + buffer
+                if level <= price:
+                    continue
+                dist = level - price
+                if min_dist <= dist <= max_dist:
+                    candidates.append({"level": level, "kind": "BSL_SWEEP", "timeframe": tf_label,
+                                        "strength": 1.3 * tf_weight, "distance": dist})
+
+    if not candidates:
+        return None
+
+    # Серед рівнів у коридорі — не обов'язково найближчий, а найсильніший
+    # (старший таймфрейм / якісніший OB), як зробив би дискреційний трейдер.
+    candidates.sort(key=lambda c: (-c["strength"], c["distance"]))
+    return candidates[0]
+
+
+def _session_stop_buffer_mult(context: dict) -> float:
+    """
+    Множник ATR-буфера протективних гардів залежно від сесії. Проблема, яку це
+    вирішує: у тиху Азійську сесію atr15 сам по собі стискається до майже нуля,
+    і буфер price ± atr15*k схлопується разом з ним до величини шумового спреду —
+    угоду вибиває першим тіком. Тут навпаки РОЗШИРюємо множник саме в Азію,
+    компенсуючи стиснутий ATR, а не масштабуючи буфер вниз ще сильніше.
+    """
+    session = str(context.get("session_name", "") or "").upper()
+    if session == "ASIA":
+        return 0.95
+    if session == "OFF_HOURS":
+        return 0.80
+    return 0.55
+
+
+def _atr_guard_buffer(context: dict, atr15: float, price: float) -> float:
+    """
+    ATR-буфер з нижньою межею: не дозволяє протективному стопу підійти ближче
+    за ATR_FLOOR_PCT від ціни навіть якщо поточний atr15 тимчасово стиснувся
+    до шуму (типово для Азійської сесії / низьколіквідних годин).
+    """
+    atr_floor_pct = 0.0006  # 0.06% від ціни — абсолютний мінімум "дихання" для стопа
+    effective_atr = max(atr15, price * atr_floor_pct)
+    return effective_atr * _session_stop_buffer_mult(context)
+
+
 def build_trade_plan(context: dict, candidate: Candidate) -> TradePlan:
     price = context["price"]
     atr15 = context["atr15"] or 0.6
@@ -3304,82 +3420,6 @@ def _apply_protective_stop(trade: ActiveTrade, context: dict, stop: Optional[flo
     return True
 
 
-def _structural_stop_candidate(trade: ActiveTrade, context: dict) -> tuple[Optional[float], str]:
-    """
-    Технічний (ICT) трейлінг-стоп після TP1.
-
-    Замість довільного рівня (беззбиток / TP1 за фіксованим правилом) шукаємо
-    ОСТАННІЙ підтверджений структурний рівень у напрямку угоди, сформований
-    ВЖЕ ПІД ЧАС угоди (не стара історія до входу):
-      - Order Block (15m) свого напрямку — низ бичачого / верх ведмежого блоку;
-      - непокритий FVG (15m) свого напрямку — межа, що ще не мітигована;
-      - SSL/BSL swing-ліквідність (останній pivot high/low) на 15m.
-
-    Обирається НАЙБЛИЖЧИЙ до ціни (а не найглибший) валідний рівень —
-    це відповідає ICT-принципу "trail to last higher low / lower high":
-    максимізує зафіксований прибуток, але залишає природний, структурно
-    обґрунтований запас на відкат (а не довільний % чи фіксований ATR),
-    тому що відстань до реального pivot-у й так відображає волатильність
-    активу в поточний момент.
-
-    Рівень зміщується на невеликий буфер (0.15×ATR) — щоб не стояти
-    рівно "на" рівні, де ймовірний stop-hunt.
-
-    Повертає (рівень, опис) або (None, "") якщо ще не сформувалась жодна
-    придатна структура (тоді лишається чинним попередній fixed-lock стоп —
-    ця функція лише ДОПОВНЮЄ його через ratchet у _apply_protective_stop,
-    ніколи не послаблюючи).
-    """
-    if not trade.tp1_hit:
-        return None, ""
-
-    side = trade.side
-    c15 = (context.get("candles", {}) or {}).get("15m", []) or []
-    atr15 = float(context.get("atr15") or 0.6)
-    price = float(context.get("price") or trade.best_price or trade.entry)
-    opened_ms = _opened_at_ms(trade.opened_at)
-
-    # Структура, що встигла сформуватись ПІД ЧАС угоди. Якщо занадто мало барів
-    # (угода щойно відкрита), тимчасово беремо трохи ширший хвіст як fallback —
-    # але це все одно недавня, а не "історична" структура.
-    relevant = [c for c in c15 if c.ts >= opened_ms]
-    if len(relevant) < 6:
-        relevant = c15[-15:] if c15 else []
-    if len(relevant) < 6:
-        return None, ""
-
-    candidates: list[tuple[float, str]] = []
-
-    for z in detect_zones(relevant, "15m"):
-        if z.side != side:
-            continue
-        if side == Side.LONG.value and z.low < price:
-            candidates.append((z.low, f"{z.kind} 15m [{z.low:.4f}-{z.high:.4f}]"))
-        elif side == Side.SHORT.value and z.high > price:
-            candidates.append((z.high, f"{z.kind} 15m [{z.low:.4f}-{z.high:.4f}]"))
-
-    liq = identify_liquidity_and_range(relevant, left_bars=2, right_bars=2)
-    if side == Side.LONG.value:
-        for lvl in liq.get("ssl", []):
-            if lvl < price:
-                candidates.append((lvl, f"SSL swing-low 15m ({lvl:.4f})"))
-    else:
-        for lvl in liq.get("bsl", []):
-            if lvl > price:
-                candidates.append((lvl, f"BSL swing-high 15m ({lvl:.4f})"))
-
-    if not candidates:
-        return None, ""
-
-    buffer = atr15 * 0.15
-    if side == Side.LONG.value:
-        level, desc = max(candidates, key=lambda x: x[0])  # найближчий знизу до ціни
-        return level - buffer, desc
-    else:
-        level, desc = min(candidates, key=lambda x: x[0])  # найближчий згори до ціни
-        return level + buffer, desc
-
-
 def _mfe_guard_stop(trade: ActiveTrade, context: dict, profile: dict, best_pct: float, current_pct: float) -> Optional[float]:
     """
     MFE Guard — закриває "сліпу зону" ДО TP1, де Delayed BE ще не діє і стоп
@@ -3417,15 +3457,34 @@ def _mfe_guard_stop(trade: ActiveTrade, context: dict, profile: dict, best_pct: 
 
     price = context.get("price", entry)
     atr15 = context.get("atr15", 0.6) or 0.6
+    # ВИПРАВЛЕНО: раніше буфер був фіксовано atr15*0.55 — у тиху Азійську сесію
+    # atr15 сам стискається майже до нуля, і буфер схлопувався до шуму спреду
+    # (звідси стоп за пару пунктів від ціни). Тепер атр має нижню межу від ціни
+    # і множник, що ЗБІЛЬШУЄТЬСЯ саме в тихі години замість того, щоб зникати.
+    guard_buffer = _atr_guard_buffer(context, atr15, price)
 
     if side == Side.LONG.value:
         raw_stop = entry * (1 + lock_pct / 100)
-        air_stop = price - atr15 * 0.55  # буфер під шум: не тісніше пів-ATR від поточної ціни
+        air_stop = price - guard_buffer  # буфер під шум з нижньою межею (не сесійний нуль)
         stop = min(raw_stop, air_stop)
     else:
         raw_stop = entry * (1 - lock_pct / 100)
-        air_stop = price + atr15 * 0.55
+        air_stop = price + guard_buffer
         stop = max(raw_stop, air_stop)
+
+    # ICT-якір: якщо в коридорі між поточним стопом і air_stop є реальний
+    # структурний рівень (OB/FVG підтримки або SSL-свіп), тягнемо стоп ТУДИ,
+    # а не в довільну математичну точку — так робив би дискреційний трейдер.
+    zones = context.get("zones", []) or []
+    liquidity = context.get("liquidity", {}) or {}
+    corridor_min_dist = max(guard_buffer * 0.5, price * 0.0004)
+    corridor_max_dist = abs(price - stop) if abs(price - stop) > corridor_min_dist else corridor_min_dist * 3
+    structural = find_protective_stop_level(side, price, zones, liquidity, corridor_min_dist, corridor_max_dist)
+    if structural is not None:
+        if side == Side.LONG.value and structural["level"] > stop:
+            stop = structural["level"]
+        elif side == Side.SHORT.value and structural["level"] < stop:
+            stop = structural["level"]
 
     return round_price(stop)
 
@@ -3459,7 +3518,19 @@ def _post_tp1_guard_stop(trade: ActiveTrade, context: dict, profile: dict) -> Op
 
     # Прогрес рахуємо від TP1 у бік TP2 за найкращою досягнутою ціною (best_price
     # вже оновлюється в manage_active_trade на кожному виклику незалежно від tp1_hit).
-    progress = abs(trade.best_price - tp1)
+    # ВИПРАВЛЕНО: раніше тут стояв abs(trade.best_price - tp1) — якщо TP1 зарахувався
+    # по хвостику свічки (_target_hit дивиться high/low), а best_price (за ціною
+    # закриття/поточним тіком) так і не втримався вище tp1, abs() все одно повертав
+    # додатне число і код рахував це "прогресом до TP2", хоча ринок туди не доходив.
+    # Тепер прогрес напрямлений і обнуляється, якщо ціна фактично не пройшла TP1 у
+    # потрібний бік — жодного фантомного підтягування стопа.
+    if side == Side.LONG.value:
+        progress = trade.best_price - tp1
+    else:
+        progress = tp1 - trade.best_price
+    if progress <= 0:
+        return None  # TP1 зарахований по вудом, але ціна фактично не втрималась вище — не гардимо
+
     trigger_fraction = float(profile.get("post_tp1_trigger_fraction", 0.25))
     if progress < leg_dist * trigger_fraction:
         return None  # ще замало пройдено від TP1 до TP2 — не заважаємо угоді дихати
@@ -3469,15 +3540,31 @@ def _post_tp1_guard_stop(trade: ActiveTrade, context: dict, profile: dict) -> Op
 
     price = context.get("price", trade.entry)
     atr15 = context.get("atr15", 0.6) or 0.6
+    # Той самий сесійно-адаптивний ATR-буфер з нижньою межею, що й у MFE Guard —
+    # без цього стоп так само міг схлопнутись до шуму саме в тихі години.
+    guard_buffer = _atr_guard_buffer(context, atr15, price)
 
     if side == Side.LONG.value:
         raw_stop = tp1 + lock_dist
-        air_stop = price - atr15 * 0.55  # буфер під шум: не тісніше пів-ATR від поточної ціни
+        air_stop = price - guard_buffer
         stop = min(raw_stop, air_stop)
     else:
         raw_stop = tp1 - lock_dist
-        air_stop = price + atr15 * 0.55
+        air_stop = price + guard_buffer
         stop = max(raw_stop, air_stop)
+
+    # ICT-якір: віддаємо перевагу реальному структурному рівню (OB/FVG/SSL) у
+    # коридорі, а не довільній математичній точці lock_fraction * ATR.
+    zones = context.get("zones", []) or []
+    liquidity = context.get("liquidity", {}) or {}
+    corridor_min_dist = max(guard_buffer * 0.5, price * 0.0004)
+    corridor_max_dist = abs(price - stop) if abs(price - stop) > corridor_min_dist else corridor_min_dist * 3
+    structural = find_protective_stop_level(side, price, zones, liquidity, corridor_min_dist, corridor_max_dist)
+    if structural is not None:
+        if side == Side.LONG.value and structural["level"] > stop:
+            stop = structural["level"]
+        elif side == Side.SHORT.value and structural["level"] < stop:
+            stop = structural["level"]
 
     return round_price(stop)
 
@@ -3541,41 +3628,36 @@ def _stop_hit(trade: ActiveTrade, context: dict) -> tuple[bool, str]:
     candles_to_check = unchecked or c3[-1:]
 
     hard_stop_dist = atr15 * 1.5
-    # Якщо стоп уже підтягнутий у беззбиток/прибуток (після TP1/TP2), це більше
-    # не "початковий ризиковий стоп, який треба захистити від шуму" — це вже
-    # захист зафіксованого прибутку. Тут пріоритет — швидкість виходу, а не
-    # терпимість до фітилів, тож перевіряємо по тіні одразу, без очікування
-    # закриття свічки.
-    stop_is_locked = bool(getattr(trade, "tp1_stop_locked", False) or getattr(trade, "tp2_stop_locked", False))
 
     for candle in candles_to_check:
         if trade.side == Side.LONG.value:
-            if stop_is_locked:
-                # Locked-стоп: миттєвий вихід по тіні, без буфера і без очікування close.
-                if candle.low <= stop:
-                    return True, f"Locked Stop hit по тіні ({candle.low} <= {stop}, ts={candle.ts})"
-            else:
-                hard_stop = stop - hard_stop_dist
-                # Hard Stop (вибивання по тіні) — тепер рахується від ПОТОЧНОГО стопу,
-                # а не від застарілого stop_initial.
-                if candle.low <= hard_stop:
-                    return True, f"Hard Stop hit ({candle.low} <= {hard_stop}, ts={candle.ts})"
+            hard_stop = trade.stop_initial - hard_stop_dist
+            # Hard Stop (вибивання по тіні)
+            if candle.low <= hard_stop:
+                return True, f"Hard Stop hit ({candle.low} <= {hard_stop}, ts={candle.ts})"
             # Soft Stop (вибивання ТІЛЬКИ по тілу свічки)
             if candle.close <= stop:
                 return True, f"Soft Stop hit: свічка закрилася нижче ({candle.close} <= {stop}, ts={candle.ts})"
         else:
-            if stop_is_locked:
-                if candle.high >= stop:
-                    return True, f"Locked Stop hit по тіні ({candle.high} >= {stop}, ts={candle.ts})"
-            else:
-                hard_stop = stop + hard_stop_dist
-                # Hard Stop (вибивання по тіні) — тепер рахується від ПОТОЧНОГО стопу,
-                # а не від застарілого stop_initial.
-                if candle.high >= hard_stop:
-                    return True, f"Hard Stop hit ({candle.high} >= {hard_stop}, ts={candle.ts})"
+            hard_stop = trade.stop_initial + hard_stop_dist
+            # Hard Stop (вибивання по тіні)
+            if candle.high >= hard_stop:
+                return True, f"Hard Stop hit ({candle.high} >= {hard_stop}, ts={candle.ts})"
             # Soft Stop (вибивання ТІЛЬКИ по тілу свічки)
             if candle.close >= stop:
                 return True, f"Soft Stop hit: свічка закрилася вище ({candle.close} >= {stop}, ts={candle.ts})"
+
+    # ВИПРАВЛЕННЯ: усі перевірки вище дивляться лише НА ЗАКРИТІ 3m-свічки. Свічка,
+    # що формується просто зараз, у c3 ще не потрапляє — тож якщо жива ціна вже
+    # перетнула стоп ПОСЕРЕД поточного бару, угода могла лишатись "OPEN" аж до
+    # наступного запуску бота, коли ця свічка нарешті закриється. Це і є причина,
+    # чому угода не закривалась автоматично, хоча ціна вже була в стопі. Пряма
+    # перевірка живою ціною закриває цю прогалину незалежно від стану свічок.
+    if price:
+        if trade.side == Side.LONG.value and price <= stop:
+            return True, f"Stop hit (жива ціна {price} <= {stop})"
+        if trade.side == Side.SHORT.value and price >= stop:
+            return True, f"Stop hit (жива ціна {price} >= {stop})"
 
     return False, ""
 
@@ -3735,17 +3817,6 @@ def manage_active_trade(trade: ActiveTrade, context: dict) -> dict:
         trade.stop_current = trade.tp2_locked_stop
         result["action"] = Action.TP2.value
         result["notes"].append("TP2 досягнуто — стоп перенесено на TP1")
-
-    # --- Structural Trailing Stop (ICT): після TP1 щоцикл підтягуємо стоп до
-    # останнього підтвердженого OB/FVG/SSL-BSL рівня, якщо він тісніший за
-    # поточний fixed-lock (BE/TP1/TP2). Ніколи не послаблює стоп — лише
-    # ratchet через _apply_protective_stop.
-    if not result["closed"] and trade.tp1_hit:
-        struct_stop, struct_desc = _structural_stop_candidate(trade, context)
-        if _apply_protective_stop(trade, context, struct_stop):
-            result["notes"].append(f"Структурний трейлінг: стоп підтягнуто до {trade.stop_current} ({struct_desc})")
-            result["recommended_stop"] = round_price(trade.stop_current)
-            result["recommended_stop_reason"] = f"Структурний рівень: {struct_desc}"
 
     # --- 4. Фіксація TP3 (Повне закриття) ---
     if not result["closed"] and trade.tp2_hit and not trade.tp3_hit and _target_hit(side, context, trade.tp3):
