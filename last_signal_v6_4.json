@@ -20,7 +20,7 @@
     "worst_price": 72.18,
     "thesis_key": "LONG|SWEEP_RECLAIM|722",
     "thesis": "LONG SWEEP_RECLAIM | 3M=READY",
-    "last_checked_3m_ts": 1783247466164,
+    "last_checked_3m_ts": 1783248339520,
     "tp1_hit": true,
     "tp2_hit": false,
     "tp3_hit": false,
@@ -42,9 +42,9 @@
   },
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1783247400000,
+    "last_scanned_3m_ts": 1783248300000,
     "last_run_processed": 5,
-    "processed_count": 6738,
+    "processed_count": 6743,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -66,7 +66,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 6738,
+        "processed_bars": 6743,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -98,7 +98,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 6738,
+        "processed_bars": 6743,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -116,9 +116,9 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 102,
+    "stable_count": 103,
     "pending_count": 0,
-    "updated_at": "2026-07-05T10:31:06.163294+00:00"
+    "updated_at": "2026-07-05T10:45:39.511438+00:00"
   },
   "latest_signal": {
     "id": "0478f8c4b4",
@@ -251,15 +251,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 71.8,
-      "trade_id": "dab48669c9",
-      "signal_id": "57ec58099c",
-      "time": "2026-07-03T11:31:05.695466+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1985,7 +1976,16 @@
       "trade_id": "37c922f5a9",
       "signal_id": "0478f8c4b4",
       "time": "2026-07-05T10:31:06.554616+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "HOLD",
+      "price": 72.22,
+      "trade_id": "37c922f5a9",
+      "signal_id": "0478f8c4b4",
+      "time": "2026-07-05T10:45:39.920913+00:00"
     }
   ],
-  "updated_at": "2026-07-05T10:31:06.554652+00:00"
+  "updated_at": "2026-07-05T10:45:39.921065+00:00"
 }
