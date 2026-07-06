@@ -14144,6 +14144,135 @@
       ],
       "version": "pro-hybrid-confluence-v6.8",
       "architecture_version": "HYBRID_CONFLUENCE_V6_4"
+    },
+    {
+      "id": "18ef18753b",
+      "time": "2026-07-06T05:02:36.312191+00:00",
+      "action": "RISKY_ENTRY",
+      "side": "SHORT",
+      "setup_type": "SWEEP_RECLAIM",
+      "quality": 62,
+      "decision_quality": 62,
+      "reason": "[2022_MODEL] Ризикований вхід: Зняття ліквідності + повернення за рівень — RANGE_COMPRESSION profile",
+      "regime": "RANGE",
+      "news_bias": "NEUTRAL",
+      "macro_risk": "NORMAL",
+      "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
+      "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
+      "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
+      "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY",
+      "learning_status": {
+        "updated_at": "2026-07-06T05:02:34.575357+00:00",
+        "journal_file": "signal_journal_v6_4.json",
+        "state_file": "last_signal_v6_4.json",
+        "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
+        "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
+        "training_signals": 12,
+        "signal_events": 213,
+        "closed_trades": 63,
+        "training_rows": 12,
+        "global_ready": false,
+        "global_learned_weight": 0.0,
+        "by_family": {
+          "LIQUIDITY_RECOVERY": {
+            "rows": 12,
+            "ready": false,
+            "learned_weight": 0.0
+          }
+        },
+        "validation": {
+          "enabled": false,
+          "reason": "not_enough_rows"
+        },
+        "github_actions": true,
+        "journal_persistence_confirmed": true,
+        "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
+        "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY"
+      },
+      "learning_warnings": [
+        "ML ще в bootstrap: 12/60 training rows."
+      ],
+      "version": "pro-hybrid-confluence-v6.8",
+      "architecture_version": "HYBRID_CONFLUENCE_V6_4",
+      "setup_family": "LIQUIDITY_RECOVERY",
+      "ict_model": "2022_MODEL",
+      "candidate_final_score": 64,
+      "candidate_raw_score": 113,
+      "execution_lane": "EARLY_TACTICAL",
+      "trigger_ready": true,
+      "trigger_age_minutes": 18137.61,
+      "score_components": {
+        "legacy_raw_score": 112.6,
+        "loc_score": 45,
+        "str_score": 10.0,
+        "liq_score": 8.1,
+        "flw_score": 0.0,
+        "trig_score": 10.4,
+        "htf_score": 2.1,
+        "pattern_bonus": 12,
+        "session_bonus": 0.0,
+        "vector_bonus": 0.0,
+        "features": {
+          "loc": 1.0,
+          "structure": 0.4167,
+          "liquidity": 0.3375,
+          "flow": 0.0,
+          "trigger": 1.0,
+          "htf": 0.175,
+          "pattern": 0.619,
+          "session": 0.0,
+          "smt": 0.0,
+          "regime_fit": -1.0,
+          "freshness": 0.0,
+          "exhaustion": 0.0,
+          "no_pattern": 0.0
+        },
+        "gates": {
+          "trigger_gate": 1.0,
+          "location_gate": 1.0,
+          "pattern_gate": 1.0,
+          "forward_zone_gate": 1.0,
+          "exhaustion_gate": 1.0,
+          "liquidity_gate": 0.722,
+          "trend_gate": 1.0,
+          "htf_late_gate": 1.0,
+          "product": 0.722
+        },
+        "probability": 0.6387,
+        "base_probability": 0.8846,
+        "model_source": "bootstrap",
+        "sample_size": 12,
+        "learned_weight": 0.0
+      },
+      "score_features": {
+        "loc": 1.0,
+        "structure": 0.4167,
+        "liquidity": 0.3375,
+        "flow": 0.0,
+        "trigger": 1.0,
+        "htf": 0.175,
+        "pattern": 0.619,
+        "session": 0.0,
+        "smt": 0.0,
+        "regime_fit": -1.0,
+        "freshness": 0.0,
+        "exhaustion": 0.0,
+        "no_pattern": 0.0
+      },
+      "score_gates": {
+        "trigger_gate": 1.0,
+        "location_gate": 1.0,
+        "pattern_gate": 1.0,
+        "forward_zone_gate": 1.0,
+        "exhaustion_gate": 1.0,
+        "liquidity_gate": 0.722,
+        "trend_gate": 1.0,
+        "htf_late_gate": 1.0,
+        "product": 0.722
+      },
+      "score_model_source": "bootstrap",
+      "score_model_sample_size": 12,
+      "score_model_learned_weight": 0.0
     }
   ],
   "trades": [
@@ -14742,7 +14871,7 @@
       }
     }
   },
-  "updated_at": "2026-07-06T04:45:45.178216+00:00",
+  "updated_at": "2026-07-06T05:02:36.657784+00:00",
   "training_signals": [
     {
       "id": "a91bcbfa41",
@@ -16285,6 +16414,135 @@
       },
       "score_model_source": "bootstrap",
       "score_model_sample_size": 11,
+      "score_model_learned_weight": 0.0
+    },
+    {
+      "id": "18ef18753b",
+      "time": "2026-07-06T05:02:36.312191+00:00",
+      "action": "RISKY_ENTRY",
+      "side": "SHORT",
+      "setup_type": "SWEEP_RECLAIM",
+      "quality": 62,
+      "decision_quality": 62,
+      "reason": "[2022_MODEL] Ризикований вхід: Зняття ліквідності + повернення за рівень — RANGE_COMPRESSION profile",
+      "regime": "RANGE",
+      "news_bias": "NEUTRAL",
+      "macro_risk": "NORMAL",
+      "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
+      "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
+      "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
+      "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY",
+      "learning_status": {
+        "updated_at": "2026-07-06T05:02:34.575357+00:00",
+        "journal_file": "signal_journal_v6_4.json",
+        "state_file": "last_signal_v6_4.json",
+        "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
+        "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
+        "training_signals": 12,
+        "signal_events": 213,
+        "closed_trades": 63,
+        "training_rows": 12,
+        "global_ready": false,
+        "global_learned_weight": 0.0,
+        "by_family": {
+          "LIQUIDITY_RECOVERY": {
+            "rows": 12,
+            "ready": false,
+            "learned_weight": 0.0
+          }
+        },
+        "validation": {
+          "enabled": false,
+          "reason": "not_enough_rows"
+        },
+        "github_actions": true,
+        "journal_persistence_confirmed": true,
+        "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
+        "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY"
+      },
+      "learning_warnings": [
+        "ML ще в bootstrap: 12/60 training rows."
+      ],
+      "version": "pro-hybrid-confluence-v6.8",
+      "architecture_version": "HYBRID_CONFLUENCE_V6_4",
+      "setup_family": "LIQUIDITY_RECOVERY",
+      "ict_model": "2022_MODEL",
+      "candidate_final_score": 64,
+      "candidate_raw_score": 113,
+      "execution_lane": "EARLY_TACTICAL",
+      "trigger_ready": true,
+      "trigger_age_minutes": 18137.61,
+      "score_components": {
+        "legacy_raw_score": 112.6,
+        "loc_score": 45,
+        "str_score": 10.0,
+        "liq_score": 8.1,
+        "flw_score": 0.0,
+        "trig_score": 10.4,
+        "htf_score": 2.1,
+        "pattern_bonus": 12,
+        "session_bonus": 0.0,
+        "vector_bonus": 0.0,
+        "features": {
+          "loc": 1.0,
+          "structure": 0.4167,
+          "liquidity": 0.3375,
+          "flow": 0.0,
+          "trigger": 1.0,
+          "htf": 0.175,
+          "pattern": 0.619,
+          "session": 0.0,
+          "smt": 0.0,
+          "regime_fit": -1.0,
+          "freshness": 0.0,
+          "exhaustion": 0.0,
+          "no_pattern": 0.0
+        },
+        "gates": {
+          "trigger_gate": 1.0,
+          "location_gate": 1.0,
+          "pattern_gate": 1.0,
+          "forward_zone_gate": 1.0,
+          "exhaustion_gate": 1.0,
+          "liquidity_gate": 0.722,
+          "trend_gate": 1.0,
+          "htf_late_gate": 1.0,
+          "product": 0.722
+        },
+        "probability": 0.6387,
+        "base_probability": 0.8846,
+        "model_source": "bootstrap",
+        "sample_size": 12,
+        "learned_weight": 0.0
+      },
+      "score_features": {
+        "loc": 1.0,
+        "structure": 0.4167,
+        "liquidity": 0.3375,
+        "flow": 0.0,
+        "trigger": 1.0,
+        "htf": 0.175,
+        "pattern": 0.619,
+        "session": 0.0,
+        "smt": 0.0,
+        "regime_fit": -1.0,
+        "freshness": 0.0,
+        "exhaustion": 0.0,
+        "no_pattern": 0.0
+      },
+      "score_gates": {
+        "trigger_gate": 1.0,
+        "location_gate": 1.0,
+        "pattern_gate": 1.0,
+        "forward_zone_gate": 1.0,
+        "exhaustion_gate": 1.0,
+        "liquidity_gate": 0.722,
+        "trend_gate": 1.0,
+        "htf_late_gate": 1.0,
+        "product": 0.722
+      },
+      "score_model_source": "bootstrap",
+      "score_model_sample_size": 12,
       "score_model_learned_weight": 0.0
     }
   ],
@@ -18208,12 +18466,12 @@
     }
   ],
   "learning_status": {
-    "updated_at": "2026-07-06T04:45:45.178742+00:00",
+    "updated_at": "2026-07-06T05:02:36.658383+00:00",
     "journal_file": "signal_journal_v6_4.json",
     "state_file": "last_signal_v6_4.json",
     "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
     "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
-    "training_signals": 12,
+    "training_signals": 13,
     "signal_events": 213,
     "closed_trades": 63,
     "training_rows": 12,
