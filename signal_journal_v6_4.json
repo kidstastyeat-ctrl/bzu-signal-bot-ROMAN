@@ -14978,15 +14978,31 @@
       "tp2_hit": false,
       "tp3_hit": false,
       "close_action": "STOP"
+    },
+    {
+      "id": "7d4cc09ca0",
+      "signal_id": "b7cbb148ce",
+      "side": "LONG",
+      "setup_type": "SWEEP_RECLAIM",
+      "setup_family": "LIQUIDITY_RECOVERY",
+      "opened_regime": "RANGE",
+      "entry_level": "RISKY_ENTRY",
+      "quality": 64,
+      "result_pct": -0.27767770541776626,
+      "mfe_pct": 0.0,
+      "tp1_hit": false,
+      "tp2_hit": false,
+      "tp3_hit": false,
+      "close_action": "STOP"
     }
   ],
   "version": "pro-hybrid-confluence-v6.8",
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
   "analytics": {
-    "closed_trades": 64,
+    "closed_trades": 65,
     "wins": 26,
-    "losses": 38,
-    "win_rate": 40.6,
+    "losses": 39,
+    "win_rate": 40.0,
     "net_r": -0.07,
     "expectancy_r": -0.001,
     "by_family": {
@@ -15007,16 +15023,16 @@
         "expectancy_r": -0.01
       },
       "LIQUIDITY_RECOVERY": {
-        "closed_trades": 13,
+        "closed_trades": 14,
         "wins": 7,
-        "losses": 6,
+        "losses": 7,
         "net_r": 0.0,
-        "win_rate": 53.8,
+        "win_rate": 50.0,
         "expectancy_r": 0.0
       }
     }
   },
-  "updated_at": "2026-07-06T07:01:31.637700+00:00",
+  "updated_at": "2026-07-06T07:15:50.581733+00:00",
   "training_signals": [
     {
       "id": "a91bcbfa41",
@@ -18800,23 +18816,32 @@
       "price": 72.0,
       "trade_id": "7d4cc09ca0",
       "signal_id": "b7cbb148ce"
+    },
+    {
+      "time": "2026-07-06T07:15:50.577695+00:00",
+      "type": "CLOSE",
+      "action": "STOP",
+      "side": "LONG",
+      "price": 71.85,
+      "trade_id": "7d4cc09ca0",
+      "signal_id": "b7cbb148ce"
     }
   ],
   "learning_status": {
-    "updated_at": "2026-07-06T07:01:31.638320+00:00",
+    "updated_at": "2026-07-06T07:15:50.582353+00:00",
     "journal_file": "signal_journal_v6_4.json",
     "state_file": "last_signal_v6_4.json",
     "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
     "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
     "training_signals": 14,
-    "signal_events": 220,
-    "closed_trades": 64,
-    "training_rows": 13,
+    "signal_events": 221,
+    "closed_trades": 65,
+    "training_rows": 14,
     "global_ready": false,
     "global_learned_weight": 0.0,
     "by_family": {
       "LIQUIDITY_RECOVERY": {
-        "rows": 13,
+        "rows": 14,
         "ready": false,
         "learned_weight": 0.0
       }
