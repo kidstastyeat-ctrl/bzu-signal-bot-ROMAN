@@ -4,9 +4,9 @@
   "active_trade": null,
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1783323000000,
+    "last_scanned_3m_ts": 1783323900000,
     "last_run_processed": 5,
-    "processed_count": 7158,
+    "processed_count": 7163,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -18,7 +18,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 71.91,
+        "extreme": 71.51,
         "displacement": true,
         "retest_ts": 1782079200000,
         "ready_ts": 1782079380000,
@@ -28,7 +28,7 @@
         "confirmation_quality": 73,
         "acceptance_quality": 92,
         "retest_quality": 74,
-        "processed_bars": 7158,
+        "processed_bars": 7163,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -50,7 +50,7 @@
         "event_price": 83.06,
         "invalidation_level": 83.06,
         "sweep_level": 83.06,
-        "extreme": 71.94,
+        "extreme": 71.56,
         "displacement": true,
         "retest_ts": 1782090000000,
         "ready_ts": 1782090900000,
@@ -60,7 +60,7 @@
         "confirmation_quality": 81,
         "acceptance_quality": 92,
         "retest_quality": 92,
-        "processed_bars": 7158,
+        "processed_bars": 7163,
         "strong_displacement": true,
         "retest": false,
         "mitigation": false,
@@ -68,7 +68,7 @@
         "impulse_strength": {
           "score": 3,
           "level": "EXTREME",
-          "body_strength": 0.7,
+          "body_strength": 0.83,
           "consecutive": 2
         },
         "time_warp_opportunity": true
@@ -77,21 +77,21 @@
   },
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
-    "pending_type": "",
-    "stable_count": 5,
-    "pending_count": 0,
-    "updated_at": "2026-07-06T07:31:22.302356+00:00"
+    "pending_type": "NORMAL",
+    "stable_count": 0,
+    "pending_count": 1,
+    "updated_at": "2026-07-06T07:45:43.617350+00:00"
   },
   "latest_signal": {
-    "id": "4ee28c4fd9",
-    "time": "2026-07-06T07:31:22.305443+00:00",
+    "id": "489831c3c2",
+    "time": "2026-07-06T07:45:43.620408+00:00",
     "action": "NO_SETUP",
     "side": "NEUTRAL",
     "setup_type": "NONE",
     "quality": 12,
     "decision_quality": 12,
     "reason": "Ринок не сформував професійного ICT + 3M execution-package",
-    "regime": "RANGE",
+    "regime": "TRANSITION",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
     "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -99,7 +99,7 @@
     "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
     "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY",
     "learning_status": {
-      "updated_at": "2026-07-06T07:31:20.508351+00:00",
+      "updated_at": "2026-07-06T07:45:41.725629+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -134,15 +134,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 71.91,
-      "trade_id": "ab515ab178",
-      "signal_id": "f72e362827",
-      "time": "2026-07-04T08:31:07.014140+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1846,7 +1837,15 @@
       "quality": 12,
       "price": 71.82,
       "time": "2026-07-06T07:31:22.305468+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 71.44,
+      "time": "2026-07-06T07:45:43.620435+00:00"
     }
   ],
-  "updated_at": "2026-07-06T07:31:22.629024+00:00"
+  "updated_at": "2026-07-06T07:45:43.958583+00:00"
 }
