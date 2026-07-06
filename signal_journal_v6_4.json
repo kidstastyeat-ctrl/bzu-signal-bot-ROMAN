@@ -14871,7 +14871,7 @@
       }
     }
   },
-  "updated_at": "2026-07-06T05:02:36.657784+00:00",
+  "updated_at": "2026-07-06T05:15:45.204232+00:00",
   "training_signals": [
     {
       "id": "a91bcbfa41",
@@ -18463,16 +18463,25 @@
       "price": 71.79,
       "trade_id": "d80c05492c",
       "signal_id": "25f149368f"
+    },
+    {
+      "time": "2026-07-06T05:15:45.200169+00:00",
+      "type": "FOLLOW",
+      "action": "HOLD",
+      "side": "SHORT",
+      "price": 71.99,
+      "trade_id": "4b9c1312b3",
+      "signal_id": "18ef18753b"
     }
   ],
   "learning_status": {
-    "updated_at": "2026-07-06T05:02:36.658383+00:00",
+    "updated_at": "2026-07-06T05:15:45.204835+00:00",
     "journal_file": "signal_journal_v6_4.json",
     "state_file": "last_signal_v6_4.json",
     "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
     "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
     "training_signals": 13,
-    "signal_events": 213,
+    "signal_events": 214,
     "closed_trades": 63,
     "training_rows": 12,
     "global_ready": false,
