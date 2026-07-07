@@ -1,5 +1,5 @@
 {
-  "version": "pro-hybrid-confluence-v6.10-hypothesis-matrix",
+  "version": "pro-hybrid-confluence-v6.12-market-structure-plus",
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
   "active_trade": {
     "id": "7d929886aa",
@@ -17,10 +17,10 @@
     "quality": 79,
     "position_risk_pct": 0.225,
     "best_price": 73.905,
-    "worst_price": 73.82,
+    "worst_price": 73.77,
     "thesis_key": "LONG|BREAKER_BLOCK|BREAKOUT_RETEST|739",
     "thesis": "LONG BREAKER_BLOCK → BREAKOUT_RETEST | src=LIMIT_ARMED | stage=READY",
-    "last_checked_3m_ts": 1783435187115,
+    "last_checked_3m_ts": 1783435242433,
     "tp1_hit": false,
     "tp2_hit": false,
     "tp3_hit": false,
@@ -165,9 +165,9 @@
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 5,
+    "stable_count": 6,
     "pending_count": 0,
-    "updated_at": "2026-07-07T14:39:47.108222+00:00"
+    "updated_at": "2026-07-07T14:40:42.427078+00:00"
   },
   "latest_signal": {
     "id": "91170f4677",
@@ -467,14 +467,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "NO_SETUP",
-      "side": "NEUTRAL",
-      "setup_type": "NONE",
-      "quality": 12,
-      "price": 72.04,
-      "time": "2026-07-05T18:01:33.902823+00:00"
-    },
     {
       "type": "NO_SETUP",
       "side": "NEUTRAL",
@@ -2146,7 +2138,16 @@
       "trade_id": "7d929886aa",
       "signal_id": "91170f4677",
       "time": "2026-07-07T14:39:47.724631+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "HOLD",
+      "price": 73.77,
+      "trade_id": "7d929886aa",
+      "signal_id": "91170f4677",
+      "time": "2026-07-07T14:40:43.004930+00:00"
     }
   ],
-  "updated_at": "2026-07-07T14:39:47.724660+00:00"
+  "updated_at": "2026-07-07T14:40:43.004958+00:00"
 }

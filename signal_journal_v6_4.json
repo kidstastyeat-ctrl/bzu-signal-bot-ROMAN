@@ -20199,40 +20199,15 @@
       "position_risk_pct": 0.3,
       "runtime_config_snapshot": {},
       "close_action": "STOP"
-    },
-    {
-      "id": "d6b13a3aa9",
-      "signal_id": "83c9b2a59c",
-      "side": "LONG",
-      "setup_type": "FRESH_BASE_CONTINUATION",
-      "setup_family": "CONTINUATION",
-      "opened_regime": "TRANSITION",
-      "entry_level": "ENTRY",
-      "quality": 75,
-      "result_pct": 0.0718012081274059,
-      "mfe_pct": 0.2059308072487527,
-      "tp0_hit": false,
-      "tp1_hit": true,
-      "tp2_hit": false,
-      "tp3_hit": false,
-      "tp0": 0.0,
-      "tp1": 73.1596,
-      "tp2": 73.5514,
-      "tp3": 73.8195,
-      "entry_stage": "PROBE",
-      "execution_source": "NONE",
-      "position_risk_pct": 0.3,
-      "runtime_config_snapshot": {},
-      "close_action": "STOP"
     }
   ],
-  "version": "pro-hybrid-confluence-v6.10-hypothesis-matrix",
+  "version": "pro-hybrid-confluence-v6.12-market-structure-plus",
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
   "analytics": {
-    "closed_trades": 70,
-    "wins": 29,
+    "closed_trades": 69,
+    "wins": 28,
     "losses": 41,
-    "win_rate": 41.4,
+    "win_rate": 40.6,
     "net_r": -0.08,
     "expectancy_r": -0.001,
     "by_family": {
@@ -20245,12 +20220,12 @@
         "expectancy_r": -0.001
       },
       "CONTINUATION": {
-        "closed_trades": 3,
-        "wins": 2,
+        "closed_trades": 2,
+        "wins": 1,
         "losses": 1,
         "net_r": -0.01,
-        "win_rate": 66.7,
-        "expectancy_r": -0.003
+        "win_rate": 50.0,
+        "expectancy_r": -0.005
       },
       "LIQUIDITY_RECOVERY": {
         "closed_trades": 17,
@@ -20262,7 +20237,7 @@
       }
     }
   },
-  "updated_at": "2026-07-07T14:39:47.729254+00:00",
+  "updated_at": "2026-07-07T14:40:43.009548+00:00",
   "training_signals": [
     {
       "id": "a91bcbfa41",
@@ -27030,17 +27005,26 @@
       "price": 73.82,
       "trade_id": "7d929886aa",
       "signal_id": "91170f4677"
+    },
+    {
+      "time": "2026-07-07T14:40:43.004954+00:00",
+      "type": "FOLLOW",
+      "action": "HOLD",
+      "side": "LONG",
+      "price": 73.77,
+      "trade_id": "7d929886aa",
+      "signal_id": "91170f4677"
     }
   ],
   "learning_status": {
-    "updated_at": "2026-07-07T14:39:47.730245+00:00",
+    "updated_at": "2026-07-07T14:40:43.010619+00:00",
     "journal_file": "signal_journal_v6_4.json",
     "state_file": "last_signal_v6_4.json",
     "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
     "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
     "training_signals": 25,
-    "signal_events": 299,
-    "closed_trades": 70,
+    "signal_events": 300,
+    "closed_trades": 69,
     "training_rows": 17,
     "global_ready": false,
     "global_learned_weight": 0.0,
