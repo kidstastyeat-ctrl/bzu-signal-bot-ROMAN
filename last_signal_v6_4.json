@@ -32,9 +32,9 @@
     "signal_id": "f50a35a5c1"
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1783431000000,
+    "last_scanned_3m_ts": 1783431900000,
     "last_run_processed": 5,
-    "processed_count": 332,
+    "processed_count": 337,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -46,7 +46,7 @@
         "event_price": 72.93,
         "invalidation_level": 72.93,
         "sweep_level": 72.93,
-        "extreme": 73.19,
+        "extreme": 73.45,
         "displacement": true,
         "retest_ts": 1783403640000,
         "ready_ts": 1783403820000,
@@ -56,7 +56,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 80,
         "retest_quality": 80,
-        "processed_bars": 332,
+        "processed_bars": 337,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -79,7 +79,7 @@
         "event_price": 72.93,
         "invalidation_level": 72.93,
         "sweep_level": 72.93,
-        "extreme": 73.35,
+        "extreme": 73.49,
         "displacement": true,
         "retest_ts": 1783391760000,
         "ready_ts": 1783391940000,
@@ -89,7 +89,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 68,
         "retest_quality": 68,
-        "processed_bars": 332,
+        "processed_bars": 337,
         "strong_displacement": false,
         "retest": true,
         "mitigation": true,
@@ -105,15 +105,15 @@
     }
   },
   "regime_memory": {
-    "type": "RANGE_COMPRESSION",
-    "pending_type": "NORMAL",
-    "stable_count": 0,
-    "pending_count": 1,
-    "updated_at": "2026-07-07T13:31:18.430491+00:00"
+    "type": "NORMAL",
+    "pending_type": "",
+    "stable_count": 1,
+    "pending_count": 2,
+    "updated_at": "2026-07-07T13:45:47.231698+00:00"
   },
   "latest_signal": {
-    "id": "1711ab4329",
-    "time": "2026-07-07T13:31:18.435131+00:00",
+    "id": "ccc833aef3",
+    "time": "2026-07-07T13:45:47.242061+00:00",
     "action": "NO_SETUP",
     "side": "NEUTRAL",
     "setup_type": "NONE",
@@ -128,7 +128,7 @@
     "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
     "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY",
     "learning_status": {
-      "updated_at": "2026-07-07T13:31:16.482488+00:00",
+      "updated_at": "2026-07-07T13:45:45.026432+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -192,14 +192,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "NO_SETUP",
-      "side": "NEUTRAL",
-      "setup_type": "NONE",
-      "quality": 12,
-      "price": 72.07,
-      "time": "2026-07-05T17:01:30.327805+00:00"
-    },
     {
       "type": "NO_SETUP",
       "side": "NEUTRAL",
@@ -1870,7 +1862,15 @@
       "quality": 12,
       "price": 73.23,
       "time": "2026-07-07T13:31:18.435158+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 73.36,
+      "time": "2026-07-07T13:45:47.242094+00:00"
     }
   ],
-  "updated_at": "2026-07-07T13:31:18.779359+00:00"
+  "updated_at": "2026-07-07T13:45:47.623890+00:00"
 }
