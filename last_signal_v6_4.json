@@ -6,16 +6,16 @@
     "side": "LONG",
     "setup_type": "FRESH_BASE_CONTINUATION",
     "setup_family": "CONTINUATION",
-    "created_at": "2026-07-07T10:31:13.993655+00:00",
-    "expires_at": "2026-07-08T04:31:13.993657+00:00",
+    "created_at": "2026-07-07T10:41:08.566932+00:00",
+    "expires_at": "2026-07-08T04:41:08.566933+00:00",
     "score": 62,
     "trigger_level": 71.92,
-    "invalidation_level": 72.5055,
+    "invalidation_level": 72.5651,
     "confirmations": [
       "Модель: OB Reclaim (OB_RECLAIM)",
       "🔥 LIMIT_ARMED: CHoCH + FVG, ліміт на CE (71.92)",
       "📊 Hypothesis score: final=64 | setup=77 execution=65 plan=75 | model=bootstrap n=17 p=0.58",
-      "🎯 Entry contract: OB_RECLAIM OB reclaim midpoint | invalidation: OB_RECLAIM OB invalidation | target: BSL_LIQUIDITY 15m magnet"
+      "🎯 Entry contract: OB_RECLAIM OB reclaim midpoint | invalidation: OB_RECLAIM OB invalidation | target: ATR expansion preview"
     ],
     "evidence_families": [
       "ICT_LOCATION",
@@ -26,15 +26,15 @@
     ],
     "execution_lane": "LIMIT_ONLY",
     "status": "WAIT_PULLBACK",
-    "thesis_key": "LONG|OB_RECLAIM|FRESH_BASE_CONTINUATION|727",
+    "thesis_key": "LONG|OB_RECLAIM|FRESH_BASE_CONTINUATION|728",
     "thesis": "LONG OB_RECLAIM → FRESH_BASE_CONTINUATION | src=LIMIT_ARMED | stage=READY",
     "missed_at": "",
-    "signal_id": "8d914e94d9"
+    "signal_id": "01ed9e8012"
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1783420200000,
-    "last_run_processed": 5,
-    "processed_count": 272,
+    "last_scanned_3m_ts": 1783420740000,
+    "last_run_processed": 3,
+    "processed_count": 275,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -46,7 +46,7 @@
         "event_price": 72.93,
         "invalidation_level": 72.93,
         "sweep_level": 72.93,
-        "extreme": 72.8,
+        "extreme": 72.79,
         "displacement": true,
         "retest_ts": 1783403640000,
         "ready_ts": 1783403820000,
@@ -56,7 +56,7 @@
         "confirmation_quality": 86,
         "acceptance_quality": 80,
         "retest_quality": 80,
-        "processed_bars": 272,
+        "processed_bars": 275,
         "strong_displacement": false,
         "retest": true,
         "mitigation": true,
@@ -79,7 +79,7 @@
         "event_price": 72.93,
         "invalidation_level": 72.93,
         "sweep_level": 72.93,
-        "extreme": 72.89,
+        "extreme": 72.83,
         "displacement": true,
         "retest_ts": 1783391760000,
         "ready_ts": 1783391940000,
@@ -89,7 +89,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 68,
         "retest_quality": 68,
-        "processed_bars": 272,
+        "processed_bars": 275,
         "strong_displacement": false,
         "retest": true,
         "mitigation": true,
@@ -107,13 +107,13 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 12,
+    "stable_count": 13,
     "pending_count": 0,
-    "updated_at": "2026-07-07T10:31:13.988180+00:00"
+    "updated_at": "2026-07-07T10:41:08.562823+00:00"
   },
   "latest_signal": {
-    "id": "8d914e94d9",
-    "time": "2026-07-07T10:31:13.993594+00:00",
+    "id": "01ed9e8012",
+    "time": "2026-07-07T10:41:08.566880+00:00",
     "action": "ARMED",
     "side": "LONG",
     "setup_type": "FRESH_BASE_CONTINUATION",
@@ -128,12 +128,12 @@
     "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
     "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY",
     "learning_status": {
-      "updated_at": "2026-07-07T10:31:12.166471+00:00",
+      "updated_at": "2026-07-07T10:41:07.130705+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
       "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
-      "training_signals": 19,
+      "training_signals": 20,
       "signal_events": 298,
       "closed_trades": 70,
       "training_rows": 17,
@@ -211,12 +211,12 @@
     "live_3m_trigger_ready": false,
     "limit_armed_ready": true,
     "time_warp_ready": true,
-    "trigger_age_minutes": 274.23,
+    "trigger_age_minutes": 284.14,
     "score_components": {
-      "legacy_raw_score": 107.63,
+      "legacy_raw_score": 107.64,
       "loc_score": 45,
       "str_score": 11.5,
-      "liq_score": 2.63,
+      "liq_score": 2.64,
       "flw_score": 0.0,
       "trig_score": 8.0,
       "htf_score": 7.5,
@@ -226,7 +226,7 @@
       "features": {
         "loc": 1.0,
         "structure": 0.4792,
-        "liquidity": 0.1098,
+        "liquidity": 0.11,
         "flow": 0.0,
         "trigger": 1.0,
         "htf": 0.3125,
@@ -250,7 +250,7 @@
         "product": 0.691
       },
       "probability": 0.5783,
-      "base_probability": 0.8368,
+      "base_probability": 0.8369,
       "model_source": "bootstrap",
       "sample_size": 17,
       "learned_weight": 0.0,
@@ -258,7 +258,7 @@
       "execution_quality": 65,
       "trade_plan_quality": 75,
       "organic_score": 72,
-      "hypothesis_score": 65.8,
+      "hypothesis_score": 65.76,
       "active_model_count": 2,
       "execution_source": "LIMIT_ARMED",
       "execution_freshness_multiplier": 0.88,
@@ -276,13 +276,13 @@
       },
       "direction_risk_multiplier": 1.0,
       "entry_contract": {
-        "entry_anchor": 72.665,
+        "entry_anchor": 72.815,
         "entry_basis": "OB_RECLAIM OB reclaim midpoint",
-        "invalidation_level": 72.5055,
+        "invalidation_level": 72.5651,
         "invalidation_basis": "OB_RECLAIM OB invalidation",
-        "target_level": 73.37,
-        "target_basis": "BSL_LIQUIDITY 15m magnet",
-        "target_magnet_score": 1.63
+        "target_level": 73.3383,
+        "target_basis": "ATR expansion preview",
+        "target_magnet_score": 0.0
       },
       "hypothesis_rank": 1,
       "hypothesis_matrix_top": [
@@ -292,21 +292,21 @@
           "model": "OB_RECLAIM",
           "setup_type": "FRESH_BASE_CONTINUATION",
           "final_score": 64,
-          "hypothesis_score": 65.8,
+          "hypothesis_score": 65.76,
           "setup_q": 77,
           "execution_q": 65,
           "plan_q": 75,
           "execution_source": "LIMIT_ARMED",
           "entry_stage": "RETEST_ADD",
-          "trigger_age_min": 274.2,
-          "target_magnet": 1.63
+          "trigger_age_min": 284.1,
+          "target_magnet": 0.0
         }
       ]
     },
     "score_features": {
       "loc": 1.0,
       "structure": 0.4792,
-      "liquidity": 0.1098,
+      "liquidity": 0.11,
       "flow": 0.0,
       "trigger": 1.0,
       "htf": 0.3125,
@@ -332,12 +332,12 @@
     "score_model_source": "bootstrap",
     "score_model_sample_size": 17,
     "score_model_learned_weight": 0.0,
-    "plan_tp0": 72.965,
-    "plan_tp1": 73.37,
-    "plan_tp2": 73.825,
-    "plan_tp3": 74.265,
+    "plan_tp0": 73.115,
+    "plan_tp1": 73.435,
+    "plan_tp2": 73.975,
+    "plan_tp3": 74.415,
     "plan_rr0": 0.75,
-    "plan_rr1": 1.76,
+    "plan_rr1": 1.55,
     "plan_position_risk_pct": 0.225,
     "partial_plan": {
       "tp0": 0.2,
@@ -345,18 +345,10 @@
       "tp2": 0.25,
       "tp3_runner": 0.20000000000000007
     },
-    "target_basis": "TP0: 0.75R micro-fix | TP1: BSL_LIQUIDITY (15m, magnet 1.6273) | TP2: RR-профіль | TP3: RR-профіль"
+    "target_basis": "TP0: 0.75R micro-fix | TP1: RR-профіль | TP2: RR-профіль | TP3: RR-профіль"
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "NO_SETUP",
-      "side": "NEUTRAL",
-      "setup_type": "NONE",
-      "quality": 12,
-      "price": 72.16,
-      "time": "2026-07-05T14:27:15.477163+00:00"
-    },
     {
       "type": "NO_SETUP",
       "side": "NEUTRAL",
@@ -2031,7 +2023,15 @@
       "quality": 62,
       "price": 72.72,
       "time": "2026-07-07T10:31:13.993643+00:00"
+    },
+    {
+      "type": "ARMED",
+      "side": "LONG",
+      "setup_type": "FRESH_BASE_CONTINUATION",
+      "quality": 62,
+      "price": 72.74,
+      "time": "2026-07-07T10:41:08.566921+00:00"
     }
   ],
-  "updated_at": "2026-07-07T10:31:14.364565+00:00"
+  "updated_at": "2026-07-07T10:41:09.084593+00:00"
 }
