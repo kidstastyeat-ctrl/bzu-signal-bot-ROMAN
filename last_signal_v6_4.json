@@ -34,9 +34,9 @@
     "signal_id": "dc32db5790"
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1783505700000,
+    "last_scanned_3m_ts": 1783506600000,
     "last_run_processed": 5,
-    "processed_count": 747,
+    "processed_count": 752,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -48,7 +48,7 @@
         "event_price": 72.93,
         "invalidation_level": 72.93,
         "sweep_level": 72.93,
-        "extreme": 78.49,
+        "extreme": 78.09,
         "displacement": true,
         "retest_ts": 1783403640000,
         "ready_ts": 1783403820000,
@@ -58,7 +58,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 80,
         "retest_quality": 80,
-        "processed_bars": 747,
+        "processed_bars": 752,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -81,7 +81,7 @@
         "event_price": 72.93,
         "invalidation_level": 72.93,
         "sweep_level": 72.93,
-        "extreme": 78.58,
+        "extreme": 78.25,
         "displacement": true,
         "retest_ts": 1783391760000,
         "ready_ts": 1783391940000,
@@ -91,7 +91,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 68,
         "retest_quality": 68,
-        "processed_bars": 747,
+        "processed_bars": 752,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -108,21 +108,21 @@
   },
   "regime_memory": {
     "type": "NEWS_SHOCK",
-    "pending_type": "RANGE_COMPRESSION",
+    "pending_type": "NORMAL",
     "stable_count": 0,
     "pending_count": 1,
-    "updated_at": "2026-07-08T10:15:47.173429+00:00"
+    "updated_at": "2026-07-08T10:31:23.180368+00:00"
   },
   "latest_signal": {
-    "id": "82fd8a2812",
-    "time": "2026-07-08T10:15:47.185998+00:00",
+    "id": "ff311a4da6",
+    "time": "2026-07-08T10:31:23.189326+00:00",
     "action": "NO_SETUP",
     "side": "NEUTRAL",
     "setup_type": "NONE",
     "quality": 12,
     "decision_quality": 12,
     "reason": "Ринок не сформував професійного ICT + 3M execution-package",
-    "regime": "RANGE",
+    "regime": "TRANSITION",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
     "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -130,7 +130,7 @@
     "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
     "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY",
     "learning_status": {
-      "updated_at": "2026-07-08T10:15:45.438415+00:00",
+      "updated_at": "2026-07-08T10:31:21.626685+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -226,18 +226,43 @@
         {
           "rank": 1,
           "side": "SHORT",
+          "model": "VWAP_SESSION_MEAN_RECLAIM",
+          "setup_type": "SESSION_MEAN_RECLAIM",
+          "final_score": 56,
+          "hypothesis_score": 57.8,
+          "setup_q": 88,
+          "execution_q": 70,
+          "plan_q": 44,
+          "execution_source": "SESSION_MEAN",
+          "entry_stage": "PROBE",
+          "trigger_age_min": 1912.4,
+          "target_magnet": 2.43,
+          "failed_gate": "score 56 < risky_min 66; HTF не підтримує risky-entry",
+          "evidence_layers": [
+            "ICT_LOCATION",
+            "PRICE_STRUCTURE",
+            "ICT_MODEL_VWAP_SESSION_MEAN_RECLAIM",
+            "EXECUTION_TIME_WARP_WAIT_RETEST",
+            "EXECUTION_SESSION_MEAN"
+          ],
+          "entry_anchor": 78.2001,
+          "invalidation": 78.7941
+        },
+        {
+          "rank": 2,
+          "side": "SHORT",
           "model": "LIQUIDITY_LADDER_MODEL",
           "setup_type": "LIQUIDITY_LADDER",
-          "final_score": 49,
-          "hypothesis_score": 50.5,
-          "setup_q": 68,
+          "final_score": 53,
+          "hypothesis_score": 54.5,
+          "setup_q": 79,
           "execution_q": 57,
           "plan_q": 44,
           "execution_source": "LIQUIDITY_LADDER",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 1896.8,
-          "target_magnet": 2.32,
-          "failed_gate": "score 49 < risky_min 66; HTF не підтримує risky-entry",
+          "trigger_age_min": 1912.4,
+          "target_magnet": 2.48,
+          "failed_gate": "score 53 < risky_min 66; HTF не підтримує risky-entry",
           "evidence_layers": [
             "ICT_LOCATION",
             "PRICE_STRUCTURE",
@@ -245,25 +270,41 @@
             "EXECUTION_TIME_WARP_WAIT_RETEST",
             "EXECUTION_LIQUIDITY_LADDER"
           ],
-          "entry_anchor": 78.44,
-          "invalidation": 79.1445
+          "entry_anchor": 78.08,
+          "invalidation": 78.7871
+        },
+        {
+          "rank": 3,
+          "side": "SHORT",
+          "model": "TIME_OF_DAY_ADAPTIVE",
+          "setup_type": "TIME_OF_DAY_ADAPTIVE",
+          "final_score": 50,
+          "hypothesis_score": 51.26,
+          "setup_q": 70,
+          "execution_q": 55,
+          "plan_q": 44,
+          "execution_source": "TIME_OF_DAY",
+          "entry_stage": "PROBE",
+          "trigger_age_min": 1912.4,
+          "target_magnet": 2.48,
+          "failed_gate": "score 50 < risky_min 66; HTF не підтримує risky-entry",
+          "evidence_layers": [
+            "ICT_LOCATION",
+            "PRICE_STRUCTURE",
+            "ICT_MODEL_TIME_OF_DAY_ADAPTIVE",
+            "EXECUTION_TIME_WARP_WAIT_RETEST",
+            "EXECUTION_TIME_OF_DAY"
+          ],
+          "entry_anchor": 78.08,
+          "invalidation": 78.7306
         }
       ],
-      "candidate_count": 1,
+      "candidate_count": 3,
       "audit_note": "NO_SETUP now stores why hypotheses failed"
     }
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 71.7,
-      "trade_id": "ea48055b99",
-      "signal_id": "d682821d93",
-      "time": "2026-07-06T12:31:44.833177+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1951,7 +1992,15 @@
       "quality": 12,
       "price": 78.44,
       "time": "2026-07-08T10:15:47.186046+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 78.08,
+      "time": "2026-07-08T10:31:23.189376+00:00"
     }
   ],
-  "updated_at": "2026-07-08T10:15:47.580856+00:00"
+  "updated_at": "2026-07-08T10:31:23.738476+00:00"
 }
