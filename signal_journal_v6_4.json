@@ -30343,16 +30343,89 @@
         "min_breathing_risk_multiplier": 0.35
       },
       "close_action": "EXIT"
+    },
+    {
+      "id": "36915f4483",
+      "signal_id": "597438a80a",
+      "side": "LONG",
+      "setup_type": "ACCEPTANCE_RETEST_CONTINUATION",
+      "setup_family": "CONTINUATION",
+      "opened_regime": "TRANSITION",
+      "entry_level": "RISKY_ENTRY",
+      "quality": 80,
+      "result_pct": -0.7575262848560025,
+      "mfe_pct": 0.0848951870959286,
+      "tp0_hit": false,
+      "tp1_hit": false,
+      "tp2_hit": false,
+      "tp3_hit": false,
+      "tp0": 77.145,
+      "tp1": 77.725,
+      "tp2": 78.566,
+      "tp3": 79.465,
+      "entry_stage": "ACCEPTANCE",
+      "execution_source": "ACCEPTANCE_RETEST",
+      "position_risk_pct": 0.1138,
+      "runtime_config_snapshot": {
+        "bot_version": "pro-hybrid-confluence-v6.13-trade-breathing-geometry",
+        "architecture_version": "HYBRID_CONFLUENCE_V6_4",
+        "leverage": 5.0,
+        "normal_risk_pct": 0.5,
+        "risky_risk_pct": 0.3,
+        "probe_risk_pct": 0.12,
+        "acceptance_risk_pct": 0.22,
+        "retest_add_risk_pct": 0.3,
+        "core_risk_pct": 0.5,
+        "tp0_rr": 0.75,
+        "tp0_size_pct": 0.2,
+        "tp1_size_pct": 0.35,
+        "tp2_size_pct": 0.25,
+        "tp3_runner_pct": 0.20000000000000007,
+        "abs_min_stop_dollars": 0.4,
+        "abs_min_tp1_dollars": 0.65,
+        "commission_buffer_dollars": 0.02,
+        "min_rr1": 1.5,
+        "preferred_rr1": 1.6,
+        "min_rr2": 2.5,
+        "min_rr3": 4.0,
+        "trigger_max_age_minutes": 35,
+        "time_warp_score_multiplier": 0.7,
+        "stale_trigger_score_multiplier": 0.62,
+        "limit_armed_score_multiplier": 0.88,
+        "session_mean_max_dist_atr": 1.15,
+        "open_reclaim_max_dist_atr": 1.25,
+        "orb_break_buffer_atr": 0.16,
+        "failed_auction_min_tail_ratio": 0.54,
+        "liquidity_ladder_min_targets": 3,
+        "liquidity_ladder_min_score": 3.2,
+        "bootstrap_risk_multiplier": 0.75,
+        "weak_direction_risk_multiplier": 0.55,
+        "stop_noise_percentile": 0.7,
+        "tp_noise_percentile": 0.85,
+        "min_stop_true_range_mult": 1.1,
+        "min_tp1_true_range_mult": 1.25,
+        "current_candle_stop_mult": 0.85,
+        "tp0_min_rr": 1.0,
+        "tp1_min_rr_pro": 2.0,
+        "tp1_min_atr_pro": 3.0,
+        "be_delay_bars_after_tp1": 2,
+        "be_delay_min_mfe_r": 1.8,
+        "be_lock_r_mult": 0.1,
+        "catastrophic_stop_mult": 1.45,
+        "decision_stop_close_confirm": true,
+        "min_breathing_risk_multiplier": 0.35
+      },
+      "close_action": "STOP"
     }
   ],
   "version": "pro-hybrid-confluence-v6.13-trade-breathing-geometry",
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
   "analytics": {
-    "closed_trades": 71,
+    "closed_trades": 72,
     "wins": 29,
-    "losses": 42,
-    "win_rate": 40.8,
-    "net_r": -0.06,
+    "losses": 43,
+    "win_rate": 40.3,
+    "net_r": -0.07,
     "expectancy_r": -0.001,
     "by_family": {
       "NONE": {
@@ -30364,12 +30437,12 @@
         "expectancy_r": -0.001
       },
       "CONTINUATION": {
-        "closed_trades": 3,
+        "closed_trades": 4,
         "wins": 1,
-        "losses": 2,
-        "net_r": -0.01,
-        "win_rate": 33.3,
-        "expectancy_r": -0.003
+        "losses": 3,
+        "net_r": -0.02,
+        "win_rate": 25.0,
+        "expectancy_r": -0.005
       },
       "LIQUIDITY_RECOVERY": {
         "closed_trades": 17,
@@ -30389,7 +30462,7 @@
       }
     }
   },
-  "updated_at": "2026-07-08T07:15:50.573710+00:00",
+  "updated_at": "2026-07-08T07:31:24.074629+00:00",
   "training_signals": [
     {
       "id": "a91bcbfa41",
@@ -46578,23 +46651,32 @@
       "price": 76.35,
       "trade_id": "36915f4483",
       "signal_id": "597438a80a"
+    },
+    {
+      "time": "2026-07-08T07:31:24.070112+00:00",
+      "type": "CLOSE",
+      "action": "STOP",
+      "side": "LONG",
+      "price": 75.8,
+      "trade_id": "36915f4483",
+      "signal_id": "597438a80a"
     }
   ],
   "learning_status": {
-    "updated_at": "2026-07-08T07:15:50.574902+00:00",
+    "updated_at": "2026-07-08T07:31:24.075788+00:00",
     "journal_file": "signal_journal_v6_4.json",
     "state_file": "last_signal_v6_4.json",
     "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
     "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
     "training_signals": 49,
-    "signal_events": 338,
-    "closed_trades": 71,
-    "training_rows": 19,
+    "signal_events": 339,
+    "closed_trades": 72,
+    "training_rows": 20,
     "global_ready": false,
     "global_learned_weight": 0.0,
     "by_family": {
       "CONTINUATION": {
-        "rows": 1,
+        "rows": 2,
         "ready": false,
         "learned_weight": 0.0
       },
