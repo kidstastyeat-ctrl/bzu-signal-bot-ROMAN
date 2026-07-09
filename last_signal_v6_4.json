@@ -1,5 +1,5 @@
 {
-  "version": "pro-hybrid-confluence-v6.14-nonblocking-setup-innovation",
+  "version": "pro-hybrid-confluence-v6.15-setup-argumented-trigger-revalidation",
   "architecture_version": "HYBRID_CONFLUENCE_V6_4",
   "active_trade": {
     "id": "864c112ef9",
@@ -20,7 +20,7 @@
     "worst_price": 78.295,
     "thesis_key": "LONG|ACCEPTANCE_RETEST_CONTINUATION|ACCEPTANCE_RETEST_CONTINUATION|783",
     "thesis": "LONG ACCEPTANCE_RETEST_CONTINUATION → ACCEPTANCE_RETEST_CONTINUATION | src=ACCEPTANCE_RETEST | stage=READY",
-    "last_checked_3m_ts": 1783596990983,
+    "last_checked_3m_ts": 1783597032982,
     "tp1_hit": false,
     "tp2_hit": false,
     "tp3_hit": false,
@@ -298,9 +298,9 @@
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 12,
+    "stable_count": 13,
     "pending_count": 0,
-    "updated_at": "2026-07-09T11:36:30.978148+00:00"
+    "updated_at": "2026-07-09T11:37:12.966333+00:00"
   },
   "latest_signal": {
     "id": "0f2ff01a5f",
@@ -962,14 +962,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "ARMED",
-      "side": "SHORT",
-      "setup_type": "FRESH_BASE_CONTINUATION",
-      "quality": 69,
-      "price": 72.64,
-      "time": "2026-07-07T12:01:27.697330+00:00"
-    },
     {
       "type": "NO_SETUP",
       "side": "NEUTRAL",
@@ -2641,7 +2633,16 @@
       "trade_id": "864c112ef9",
       "signal_id": "0f2ff01a5f",
       "time": "2026-07-09T11:36:31.463937+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "HOLD",
+      "price": 78.46,
+      "trade_id": "864c112ef9",
+      "signal_id": "0f2ff01a5f",
+      "time": "2026-07-09T11:37:13.519125+00:00"
     }
   ],
-  "updated_at": "2026-07-09T11:36:31.463966+00:00"
+  "updated_at": "2026-07-09T11:37:13.519148+00:00"
 }
