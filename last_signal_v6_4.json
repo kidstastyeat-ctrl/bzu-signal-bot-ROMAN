@@ -34,9 +34,9 @@
     "signal_id": "180290c371"
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1783618380000,
-    "last_run_processed": 1,
-    "processed_count": 1373,
+    "last_scanned_3m_ts": 1783619100000,
+    "last_run_processed": 4,
+    "processed_count": 1377,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -48,7 +48,7 @@
         "event_price": 72.93,
         "invalidation_level": 72.93,
         "sweep_level": 72.93,
-        "extreme": 75.99,
+        "extreme": 75.78,
         "displacement": true,
         "retest_ts": 1783403640000,
         "ready_ts": 1783403820000,
@@ -58,7 +58,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 80,
         "retest_quality": 80,
-        "processed_bars": 1373,
+        "processed_bars": 1377,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -81,7 +81,7 @@
         "event_price": 72.93,
         "invalidation_level": 72.93,
         "sweep_level": 72.93,
-        "extreme": 76.01,
+        "extreme": 75.8,
         "displacement": true,
         "retest_ts": 1783391760000,
         "ready_ts": 1783391940000,
@@ -91,7 +91,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 68,
         "retest_quality": 68,
-        "processed_bars": 1373,
+        "processed_bars": 1377,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -109,13 +109,13 @@
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 2,
+    "stable_count": 3,
     "pending_count": 0,
-    "updated_at": "2026-07-09T17:34:05.103512+00:00"
+    "updated_at": "2026-07-09T17:45:48.592418+00:00"
   },
   "latest_signal": {
-    "id": "0a39dc8deb",
-    "time": "2026-07-09T17:34:05.114176+00:00",
+    "id": "f5b6f21500",
+    "time": "2026-07-09T17:45:48.607501+00:00",
     "action": "NO_SETUP",
     "side": "NEUTRAL",
     "setup_type": "NONE",
@@ -130,7 +130,7 @@
     "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
     "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY",
     "learning_status": {
-      "updated_at": "2026-07-09T17:34:03.273677+00:00",
+      "updated_at": "2026-07-09T17:45:46.551059+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -243,21 +243,21 @@
           "side": "SHORT",
           "model": "TIME_OF_DAY_ADAPTIVE",
           "setup_type": "TIME_OF_DAY_ADAPTIVE",
-          "final_score": 48,
-          "hypothesis_score": 49.25,
-          "setup_q": 80,
+          "final_score": 49,
+          "hypothesis_score": 50.26,
+          "setup_q": 83,
           "execution_q": 55,
-          "plan_q": 46,
+          "plan_q": 47,
           "execution_source": "TIME_OF_DAY",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 3775.1,
-          "target_magnet": 2.02,
+          "trigger_age_min": 3786.8,
+          "target_magnet": 2.23,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.35,
           "revalidation_state": "ARCHIVED_THESIS",
           "revalidation_supported": false,
           "entry_timing": "ARMED_WAIT_FRESH_ARGUMENT",
-          "failed_gate": "score 48 < risky_min 66; gate_product 0.41 < 0.46; HTF не підтримує risky-entry",
+          "failed_gate": "score 49 < risky_min 66; gate_product 0.43 < 0.46; HTF не підтримує risky-entry",
           "evidence_layers": [
             "ICT_LOCATION",
             "PRICE_STRUCTURE",
@@ -265,8 +265,8 @@
             "EXECUTION_TIME_WARP_WAIT_RETEST",
             "EXECUTION_TIME_OF_DAY"
           ],
-          "entry_anchor": 75.94,
-          "invalidation": 76.34
+          "entry_anchor": 75.72,
+          "invalidation": 76.12
         }
       ],
       "candidate_count": 1,
@@ -275,15 +275,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 74.09,
-      "trade_id": "7d929886aa",
-      "signal_id": "91170f4677",
-      "time": "2026-07-07T17:01:28.401179+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -1947,7 +1938,15 @@
       "quality": 12,
       "price": 75.94,
       "time": "2026-07-09T17:34:05.114225+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 75.72,
+      "time": "2026-07-09T17:45:48.607546+00:00"
     }
   ],
-  "updated_at": "2026-07-09T17:34:05.438891+00:00"
+  "updated_at": "2026-07-09T17:45:49.077258+00:00"
 }
