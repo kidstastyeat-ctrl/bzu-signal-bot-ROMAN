@@ -6,14 +6,14 @@
     "side": "LONG",
     "setup_type": "ACCEPTANCE_RETEST_CONTINUATION",
     "setup_family": "CONTINUATION",
-    "created_at": "2026-07-09T02:31:25.329036+00:00",
-    "expires_at": "2026-07-09T20:31:25.329039+00:00",
+    "created_at": "2026-07-09T02:45:44.538844+00:00",
+    "expires_at": "2026-07-09T20:45:44.538846+00:00",
     "score": 70,
     "trigger_level": 72.93,
-    "invalidation_level": 78.435,
+    "invalidation_level": 78.23,
     "confirmations": [
       "Модель: Acceptance Retest Continuation (ACCEPTANCE_RETEST_CONTINUATION)",
-      "🔁 Acceptance-retest: pullback=1.79 ATR | zone=15m OB | acceptance=True",
+      "🔁 Acceptance-retest: pullback=1.26 ATR | zone=15m OB | acceptance=True",
       "🟢 ACCEPTANCE_RETEST: ранній continuation-probe дозволений малим ризиком",
       "📊 Hypothesis score: final=72 | setup=100 execution=73 plan=75 | model=bootstrap n=22 p=0.63",
       "🎯 Entry contract: ACCEPTANCE_RETEST zone midpoint (15m OB) | invalidation: ACCEPTANCE_RETEST structural probe invalidation | target: PDH 1D magnet"
@@ -27,15 +27,15 @@
     ],
     "execution_lane": "EARLY_TACTICAL",
     "status": "ARMED",
-    "thesis_key": "LONG|ACCEPTANCE_RETEST_CONTINUATION|ACCEPTANCE_RETEST_CONTINUATION|788",
+    "thesis_key": "LONG|ACCEPTANCE_RETEST_CONTINUATION|ACCEPTANCE_RETEST_CONTINUATION|786",
     "thesis": "LONG ACCEPTANCE_RETEST_CONTINUATION → ACCEPTANCE_RETEST_CONTINUATION | src=ACCEPTANCE_RETEST | stage=READY",
     "missed_at": "",
-    "signal_id": "e93207e232"
+    "signal_id": "4ac2702019"
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1783564200000,
+    "last_scanned_3m_ts": 1783565100000,
     "last_run_processed": 5,
-    "processed_count": 1072,
+    "processed_count": 1077,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -47,7 +47,7 @@
         "event_price": 72.93,
         "invalidation_level": 72.93,
         "sweep_level": 72.93,
-        "extreme": 78.71,
+        "extreme": 78.84,
         "displacement": true,
         "retest_ts": 1783403640000,
         "ready_ts": 1783403820000,
@@ -57,7 +57,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 80,
         "retest_quality": 80,
-        "processed_bars": 1072,
+        "processed_bars": 1077,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -80,7 +80,7 @@
         "event_price": 72.93,
         "invalidation_level": 72.93,
         "sweep_level": 72.93,
-        "extreme": 78.78,
+        "extreme": 78.92,
         "displacement": true,
         "retest_ts": 1783391760000,
         "ready_ts": 1783391940000,
@@ -90,7 +90,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 68,
         "retest_quality": 68,
-        "processed_bars": 1072,
+        "processed_bars": 1077,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -108,13 +108,13 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 14,
+    "stable_count": 15,
     "pending_count": 0,
-    "updated_at": "2026-07-09T02:31:25.314517+00:00"
+    "updated_at": "2026-07-09T02:45:44.527713+00:00"
   },
   "latest_signal": {
-    "id": "e93207e232",
-    "time": "2026-07-09T02:31:25.328961+00:00",
+    "id": "4ac2702019",
+    "time": "2026-07-09T02:45:44.538765+00:00",
     "action": "ARMED",
     "side": "LONG",
     "setup_type": "ACCEPTANCE_RETEST_CONTINUATION",
@@ -129,12 +129,12 @@
     "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
     "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY",
     "learning_status": {
-      "updated_at": "2026-07-09T02:31:23.345755+00:00",
+      "updated_at": "2026-07-09T02:45:43.228994+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
       "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
-      "training_signals": 102,
+      "training_signals": 103,
       "signal_events": 357,
       "closed_trades": 74,
       "training_rows": 22,
@@ -233,8 +233,8 @@
         "plan_q": 75,
         "execution_source": "ACCEPTANCE_RETEST",
         "entry_stage": "PROBE",
-        "trigger_age_min": 2674.4,
-        "target_magnet": 2.15
+        "trigger_age_min": 2688.7,
+        "target_magnet": 2.03
       },
       "hypothesis_matrix": [
         {
@@ -249,38 +249,38 @@
           "plan_q": 75,
           "execution_source": "ACCEPTANCE_RETEST",
           "entry_stage": "PROBE",
-          "trigger_age_min": 2674.4,
-          "target_magnet": 2.15
+          "trigger_age_min": 2688.7,
+          "target_magnet": 2.03
         },
         {
           "rank": 2,
-          "side": "SHORT",
+          "side": "LONG",
           "model": "FAILED_ORB",
           "setup_type": "FAILED_OPENING_RANGE_BREAKOUT",
-          "final_score": 69,
-          "hypothesis_score": 70.76,
+          "final_score": 70,
+          "hypothesis_score": 71.77,
           "setup_q": 100,
           "execution_q": 68,
           "plan_q": 75,
           "execution_source": "OPENING_RANGE",
           "entry_stage": "PROBE",
-          "trigger_age_min": 2872.4,
-          "target_magnet": 1.64
+          "trigger_age_min": 2688.7,
+          "target_magnet": 2.07
         },
         {
           "rank": 3,
           "side": "LONG",
           "model": "LIQUIDITY_LADDER_MODEL",
           "setup_type": "LIQUIDITY_LADDER",
-          "final_score": 68,
-          "hypothesis_score": 69.49,
-          "setup_q": 90,
+          "final_score": 69,
+          "hypothesis_score": 70.49,
+          "setup_q": 92,
           "execution_q": 57,
           "plan_q": 75,
           "execution_source": "LIQUIDITY_LADDER",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 2674.4,
-          "target_magnet": 2.03
+          "trigger_age_min": 2688.7,
+          "target_magnet": 2.13
         }
       ],
       "candidate_count": 3
@@ -304,8 +304,8 @@
       "retest_add_pct": 0.3,
       "core_pct": 0.5,
       "breathing_geometry": {
-        "decision_stop": 78.435,
-        "catastrophic_stop": 78.255,
+        "decision_stop": 78.23,
+        "catastrophic_stop": 78.05,
         "decision_distance": 0.4,
         "catastrophic_distance": 0.58,
         "conventional_distance": 0.4,
@@ -313,10 +313,10 @@
         "tp1_floor_distance": 1.16,
         "tp0_floor_distance": 0.58,
         "noise": {
-          "tr_p70": 0.419,
+          "tr_p70": 0.409,
           "tr_p85": 0.53,
-          "current_tr": 0.175714,
-          "fallback": 0.234286,
+          "current_tr": 0.178393,
+          "fallback": 0.237857,
           "sample_size": 48
         },
         "mode": "TRADE_BREATHING_GEOMETRY"
@@ -326,7 +326,7 @@
     "live_3m_trigger_ready": false,
     "limit_armed_ready": false,
     "time_warp_ready": true,
-    "trigger_age_minutes": 2674.42,
+    "trigger_age_minutes": 2688.74,
     "score_components": {
       "legacy_raw_score": 124.36,
       "loc_score": 45,
@@ -374,7 +374,7 @@
       "trade_plan_quality": 75,
       "organic_score": 84,
       "hypothesis_score": 73.73,
-      "active_model_count": 4,
+      "active_model_count": 6,
       "execution_source": "ACCEPTANCE_RETEST",
       "execution_freshness_multiplier": 0.92,
       "live_3m_trigger_ready": false,
@@ -391,21 +391,21 @@
       },
       "direction_risk_multiplier": 1.0,
       "entry_contract": {
-        "entry_anchor": 78.835,
+        "entry_anchor": 78.63,
         "entry_basis": "ACCEPTANCE_RETEST zone midpoint (15m OB)",
-        "invalidation_level": 78.435,
+        "invalidation_level": 78.23,
         "invalidation_basis": "ACCEPTANCE_RETEST structural probe invalidation",
         "target_level": 80.54,
         "target_basis": "PDH 1D magnet",
-        "target_magnet_score": 2.15
+        "target_magnet_score": 2.03
       },
       "acceptance_retest": {
         "active": true,
         "score_bonus": 20,
-        "impulse_atr": 3.24,
-        "pullback_atr": 1.79,
+        "impulse_atr": 3.2,
+        "pullback_atr": 1.26,
         "zone_ok": true,
-        "zone_mid": 78.835,
+        "zone_mid": 78.63,
         "zone_label": "15m OB",
         "acceptance": true,
         "tf_ok": true,
@@ -426,38 +426,38 @@
           "plan_q": 75,
           "execution_source": "ACCEPTANCE_RETEST",
           "entry_stage": "PROBE",
-          "trigger_age_min": 2674.4,
-          "target_magnet": 2.15
+          "trigger_age_min": 2688.7,
+          "target_magnet": 2.03
         },
         {
           "rank": 2,
-          "side": "SHORT",
+          "side": "LONG",
           "model": "FAILED_ORB",
           "setup_type": "FAILED_OPENING_RANGE_BREAKOUT",
-          "final_score": 69,
-          "hypothesis_score": 70.76,
+          "final_score": 70,
+          "hypothesis_score": 71.77,
           "setup_q": 100,
           "execution_q": 68,
           "plan_q": 75,
           "execution_source": "OPENING_RANGE",
           "entry_stage": "PROBE",
-          "trigger_age_min": 2872.4,
-          "target_magnet": 1.64
+          "trigger_age_min": 2688.7,
+          "target_magnet": 2.07
         },
         {
           "rank": 3,
           "side": "LONG",
           "model": "LIQUIDITY_LADDER_MODEL",
           "setup_type": "LIQUIDITY_LADDER",
-          "final_score": 68,
-          "hypothesis_score": 69.49,
-          "setup_q": 90,
+          "final_score": 69,
+          "hypothesis_score": 70.49,
+          "setup_q": 92,
           "execution_q": 57,
           "plan_q": 75,
           "execution_source": "LIQUIDITY_LADDER",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 2674.4,
-          "target_magnet": 2.03
+          "trigger_age_min": 2688.7,
+          "target_magnet": 2.13
         }
       ]
     },
@@ -490,12 +490,12 @@
     "score_model_source": "bootstrap",
     "score_model_sample_size": 22,
     "score_model_learned_weight": 0.0,
-    "plan_tp0": 79.415,
+    "plan_tp0": 79.21,
     "plan_tp1": 80.54,
-    "plan_tp2": 80.8159,
-    "plan_tp3": 81.735,
+    "plan_tp2": 80.8152,
+    "plan_tp3": 81.53,
     "plan_rr0": 1.0,
-    "plan_rr1": 2.94,
+    "plan_rr1": 3.29,
     "plan_position_risk_pct": 0.0621,
     "partial_plan": {
       "tp0": 0.2,
@@ -503,12 +503,12 @@
       "tp2": 0.25,
       "tp3_runner": 0.20000000000000007
     },
-    "target_basis": "TP0: 1.0R/noise service fix | TP1: PDH (1D, magnet 2.1541) | TP2: RR-профіль | TP3: RR-профіль",
-    "decision_stop": 78.435,
-    "catastrophic_stop": 78.255,
+    "target_basis": "TP0: 1.0R/noise service fix | TP1: PDH (1D, magnet 2.0252) | TP2: RR-профіль | TP3: RR-профіль",
+    "decision_stop": 78.23,
+    "catastrophic_stop": 78.05,
     "breathing_profile": {
-      "decision_stop": 78.435,
-      "catastrophic_stop": 78.255,
+      "decision_stop": 78.23,
+      "catastrophic_stop": 78.05,
       "decision_distance": 0.4,
       "catastrophic_distance": 0.58,
       "conventional_distance": 0.4,
@@ -516,10 +516,10 @@
       "tp1_floor_distance": 1.16,
       "tp0_floor_distance": 0.58,
       "noise": {
-        "tr_p70": 0.419,
+        "tr_p70": 0.409,
         "tr_p85": 0.53,
-        "current_tr": 0.175714,
-        "fallback": 0.234286,
+        "current_tr": 0.178393,
+        "fallback": 0.237857,
         "sample_size": 48
       },
       "mode": "TRADE_BREATHING_GEOMETRY"
@@ -527,14 +527,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "ARMED",
-      "side": "LONG",
-      "setup_type": "FRESH_BASE_CONTINUATION",
-      "quality": 61,
-      "price": 72.66,
-      "time": "2026-07-07T03:15:50.585063+00:00"
-    },
     {
       "type": "ARMED",
       "side": "LONG",
@@ -2195,7 +2187,15 @@
       "quality": 70,
       "price": 78.66,
       "time": "2026-07-09T02:31:25.329023+00:00"
+    },
+    {
+      "type": "ARMED",
+      "side": "LONG",
+      "setup_type": "ACCEPTANCE_RETEST_CONTINUATION",
+      "quality": 70,
+      "price": 78.78,
+      "time": "2026-07-09T02:45:44.538830+00:00"
     }
   ],
-  "updated_at": "2026-07-09T02:31:25.765620+00:00"
+  "updated_at": "2026-07-09T02:45:45.094860+00:00"
 }
