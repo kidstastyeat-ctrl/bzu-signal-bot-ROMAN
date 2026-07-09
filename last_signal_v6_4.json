@@ -6,16 +6,16 @@
     "side": "SHORT",
     "setup_type": "BREAKOUT_RETEST",
     "setup_family": "EXPANSION",
-    "created_at": "2026-07-09T16:15:48.803889+00:00",
-    "expires_at": "2026-07-10T10:15:48.803892+00:00",
-    "score": 66,
+    "created_at": "2026-07-09T16:31:13.883138+00:00",
+    "expires_at": "2026-07-10T10:31:13.883141+00:00",
+    "score": 63,
     "trigger_level": 79.115,
-    "invalidation_level": 77.0437,
+    "invalidation_level": 77.0379,
     "confirmations": [
       "Модель: Breaker Block (BREAKER_BLOCK)",
       "✅ Модель узгоджена з режимом ринку (+5)",
       "🔥 LIMIT_ARMED: CHoCH + FVG, ліміт на CE (79.12)",
-      "📊 Hypothesis score: final=66 | setup=96 execution=65 plan=50 | model=bootstrap n=24 p=0.59",
+      "📊 Hypothesis score: final=63 | setup=90 execution=65 plan=48 | model=bootstrap n=24 p=0.56",
       "🎯 Entry contract: BREAKER_BLOCK OB reclaim midpoint | invalidation: BREAKER_BLOCK OB invalidation | target: PDL 1D magnet"
     ],
     "evidence_families": [
@@ -30,12 +30,12 @@
     "thesis_key": "SHORT|BREAKER_BLOCK|BREAKOUT_RETEST|767",
     "thesis": "SHORT BREAKER_BLOCK → BREAKOUT_RETEST | src=LIMIT_ARMED | stage=READY",
     "missed_at": "",
-    "signal_id": "655a962e31"
+    "signal_id": "4b3439f99b"
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1783613700000,
+    "last_scanned_3m_ts": 1783614600000,
     "last_run_processed": 5,
-    "processed_count": 1347,
+    "processed_count": 1352,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -47,7 +47,7 @@
         "event_price": 72.93,
         "invalidation_level": 72.93,
         "sweep_level": 72.93,
-        "extreme": 76.38,
+        "extreme": 76.33,
         "displacement": true,
         "retest_ts": 1783403640000,
         "ready_ts": 1783403820000,
@@ -57,7 +57,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 80,
         "retest_quality": 80,
-        "processed_bars": 1347,
+        "processed_bars": 1352,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -80,7 +80,7 @@
         "event_price": 72.93,
         "invalidation_level": 72.93,
         "sweep_level": 72.93,
-        "extreme": 76.52,
+        "extreme": 76.38,
         "displacement": true,
         "retest_ts": 1783391760000,
         "ready_ts": 1783391940000,
@@ -90,7 +90,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 68,
         "retest_quality": 68,
-        "processed_bars": 1347,
+        "processed_bars": 1352,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -108,19 +108,19 @@
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 13,
+    "stable_count": 14,
     "pending_count": 0,
-    "updated_at": "2026-07-09T16:15:48.790061+00:00"
+    "updated_at": "2026-07-09T16:31:13.863293+00:00"
   },
   "latest_signal": {
-    "id": "655a962e31",
-    "time": "2026-07-09T16:15:48.803760+00:00",
+    "id": "4b3439f99b",
+    "time": "2026-07-09T16:31:13.883020+00:00",
     "action": "ARMED",
     "side": "SHORT",
     "setup_type": "BREAKOUT_RETEST",
-    "quality": 66,
-    "decision_quality": 66,
-    "reason": "[BREAKER_BLOCK] PROBE/LIMIT_ARMED: сетап сформовано; gate v6.10: WATCH",
+    "quality": 63,
+    "decision_quality": 63,
+    "reason": "[BREAKER_BLOCK] thesis не заблокована, але trigger старий: чекаємо свіжу 3M/15M сетапну аргументацію",
     "regime": "TRANSITION",
     "news_bias": "NEUTRAL",
     "macro_risk": "NORMAL",
@@ -129,12 +129,12 @@
     "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
     "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY",
     "learning_status": {
-      "updated_at": "2026-07-09T16:15:47.073693+00:00",
+      "updated_at": "2026-07-09T16:31:12.005501+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
       "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
-      "training_signals": 124,
+      "training_signals": 125,
       "signal_events": 382,
       "closed_trades": 76,
       "training_rows": 24,
@@ -241,47 +241,47 @@
         "side": "SHORT",
         "model": "BREAKER_BLOCK",
         "setup_type": "BREAKOUT_RETEST",
-        "final_score": 66,
-        "hypothesis_score": 67.68,
-        "setup_q": 96,
+        "final_score": 63,
+        "hypothesis_score": 64.68,
+        "setup_q": 90,
         "execution_q": 65,
-        "plan_q": 50,
+        "plan_q": 48,
         "execution_source": "LIMIT_ARMED",
-        "entry_stage": "PROBE",
-        "trigger_age_min": 3696.8,
-        "target_magnet": 3.37,
-        "innovation_model": "SETUP_ARGUMENTED_TRIGGER_REVALIDATION",
+        "entry_stage": "WAIT_RETEST",
+        "trigger_age_min": 3712.2,
+        "target_magnet": 3.26,
+        "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
         "innovation_risk_mult": 0.35,
         "revalidation_state": "ARCHIVED_THESIS",
-        "revalidation_supported": true,
-        "entry_timing": "SETUP_REVALIDATED_NOW"
+        "revalidation_supported": false,
+        "entry_timing": "ARMED_WAIT_FRESH_ARGUMENT"
       },
       "trigger_revalidation": {
         "enabled": true,
         "version": "v6.15_setup_argumented_trigger_revalidation",
         "state": "ARCHIVED_THESIS",
         "source": "LIMIT_ARMED",
-        "age_min": 3696.8,
+        "age_min": 3712.2,
         "needs_revalidation": true,
-        "revalidated": true,
-        "entry_supported": true,
-        "entry_timing": "SETUP_REVALIDATED_NOW",
+        "revalidated": false,
+        "entry_supported": false,
+        "entry_timing": "ARMED_WAIT_FRESH_ARGUMENT",
         "not_late_location": true,
-        "distance_from_anchor_atr": 0.61,
+        "distance_from_anchor_atr": 1.22,
         "micro_confirmation": {
-          "supported": true,
-          "kind": "LIVE_DIRECTIONAL_ACCEPTANCE",
-          "score": 85,
+          "supported": false,
+          "kind": "WEAK_OR_MISSING",
+          "score": 20,
           "checks": [
             {
               "name": "directional_3m_close",
-              "ok": true
+              "ok": false
             },
             {
               "name": "strong_3m_body",
-              "ok": true,
-              "body_atr": 0.318,
-              "body_ratio": 0.929
+              "ok": false,
+              "body_atr": 0.08,
+              "body_ratio": 0.6
             },
             {
               "name": "15m_acceptance",
@@ -294,12 +294,11 @@
           ]
         },
         "risk_multiplier": 0.35,
-        "stage_override": "PROBE",
-        "action_bias": "PROBE_ENTRY",
+        "stage_override": "WAIT_RETEST",
+        "action_bias": "ARMED_REVALIDATION",
         "setup_arguments": [
           "limit/zone still armed",
-          "fresh LIVE_DIRECTIONAL_ACCEPTANCE on 3M/15M",
-          "price not late vs anchor: 0.61 ATR",
+          "price not late vs anchor: 1.22 ATR",
           "time-warp is thesis memory, not live execution"
         ],
         "no_hard_block": true,
@@ -311,158 +310,138 @@
           "side": "SHORT",
           "model": "BREAKER_BLOCK",
           "setup_type": "BREAKOUT_RETEST",
-          "final_score": 66,
-          "hypothesis_score": 67.68,
-          "setup_q": 96,
+          "final_score": 63,
+          "hypothesis_score": 64.68,
+          "setup_q": 90,
           "execution_q": 65,
-          "plan_q": 50,
+          "plan_q": 48,
           "execution_source": "LIMIT_ARMED",
-          "entry_stage": "PROBE",
-          "trigger_age_min": 3696.8,
-          "target_magnet": 3.37,
-          "innovation_model": "SETUP_ARGUMENTED_TRIGGER_REVALIDATION",
+          "entry_stage": "WAIT_RETEST",
+          "trigger_age_min": 3712.2,
+          "target_magnet": 3.26,
+          "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.35,
           "revalidation_state": "ARCHIVED_THESIS",
-          "revalidation_supported": true,
-          "entry_timing": "SETUP_REVALIDATED_NOW"
+          "revalidation_supported": false,
+          "entry_timing": "ARMED_WAIT_FRESH_ARGUMENT"
         },
         {
           "rank": 2,
           "side": "SHORT",
           "model": "LIQUIDITY_LADDER_MODEL",
           "setup_type": "LIQUIDITY_LADDER",
-          "final_score": 65,
-          "hypothesis_score": 66.53,
-          "setup_q": 100,
+          "final_score": 63,
+          "hypothesis_score": 64.54,
+          "setup_q": 98,
           "execution_q": 57,
-          "plan_q": 50,
+          "plan_q": 49,
           "execution_source": "LIQUIDITY_LADDER",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 3696.8,
-          "target_magnet": 3.67,
-          "innovation_model": "SETUP_ARGUMENTED_TRIGGER_REVALIDATION",
+          "trigger_age_min": 3712.2,
+          "target_magnet": 3.86,
+          "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.35,
           "revalidation_state": "ARCHIVED_THESIS",
-          "revalidation_supported": true,
-          "entry_timing": "SETUP_REVALIDATED_NOW"
+          "revalidation_supported": false,
+          "entry_timing": "ARMED_WAIT_FRESH_ARGUMENT"
         },
         {
           "rank": 3,
           "side": "SHORT",
           "model": "TIME_OF_DAY_ADAPTIVE",
           "setup_type": "TIME_OF_DAY_ADAPTIVE",
-          "final_score": 64,
-          "hypothesis_score": 65.29,
-          "setup_q": 96,
+          "final_score": 61,
+          "hypothesis_score": 62.3,
+          "setup_q": 90,
           "execution_q": 55,
-          "plan_q": 50,
+          "plan_q": 49,
           "execution_source": "TIME_OF_DAY",
-          "entry_stage": "PROBE",
-          "trigger_age_min": 3696.8,
-          "target_magnet": 3.67,
-          "innovation_model": "SETUP_ARGUMENTED_TRIGGER_REVALIDATION",
+          "entry_stage": "WAIT_RETEST",
+          "trigger_age_min": 3712.2,
+          "target_magnet": 3.86,
+          "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.35,
           "revalidation_state": "ARCHIVED_THESIS",
-          "revalidation_supported": true,
-          "entry_timing": "SETUP_REVALIDATED_NOW"
+          "revalidation_supported": false,
+          "entry_timing": "ARMED_WAIT_FRESH_ARGUMENT"
         },
         {
           "rank": 4,
           "side": "SHORT",
           "model": "SILVER_BULLET",
           "setup_type": "PULLBACK_CONTINUATION",
-          "final_score": 63,
-          "hypothesis_score": 64.99,
-          "setup_q": 89,
+          "final_score": 59,
+          "hypothesis_score": 60.98,
+          "setup_q": 83,
           "execution_q": 65,
-          "plan_q": 50,
+          "plan_q": 48,
           "execution_source": "LIMIT_ARMED",
-          "entry_stage": "PROBE",
-          "trigger_age_min": 3696.8,
-          "target_magnet": 3.43,
-          "innovation_model": "SETUP_ARGUMENTED_TRIGGER_REVALIDATION",
+          "entry_stage": "WAIT_RETEST",
+          "trigger_age_min": 3712.2,
+          "target_magnet": 3.32,
+          "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.35,
           "revalidation_state": "ARCHIVED_THESIS",
-          "revalidation_supported": true,
-          "entry_timing": "SETUP_REVALIDATED_NOW"
+          "revalidation_supported": false,
+          "entry_timing": "ARMED_WAIT_FRESH_ARGUMENT"
         },
         {
           "rank": 5,
           "side": "SHORT",
-          "model": "OB_RECLAIM",
-          "setup_type": "FRESH_BASE_CONTINUATION",
-          "final_score": 61,
-          "hypothesis_score": 62.84,
-          "setup_q": 85,
-          "execution_q": 65,
-          "plan_q": 50,
+          "model": "TREND_IGNITION_MODEL",
+          "setup_type": "TREND_IGNITION",
+          "final_score": 58,
+          "hypothesis_score": 59.69,
+          "setup_q": 86,
+          "execution_q": 66,
+          "plan_q": 48,
           "execution_source": "LIMIT_ARMED",
-          "entry_stage": "PROBE",
-          "trigger_age_min": 3696.8,
-          "target_magnet": 3.37,
-          "innovation_model": "SETUP_ARGUMENTED_TRIGGER_REVALIDATION",
+          "entry_stage": "WAIT_RETEST",
+          "trigger_age_min": 3712.2,
+          "target_magnet": 1.8,
+          "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.35,
           "revalidation_state": "ARCHIVED_THESIS",
-          "revalidation_supported": true,
-          "entry_timing": "SETUP_REVALIDATED_NOW"
+          "revalidation_supported": false,
+          "entry_timing": "ARMED_WAIT_FRESH_ARGUMENT"
         },
         {
           "rank": 6,
           "side": "SHORT",
-          "model": "TREND_IGNITION_MODEL",
-          "setup_type": "TREND_IGNITION",
-          "final_score": 61,
-          "hypothesis_score": 62.69,
-          "setup_q": 92,
-          "execution_q": 66,
-          "plan_q": 49,
-          "execution_source": "LIMIT_ARMED",
-          "entry_stage": "PROBE",
-          "trigger_age_min": 3696.8,
-          "target_magnet": 1.9,
-          "innovation_model": "SETUP_ARGUMENTED_TRIGGER_REVALIDATION",
-          "innovation_risk_mult": 0.35,
-          "revalidation_state": "ARCHIVED_THESIS",
-          "revalidation_supported": true,
-          "entry_timing": "SETUP_REVALIDATED_NOW"
-        },
-        {
-          "rank": 7,
-          "side": "SHORT",
           "model": "BMS_RETEST",
           "setup_type": "BREAKOUT_RETEST",
-          "final_score": 61,
-          "hypothesis_score": 62.49,
-          "setup_q": 82,
+          "final_score": 58,
+          "hypothesis_score": 59.48,
+          "setup_q": 76,
           "execution_q": 65,
-          "plan_q": 50,
+          "plan_q": 48,
           "execution_source": "LIMIT_ARMED",
-          "entry_stage": "PROBE",
-          "trigger_age_min": 3696.8,
-          "target_magnet": 3.43,
-          "innovation_model": "SETUP_ARGUMENTED_TRIGGER_REVALIDATION",
+          "entry_stage": "WAIT_RETEST",
+          "trigger_age_min": 3712.2,
+          "target_magnet": 3.32,
+          "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.35,
           "revalidation_state": "ARCHIVED_THESIS",
-          "revalidation_supported": true,
-          "entry_timing": "SETUP_REVALIDATED_NOW"
+          "revalidation_supported": false,
+          "entry_timing": "ARMED_WAIT_FRESH_ARGUMENT"
         }
       ],
-      "candidate_count": 7
+      "candidate_count": 6
     },
     "setup_family": "EXPANSION",
     "ict_model": "BREAKER_BLOCK",
-    "candidate_final_score": 66,
-    "candidate_raw_score": 120,
+    "candidate_final_score": 63,
+    "candidate_raw_score": 114,
     "execution_lane": "LIMIT_ONLY",
     "execution_source": "LIMIT_ARMED",
-    "entry_stage": "PROBE",
+    "entry_stage": "WAIT_RETEST",
     "stage_plan": {
-      "stage": "PROBE",
+      "stage": "WAIT_RETEST",
       "base_risk_pct": 0.3,
       "scale_plan": [
         "Ліміт на CE/FVG; додавання тільки після acceptance close",
-        "v6.14 old trigger переаргументовано свіжим 3M/15M setup → probe зараз, без підвищення quality",
-        "v6.14 plan_q 50 → defensive construction, без підвищення порогу входу",
+        "v6.14 old trigger лишається thesis memory → чекаємо свіжий 3M/15M setup argument, без hard block",
+        "v6.14 plan_q 48 → defensive construction, без підвищення порогу входу",
         "v6.13 breathing: hard stop ширший за noise envelope; sizing x0.726"
       ],
       "probe_pct": 0.12,
@@ -472,36 +451,36 @@
       "innovation_profile": {
         "enabled": true,
         "version": "v6.14_nonblocking_setup_innovation",
-        "primary": "SETUP_ARGUMENTED_TRIGGER_REVALIDATION",
+        "primary": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
         "risk_multiplier": 0.35,
-        "stage_override": "PROBE",
+        "stage_override": "WAIT_RETEST",
         "partial_mode": "DEFENSIVE_TP0",
         "target_router": {
-          "mode": "SETUP_REVALIDATED_SCOUT",
+          "mode": "WAIT_FRESH_SETUP_ARGUMENT",
           "ladder": {
             "count": 3,
-            "score_sum": 6.51,
+            "score_sum": 6.3,
             "nearest": [
               {
                 "kind": "RANGE_LOW",
                 "tf": "15m",
-                "level": 76.31,
-                "magnet": 1.38,
-                "dist_atr": 0.98
+                "level": 76.26,
+                "magnet": 1.33,
+                "dist_atr": 1.19
               },
               {
                 "kind": "SSL_LIQUIDITY",
                 "tf": "15m",
                 "level": 75.77,
-                "magnet": 1.76,
-                "dist_atr": 2.3
+                "magnet": 1.71,
+                "dist_atr": 2.49
               },
               {
                 "kind": "PDL",
                 "tf": "1D",
                 "level": 75.48,
-                "magnet": 3.37,
-                "dist_atr": 3.01
+                "magnet": 3.26,
+                "dist_atr": 3.26
               }
             ]
           }
@@ -511,27 +490,27 @@
           "version": "v6.15_setup_argumented_trigger_revalidation",
           "state": "ARCHIVED_THESIS",
           "source": "LIMIT_ARMED",
-          "age_min": 3696.8,
+          "age_min": 3712.2,
           "needs_revalidation": true,
-          "revalidated": true,
-          "entry_supported": true,
-          "entry_timing": "SETUP_REVALIDATED_NOW",
+          "revalidated": false,
+          "entry_supported": false,
+          "entry_timing": "ARMED_WAIT_FRESH_ARGUMENT",
           "not_late_location": true,
-          "distance_from_anchor_atr": 0.61,
+          "distance_from_anchor_atr": 1.22,
           "micro_confirmation": {
-            "supported": true,
-            "kind": "LIVE_DIRECTIONAL_ACCEPTANCE",
-            "score": 85,
+            "supported": false,
+            "kind": "WEAK_OR_MISSING",
+            "score": 20,
             "checks": [
               {
                 "name": "directional_3m_close",
-                "ok": true
+                "ok": false
               },
               {
                 "name": "strong_3m_body",
-                "ok": true,
-                "body_atr": 0.318,
-                "body_ratio": 0.929
+                "ok": false,
+                "body_atr": 0.08,
+                "body_ratio": 0.6
               },
               {
                 "name": "15m_acceptance",
@@ -544,33 +523,32 @@
             ]
           },
           "risk_multiplier": 0.35,
-          "stage_override": "PROBE",
-          "action_bias": "PROBE_ENTRY",
+          "stage_override": "WAIT_RETEST",
+          "action_bias": "ARMED_REVALIDATION",
           "setup_arguments": [
             "limit/zone still armed",
-            "fresh LIVE_DIRECTIONAL_ACCEPTANCE on 3M/15M",
-            "price not late vs anchor: 0.61 ATR",
+            "price not late vs anchor: 1.22 ATR",
             "time-warp is thesis memory, not live execution"
           ],
           "no_hard_block": true,
           "quality_threshold_changed": false
         },
-        "entry_supported_now": true,
+        "entry_supported_now": false,
         "impulse": {
           "valid": true,
-          "impulse_atr": 3.13,
+          "impulse_atr": 3.53,
           "body_efficiency": 0.49,
-          "direction_closes_5": 4,
-          "compression_ratio": 0.88,
-          "giveback_ratio": 0.05,
-          "last_range_atr": 0.37
+          "direction_closes_5": 3,
+          "compression_ratio": 0.83,
+          "giveback_ratio": 0.09,
+          "last_range_atr": 0.13
         },
-        "trigger_age_min": 3696.8,
-        "target_magnet": 3.37,
-        "plan_q": 50,
+        "trigger_age_min": 3712.2,
+        "target_magnet": 3.26,
+        "plan_q": 48,
         "notes": [
-          "old trigger переаргументовано свіжим 3M/15M setup → probe зараз, без підвищення quality",
-          "plan_q 50 → defensive construction, без підвищення порогу входу"
+          "old trigger лишається thesis memory → чекаємо свіжий 3M/15M setup argument, без hard block",
+          "plan_q 48 → defensive construction, без підвищення порогу входу"
         ],
         "no_block": true,
         "quality_threshold_changed": false
@@ -582,13 +560,13 @@
         "catastrophic_distance": 0.551,
         "conventional_distance": 0.4,
         "risk_size_multiplier": 0.726,
-        "tp1_floor_distance": 1.227857,
+        "tp1_floor_distance": 1.131429,
         "tp0_floor_distance": 0.551,
         "noise": {
           "tr_p70": 0.42,
           "tr_p85": 0.5295,
-          "current_tr": 0.306964,
-          "fallback": 0.409286,
+          "current_tr": 0.282857,
+          "fallback": 0.377143,
           "sample_size": 48
         },
         "mode": "TRADE_BREATHING_GEOMETRY"
@@ -598,10 +576,10 @@
     "live_3m_trigger_ready": false,
     "limit_armed_ready": true,
     "time_warp_ready": true,
-    "trigger_age_minutes": 3696.81,
+    "trigger_age_minutes": 3712.23,
     "score_components": {
-      "legacy_raw_score": 120.36,
-      "loc_score": 45,
+      "legacy_raw_score": 114.36,
+      "loc_score": 39,
       "str_score": 21.85,
       "liq_score": 1.01,
       "flw_score": 0.0,
@@ -611,7 +589,7 @@
       "session_bonus": 0.0,
       "vector_bonus": 0.0,
       "features": {
-        "loc": 1.0,
+        "loc": 0.8667,
         "structure": 0.9104,
         "liquidity": 0.042,
         "flow": 0.0,
@@ -627,26 +605,26 @@
       },
       "gates": {
         "trigger_gate": 1.0,
-        "location_gate": 1.0,
+        "location_gate": 0.949,
         "pattern_gate": 1.0,
         "forward_zone_gate": 0.9,
         "exhaustion_gate": 1.0,
         "liquidity_gate": 1.0,
         "trend_gate": 0.691,
         "htf_late_gate": 1.0,
-        "product": 0.622
+        "product": 0.59
       },
-      "probability": 0.5909,
-      "base_probability": 0.95,
+      "probability": 0.5576,
+      "base_probability": 0.9451,
       "model_source": "bootstrap",
       "sample_size": 24,
       "learned_weight": 0.0,
-      "setup_quality": 96,
+      "setup_quality": 90,
       "execution_quality": 65,
-      "trade_plan_quality": 50,
-      "organic_score": 74,
-      "hypothesis_score": 67.68,
-      "active_model_count": 7,
+      "trade_plan_quality": 48,
+      "organic_score": 71,
+      "hypothesis_score": 64.68,
+      "active_model_count": 6,
       "execution_source": "LIMIT_ARMED",
       "execution_freshness_multiplier": 0.88,
       "live_3m_trigger_ready": false,
@@ -665,47 +643,47 @@
       "entry_contract": {
         "entry_anchor": 76.71,
         "entry_basis": "BREAKER_BLOCK OB reclaim midpoint",
-        "invalidation_level": 77.0437,
+        "invalidation_level": 77.0379,
         "invalidation_basis": "BREAKER_BLOCK OB invalidation",
         "target_level": 75.48,
         "target_basis": "PDL 1D magnet",
-        "target_magnet_score": 3.37
+        "target_magnet_score": 3.26
       },
       "acceptance_retest": {},
       "acceleration_reentry": {},
       "innovation_profile": {
         "enabled": true,
         "version": "v6.14_nonblocking_setup_innovation",
-        "primary": "SETUP_ARGUMENTED_TRIGGER_REVALIDATION",
+        "primary": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
         "risk_multiplier": 0.35,
-        "stage_override": "PROBE",
+        "stage_override": "WAIT_RETEST",
         "partial_mode": "DEFENSIVE_TP0",
         "target_router": {
-          "mode": "SETUP_REVALIDATED_SCOUT",
+          "mode": "WAIT_FRESH_SETUP_ARGUMENT",
           "ladder": {
             "count": 3,
-            "score_sum": 6.51,
+            "score_sum": 6.3,
             "nearest": [
               {
                 "kind": "RANGE_LOW",
                 "tf": "15m",
-                "level": 76.31,
-                "magnet": 1.38,
-                "dist_atr": 0.98
+                "level": 76.26,
+                "magnet": 1.33,
+                "dist_atr": 1.19
               },
               {
                 "kind": "SSL_LIQUIDITY",
                 "tf": "15m",
                 "level": 75.77,
-                "magnet": 1.76,
-                "dist_atr": 2.3
+                "magnet": 1.71,
+                "dist_atr": 2.49
               },
               {
                 "kind": "PDL",
                 "tf": "1D",
                 "level": 75.48,
-                "magnet": 3.37,
-                "dist_atr": 3.01
+                "magnet": 3.26,
+                "dist_atr": 3.26
               }
             ]
           }
@@ -715,27 +693,27 @@
           "version": "v6.15_setup_argumented_trigger_revalidation",
           "state": "ARCHIVED_THESIS",
           "source": "LIMIT_ARMED",
-          "age_min": 3696.8,
+          "age_min": 3712.2,
           "needs_revalidation": true,
-          "revalidated": true,
-          "entry_supported": true,
-          "entry_timing": "SETUP_REVALIDATED_NOW",
+          "revalidated": false,
+          "entry_supported": false,
+          "entry_timing": "ARMED_WAIT_FRESH_ARGUMENT",
           "not_late_location": true,
-          "distance_from_anchor_atr": 0.61,
+          "distance_from_anchor_atr": 1.22,
           "micro_confirmation": {
-            "supported": true,
-            "kind": "LIVE_DIRECTIONAL_ACCEPTANCE",
-            "score": 85,
+            "supported": false,
+            "kind": "WEAK_OR_MISSING",
+            "score": 20,
             "checks": [
               {
                 "name": "directional_3m_close",
-                "ok": true
+                "ok": false
               },
               {
                 "name": "strong_3m_body",
-                "ok": true,
-                "body_atr": 0.318,
-                "body_ratio": 0.929
+                "ok": false,
+                "body_atr": 0.08,
+                "body_ratio": 0.6
               },
               {
                 "name": "15m_acceptance",
@@ -748,33 +726,32 @@
             ]
           },
           "risk_multiplier": 0.35,
-          "stage_override": "PROBE",
-          "action_bias": "PROBE_ENTRY",
+          "stage_override": "WAIT_RETEST",
+          "action_bias": "ARMED_REVALIDATION",
           "setup_arguments": [
             "limit/zone still armed",
-            "fresh LIVE_DIRECTIONAL_ACCEPTANCE on 3M/15M",
-            "price not late vs anchor: 0.61 ATR",
+            "price not late vs anchor: 1.22 ATR",
             "time-warp is thesis memory, not live execution"
           ],
           "no_hard_block": true,
           "quality_threshold_changed": false
         },
-        "entry_supported_now": true,
+        "entry_supported_now": false,
         "impulse": {
           "valid": true,
-          "impulse_atr": 3.13,
+          "impulse_atr": 3.53,
           "body_efficiency": 0.49,
-          "direction_closes_5": 4,
-          "compression_ratio": 0.88,
-          "giveback_ratio": 0.05,
-          "last_range_atr": 0.37
+          "direction_closes_5": 3,
+          "compression_ratio": 0.83,
+          "giveback_ratio": 0.09,
+          "last_range_atr": 0.13
         },
-        "trigger_age_min": 3696.8,
-        "target_magnet": 3.37,
-        "plan_q": 50,
+        "trigger_age_min": 3712.2,
+        "target_magnet": 3.26,
+        "plan_q": 48,
         "notes": [
-          "old trigger переаргументовано свіжим 3M/15M setup → probe зараз, без підвищення quality",
-          "plan_q 50 → defensive construction, без підвищення порогу входу"
+          "old trigger лишається thesis memory → чекаємо свіжий 3M/15M setup argument, без hard block",
+          "plan_q 48 → defensive construction, без підвищення порогу входу"
         ],
         "no_block": true,
         "quality_threshold_changed": false
@@ -784,27 +761,27 @@
         "version": "v6.15_setup_argumented_trigger_revalidation",
         "state": "ARCHIVED_THESIS",
         "source": "LIMIT_ARMED",
-        "age_min": 3696.8,
+        "age_min": 3712.2,
         "needs_revalidation": true,
-        "revalidated": true,
-        "entry_supported": true,
-        "entry_timing": "SETUP_REVALIDATED_NOW",
+        "revalidated": false,
+        "entry_supported": false,
+        "entry_timing": "ARMED_WAIT_FRESH_ARGUMENT",
         "not_late_location": true,
-        "distance_from_anchor_atr": 0.61,
+        "distance_from_anchor_atr": 1.22,
         "micro_confirmation": {
-          "supported": true,
-          "kind": "LIVE_DIRECTIONAL_ACCEPTANCE",
-          "score": 85,
+          "supported": false,
+          "kind": "WEAK_OR_MISSING",
+          "score": 20,
           "checks": [
             {
               "name": "directional_3m_close",
-              "ok": true
+              "ok": false
             },
             {
               "name": "strong_3m_body",
-              "ok": true,
-              "body_atr": 0.318,
-              "body_ratio": 0.929
+              "ok": false,
+              "body_atr": 0.08,
+              "body_ratio": 0.6
             },
             {
               "name": "15m_acceptance",
@@ -817,12 +794,11 @@
           ]
         },
         "risk_multiplier": 0.35,
-        "stage_override": "PROBE",
-        "action_bias": "PROBE_ENTRY",
+        "stage_override": "WAIT_RETEST",
+        "action_bias": "ARMED_REVALIDATION",
         "setup_arguments": [
           "limit/zone still armed",
-          "fresh LIVE_DIRECTIONAL_ACCEPTANCE on 3M/15M",
-          "price not late vs anchor: 0.61 ATR",
+          "price not late vs anchor: 1.22 ATR",
           "time-warp is thesis memory, not live execution"
         ],
         "no_hard_block": true,
@@ -836,145 +812,125 @@
           "side": "SHORT",
           "model": "BREAKER_BLOCK",
           "setup_type": "BREAKOUT_RETEST",
-          "final_score": 66,
-          "hypothesis_score": 67.68,
-          "setup_q": 96,
+          "final_score": 63,
+          "hypothesis_score": 64.68,
+          "setup_q": 90,
           "execution_q": 65,
-          "plan_q": 50,
+          "plan_q": 48,
           "execution_source": "LIMIT_ARMED",
-          "entry_stage": "PROBE",
-          "trigger_age_min": 3696.8,
-          "target_magnet": 3.37,
-          "innovation_model": "SETUP_ARGUMENTED_TRIGGER_REVALIDATION",
+          "entry_stage": "WAIT_RETEST",
+          "trigger_age_min": 3712.2,
+          "target_magnet": 3.26,
+          "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.35,
           "revalidation_state": "ARCHIVED_THESIS",
-          "revalidation_supported": true,
-          "entry_timing": "SETUP_REVALIDATED_NOW"
+          "revalidation_supported": false,
+          "entry_timing": "ARMED_WAIT_FRESH_ARGUMENT"
         },
         {
           "rank": 2,
           "side": "SHORT",
           "model": "LIQUIDITY_LADDER_MODEL",
           "setup_type": "LIQUIDITY_LADDER",
-          "final_score": 65,
-          "hypothesis_score": 66.53,
-          "setup_q": 100,
+          "final_score": 63,
+          "hypothesis_score": 64.54,
+          "setup_q": 98,
           "execution_q": 57,
-          "plan_q": 50,
+          "plan_q": 49,
           "execution_source": "LIQUIDITY_LADDER",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 3696.8,
-          "target_magnet": 3.67,
-          "innovation_model": "SETUP_ARGUMENTED_TRIGGER_REVALIDATION",
+          "trigger_age_min": 3712.2,
+          "target_magnet": 3.86,
+          "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.35,
           "revalidation_state": "ARCHIVED_THESIS",
-          "revalidation_supported": true,
-          "entry_timing": "SETUP_REVALIDATED_NOW"
+          "revalidation_supported": false,
+          "entry_timing": "ARMED_WAIT_FRESH_ARGUMENT"
         },
         {
           "rank": 3,
           "side": "SHORT",
           "model": "TIME_OF_DAY_ADAPTIVE",
           "setup_type": "TIME_OF_DAY_ADAPTIVE",
-          "final_score": 64,
-          "hypothesis_score": 65.29,
-          "setup_q": 96,
+          "final_score": 61,
+          "hypothesis_score": 62.3,
+          "setup_q": 90,
           "execution_q": 55,
-          "plan_q": 50,
+          "plan_q": 49,
           "execution_source": "TIME_OF_DAY",
-          "entry_stage": "PROBE",
-          "trigger_age_min": 3696.8,
-          "target_magnet": 3.67,
-          "innovation_model": "SETUP_ARGUMENTED_TRIGGER_REVALIDATION",
+          "entry_stage": "WAIT_RETEST",
+          "trigger_age_min": 3712.2,
+          "target_magnet": 3.86,
+          "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.35,
           "revalidation_state": "ARCHIVED_THESIS",
-          "revalidation_supported": true,
-          "entry_timing": "SETUP_REVALIDATED_NOW"
+          "revalidation_supported": false,
+          "entry_timing": "ARMED_WAIT_FRESH_ARGUMENT"
         },
         {
           "rank": 4,
           "side": "SHORT",
           "model": "SILVER_BULLET",
           "setup_type": "PULLBACK_CONTINUATION",
-          "final_score": 63,
-          "hypothesis_score": 64.99,
-          "setup_q": 89,
+          "final_score": 59,
+          "hypothesis_score": 60.98,
+          "setup_q": 83,
           "execution_q": 65,
-          "plan_q": 50,
+          "plan_q": 48,
           "execution_source": "LIMIT_ARMED",
-          "entry_stage": "PROBE",
-          "trigger_age_min": 3696.8,
-          "target_magnet": 3.43,
-          "innovation_model": "SETUP_ARGUMENTED_TRIGGER_REVALIDATION",
+          "entry_stage": "WAIT_RETEST",
+          "trigger_age_min": 3712.2,
+          "target_magnet": 3.32,
+          "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.35,
           "revalidation_state": "ARCHIVED_THESIS",
-          "revalidation_supported": true,
-          "entry_timing": "SETUP_REVALIDATED_NOW"
+          "revalidation_supported": false,
+          "entry_timing": "ARMED_WAIT_FRESH_ARGUMENT"
         },
         {
           "rank": 5,
           "side": "SHORT",
-          "model": "OB_RECLAIM",
-          "setup_type": "FRESH_BASE_CONTINUATION",
-          "final_score": 61,
-          "hypothesis_score": 62.84,
-          "setup_q": 85,
-          "execution_q": 65,
-          "plan_q": 50,
+          "model": "TREND_IGNITION_MODEL",
+          "setup_type": "TREND_IGNITION",
+          "final_score": 58,
+          "hypothesis_score": 59.69,
+          "setup_q": 86,
+          "execution_q": 66,
+          "plan_q": 48,
           "execution_source": "LIMIT_ARMED",
-          "entry_stage": "PROBE",
-          "trigger_age_min": 3696.8,
-          "target_magnet": 3.37,
-          "innovation_model": "SETUP_ARGUMENTED_TRIGGER_REVALIDATION",
+          "entry_stage": "WAIT_RETEST",
+          "trigger_age_min": 3712.2,
+          "target_magnet": 1.8,
+          "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.35,
           "revalidation_state": "ARCHIVED_THESIS",
-          "revalidation_supported": true,
-          "entry_timing": "SETUP_REVALIDATED_NOW"
+          "revalidation_supported": false,
+          "entry_timing": "ARMED_WAIT_FRESH_ARGUMENT"
         },
         {
           "rank": 6,
           "side": "SHORT",
-          "model": "TREND_IGNITION_MODEL",
-          "setup_type": "TREND_IGNITION",
-          "final_score": 61,
-          "hypothesis_score": 62.69,
-          "setup_q": 92,
-          "execution_q": 66,
-          "plan_q": 49,
-          "execution_source": "LIMIT_ARMED",
-          "entry_stage": "PROBE",
-          "trigger_age_min": 3696.8,
-          "target_magnet": 1.9,
-          "innovation_model": "SETUP_ARGUMENTED_TRIGGER_REVALIDATION",
-          "innovation_risk_mult": 0.35,
-          "revalidation_state": "ARCHIVED_THESIS",
-          "revalidation_supported": true,
-          "entry_timing": "SETUP_REVALIDATED_NOW"
-        },
-        {
-          "rank": 7,
-          "side": "SHORT",
           "model": "BMS_RETEST",
           "setup_type": "BREAKOUT_RETEST",
-          "final_score": 61,
-          "hypothesis_score": 62.49,
-          "setup_q": 82,
+          "final_score": 58,
+          "hypothesis_score": 59.48,
+          "setup_q": 76,
           "execution_q": 65,
-          "plan_q": 50,
+          "plan_q": 48,
           "execution_source": "LIMIT_ARMED",
-          "entry_stage": "PROBE",
-          "trigger_age_min": 3696.8,
-          "target_magnet": 3.43,
-          "innovation_model": "SETUP_ARGUMENTED_TRIGGER_REVALIDATION",
+          "entry_stage": "WAIT_RETEST",
+          "trigger_age_min": 3712.2,
+          "target_magnet": 3.32,
+          "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.35,
           "revalidation_state": "ARCHIVED_THESIS",
-          "revalidation_supported": true,
-          "entry_timing": "SETUP_REVALIDATED_NOW"
+          "revalidation_supported": false,
+          "entry_timing": "ARMED_WAIT_FRESH_ARGUMENT"
         }
       ]
     },
     "score_features": {
-      "loc": 1.0,
+      "loc": 0.8667,
       "structure": 0.9104,
       "liquidity": 0.042,
       "flow": 0.0,
@@ -990,14 +946,14 @@
     },
     "score_gates": {
       "trigger_gate": 1.0,
-      "location_gate": 1.0,
+      "location_gate": 0.949,
       "pattern_gate": 1.0,
       "forward_zone_gate": 0.9,
       "exhaustion_gate": 1.0,
       "liquidity_gate": 1.0,
       "trend_gate": 0.691,
       "htf_late_gate": 1.0,
-      "product": 0.622
+      "product": 0.59
     },
     "score_model_source": "bootstrap",
     "score_model_sample_size": 24,
@@ -1005,36 +961,36 @@
     "innovation_profile": {
       "enabled": true,
       "version": "v6.14_nonblocking_setup_innovation",
-      "primary": "SETUP_ARGUMENTED_TRIGGER_REVALIDATION",
+      "primary": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
       "risk_multiplier": 0.35,
-      "stage_override": "PROBE",
+      "stage_override": "WAIT_RETEST",
       "partial_mode": "DEFENSIVE_TP0",
       "target_router": {
-        "mode": "SETUP_REVALIDATED_SCOUT",
+        "mode": "WAIT_FRESH_SETUP_ARGUMENT",
         "ladder": {
           "count": 3,
-          "score_sum": 6.51,
+          "score_sum": 6.3,
           "nearest": [
             {
               "kind": "RANGE_LOW",
               "tf": "15m",
-              "level": 76.31,
-              "magnet": 1.38,
-              "dist_atr": 0.98
+              "level": 76.26,
+              "magnet": 1.33,
+              "dist_atr": 1.19
             },
             {
               "kind": "SSL_LIQUIDITY",
               "tf": "15m",
               "level": 75.77,
-              "magnet": 1.76,
-              "dist_atr": 2.3
+              "magnet": 1.71,
+              "dist_atr": 2.49
             },
             {
               "kind": "PDL",
               "tf": "1D",
               "level": 75.48,
-              "magnet": 3.37,
-              "dist_atr": 3.01
+              "magnet": 3.26,
+              "dist_atr": 3.26
             }
           ]
         }
@@ -1044,27 +1000,27 @@
         "version": "v6.15_setup_argumented_trigger_revalidation",
         "state": "ARCHIVED_THESIS",
         "source": "LIMIT_ARMED",
-        "age_min": 3696.8,
+        "age_min": 3712.2,
         "needs_revalidation": true,
-        "revalidated": true,
-        "entry_supported": true,
-        "entry_timing": "SETUP_REVALIDATED_NOW",
+        "revalidated": false,
+        "entry_supported": false,
+        "entry_timing": "ARMED_WAIT_FRESH_ARGUMENT",
         "not_late_location": true,
-        "distance_from_anchor_atr": 0.61,
+        "distance_from_anchor_atr": 1.22,
         "micro_confirmation": {
-          "supported": true,
-          "kind": "LIVE_DIRECTIONAL_ACCEPTANCE",
-          "score": 85,
+          "supported": false,
+          "kind": "WEAK_OR_MISSING",
+          "score": 20,
           "checks": [
             {
               "name": "directional_3m_close",
-              "ok": true
+              "ok": false
             },
             {
               "name": "strong_3m_body",
-              "ok": true,
-              "body_atr": 0.318,
-              "body_ratio": 0.929
+              "ok": false,
+              "body_atr": 0.08,
+              "body_ratio": 0.6
             },
             {
               "name": "15m_acceptance",
@@ -1077,33 +1033,32 @@
           ]
         },
         "risk_multiplier": 0.35,
-        "stage_override": "PROBE",
-        "action_bias": "PROBE_ENTRY",
+        "stage_override": "WAIT_RETEST",
+        "action_bias": "ARMED_REVALIDATION",
         "setup_arguments": [
           "limit/zone still armed",
-          "fresh LIVE_DIRECTIONAL_ACCEPTANCE on 3M/15M",
-          "price not late vs anchor: 0.61 ATR",
+          "price not late vs anchor: 1.22 ATR",
           "time-warp is thesis memory, not live execution"
         ],
         "no_hard_block": true,
         "quality_threshold_changed": false
       },
-      "entry_supported_now": true,
+      "entry_supported_now": false,
       "impulse": {
         "valid": true,
-        "impulse_atr": 3.13,
+        "impulse_atr": 3.53,
         "body_efficiency": 0.49,
-        "direction_closes_5": 4,
-        "compression_ratio": 0.88,
-        "giveback_ratio": 0.05,
-        "last_range_atr": 0.37
+        "direction_closes_5": 3,
+        "compression_ratio": 0.83,
+        "giveback_ratio": 0.09,
+        "last_range_atr": 0.13
       },
-      "trigger_age_min": 3696.8,
-      "target_magnet": 3.37,
-      "plan_q": 50,
+      "trigger_age_min": 3712.2,
+      "target_magnet": 3.26,
+      "plan_q": 48,
       "notes": [
-        "old trigger переаргументовано свіжим 3M/15M setup → probe зараз, без підвищення quality",
-        "plan_q 50 → defensive construction, без підвищення порогу входу"
+        "old trigger лишається thesis memory → чекаємо свіжий 3M/15M setup argument, без hard block",
+        "plan_q 48 → defensive construction, без підвищення порогу входу"
       ],
       "no_block": true,
       "quality_threshold_changed": false
@@ -1113,27 +1068,27 @@
       "version": "v6.15_setup_argumented_trigger_revalidation",
       "state": "ARCHIVED_THESIS",
       "source": "LIMIT_ARMED",
-      "age_min": 3696.8,
+      "age_min": 3712.2,
       "needs_revalidation": true,
-      "revalidated": true,
-      "entry_supported": true,
-      "entry_timing": "SETUP_REVALIDATED_NOW",
+      "revalidated": false,
+      "entry_supported": false,
+      "entry_timing": "ARMED_WAIT_FRESH_ARGUMENT",
       "not_late_location": true,
-      "distance_from_anchor_atr": 0.61,
+      "distance_from_anchor_atr": 1.22,
       "micro_confirmation": {
-        "supported": true,
-        "kind": "LIVE_DIRECTIONAL_ACCEPTANCE",
-        "score": 85,
+        "supported": false,
+        "kind": "WEAK_OR_MISSING",
+        "score": 20,
         "checks": [
           {
             "name": "directional_3m_close",
-            "ok": true
+            "ok": false
           },
           {
             "name": "strong_3m_body",
-            "ok": true,
-            "body_atr": 0.318,
-            "body_ratio": 0.929
+            "ok": false,
+            "body_atr": 0.08,
+            "body_ratio": 0.6
           },
           {
             "name": "15m_acceptance",
@@ -1146,12 +1101,11 @@
         ]
       },
       "risk_multiplier": 0.35,
-      "stage_override": "PROBE",
-      "action_bias": "PROBE_ENTRY",
+      "stage_override": "WAIT_RETEST",
+      "action_bias": "ARMED_REVALIDATION",
       "setup_arguments": [
         "limit/zone still armed",
-        "fresh LIVE_DIRECTIONAL_ACCEPTANCE on 3M/15M",
-        "price not late vs anchor: 0.61 ATR",
+        "price not late vs anchor: 1.22 ATR",
         "time-warp is thesis memory, not live execution"
       ],
       "no_hard_block": true,
@@ -1159,8 +1113,8 @@
     },
     "plan_tp0": 76.159,
     "plan_tp1": 75.48,
-    "plan_tp2": 73.9,
-    "plan_tp3": 73.6315,
+    "plan_tp2": 73.69,
+    "plan_tp3": 73.4215,
     "plan_rr0": 1.0,
     "plan_rr1": 2.23,
     "plan_position_risk_pct": 0.0571,
@@ -1171,7 +1125,7 @@
       "tp3_runner": 0.13,
       "mode": "DEFENSIVE_TP0"
     },
-    "target_basis": "TP0: 1.0R/noise service fix | TP1: PDL (1D, magnet 3.3712) | TP2: WEEKLY_OPEN (1D, magnet 1.8585) | TP3: RR-профіль",
+    "target_basis": "TP0: 1.0R/noise service fix | TP1: PDL (1D, magnet 3.2607) | TP2: WEEKLY_OPEN (1D, magnet 1.6896) | TP3: RR-профіль",
     "decision_stop": 77.09,
     "catastrophic_stop": 77.261,
     "breathing_profile": {
@@ -1181,13 +1135,13 @@
       "catastrophic_distance": 0.551,
       "conventional_distance": 0.4,
       "risk_size_multiplier": 0.726,
-      "tp1_floor_distance": 1.227857,
+      "tp1_floor_distance": 1.131429,
       "tp0_floor_distance": 0.551,
       "noise": {
         "tr_p70": 0.42,
         "tr_p85": 0.5295,
-        "current_tr": 0.306964,
-        "fallback": 0.409286,
+        "current_tr": 0.282857,
+        "fallback": 0.377143,
         "sample_size": 48
       },
       "mode": "TRADE_BREATHING_GEOMETRY"
@@ -1195,15 +1149,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 73.71,
-      "trade_id": "7d929886aa",
-      "signal_id": "91170f4677",
-      "time": "2026-07-07T15:31:17.698949+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -2873,7 +2818,15 @@
       "quality": 66,
       "price": 76.46,
       "time": "2026-07-09T16:15:48.803875+00:00"
+    },
+    {
+      "type": "ARMED",
+      "side": "SHORT",
+      "setup_type": "BREAKOUT_RETEST",
+      "quality": 63,
+      "price": 76.25,
+      "time": "2026-07-09T16:31:13.883125+00:00"
     }
   ],
-  "updated_at": "2026-07-09T16:15:49.193132+00:00"
+  "updated_at": "2026-07-09T16:31:14.207492+00:00"
 }
