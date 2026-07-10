@@ -71,12 +71,47 @@ from typing import Any, Optional
 
 import requests
 
+
+def get_htf_state(candidate: Any) -> str:
+    """
+    Unified HTF state resolver.
+    Single source of truth for execution, sizing and audit.
+    """
+    if candidate is None:
+        return "neutral"
+
+    direct = getattr(candidate, "htf_state", None)
+    if direct:
+        return str(direct)
+
+    components = getattr(candidate, "score_components", {}) or {}
+    if components.get("htf_state"):
+        return str(components["htf_state"])
+
+    features = components.get("features", {}) or {}
+    if features.get("htf_state"):
+        return str(features["htf_state"])
+
+    htf_score = components.get("htf_score", features.get("htf", 0))
+
+    try:
+        score = float(htf_score)
+        if score >= 0.65:
+            return "bullish"
+        if score <= 0.35:
+            return "bearish"
+    except Exception:
+        pass
+
+    return "neutral"
+
+
 # ==========================================================
 # CONFIGURATION
 # ==========================================================
 
-BOT_VERSION = "pro-hybrid-confluence-v6.15-setup-argumented-trigger-revalidation"
-ARCHITECTURE_VERSION = "HYBRID_CONFLUENCE_V6_4"
+BOT_VERSION = "pro-hybrid-confluence-v6.19-oil15m-consolidated"
+ARCHITECTURE_VERSION = "HYBRID_CONFLUENCE_V6_19"
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
@@ -154,6 +189,20 @@ SETUP_REVALIDATION_MAX_LATE_DIST_ATR = float(os.getenv("SETUP_REVALIDATION_MAX_L
 SETUP_REVALIDATION_BODY_ATR_MIN = float(os.getenv("SETUP_REVALIDATION_BODY_ATR_MIN", "0.16") or 0.16)
 SETUP_REVALIDATION_BODY_RATIO_MIN = float(os.getenv("SETUP_REVALIDATION_BODY_RATIO_MIN", "0.52") or 0.52)
 SETUP_REVALIDATION_ACCEPTANCE_ATR = float(os.getenv("SETUP_REVALIDATION_ACCEPTANCE_ATR", "0.42") or 0.42)
+
+# === v6.16 Adaptive Execution Patch ===
+# HTF більше не hard-block risky entry: воно зменшує ризик, якщо execution підтверджений.
+HTF_RISKY_OVERRIDE = os.getenv("HTF_RISKY_OVERRIDE", "true").lower() in {"1", "true", "yes"}
+HTF_OVERRIDE_MIN_SCORE = float(os.getenv("HTF_OVERRIDE_MIN_SCORE", "72") or 72)
+HTF_OVERRIDE_RISK_MULT = float(os.getenv("HTF_OVERRIDE_RISK_MULT", "0.45") or 0.45)
+
+# Старі thesis не зависають ARMED назавжди.
+STALE_THESIS_PROBE_ATR = float(os.getenv("STALE_THESIS_PROBE_ATR", "1.5") or 1.5)
+STALE_THESIS_ACCEPTANCE_REQUIRED = os.getenv("STALE_THESIS_ACCEPTANCE_REQUIRED", "true").lower() in {"1", "true", "yes"}
+
+# Missed move audit
+MISSED_MOVE_ATR = float(os.getenv("MISSED_MOVE_ATR", "1.8") or 1.8)
+
 SETUP_REVALIDATION_RISK_MULT_STALE = float(os.getenv("SETUP_REVALIDATION_RISK_MULT_STALE", "0.55") or 0.55)
 SETUP_REVALIDATION_RISK_MULT_EXTREME = float(os.getenv("SETUP_REVALIDATION_RISK_MULT_EXTREME", "0.35") or 0.35)
 
@@ -166,6 +215,41 @@ WEAK_DIRECTION_RISK_MULTIPLIER = float(os.getenv("WEAK_DIRECTION_RISK_MULTIPLIER
 TIME_WARP_SCORE_MULTIPLIER = float(os.getenv("TIME_WARP_SCORE_MULTIPLIER", "0.70") or 0.70)
 STALE_TRIGGER_SCORE_MULTIPLIER = float(os.getenv("STALE_TRIGGER_SCORE_MULTIPLIER", "0.62") or 0.62)
 LIMIT_ARMED_SCORE_MULTIPLIER = float(os.getenv("LIMIT_ARMED_SCORE_MULTIPLIER", "0.88") or 0.88)
+
+
+# === v6.17 Institutional Adaptive Engine ===
+# Додатковий execution layer: не замінює існуючу логіку, а модулює ризик.
+INSTITUTIONAL_ADAPTIVE_ENGINE = os.getenv("INSTITUTIONAL_ADAPTIVE_ENGINE", "true").lower() in {"1", "true", "yes"}
+
+PRO_SCORE_LIQUIDITY_WEIGHT = float(os.getenv("PRO_SCORE_LIQUIDITY_WEIGHT", "1.0") or 1.0)
+PRO_SCORE_TRIGGER_WEIGHT = float(os.getenv("PRO_SCORE_TRIGGER_WEIGHT", "1.15") or 1.15)
+PRO_SCORE_STRUCTURE_WEIGHT = float(os.getenv("PRO_SCORE_STRUCTURE_WEIGHT", "1.0") or 1.0)
+PRO_SCORE_LATE_ENTRY_PENALTY = float(os.getenv("PRO_SCORE_LATE_ENTRY_PENALTY", "0.75") or 0.75)
+
+CHASE_DETECTION_ENABLED = os.getenv("CHASE_DETECTION_ENABLED", "true").lower() in {"1", "true", "yes"}
+CHASE_ATR_LIMIT = float(os.getenv("CHASE_ATR_LIMIT", "1.8") or 1.8)
+CHASE_BODY_RATIO_LIMIT = float(os.getenv("CHASE_BODY_RATIO_LIMIT", "0.85") or 0.85)
+
+# === v6.18 Entry Freshness Layer ===
+# Не створює нові сетапи. Оцінює тільки якість моменту виконання.
+ENTRY_FRESHNESS_ENABLED = os.getenv("ENTRY_FRESHNESS_ENABLED", "true").lower() in {"1", "true", "yes"}
+FRESHNESS_IMPULSE_SOFT_ATR = float(os.getenv("FRESHNESS_IMPULSE_SOFT_ATR", "1.8") or 1.8)
+FRESHNESS_IMPULSE_WARNING_ATR = float(os.getenv("FRESHNESS_IMPULSE_WARNING_ATR", "2.5") or 2.5)
+FRESHNESS_IMPULSE_HARD_ATR = float(os.getenv("FRESHNESS_IMPULSE_HARD_ATR", "3.5") or 3.5)
+FRESHNESS_MAX_DISTANCE_ZONE_ATR = float(os.getenv("FRESHNESS_MAX_DISTANCE_ZONE_ATR", "1.25") or 1.25)
+FRESHNESS_CORE_MAX_DISTANCE_ATR = float(os.getenv("FRESHNESS_CORE_MAX_DISTANCE_ATR", "0.75") or 0.75)
+FRESHNESS_EXTENDED_RISK_MULT = float(os.getenv("FRESHNESS_EXTENDED_RISK_MULT", "0.45") or 0.45)
+FRESHNESS_WARNING_RISK_MULT = float(os.getenv("FRESHNESS_WARNING_RISK_MULT", "0.70") or 0.70)
+
+# v6.18 setup-aware freshness weighting
+FRESHNESS_REVERSAL_WEIGHT = float(os.getenv("FRESHNESS_REVERSAL_WEIGHT", "0.50") or 0.50)
+FRESHNESS_CONTINUATION_WEIGHT = float(os.getenv("FRESHNESS_CONTINUATION_WEIGHT", "1.00") or 1.00)
+
+HTF_OVERRIDE_ACTIVE_RISK_MULT = float(os.getenv("HTF_OVERRIDE_ACTIVE_RISK_MULT", "0.45") or 0.45)
+HTF_NEUTRAL_RISK_MULT = float(os.getenv("HTF_NEUTRAL_RISK_MULT", "0.75") or 0.75)
+HTF_STRONG_AGAINST_RISK_MULT = float(os.getenv("HTF_STRONG_AGAINST_RISK_MULT", "0.35") or 0.35)
+
+MISSED_MOVE_PULLBACK_ATR = float(os.getenv("MISSED_MOVE_PULLBACK_ATR", "1.8") or 1.8)
 
 # === Market-Structure Plus v6.12 ===
 # Soft detectors: не блокують сетапи, а створюють окремі гіпотези в matrix.
@@ -511,6 +595,8 @@ class Candidate:
     competing_hypotheses: list[dict[str, Any]] = field(default_factory=list)
     innovation_profile: dict[str, Any] = field(default_factory=dict)
     revalidation_profile: dict[str, Any] = field(default_factory=dict)
+    entry_freshness_score: float = 100.0
+    entry_freshness_profile: dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass
@@ -835,6 +921,55 @@ def direction_recent_performance(journal: dict, side: str, lookback: int = 12) -
     }
 
 
+def calculate_entry_freshness(candidate: Any, context: dict[str, Any] | None = None) -> dict[str, Any]:
+    """v6.18 Entry Freshness Layer.
+    Оцінює момент виконання, а не якість самого сетапу.
+    """
+    if not ENTRY_FRESHNESS_ENABLED:
+        return {"score": 100.0, "extended": False, "warning": False, "reasons": []}
+
+    context = context or {}
+    comps = getattr(candidate, "score_components", {}) or {}
+
+    impulse_atr = safe_float(context.get("impulse_atr", comps.get("move_atr", 0)), 0)
+    distance_atr = safe_float(context.get("distance_from_entry_zone_atr", comps.get("distance_from_zone_atr", 0)), 0)
+    bars = safe_float(context.get("bars_since_confirmation", comps.get("bars_since_confirmation", 0)), 0)
+
+    score = 100.0
+    reasons = []
+
+    if impulse_atr >= FRESHNESS_IMPULSE_HARD_ATR:
+        score -= 45
+        reasons.append("extended impulse")
+    elif impulse_atr >= FRESHNESS_IMPULSE_WARNING_ATR:
+        score -= 25
+        reasons.append("impulse exhaustion risk")
+    elif impulse_atr >= FRESHNESS_IMPULSE_SOFT_ATR:
+        score -= 10
+
+    if distance_atr > FRESHNESS_MAX_DISTANCE_ZONE_ATR:
+        score -= 25
+        reasons.append("far from origin zone")
+
+    if bars > 20:
+        score -= 15
+        reasons.append("confirmation aging")
+
+    score = clamp(score, 0, 100)
+
+    return {
+        "score": round(score, 2),
+        "extended": score < 55,
+        "warning": score < 75,
+        "reasons": reasons,
+        "impulse_atr": impulse_atr,
+        "distance_from_zone_atr": distance_atr,
+        "bars_since_confirmation": bars,
+        "setup_family": getattr(candidate, "setup_family", ""),
+        "setup_type": getattr(candidate, "setup_type", ""),
+    }
+
+
 def staged_entry_plan(candidate: Candidate, context: dict, direction_perf: Optional[dict] = None) -> dict[str, Any]:
     """Ladder execution: один сигнал описує, яку частину і на якій стадії брати.
     Це не block-filter, а position construction."""
@@ -895,6 +1030,23 @@ def staged_entry_plan(candidate: Candidate, context: dict, direction_perf: Optio
         base_risk = min(base_risk, PROBE_RISK_PCT)
         add_plan.append(f"{candidate.side} тимчасово PROBE_ONLY через слабку недавню статистику")
 
+    freshness = calculate_entry_freshness(candidate, context)
+    candidate.entry_freshness_score = freshness.get("score", 100)
+    candidate.entry_freshness_profile = freshness
+
+    # v6.18: Entry Freshness changes execution aggressiveness, not setup validity.
+    # CORE is reduced only on explicit extension conditions, not on generic lower score.
+    if freshness.get("extended"):
+        if stage == EntryStage.CORE.value:
+            stage = EntryStage.ACCEPTANCE.value
+        elif stage == EntryStage.ACCEPTANCE.value:
+            stage = EntryStage.PROBE.value
+        add_plan.append("Entry Freshness: extended move, stage reduced")
+    elif freshness.get("warning"):
+        if stage == EntryStage.CORE.value and freshness.get("impulse_atr", 0) >= FRESHNESS_IMPULSE_WARNING_ATR:
+            stage = EntryStage.ACCEPTANCE.value
+        add_plan.append("Entry Freshness warning: reduced aggressiveness")
+
     return {
         "stage": stage,
         "base_risk_pct": round(float(base_risk), 4),
@@ -933,8 +1085,145 @@ def adaptive_position_risk_pct(candidate: Candidate, context: dict, default_risk
     innovation = stage_plan.get("innovation_profile") or getattr(candidate, "innovation_profile", {}) or {}
     risk *= float(innovation.get("risk_multiplier", 1.0) or 1.0)
 
+    freshness = getattr(candidate, "entry_freshness_profile", {}) or {}
+    freshness_score = safe_float(freshness.get("score", 100), 100)
+    if ENTRY_FRESHNESS_ENABLED:
+        freshness_weight = 1.0
+        setup_name = str(
+            getattr(candidate, "setup_type", "")
+            or getattr(candidate, "setup_family", "")
+            or ""
+        ).upper()
+
+        # Reversal entries are allowed to look "late" because the edge is the turn itself.
+        # Continuation entries keep the full freshness penalty.
+        if any(x in setup_name for x in ["REVERSAL", "LIQUIDITY_RECOVERY", "RANGE_EDGE"]):
+            freshness_weight = FRESHNESS_REVERSAL_WEIGHT
+        else:
+            freshness_weight = FRESHNESS_CONTINUATION_WEIGHT
+
+        if freshness_score < 55:
+            risk *= (1 - ((1 - FRESHNESS_EXTENDED_RISK_MULT) * freshness_weight))
+        elif freshness_score < 75:
+            risk *= (1 - ((1 - FRESHNESS_WARNING_RISK_MULT) * freshness_weight))
+
+    # v6.17.1/v6.17.9 Institutional Adaptive Engine integration
+    # HTF disagreement reduces exposure instead of blindly rejecting valid execution.
+    # v6.17.9: unified HTF source + kernel risk multiplier.
+    if INSTITUTIONAL_ADAPTIVE_ENGINE:
+        htf_state = get_htf_state(candidate)
+
+        exec_score = institutional_execution_score(candidate)
+        htf_multiplier = adaptive_htf_risk_multiplier(htf_state, exec_score)
+
+        if htf_multiplier > 0:
+            risk *= htf_multiplier
+
+        kernel_multiplier = safe_float(
+            getattr(candidate, "kernel_risk_multiplier", 1.0),
+            1.0
+        )
+        risk *= kernel_multiplier
+
+    unified = calculate_unified_risk_adjustment(candidate)
+    candidate.score_components["unified_risk_adjustment"] = unified
+    risk *= unified["combined"]
+
     return round(clamp(risk, 0.02, CORE_RISK_PCT), 4)
 
+
+
+# ==========================================================
+# v6.19 Professional Consolidation Layer (Oil 15M)
+# ==========================================================
+
+PRIMARY_EXECUTION_SETUPS = {
+    "OB_RECLAIM",
+    "ACCEPTANCE_RETEST_CONTINUATION",
+    "LIQUIDITY_RECOVERY",
+}
+
+CONTEXT_ONLY_SETUPS = {
+    "SILVER_BULLET",
+    "JUDAS_SWING",
+    "OPENING_RANGE_BREAKOUT",
+    "SESSION_MEAN_RECLAIM",
+    "FAILED_AUCTION_REJECTION",
+    "DAILY_WEEKLY_OPEN_RECLAIM",
+}
+
+
+def setup_role(setup_type: str) -> str:
+    """Single hierarchy for setup influence."""
+    name = str(setup_type or "").upper()
+    if name in PRIMARY_EXECUTION_SETUPS:
+        return "PRIMARY_EXECUTION"
+    if name in CONTEXT_ONLY_SETUPS:
+        return "CONTEXT"
+    return "SUPPORT"
+
+
+def calculate_unified_risk_adjustment(candidate: Any) -> dict[str, Any]:
+    """Collect risk modifiers once instead of stacking hidden multipliers."""
+    profile = {
+        "htf": 1.0,
+        "freshness": 1.0,
+        "kernel": 1.0,
+        "innovation": 1.0,
+    }
+
+    freshness = getattr(candidate, "entry_freshness_profile", {}) or {}
+    score = safe_float(freshness.get("score", 100), 100)
+    if score < 55:
+        profile["freshness"] = FRESHNESS_EXTENDED_RISK_MULT
+    elif score < 75:
+        profile["freshness"] = FRESHNESS_WARNING_RISK_MULT
+
+    innovation = getattr(candidate, "innovation_profile", {}) or {}
+    profile["innovation"] = safe_float(innovation.get("risk_multiplier", 1.0), 1.0)
+
+    profile["kernel"] = safe_float(
+        getattr(candidate, "kernel_risk_multiplier", 1.0),
+        1.0,
+    )
+
+    htf = get_htf_state(candidate)
+    if htf == "neutral":
+        profile["htf"] = HTF_NEUTRAL_RISK_MULT
+    elif htf in {"bullish", "bearish"}:
+        profile["htf"] = 1.0
+
+    combined = 1.0
+    for value in profile.values():
+        combined *= value
+
+    # Never allow a valid setup to be silently reduced into meaningless noise.
+    return {
+        "multipliers": profile,
+        "combined": clamp(combined, 0.25, 1.0),
+    }
+
+
+def compute_setup_statistics(journal: dict[str, Any]) -> dict[str, Any]:
+    """Performance memory by setup_type for oil 15M analysis."""
+    stats = {}
+    for trade in journal.get("trades", []):
+        if not isinstance(trade, dict):
+            continue
+        setup = str(trade.get("setup_type", "UNKNOWN"))
+        bucket = stats.setdefault(setup, {"trades": 0, "wins": 0, "net_r": 0.0})
+        bucket["trades"] += 1
+        result = safe_float(trade.get("result_r", trade.get("result_pct", 0)), 0)
+        bucket["net_r"] += result
+        if result > 0:
+            bucket["wins"] += 1
+
+    for bucket in stats.values():
+        bucket["win_rate"] = round(
+            bucket["wins"] / bucket["trades"] * 100, 2
+        ) if bucket["trades"] else 0
+
+    return stats
 
 def atomic_json_write(path: Path, data: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -1035,6 +1324,7 @@ def save_journal(journal: dict[str, Any]) -> None:
     journal["signal_events"] = list(journal.get("signal_events") or [])[-MAX_JOURNAL:]
     journal["trades"] = deduplicate_closed_trades(list(journal.get("trades") or []))[-MAX_JOURNAL:]
     journal["analytics"] = compute_analytics(journal)
+    journal["setup_statistics"] = compute_setup_statistics(journal)
     journal["learning_status"] = compute_learning_status(journal)
     atomic_json_write(JOURNAL_FILE, journal)
 
@@ -1195,12 +1485,44 @@ def build_decision_message(context: dict, decision: Decision) -> str:
     
     if decision.candidate and decision.action != Action.NO_SETUP.value:
         c = decision.candidate
-        unique_confirmations = _short_list(c.confirmations, 3)
-        if unique_confirmations:
+        # Показуємо тільки одне найсильніше підтвердження.
+        # Не виводимо список з декількох тез, щоб Telegram-повідомлення
+        # не виглядало як внутрішній debug-log.
+        priority_confirmation = None
+
+        confirmations = [
+            str(x).strip()
+            for x in (c.confirmations or [])
+            if str(x).strip()
+        ]
+
+        # Пріоритет: активний execution trigger > модель > інші пояснення.
+        priority_keywords = (
+            "LIMIT_ARMED",
+            "LIVE",
+            "CHoCH",
+            "FVG",
+            "OB",
+            "RECLAIM",
+            "RETEST",
+            "TRIGGER",
+        )
+
+        for keyword in priority_keywords:
+            for item in confirmations:
+                if keyword.lower() in item.lower():
+                    priority_confirmation = item
+                    break
+            if priority_confirmation:
+                break
+
+        if priority_confirmation is None and confirmations:
+            priority_confirmation = confirmations[0]
+
+        if priority_confirmation:
             lines.append("")
             lines.append("<b>Підтвердження:</b>")
-            for x in unique_confirmations:
-                lines.append(f"✅ {html.escape(x)}")
+            lines.append(f"✅ {html.escape(priority_confirmation)}")
     for warning in context.get("learning_warnings", [])[:2]:
         lines.append(f"⚠️ {html.escape(warning)}")
     
@@ -2651,6 +2973,18 @@ def setup_trigger_revalidation_profile(candidate: Candidate, context: dict, impu
 
     needs_revalidation = bool(state != "FRESH" or (time_warp_ready and not live_ready and source == ExecutionSource.TIME_WARP.value))
     revalidated = bool(needs_revalidation and micro.get("supported") and not_late_location)
+
+    # v6.16: якщо стара thesis вже підтверджена фактичним рухом і acceptance,
+    # дозволяємо малий probe замість нескінченного ARMED.
+    stale_direction_confirm = bool(
+        state == "ARCHIVED_THESIS"
+        and dist_atr >= STALE_THESIS_PROBE_ATR
+        and (not STALE_THESIS_ACCEPTANCE_REQUIRED or micro.get("supported"))
+    )
+    if stale_direction_confirm:
+        revalidated = True
+        micro["stale_thesis_recovery"] = True
+
     entry_supported = bool(not needs_revalidation or revalidated)
 
     if not needs_revalidation:
@@ -2665,7 +2999,7 @@ def setup_trigger_revalidation_profile(candidate: Candidate, context: dict, impu
 
     return {
         "enabled": True,
-        "version": "v6.15_setup_argumented_trigger_revalidation",
+        "version": "v6.16_adaptive_execution",
         "state": state,
         "source": source,
         "age_min": round(age, 1),
@@ -4223,7 +4557,10 @@ def explain_candidate_gate_failure(context: dict, candidate: Candidate, gate: Op
     tf1h_bias = (context.get("tf1h") or {}).get("bias")
     tf4h_bias = (context.get("tf4h") or {}).get("bias")
     if not ((tf1h_bias == candidate.side) or (tf4h_bias == candidate.side)) and not gate.get("allow_entry"):
-        reasons.append("HTF не підтримує risky-entry")
+        if HTF_RISKY_OVERRIDE and candidate.final_score >= HTF_OVERRIDE_MIN_SCORE:
+            reasons.append("HTF override available: risky-entry тільки зі зниженим ризиком")
+        else:
+            reasons.append("HTF не підтримує risky-entry")
     return "; ".join(reasons) if reasons else str(gate.get("reason") or "did_not_pass_entry_gate")
 
 
@@ -5657,6 +5994,28 @@ def evaluate_new_setup(context: dict, state: dict, journal: dict) -> Decision:
     valid_candidates = finalize_hypothesis_ranking(valid_candidates)
     best = valid_candidates[0]
     
+    # v6.17.4: Decision Kernel becomes the final execution context layer
+    kernel_result = professional_decision_kernel(best)
+    best = apply_kernel_context(best, kernel_result)
+
+    # v6.17.6 preserve opportunities without full exposure
+    opportunity_profile = adaptive_opportunity_engine(best)
+    setattr(best, "opportunity_profile", opportunity_profile)
+
+    # v6.17.7 unified state transition
+    state_result = adaptive_state_transition(
+        best,
+        kernel_result,
+        opportunity_profile
+    )
+    setattr(best, "execution_state", state_result)
+
+    if state_result.get("state") == STATE_PROBE:
+        setattr(best, "entry_stage", "PROBE")
+
+    if not state_result.get("allow_execution", False):
+        setattr(best, "kernel_action_modifier", "ARMED")
+
     plan = build_trade_plan(context, best)
     action = Action.NO_SETUP.value
     mode_profile = trade_mode_profile(context, best.side, best.setup_type)
@@ -5674,7 +6033,15 @@ def evaluate_new_setup(context: dict, state: dict, journal: dict) -> Decision:
     reval_wait = bool(reval_profile.get("needs_revalidation") and not reval_profile.get("entry_supported"))
     reval_live = bool(reval_profile.get("needs_revalidation") and reval_profile.get("entry_supported"))
 
-    if reval_wait:
+    kernel_modifier = getattr(best, "kernel_action_modifier", "")
+
+    if kernel_modifier == "ARMED":
+        action = Action.ARMED.value
+        reason = "v6.17 kernel: execution підтвердження недостатнє, thesis збережена в ARMED"
+    elif kernel_modifier == "WAIT_RETEST":
+        action = Action.ARMED.value
+        reason = "v6.17.4 kernel: anti-chase protection, очікування ретесту"
+    elif reval_wait:
         action = Action.ARMED.value
         reason = f"[{best.ict_model}] thesis не заблокована, але trigger старий: чекаємо свіжу 3M/15M сетапну аргументацію"
     elif hard_block:
@@ -5700,8 +6067,681 @@ def evaluate_new_setup(context: dict, state: dict, journal: dict) -> Decision:
             "trigger_revalidation": reval_profile,
             "hypothesis_matrix": [hypothesis_audit_row(c) for c in valid_candidates[:10]],
             "candidate_count": len(valid_candidates),
+            "institutional_engine": {
+                "enabled": INSTITUTIONAL_ADAPTIVE_ENGINE,
+                "version": BOT_VERSION,
+            },
         }
     )
+
+
+# ==========================================================
+# v6.17 INSTITUTIONAL HELPERS
+# ==========================================================
+
+def institutional_execution_score(candidate: Any) -> float:
+    """Оцінка якості execution без блокування сетапу."""
+    if not candidate:
+        return 0.0
+
+    components = getattr(candidate, "score_components", {}) or {}
+    features = components.get("features", {}) or {}
+
+    # v6.17.9 schema compatibility:
+    # Candidate stores raw scores as *_score and normalized values in features.
+    liquidity = safe_float(
+        components.get("liq_score", features.get("liquidity", 0)), 0.0
+    )
+    trigger = safe_float(
+        components.get("trig_score", features.get("trigger", 0)), 0.0
+    )
+    structure = safe_float(
+        components.get("str_score", features.get("structure", 0)), 0.0
+    )
+
+    score = 0.0
+    score += liquidity * PRO_SCORE_LIQUIDITY_WEIGHT
+    score += trigger * PRO_SCORE_TRIGGER_WEIGHT
+    score += structure * PRO_SCORE_STRUCTURE_WEIGHT
+
+    risks = getattr(candidate, "risks", []) or []
+    if any("late" in str(x).lower() for x in risks):
+        score *= PRO_SCORE_LATE_ENTRY_PENALTY
+
+    return round(score, 3)
+
+
+
+def regression_guard_revalidated_probe(candidate: Any) -> dict[str, Any]:
+    """
+    Safety regression guard:
+    strong setup with valid execution evidence must not silently degrade to zero-score.
+    This is a diagnostic guard, not an entry override.
+    """
+    score = institutional_execution_score(candidate)
+    result = {
+        "execution_score": score,
+        "passed": True,
+        "reason": "ok"
+    }
+
+    if candidate:
+        trigger_ready = bool(getattr(candidate, "trigger_ready", False))
+        final_score = int(getattr(candidate, "final_score", 0) or 0)
+
+        if trigger_ready and final_score >= 85 and score <= 0:
+            result["passed"] = False
+            result["reason"] = "high_quality_candidate_zero_execution_score"
+
+    return result
+
+
+def detect_execution_chase(price_move_atr: float, body_ratio: float) -> bool:
+    """Захист від входу після вже виконаного імпульсу."""
+    if not CHASE_DETECTION_ENABLED:
+        return False
+    return price_move_atr >= CHASE_ATR_LIMIT and body_ratio >= CHASE_BODY_RATIO_LIMIT
+
+
+def adaptive_htf_risk_multiplier(htf_state: str, execution_score: float) -> float:
+    """HTF використовується як adaptive risk modifier, а не як простий veto."""
+    state = str(htf_state).lower()
+
+    if state in {"aligned", "bullish", "bearish", "support"}:
+        return 1.0
+
+    if state in {"neutral", "mixed"}:
+        return HTF_NEUTRAL_RISK_MULT
+
+    if execution_score >= HTF_OVERRIDE_MIN_SCORE and HTF_RISKY_OVERRIDE:
+        return HTF_OVERRIDE_ACTIVE_RISK_MULT
+
+    return HTF_STRONG_AGAINST_RISK_MULT
+
+
+
+# ==========================================================
+# v6.17.2 PROFESSIONAL ADAPTIVE DECISION LAYER
+# ==========================================================
+
+def adaptive_execution_guard(candidate: Any) -> dict[str, Any]:
+    """Єдина точка контролю якості execution."""
+    result = {
+        "allow": True,
+        "force_wait_retest": False,
+        "risk_multiplier": 1.0,
+        "reasons": []
+    }
+
+    if not candidate or not INSTITUTIONAL_ADAPTIVE_ENGINE:
+        return result
+
+    score = institutional_execution_score(candidate)
+
+    components = getattr(candidate, "score_components", {}) or {}
+    htf = components.get("htf_state", "neutral")
+
+    result["risk_multiplier"] *= adaptive_htf_risk_multiplier(htf, score)
+
+    body_ratio = float(components.get("body_ratio", 0))
+    move_atr = float(components.get("move_atr", 0))
+
+    if detect_execution_chase(move_atr, body_ratio):
+        result["force_wait_retest"] = True
+        result["reasons"].append("anti-chase: impulse already expanded")
+
+    if score < 50:
+        result["risk_multiplier"] *= 0.5
+        result["reasons"].append("low institutional execution quality")
+
+    return result
+
+
+
+# ==========================================================
+# v6.17.4 PRODUCTION INTEGRATION LAYER
+# ==========================================================
+
+def apply_kernel_context(candidate: Any, kernel_result: dict[str, Any]) -> Any:
+    """
+    Передає результат kernel далі по pipeline без повторного множення ризику.
+    Один центр ризику: candidate -> build_trade_plan.
+    """
+    if candidate is None:
+        return candidate
+
+    try:
+        setattr(
+            candidate,
+            "kernel_risk_multiplier",
+            float(kernel_result.get("risk_multiplier", 1.0))
+        )
+        setattr(
+            candidate,
+            "kernel_action_modifier",
+            str(kernel_result.get("action_modifier", "ALLOW"))
+        )
+        setattr(
+            candidate,
+            "kernel_audit",
+            kernel_result
+        )
+    except Exception:
+        pass
+
+    return candidate
+
+
+# ==========================================================
+# v6.17.3 PROFESSIONAL DECISION KERNEL
+# ==========================================================
+
+def professional_decision_kernel(candidate: Any) -> dict[str, Any]:
+    """
+    Єдиний адаптивний шар прийняття рішення.
+    Об'єднує:
+    - institutional execution quality
+    - HTF risk state
+    - anti-chase protection
+    - adaptive risk multiplier
+    """
+
+    result = {
+        "action_modifier": "ALLOW",
+        "risk_multiplier": 1.0,
+        "execution_score": 0.0,
+        "warnings": [],
+        "reasons": []
+    }
+
+    if not candidate:
+        result["action_modifier"] = "BLOCK"
+        result["warnings"].append("missing candidate")
+        return result
+
+    score = institutional_execution_score(candidate)
+    result["execution_score"] = score
+
+    freshness = calculate_entry_freshness(candidate, {})
+    result["entry_freshness"] = freshness
+    if freshness.get("extended"):
+        result["risk_multiplier"] *= FRESHNESS_EXTENDED_RISK_MULT
+        result["warnings"].append("entry freshness extended move")
+    elif freshness.get("warning"):
+        result["risk_multiplier"] *= FRESHNESS_WARNING_RISK_MULT
+
+    components = getattr(candidate, "score_components", {}) or {}
+
+    htf_state = str(
+        components.get("htf_state")
+        or ("aligned" if components.get("htf") else "neutral")
+    )
+
+    result["risk_multiplier"] *= adaptive_htf_risk_multiplier(
+        htf_state,
+        score
+    )
+
+    move_atr = float(components.get("move_atr", 0) or 0)
+    body_ratio = float(components.get("body_ratio", 0) or 0)
+
+    if detect_execution_chase(move_atr, body_ratio):
+        result["action_modifier"] = "WAIT_RETEST"
+        result["warnings"].append("anti-chase protection")
+        result["reasons"].append("impulse expansion detected")
+
+    if score < 50:
+        result["risk_multiplier"] *= 0.5
+        result["warnings"].append("weak execution quality")
+
+    return result
+
+
+
+
+def decision_kernel_audit(candidate: Any) -> dict[str, Any]:
+    """Debug snapshot for live decision auditing."""
+    kernel = professional_decision_kernel(candidate)
+    return {
+        "execution_score": kernel.get("execution_score"),
+        "modifier": kernel.get("action_modifier"),
+        "risk_multiplier": kernel.get("risk_multiplier"),
+        "warnings": kernel.get("warnings", []),
+        "reasons": kernel.get("reasons", [])
+    }
+
+
+# ==========================================================
+# v6.17.5 MONTE CARLO / SCENARIO REPLAY ENGINE
+# ==========================================================
+
+import random
+
+
+@dataclass
+class ReplayScenario:
+    name: str
+    candidate: dict[str, Any]
+    expected_action: str
+    description: str = ""
+
+
+@dataclass
+class ReplayResult:
+    name: str
+    passed: bool
+    expected: str
+    received: str
+    risk_multiplier: float
+    warnings: list[str] = field(default_factory=list)
+
+
+def build_synthetic_scenarios() -> list[ReplayScenario]:
+    """
+    Детерміновані ринкові сценарії для перевірки decision kernel.
+    Без API, без біржі, без випадкового шуму.
+    """
+
+    return [
+        ReplayScenario(
+            name="strong_reversal_against_htf",
+            candidate={
+                "trigger": 30,
+                "liquidity": 25,
+                "structure": 25,
+                "htf_state": "against"
+            },
+            expected_action="ALLOW",
+            description="Сильний reversal проти HTF"
+        ),
+
+        ReplayScenario(
+            name="fomo_expansion",
+            candidate={
+                "trigger": 30,
+                "liquidity": 20,
+                "structure": 20,
+                "move_atr": 2.4,
+                "body_ratio": 0.9,
+                "htf_state": "aligned"
+            },
+            expected_action="WAIT_RETEST",
+            description="Велика імпульсна свічка"
+        ),
+
+        ReplayScenario(
+            name="weak_setup",
+            candidate={
+                "trigger": 5,
+                "liquidity": 5,
+                "structure": 5,
+                "htf_state": "neutral"
+            },
+            expected_action="ALLOW",
+            description="Слабкий execution quality"
+        ),
+
+        ReplayScenario(
+            name="trend_continuation",
+            candidate={
+                "trigger": 25,
+                "liquidity": 25,
+                "structure": 25,
+                "htf_state": "aligned"
+            },
+            expected_action="ALLOW",
+            description="Класичний трендовий вхід"
+        ),
+    ]
+
+
+def replay_kernel_scenario(kernel_func) -> list[ReplayResult]:
+    """
+    Offline replay runner.
+    Використовується для CI перед live запуском.
+    """
+
+    results = []
+
+    for scenario in build_synthetic_scenarios():
+
+        class SyntheticCandidate:
+            def __init__(self, data):
+                self.score_components = data
+                self.risks = []
+
+        candidate = SyntheticCandidate(scenario.candidate)
+
+        try:
+            output = kernel_func(candidate)
+
+            received = output.get(
+                "action_modifier",
+                "ALLOW"
+            )
+
+            passed = (
+                received == scenario.expected_action
+                or (
+                    scenario.expected_action == "ALLOW"
+                    and received in {"ALLOW", "WAIT_RETEST"}
+                )
+            )
+
+            results.append(
+                ReplayResult(
+                    name=scenario.name,
+                    passed=passed,
+                    expected=scenario.expected_action,
+                    received=received,
+                    risk_multiplier=float(
+                        output.get("risk_multiplier", 1.0)
+                    ),
+                    warnings=output.get("warnings", [])
+                )
+            )
+
+        except Exception as exc:
+            results.append(
+                ReplayResult(
+                    name=scenario.name,
+                    passed=False,
+                    expected=scenario.expected_action,
+                    received=f"ERROR: {exc}",
+                    risk_multiplier=0.0,
+                    warnings=["kernel exception"]
+                )
+            )
+
+    return results
+
+
+def monte_carlo_risk_stability(kernel_func, iterations: int = 1000) -> dict[str, Any]:
+    """
+    Перевірка стабільності ризику при випадкових ринкових умовах.
+    Не прогнозує прибуток. Перевіряє поведінку ризику.
+    """
+
+    multipliers = []
+    wait_count = 0
+
+    for _ in range(iterations):
+
+        class SyntheticCandidate:
+            def __init__(self):
+                self.score_components = {
+                    "trigger": random.uniform(0, 35),
+                    "liquidity": random.uniform(0, 35),
+                    "structure": random.uniform(0, 35),
+                    "move_atr": random.uniform(0, 3),
+                    "body_ratio": random.uniform(0, 1),
+                    "htf_state": random.choice(
+                        ["aligned", "neutral", "against"]
+                    )
+                }
+                self.risks = []
+
+        result = kernel_func(SyntheticCandidate())
+
+        multipliers.append(
+            float(result.get("risk_multiplier", 1))
+        )
+
+        if result.get("action_modifier") == "WAIT_RETEST":
+            wait_count += 1
+
+    return {
+        "iterations": iterations,
+        "avg_risk_multiplier": round(
+            sum(multipliers) / len(multipliers),
+            4
+        ),
+        "min_risk_multiplier": round(
+            min(multipliers),
+            4
+        ),
+        "max_risk_multiplier": round(
+            max(multipliers),
+            4
+        ),
+        "wait_retest_ratio": round(
+            wait_count / iterations,
+            4
+        )
+    }
+
+
+
+# ==========================================================
+# v6.17.6 ADAPTIVE OPPORTUNITY ENGINE
+# ==========================================================
+
+PROBE_MIN_SCORE = float(os.getenv("PROBE_MIN_SCORE", "35") or 35)
+ACCEPTANCE_MIN_SCORE = float(os.getenv("ACCEPTANCE_MIN_SCORE", "55") or 55)
+CORE_MIN_SCORE = float(os.getenv("CORE_MIN_SCORE", "75") or 75)
+
+PROBE_RISK_MULTIPLIER = float(os.getenv("PROBE_RISK_MULTIPLIER", "0.35") or 0.35)
+ACCEPTANCE_RISK_MULTIPLIER = float(os.getenv("ACCEPTANCE_RISK_MULTIPLIER", "0.70") or 0.70)
+CORE_RISK_MULTIPLIER = float(os.getenv("CORE_RISK_MULTIPLIER", "1.0") or 1.0)
+
+
+def adaptive_opportunity_engine(candidate: Any) -> dict[str, Any]:
+    """
+    Зберігає можливість входу без перетворення слабких сетапів
+    на повнорозмірні позиції.
+
+    Принцип:
+    - не вбивати opportunity;
+    - зменшувати exposure;
+    - піднімати розмір після підтвердження.
+    """
+
+    result = {
+        "stage": "WATCH",
+        "risk_multiplier": 0.0,
+        "allow_probe": False,
+        "reasons": []
+    }
+
+    if candidate is None:
+        return result
+
+    score = institutional_execution_score(candidate)
+
+    if score >= CORE_MIN_SCORE:
+        result["stage"] = "CORE"
+        result["risk_multiplier"] = CORE_RISK_MULTIPLIER
+        result["reasons"].append("high quality execution")
+
+    elif score >= ACCEPTANCE_MIN_SCORE:
+        result["stage"] = "ACCEPTANCE"
+        result["risk_multiplier"] = ACCEPTANCE_RISK_MULTIPLIER
+        result["reasons"].append("acceptable confirmation")
+
+    elif score >= PROBE_MIN_SCORE:
+        result["stage"] = "PROBE"
+        result["risk_multiplier"] = PROBE_RISK_MULTIPLIER
+        result["allow_probe"] = True
+        result["reasons"].append("opportunity preserved with reduced risk")
+
+    else:
+        result["stage"] = "WATCH"
+        result["risk_multiplier"] = 0.0
+        result["reasons"].append("insufficient evidence")
+
+    return result
+
+
+def opportunity_preservation_audit(candidate: Any) -> dict[str, Any]:
+    """Audit: чи система втратила можливий рух."""
+    opportunity = adaptive_opportunity_engine(candidate)
+
+    return {
+        "stage": opportunity["stage"],
+        "risk_multiplier": opportunity["risk_multiplier"],
+        "allow_probe": opportunity["allow_probe"],
+        "reasons": opportunity["reasons"]
+    }
+
+
+
+# ==========================================================
+# v6.17.7 ADAPTIVE STATE MACHINE
+# ==========================================================
+
+STATE_WATCH = "WATCH"
+STATE_PROBE = "PROBE"
+STATE_ACCEPTANCE = "ACCEPTANCE"
+STATE_CORE = "CORE"
+STATE_WAIT_RETEST = "WAIT_RETEST"
+
+
+def adaptive_state_transition(
+    candidate: Any,
+    kernel_result: dict[str, Any] | None = None,
+    opportunity_profile: dict[str, Any] | None = None
+) -> dict[str, Any]:
+    """
+    Єдина машина станів execution.
+
+    WATCH:
+        недостатньо підтверджень, але можливість не втрачена.
+
+    PROBE:
+        ранній вхід зі зниженим ризиком.
+
+    ACCEPTANCE:
+        підтвердження отримано.
+
+    CORE:
+        максимальна довіра.
+
+    WAIT_RETEST:
+        захист від chase/FOMO.
+    """
+
+    kernel_result = kernel_result or {}
+    opportunity_profile = opportunity_profile or {}
+
+    state = opportunity_profile.get("stage", STATE_WATCH)
+    risk = float(opportunity_profile.get("risk_multiplier", 0.0))
+
+    htf_profile = htf_confidence_modifier(candidate)
+    risk *= float(htf_profile.get("multiplier", 1.0))
+
+    if kernel_result.get("action_modifier") == STATE_WAIT_RETEST:
+        return {
+            "state": STATE_WAIT_RETEST,
+            "risk_multiplier": 0.0,
+            "allow_execution": False,
+            "reason": "anti-chase protection"
+        }
+
+    if state == STATE_CORE:
+        return {
+            "state": STATE_CORE,
+            "risk_multiplier": 1.0,
+            "allow_execution": True,
+            "reason": "full confirmation"
+        }
+
+    if state == STATE_ACCEPTANCE:
+        return {
+            "state": STATE_ACCEPTANCE,
+            "risk_multiplier": min(risk, 0.7),
+            "allow_execution": True,
+            "reason": "confirmed setup"
+        }
+
+    if state == STATE_PROBE:
+        return {
+            "state": STATE_PROBE,
+            "risk_multiplier": min(risk, 0.35),
+            "allow_execution": True,
+            "reason": "preserve opportunity"
+        }
+
+    return {
+        "state": STATE_WATCH,
+        "risk_multiplier": 0.0,
+        "allow_execution": False,
+        "reason": "waiting confirmation"
+    }
+
+
+def state_machine_audit(candidate: Any) -> dict[str, Any]:
+    """Debug snapshot для replay та live monitoring."""
+    opportunity = adaptive_opportunity_engine(candidate)
+    return adaptive_state_transition(
+        candidate,
+        {},
+        opportunity
+    )
+
+
+
+# ==========================================================
+# v6.17.8 HTF CONFIDENCE MODIFIER
+# ==========================================================
+
+HTF_ALIGNED_MULTIPLIER = float(os.getenv("HTF_ALIGNED_MULTIPLIER", "1.0") or 1.0)
+HTF_NEUTRAL_MULTIPLIER = float(os.getenv("HTF_NEUTRAL_MULTIPLIER", "0.8") or 0.8)
+HTF_REVERSAL_CONFIRMED_MULTIPLIER = float(
+    os.getenv("HTF_REVERSAL_CONFIRMED_MULTIPLIER", "0.6") or 0.6
+)
+HTF_REVERSAL_WEAK_MULTIPLIER = float(
+    os.getenv("HTF_REVERSAL_WEAK_MULTIPLIER", "0.35") or 0.35
+)
+
+
+def htf_confidence_modifier(candidate: Any) -> dict[str, Any]:
+    """
+    HTF не блокує угоди.
+    Він регулює рівень довіри та розмір експозиції.
+
+    Мета:
+    - зберегти reversal можливості;
+    - не давати повний CORE ризик без HTF підтримки.
+    """
+
+    components = getattr(candidate, "score_components", {}) or {}
+
+    htf_state = str(
+        components.get("htf_state", "neutral")
+    ).lower()
+
+    smt = bool(components.get("smt_confirmation", False))
+    liquidity = float(components.get("liquidity", 0) or 0)
+    trigger = float(components.get("trigger", 0) or 0)
+
+    if htf_state in {"aligned", "bullish", "bearish"}:
+        return {
+            "multiplier": HTF_ALIGNED_MULTIPLIER,
+            "confidence": "HIGH",
+            "reason": "HTF aligned"
+        }
+
+    if htf_state in {"neutral", "mixed"}:
+        return {
+            "multiplier": HTF_NEUTRAL_MULTIPLIER,
+            "confidence": "MEDIUM",
+            "reason": "HTF neutral"
+        }
+
+    # Reversal against HTF
+    if smt and liquidity >= 20 and trigger >= 20:
+        return {
+            "multiplier": HTF_REVERSAL_CONFIRMED_MULTIPLIER,
+            "confidence": "REVERSAL_CONFIRMED",
+            "reason": "HTF conflict with SMT/liquidity confirmation"
+        }
+
+    return {
+        "multiplier": HTF_REVERSAL_WEAK_MULTIPLIER,
+        "confidence": "REVERSAL_WEAK",
+        "reason": "HTF conflict without enough confirmation"
+    }
+
 
 # ==========================================================
 # MANAGE ACTIVE TRADE
@@ -6185,7 +7225,7 @@ SETUP_LABELS = {
     SetupType.DIRECTION_FLIP.value: "Підтверджена зміна напрямку на 15M",
     SetupType.TREND_IGNITION.value: "Запуск нового тренду",
     SetupType.PULLBACK_CONTINUATION.value: "Продовження тренду після ICT-відкату",
-    SetupType.FRESH_BASE_CONTINUATION.value: "Повторний вхід з нової 15M бази",
+    SetupType.FRESH_BASE_CONTINUATION.value: "",
     SetupType.BREAKOUT_RETEST.value: "Пробій структури + підтверджений ретест",
     SetupType.RANGE_COMPRESSION_BREAKOUT.value: "Пробій після стиснення діапазону",
     SetupType.RANGE_EDGE_REVERSAL.value: "Розворот від межі діапазону",
