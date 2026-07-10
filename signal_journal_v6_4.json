@@ -1,6 +1,6 @@
 {
-  "version": "pro-hybrid-confluence-v7.0-trading-desk",
-  "architecture_version": "TRADING_DESK_EXECUTIVE_V7_1_FINAL",
+  "version": "pro-hybrid-confluence-v8.5-institutional-authority-final",
+  "architecture_version": "TRADING_DESK_EXECUTIVE_V8_3_SINGLE_BRAIN",
   "journal_type": "fresh_learning_cycle",
   "created_at": "2026-07-10T00:00:00Z",
   "session_model": {
@@ -20312,13 +20312,13 @@
   "training_rows": [],
   "setup_statistics": {},
   "learning_status": {
-    "updated_at": "2026-07-10T13:01:27.514891+00:00",
+    "updated_at": "2026-07-10T13:15:47.232256+00:00",
     "journal_file": "signal_journal_v6_4.json",
     "state_file": "last_signal_v6_4.json",
     "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
     "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
     "training_signals": 21,
-    "signal_events": 9,
+    "signal_events": 10,
     "closed_trades": 0,
     "training_rows": 0,
     "global_ready": false,
@@ -40227,6 +40227,15 @@
       "price": 76.29,
       "trade_id": "ffd1d898f9",
       "signal_id": "ea014e47b6"
+    },
+    {
+      "time": "2026-07-10T13:15:47.228315+00:00",
+      "type": "FOLLOW",
+      "action": "HOLD",
+      "side": "LONG",
+      "price": 76.36,
+      "trade_id": "ffd1d898f9",
+      "signal_id": "ea014e47b6"
     }
   ],
   "trades": [],
@@ -40239,5 +40248,5 @@
     "expectancy_r": 0.0,
     "by_family": {}
   },
-  "updated_at": "2026-07-10T13:01:27.514769+00:00"
+  "updated_at": "2026-07-10T13:15:47.232113+00:00"
 }

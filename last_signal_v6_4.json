@@ -1,6 +1,6 @@
 {
-  "version": "pro-hybrid-confluence-v7.0-trading-desk",
-  "architecture_version": "TRADING_DESK_EXECUTIVE_V7_1_FINAL",
+  "version": "pro-hybrid-confluence-v8.5-institutional-authority-final",
+  "architecture_version": "TRADING_DESK_EXECUTIVE_V8_3_SINGLE_BRAIN",
   "active_trade": {
     "id": "ffd1d898f9",
     "side": "LONG",
@@ -20,7 +20,7 @@
     "worst_price": 76.12,
     "thesis_key": "LONG|OPENING_RANGE_BREAKOUT|OPENING_RANGE_BREAKOUT|762",
     "thesis": "LONG OPENING_RANGE_BREAKOUT → OPENING_RANGE_BREAKOUT | src=OPENING_RANGE | stage=READY",
-    "last_checked_3m_ts": 1783688487168,
+    "last_checked_3m_ts": 1783689346824,
     "tp1_hit": false,
     "tp2_hit": false,
     "tp3_hit": false,
@@ -278,31 +278,31 @@
   },
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1783688400000,
-    "last_run_processed": 5,
-    "processed_count": 278,
+    "last_scanned_3m_ts": 1783689300000,
+    "last_run_processed": 240,
+    "processed_count": 240,
     "events": {
       "LONG": {
         "side": "LONG",
         "stage": "READY",
         "source": "LIQUIDITY_SWEEP",
         "event_ts": 0,
-        "last_event_ts": 1783650240000,
-        "trigger_level": 76.42,
-        "event_price": 76.42,
-        "invalidation_level": 76.42,
-        "sweep_level": 76.42,
-        "extreme": 76.32,
+        "last_event_ts": 1783648800000,
+        "trigger_level": 76.36,
+        "event_price": 76.36,
+        "invalidation_level": 76.36,
+        "sweep_level": 76.36,
+        "extreme": 76.37,
         "displacement": true,
-        "retest_ts": 1783650060000,
-        "ready_ts": 1783650240000,
+        "retest_ts": 1783648620000,
+        "ready_ts": 1783648800000,
         "hold_closes": 0,
         "previous_stage": "RETEST",
         "chain_quality": 50,
         "confirmation_quality": 84,
         "acceptance_quality": 80,
         "retest_quality": 80,
-        "processed_bars": 278,
+        "processed_bars": 240,
         "strong_displacement": false,
         "retest": true,
         "mitigation": true,
@@ -320,30 +320,30 @@
         "stage": "READY",
         "source": "LIQUIDITY_SWEEP",
         "event_ts": 0,
-        "last_event_ts": 1783646820000,
-        "trigger_level": 76.42,
-        "event_price": 76.42,
-        "invalidation_level": 76.42,
-        "sweep_level": 76.42,
-        "extreme": 76.43,
+        "last_event_ts": 1783647360000,
+        "trigger_level": 76.36,
+        "event_price": 76.36,
+        "invalidation_level": 76.36,
+        "sweep_level": 76.36,
+        "extreme": 76.44,
         "displacement": true,
-        "retest_ts": 1783646640000,
-        "ready_ts": 1783646820000,
+        "retest_ts": 1783647180000,
+        "ready_ts": 1783647360000,
         "hold_closes": 0,
         "previous_stage": "RETEST",
         "chain_quality": 50,
         "confirmation_quality": 98,
         "acceptance_quality": 80,
-        "retest_quality": 68,
-        "processed_bars": 278,
+        "retest_quality": 80,
+        "processed_bars": 240,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
         "impulse_strength": {
-          "score": 3,
-          "level": "EXTREME",
-          "body_strength": 0.85,
-          "consecutive": 1
+          "score": 2,
+          "level": "STRONG",
+          "body_strength": 0.67,
+          "consecutive": 2
         },
         "chase_risk": false,
         "time_warp_opportunity": true
@@ -351,11 +351,11 @@
     }
   },
   "regime_memory": {
-    "type": "RANGE_COMPRESSION",
+    "type": "",
     "pending_type": "NORMAL",
     "stable_count": 0,
     "pending_count": 1,
-    "updated_at": "2026-07-10T13:01:27.166403+00:00"
+    "updated_at": "2026-07-10T13:15:46.789585+00:00"
   },
   "latest_signal": {
     "id": "ea014e47b6",
@@ -1321,7 +1321,16 @@
       "trade_id": "ffd1d898f9",
       "signal_id": "ea014e47b6",
       "time": "2026-07-10T13:01:27.511000+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "LONG",
+      "action": "HOLD",
+      "price": 76.36,
+      "trade_id": "ffd1d898f9",
+      "signal_id": "ea014e47b6",
+      "time": "2026-07-10T13:15:47.228295+00:00"
     }
   ],
-  "updated_at": "2026-07-10T13:01:27.511021+00:00"
+  "updated_at": "2026-07-10T13:15:47.228319+00:00"
 }
