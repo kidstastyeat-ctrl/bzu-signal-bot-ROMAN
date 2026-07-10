@@ -33,9 +33,9 @@
     "signal_id": "b90ba2437f"
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1783717200000,
+    "last_scanned_3m_ts": 1783718100000,
     "last_run_processed": 5,
-    "processed_count": 395,
+    "processed_count": 400,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -47,7 +47,7 @@
         "event_price": 76.36,
         "invalidation_level": 76.36,
         "sweep_level": 76.36,
-        "extreme": 76.08,
+        "extreme": 75.88,
         "displacement": true,
         "retest_ts": 1783648620000,
         "ready_ts": 1783648800000,
@@ -57,7 +57,7 @@
         "confirmation_quality": 84,
         "acceptance_quality": 80,
         "retest_quality": 80,
-        "processed_bars": 395,
+        "processed_bars": 400,
         "strong_displacement": false,
         "retest": true,
         "mitigation": true,
@@ -80,7 +80,7 @@
         "event_price": 76.36,
         "invalidation_level": 76.36,
         "sweep_level": 76.36,
-        "extreme": 76.1,
+        "extreme": 75.92,
         "displacement": true,
         "retest_ts": 1783647180000,
         "ready_ts": 1783647360000,
@@ -90,13 +90,13 @@
         "confirmation_quality": 98,
         "acceptance_quality": 80,
         "retest_quality": 80,
-        "processed_bars": 395,
+        "processed_bars": 400,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
         "impulse_strength": {
-          "score": 2,
-          "level": "STRONG",
+          "score": 3,
+          "level": "EXTREME",
           "body_strength": 1.0,
           "consecutive": 2
         },
@@ -108,13 +108,13 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 5,
+    "stable_count": 6,
     "pending_count": 0,
-    "updated_at": "2026-07-10T21:01:32.692743+00:00"
+    "updated_at": "2026-07-10T21:15:47.105105+00:00"
   },
   "latest_signal": {
-    "id": "033a07d954",
-    "time": "2026-07-10T21:01:32.698560+00:00",
+    "id": "c1f8e1f904",
+    "time": "2026-07-10T21:15:47.116111+00:00",
     "action": "NO_SETUP",
     "side": "NEUTRAL",
     "setup_type": "NONE",
@@ -129,7 +129,7 @@
     "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
     "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY",
     "learning_status": {
-      "updated_at": "2026-07-10T21:01:30.891469+00:00",
+      "updated_at": "2026-07-10T21:15:45.813558+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -260,8 +260,8 @@
       "authority_guard": {
         "validated": true,
         "executive_only_actions": [
-          "ENTRY",
-          "RISKY_ENTRY"
+          "RISKY_ENTRY",
+          "ENTRY"
         ],
         "violations": []
       }
@@ -658,7 +658,15 @@
       "quality": 12,
       "price": 76.03,
       "time": "2026-07-10T21:01:32.698641+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 75.82,
+      "time": "2026-07-10T21:15:47.116170+00:00"
     }
   ],
-  "updated_at": "2026-07-10T21:01:33.025292+00:00"
+  "updated_at": "2026-07-10T21:15:47.673939+00:00"
 }
