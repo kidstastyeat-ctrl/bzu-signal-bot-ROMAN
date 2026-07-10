@@ -92,14 +92,18 @@ def get_htf_state(candidate: Any) -> str:
     if features.get("htf_state"):
         return str(features["htf_state"])
 
-    htf_score = components.get("htf_score", features.get("htf", 0))
+    # v6.19 FIX: htf_score is not always normalized.
+    # Prefer explicit state. Only normalize feature values in [0,1].
+    features = components.get("features", {}) or {}
+    htf_feature = features.get("htf")
 
     try:
-        score = float(htf_score)
-        if score >= 0.65:
-            return "bullish"
-        if score <= 0.35:
-            return "bearish"
+        score = float(htf_feature)
+        if 0.0 <= score <= 1.0:
+            if score >= 0.65:
+                return "bullish"
+            if score <= 0.35:
+                return "bearish"
     except Exception:
         pass
 
@@ -6014,7 +6018,18 @@ def evaluate_new_setup(context: dict, state: dict, journal: dict) -> Decision:
         setattr(best, "entry_stage", "PROBE")
 
     if not state_result.get("allow_execution", False):
-        setattr(best, "kernel_action_modifier", "ARMED")
+        # v6.19 FIX: do not hide execution reason.
+        # WAIT_RETEST and revalidation states must survive for audit.
+        current_modifier = getattr(best, "kernel_action_modifier", "")
+        if current_modifier not in {"WAIT_RETEST", "PROBE_ENTRY"}:
+            setattr(best, "kernel_action_modifier", "ARMED")
+
+    reval_profile = getattr(best, "trigger_revalidation", {}) or {}
+    if (
+        reval_profile.get("entry_supported")
+        and reval_profile.get("stage_override") == "PROBE"
+    ):
+        setattr(best, "kernel_action_modifier", "PROBE_ENTRY")
 
     plan = build_trade_plan(context, best)
     action = Action.NO_SETUP.value
@@ -6080,9 +6095,38 @@ def evaluate_new_setup(context: dict, state: dict, journal: dict) -> Decision:
 # ==========================================================
 
 def institutional_execution_score(candidate: Any) -> float:
-    """Оцінка якості execution без блокування сетапу."""
+    """v6.19 FIX: single execution score scale (0-100)."""
     if not candidate:
         return 0.0
+
+    direct = getattr(candidate, "execution_quality", None)
+    if direct is not None:
+        try:
+            return float(clamp(float(direct), 0.0, 100.0))
+        except Exception:
+            pass
+
+    components = getattr(candidate, "score_components", {}) or {}
+
+    for key in ("execution_quality", "execution_q"):
+        try:
+            if components.get(key) is not None:
+                return float(clamp(float(components[key]), 0.0, 100.0))
+        except Exception:
+            pass
+
+    # Fallback only if no calibrated score exists.
+    liq = float(components.get("liq_score", 0) or 0)
+    trig = float(components.get("trig_score", 0) or 0)
+    struct = float(components.get("str_score", 0) or 0)
+
+    return float(clamp(
+        liq * PRO_SCORE_LIQUIDITY_WEIGHT +
+        trig * PRO_SCORE_TRIGGER_WEIGHT +
+        struct * PRO_SCORE_STRUCTURE_WEIGHT,
+        0.0,
+        100.0
+    ))
 
     components = getattr(candidate, "score_components", {}) or {}
     features = components.get("features", {}) or {}
@@ -6659,6 +6703,15 @@ def adaptive_state_transition(
             "risk_multiplier": min(risk, 0.35),
             "allow_execution": True,
             "reason": "preserve opportunity"
+        }
+
+    reval = getattr(candidate, "trigger_revalidation", {}) or {}
+    if reval.get("entry_supported") and reval.get("stage_override") == "PROBE":
+        return {
+            "state": STATE_PROBE,
+            "risk_multiplier": min(float(reval.get("risk_multiplier", 0.35)), 0.35),
+            "allow_execution": True,
+            "reason": "setup revalidated probe"
         }
 
     return {
