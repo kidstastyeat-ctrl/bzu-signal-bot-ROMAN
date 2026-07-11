@@ -193,6 +193,22 @@ SETUP_REVALIDATION_MAX_LATE_DIST_ATR = float(os.getenv("SETUP_REVALIDATION_MAX_L
 SETUP_REVALIDATION_BODY_ATR_MIN = float(os.getenv("SETUP_REVALIDATION_BODY_ATR_MIN", "0.16") or 0.16)
 SETUP_REVALIDATION_BODY_RATIO_MIN = float(os.getenv("SETUP_REVALIDATION_BODY_RATIO_MIN", "0.52") or 0.52)
 SETUP_REVALIDATION_ACCEPTANCE_ATR = float(os.getenv("SETUP_REVALIDATION_ACCEPTANCE_ATR", "0.42") or 0.42)
+# Hard lease for thesis memory. Default equals the previous extreme-stale boundary
+# (24h), but unlike ARCHIVED_THESIS it is terminal unless a fresh micro-confirmation
+# exists on the current run.
+THESIS_HARD_TTL_MIN = float(os.getenv("THESIS_HARD_TTL_MIN", str(SETUP_REVALIDATION_EXTREME_MIN)) or SETUP_REVALIDATION_EXTREME_MIN)
+
+# Synthetic candle-pressure CVD is not real order-flow. Keep it as a weak proxy,
+# never as an equal substitute for trades/order-book data.
+SYNTHETIC_CVD_SCORE_MULTIPLIER = float(os.getenv("SYNTHETIC_CVD_SCORE_MULTIPLIER", "0.35") or 0.35)
+SYNTHETIC_CVD_ABSORPTION_POS_MULT = float(os.getenv("SYNTHETIC_CVD_ABSORPTION_POS_MULT", "1.08") or 1.08)
+SYNTHETIC_CVD_ABSORPTION_NEG_MULT = float(os.getenv("SYNTHETIC_CVD_ABSORPTION_NEG_MULT", "0.95") or 0.95)
+
+# Calendar segmentation is audit-first. No weekend regime is activated until both
+# RANGE buckets have enough closed trades and their Wilson win-rate intervals do
+# not overlap. This prevents a human hunch from quietly becoming production logic.
+WEEKEND_RANGE_MIN_TRADES_PER_BUCKET = int(os.getenv("WEEKEND_RANGE_MIN_TRADES_PER_BUCKET", "20") or 20)
+WEEKEND_RANGE_WILSON_Z = float(os.getenv("WEEKEND_RANGE_WILSON_Z", "1.96") or 1.96)
 
 # === v6.16 Adaptive Execution Patch ===
 # HTF більше не hard-block risky entry: воно зменшує ризик, якщо execution підтверджений.
@@ -456,6 +472,7 @@ class Action(str, Enum):
     # Execution / active trade lifecycle actions only.
     ENTRY = "ENTRY"
     RISKY_ENTRY = "RISKY_ENTRY"
+    PROBE_ENTRY = "PROBE_ENTRY"
     NO_SETUP = "NO_SETUP"
     HOLD = "HOLD"
     PROTECT = "PROTECT"
@@ -476,6 +493,7 @@ class ExecutiveDecisionState(str, Enum):
     HOLD/TP/STOP belong to Action and position management.
     """
     ENTRY = "ENTRY"
+    RISKY = "RISKY"
     PROBE = "PROBE"
     PROBE_REDUCED = "PROBE_REDUCED"
     WAIT = "WAIT"
@@ -754,10 +772,13 @@ class AdvisoryRecommendation:
 # аналітичні модулі можуть створювати рекомендації, але не можуть
 # самостійно публікувати торгову дію.
 
-TRADE_ACTIONS_RESERVED_FOR_EXECUTIVE = {
+EXECUTABLE_ENTRY_ACTIONS = frozenset({
     Action.ENTRY.value,
     Action.RISKY_ENTRY.value,
-}
+    Action.PROBE_ENTRY.value,
+})
+
+TRADE_ACTIONS_RESERVED_FOR_EXECUTIVE = set(EXECUTABLE_ENTRY_ACTIONS)
 
 
 class DecisionAuthorityViolation(Exception):
@@ -1004,6 +1025,9 @@ def runtime_config_snapshot() -> dict[str, Any]:
         "acceptance_risk_pct": ACCEPTANCE_RISK_PCT,
         "retest_add_risk_pct": RETEST_ADD_RISK_PCT,
         "core_risk_pct": CORE_RISK_PCT,
+        "entry_score_base": ENTRY_SCORE_BASE,
+        "risky_entry_score_base": RISKY_ENTRY_SCORE_BASE,
+        "probe_entry_score_base": ARMED_SCORE_BASE,
         "tp0_rr": TP0_RR,
         "tp0_size_pct": TP0_SIZE_PCT,
         "tp1_size_pct": TP1_SIZE_PCT,
@@ -1057,6 +1081,12 @@ def runtime_config_snapshot() -> dict[str, Any]:
         "setup_revalidation_body_atr_min": SETUP_REVALIDATION_BODY_ATR_MIN,
         "setup_revalidation_body_ratio_min": SETUP_REVALIDATION_BODY_RATIO_MIN,
         "setup_revalidation_acceptance_atr": SETUP_REVALIDATION_ACCEPTANCE_ATR,
+        "thesis_hard_ttl_min": THESIS_HARD_TTL_MIN,
+        "synthetic_cvd_score_multiplier": SYNTHETIC_CVD_SCORE_MULTIPLIER,
+        "synthetic_cvd_absorption_pos_mult": SYNTHETIC_CVD_ABSORPTION_POS_MULT,
+        "synthetic_cvd_absorption_neg_mult": SYNTHETIC_CVD_ABSORPTION_NEG_MULT,
+        "weekend_range_min_trades_per_bucket": WEEKEND_RANGE_MIN_TRADES_PER_BUCKET,
+        "weekend_range_wilson_z": WEEKEND_RANGE_WILSON_Z,
     }
 
 
@@ -1436,6 +1466,78 @@ def compute_setup_statistics(journal: dict[str, Any]) -> dict[str, Any]:
     return stats
 
 
+
+def _wilson_interval(wins: int, total: int, z: float = WEEKEND_RANGE_WILSON_Z) -> tuple[float, float]:
+    """Wilson score interval for a binomial win rate, returned in [0, 1]."""
+    if total <= 0:
+        return 0.0, 1.0
+    p = wins / total
+    denom = 1.0 + (z * z / total)
+    centre = (p + (z * z / (2.0 * total))) / denom
+    margin = (z / denom) * math.sqrt((p * (1.0 - p) / total) + (z * z / (4.0 * total * total)))
+    return max(0.0, centre - margin), min(1.0, centre + margin)
+
+
+def compute_calendar_statistics(journal: dict[str, Any]) -> dict[str, Any]:
+    """Compare RANGE trades opened on weekends versus weekdays.
+
+    This is deliberately observational. It does not mutate Regime.RANGE or its
+    thresholds. A split is merely marked as statistically supported after both
+    buckets have enough samples and 95% Wilson win-rate intervals do not overlap.
+    """
+    buckets = {
+        "weekend": {"closed_trades": 0, "wins": 0, "net_result": 0.0},
+        "weekday": {"closed_trades": 0, "wins": 0, "net_result": 0.0},
+    }
+    for trade in journal.get("trades", []) or []:
+        if not isinstance(trade, dict) or str(trade.get("opened_regime") or "") != Regime.RANGE.value:
+            continue
+        opened = _parse_iso_datetime(trade.get("opened_at"))
+        if opened is None:
+            continue
+        key = "weekend" if opened.weekday() >= 5 else "weekday"
+        result = safe_float(trade.get("result_r", trade.get("result_pct", 0.0)), 0.0)
+        bucket = buckets[key]
+        bucket["closed_trades"] += 1
+        bucket["wins"] += 1 if result > 0 else 0
+        bucket["net_result"] += result
+
+    for bucket in buckets.values():
+        total = int(bucket["closed_trades"])
+        wins = int(bucket["wins"])
+        lo, hi = _wilson_interval(wins, total)
+        bucket["win_rate_pct"] = round((wins / total * 100.0) if total else 0.0, 2)
+        bucket["expectancy"] = round((bucket["net_result"] / total) if total else 0.0, 4)
+        bucket["net_result"] = round(bucket["net_result"], 4)
+        bucket["win_rate_wilson_95"] = [round(lo * 100.0, 2), round(hi * 100.0, 2)]
+
+    weekend = buckets["weekend"]
+    weekday = buckets["weekday"]
+    enough = (
+        weekend["closed_trades"] >= WEEKEND_RANGE_MIN_TRADES_PER_BUCKET
+        and weekday["closed_trades"] >= WEEKEND_RANGE_MIN_TRADES_PER_BUCKET
+    )
+    w_lo, w_hi = [x / 100.0 for x in weekend["win_rate_wilson_95"]]
+    d_lo, d_hi = [x / 100.0 for x in weekday["win_rate_wilson_95"]]
+    intervals_separate = bool(w_hi < d_lo or d_hi < w_lo)
+    split_supported = bool(enough and intervals_separate)
+    return {
+        "range_weekend_vs_weekday": {
+            "weekend": weekend,
+            "weekday": weekday,
+            "minimum_trades_per_bucket": WEEKEND_RANGE_MIN_TRADES_PER_BUCKET,
+            "enough_samples": enough,
+            "wilson_intervals_separate": intervals_separate,
+            "split_supported": split_supported,
+            "decision": "SPLIT_SUPPORTED" if split_supported else "KEEP_SHARED_RANGE",
+            "reason": (
+                "statistically distinct RANGE win rates"
+                if split_supported
+                else "insufficient evidence for a separate weekend regime"
+            ),
+        }
+    }
+
 def _parse_iso_datetime(value: Any) -> Optional[datetime]:
     if not value:
         return None
@@ -1570,20 +1672,75 @@ def deduplicate_closed_trades(trades: list[Any]) -> list[dict[str, Any]]:
     return cleaned
 
 
+
+def _retain_signal_records(records: list[Any], protected_signal_ids: set[str], cap: int) -> list[dict[str, Any]]:
+    """Retain records referenced by trades/open positions before applying FIFO.
+
+    The cap applies to the final list when possible. If protected records alone
+    exceed the cap, they are all kept because referential integrity beats a neat
+    round number in an environment where silent ML label loss is rather expensive.
+    """
+    cleaned = [r for r in records or [] if isinstance(r, dict) and r.get("id")]
+    protected = [r for r in cleaned if str(r.get("id") or "") in protected_signal_ids]
+    protected_keys = {str(r.get("id") or "") for r in protected}
+    unprotected = [r for r in cleaned if str(r.get("id") or "") not in protected_keys]
+    room = max(0, int(cap) - len(protected))
+    kept = protected + (unprotected[-room:] if room else [])
+    # Preserve chronological/original order after combining the two groups.
+    order = {id(record): idx for idx, record in enumerate(cleaned)}
+    return sorted(kept, key=lambda record: order.get(id(record), 0))
+
+
+def _retain_signal_events(events: list[Any], protected_signal_ids: set[str], cap: int) -> list[dict[str, Any]]:
+    cleaned = [e for e in events or [] if isinstance(e, dict)]
+    protected = [e for e in cleaned if str(e.get("signal_id") or "") in protected_signal_ids]
+    protected_obj_ids = {id(e) for e in protected}
+    unprotected = [e for e in cleaned if id(e) not in protected_obj_ids]
+    room = max(0, int(cap) - len(protected))
+    kept = protected + (unprotected[-room:] if room else [])
+    order = {id(record): idx for idx, record in enumerate(cleaned)}
+    return sorted(kept, key=lambda record: order.get(id(record), 0))
+
 def save_journal(journal: dict[str, Any]) -> None:
     journal["updated_at"] = iso_now()
-    journal["signals"] = [
-        s for s in list(journal.get("signals") or [])
-        if isinstance(s, dict) and s.get("id")
-    ][-MAX_JOURNAL:]
-    journal["training_signals"] = [
-        s for s in list(journal.get("training_signals") or [])
-        if isinstance(s, dict) and s.get("id") and isinstance(s.get("score_features"), dict)
-    ][-MAX_JOURNAL:]
-    journal["signal_events"] = list(journal.get("signal_events") or [])[-MAX_JOURNAL:]
+
+    # Closed trades are retained first; every referenced originating signal is
+    # then protected from rotation. Active signal ids are placed in
+    # protected_signal_ids when a trade opens and removed after close.
     journal["trades"] = deduplicate_closed_trades(list(journal.get("trades") or []))[-MAX_JOURNAL:]
+    active_protected = {
+        str(x) for x in (journal.get("protected_signal_ids") or []) if str(x).strip()
+    }
+    trade_protected = {
+        str(t.get("signal_id") or "")
+        for t in journal.get("trades", [])
+        if isinstance(t, dict) and str(t.get("signal_id") or "").strip()
+    }
+    protected_signal_ids = active_protected | trade_protected
+
+    journal["signals"] = _retain_signal_records(
+        list(journal.get("signals") or []), protected_signal_ids, MAX_JOURNAL
+    )
+    journal["training_signals"] = _retain_signal_records(
+        [
+            s for s in list(journal.get("training_signals") or [])
+            if isinstance(s, dict) and isinstance(s.get("score_features"), dict)
+        ],
+        protected_signal_ids,
+        MAX_JOURNAL,
+    )
+    journal["signal_events"] = _retain_signal_events(
+        list(journal.get("signal_events") or []), protected_signal_ids, MAX_JOURNAL
+    )
+    journal["retention_audit"] = {
+        "mode": "SIGNAL_ID_REFERENTIAL_RETENTION",
+        "max_journal": MAX_JOURNAL,
+        "protected_signal_ids": sorted(protected_signal_ids),
+        "protected_count": len(protected_signal_ids),
+    }
     journal["analytics"] = compute_analytics(journal)
     journal["setup_statistics"] = compute_setup_statistics(journal)
+    journal["calendar_statistics"] = compute_calendar_statistics(journal)
     journal["learning_status"] = compute_learning_status(journal)
     atomic_json_write(JOURNAL_FILE, journal)
 
@@ -1717,6 +1874,7 @@ def build_decision_message(context: dict, decision: Decision) -> str:
     action_names = {
         "ENTRY": "ВХІД У УГОДУ",
         "RISKY_ENTRY": "РАННІЙ / СТАДІЙНИЙ ВХІД",
+        "PROBE_ENTRY": "ПРОБНИЙ ВХІД",
         "NO_SETUP": "СИГНАЛУ НЕМАЄ",
     }
     action_label = action_names.get(decision.action, decision.action)
@@ -1797,7 +1955,7 @@ def build_decision_message(context: dict, decision: Decision) -> str:
     for warning in context.get("learning_warnings", [])[:2]:
         lines.append(f"⚠️ {html.escape(warning)}")
     
-    show_plan = decision.plan and decision.plan.valid and decision.action in (Action.ENTRY.value, Action.RISKY_ENTRY.value)
+    show_plan = decision.plan and decision.plan.valid and decision.action in EXECUTABLE_ENTRY_ACTIONS
     
     if show_plan:
         p = decision.plan
@@ -1937,6 +2095,7 @@ def get_adaptive_params(regime: str) -> dict:
     base = {
         "entry_score": ENTRY_SCORE_BASE,
         "risky_entry_score": RISKY_ENTRY_SCORE_BASE,
+        "probe_entry_score": ARMED_SCORE_BASE,
         "armed_score": ARMED_SCORE_BASE,
         "min_evidence": MIN_ENTRY_EVIDENCE_BASE,
         "mfe_giveback_threshold": 0.42,
@@ -2380,7 +2539,21 @@ def detect_recent_structure_shift(candles: list[Candle], lookback: int = 7) -> d
 
 
 def flow_snapshot(trades: list[dict], book: dict) -> dict:
-    return {"bias": Side.NEUTRAL.value, "score": 0, "absorption_bias": Side.NEUTRAL.value}
+    # Real flow computation is intentionally unavailable until OKX trades/book
+    # are both collected AND a signed-flow calculation is implemented. Merely
+    # receiving rows must not turn a neutral placeholder into a "reliable" source.
+    has_feed_payload = bool(trades) and bool((book or {}).get("bids") and (book or {}).get("asks"))
+    quality = (
+        "UNIMPLEMENTED_REAL_FLOW_CALCULATION"
+        if has_feed_payload else "DISABLED_NO_TRADES_OR_BOOK"
+    )
+    return {
+        "bias": Side.NEUTRAL.value,
+        "score": 0,
+        "absorption_bias": Side.NEUTRAL.value,
+        "quality": quality,
+        "reliable": False,
+    }
 
 
 def cvd_snapshot(candles: list[Candle]) -> dict:
@@ -2586,7 +2759,7 @@ def stabilize_regime_engine(state: dict, detected: dict) -> dict:
     return detected
 
 
-def build_context(data: dict, state: dict) -> dict:
+def build_context(data: dict, state: dict, journal: Optional[dict[str, Any]] = None) -> dict:
     c3 = data["candles"]["3m"]
     c15 = data["candles"]["15m"]
     c1h = data["candles"]["1h"]
@@ -2626,6 +2799,14 @@ def build_context(data: dict, state: dict) -> dict:
         "1h": identify_liquidity_and_range(c1h, left_bars=3, right_bars=3),
     }
 
+    calendar_statistics = compute_calendar_statistics(journal or {})
+    range_calendar = (calendar_statistics.get("range_weekend_vs_weekday") or {})
+    try:
+        market_dt = _parse_iso_datetime(data.get("time")) or now_utc()
+        calendar_segment = "WEEKEND" if market_dt.weekday() >= 5 else "WEEKDAY"
+    except Exception:
+        calendar_segment = "UNKNOWN"
+
     ctx = {
         "time": data["time"],
         "price": price,
@@ -2636,13 +2817,28 @@ def build_context(data: dict, state: dict) -> dict:
         "smt_instrument": data.get("smt_instrument", SMT_ASSET_ID),
         "regime": regime,
         "regime_reason": regime_reason,
+        "adaptive_regime": regime,
+        "range_calendar_segment": calendar_segment,
+        "range_calendar_statistics": range_calendar,
+        "range_calendar_split_active": False,
+        "range_calendar_split_reason": (
+            "split_supported_but_parameter_fit_not_implemented"
+            if range_calendar.get("split_supported")
+            else "shared RANGE retained: insufficient statistical evidence"
+        ),
         "tf3": tf3, "tf15": tf15, "tf1h": tf1h, "tf4h": tf4h,
         "zones": zones[-38:],
         "liquidity": liquidity,
         "flow": flow,
         "cvd": cvd,
-        "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
-        "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY",
+        "flow_quality": str(flow.get("quality") or "DISABLED_NO_TRADES_OR_BOOK"),
+        "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY_LOW_WEIGHT",
+        "cvd_limitations": {
+            "is_real_cvd": False,
+            "source": "15m candle pressure approximation",
+            "score_multiplier": SYNTHETIC_CVD_SCORE_MULTIPLIER,
+            "permanent_limitation_until_trade_feed": True,
+        },
         "atr15": atr15,
         "atr1h": atr1h,
         "candles": data["candles"],
@@ -3198,10 +3394,12 @@ def _side_directional_revalidation(side: str, c3: list[Candle], c15: list[Candle
 
 
 def setup_trigger_revalidation_profile(candidate: Candidate, context: dict, impulse: Optional[dict] = None) -> dict[str, Any]:
-    """v6.15: trigger lease без примусового блокування.
-    Старий trigger не відкриває late-entry сам по собі. Він має бути
-    переаргументований свіжою 3M/15M поведінкою або лишається ARMED thesis.
-    Quality thresholds не змінюються."""
+    """Trigger lease with a terminal hard TTL.
+
+    A stale trigger may be re-argued by fresh 3M/15M behavior. After the hard
+    TTL it becomes DEAD unless the current run contains fresh micro-confirmation.
+    Quality thresholds themselves are unchanged.
+    """
     if not SETUP_REVALIDATION_ENGINE:
         return {"enabled": False, "state": "DISABLED", "entry_supported": True, "needs_revalidation": False}
 
@@ -3217,16 +3415,21 @@ def setup_trigger_revalidation_profile(candidate: Candidate, context: dict, impu
     limit_ready = bool(getattr(candidate, "limit_armed_ready", False))
     time_warp_ready = bool(getattr(candidate, "time_warp_ready", False))
 
-    if age < SETUP_REVALIDATION_STALE_MIN or live_ready:
+    dist_atr = abs(price - anchor) / max(atr15, 1e-9) if price and anchor else 0.0
+    not_late_location = bool(dist_atr <= SETUP_REVALIDATION_MAX_LATE_DIST_ATR or limit_ready)
+    micro = _side_directional_revalidation(candidate.side, c3, c15, atr15)
+
+    hard_ttl_elapsed = bool(age >= THESIS_HARD_TTL_MIN)
+    if hard_ttl_elapsed and not micro.get("supported"):
+        state = "DEAD"
+    elif hard_ttl_elapsed and micro.get("supported"):
+        state = "REVALIDATED_AFTER_TTL"
+    elif age < SETUP_REVALIDATION_STALE_MIN or live_ready:
         state = "FRESH"
     elif age < SETUP_REVALIDATION_EXTREME_MIN:
         state = "STALE"
     else:
         state = "ARCHIVED_THESIS"
-
-    dist_atr = abs(price - anchor) / max(atr15, 1e-9) if price and anchor else 0.0
-    not_late_location = bool(dist_atr <= SETUP_REVALIDATION_MAX_LATE_DIST_ATR or limit_ready)
-    micro = _side_directional_revalidation(candidate.side, c3, c15, atr15)
 
     # Сетапна аргументація: не просто "age ok/not ok", а чому саме зараз можна або не можна.
     setup_arguments = []
@@ -3244,7 +3447,9 @@ def setup_trigger_revalidation_profile(candidate: Candidate, context: dict, impu
         setup_arguments.append("time-warp is thesis memory, not live execution")
 
     needs_revalidation = bool(state != "FRESH" or (time_warp_ready and not live_ready and source == ExecutionSource.TIME_WARP.value))
-    revalidated = bool(needs_revalidation and micro.get("supported") and not_late_location)
+    revalidated = bool(
+        state != "DEAD" and needs_revalidation and micro.get("supported") and not_late_location
+    )
 
     # v6.16: якщо стара thesis вже підтверджена фактичним рухом і acceptance,
     # дозволяємо малий probe замість нескінченного ARMED.
@@ -3257,24 +3462,58 @@ def setup_trigger_revalidation_profile(candidate: Candidate, context: dict, impu
         revalidated = True
         micro["stale_thesis_recovery"] = True
 
-    entry_supported = bool(not needs_revalidation or revalidated)
+    entry_supported = bool(state != "DEAD" and (not needs_revalidation or revalidated))
+
+    if state == "DEAD":
+        return {
+            "enabled": True,
+            "version": "v6.20_hard_thesis_ttl",
+            "state": "DEAD",
+            "source": source,
+            "age_min": round(age, 1),
+            "hard_ttl_min": THESIS_HARD_TTL_MIN,
+            "hard_expired": True,
+            "needs_revalidation": True,
+            "revalidated": False,
+            "entry_supported": False,
+            "entry_timing": "DEAD_HARD_TTL",
+            "not_late_location": not_late_location,
+            "distance_from_anchor_atr": round(dist_atr, 2),
+            "micro_confirmation": micro,
+            "risk_multiplier": 0.0,
+            "stage_override": "DEAD",
+            "action_bias": "DEAD",
+            "setup_arguments": setup_arguments + [f"hard TTL elapsed: {age:.1f} >= {THESIS_HARD_TTL_MIN:.1f} min"],
+            "no_hard_block": False,
+            "quality_threshold_changed": False,
+        }
 
     if not needs_revalidation:
         entry_timing = "LIVE_OR_STILL_FRESH"
         risk_mult = 1.0
     elif revalidated:
         entry_timing = "SETUP_REVALIDATED_NOW"
-        risk_mult = SETUP_REVALIDATION_RISK_MULT_EXTREME if state == "ARCHIVED_THESIS" else SETUP_REVALIDATION_RISK_MULT_STALE
+        risk_mult = (
+            SETUP_REVALIDATION_RISK_MULT_EXTREME
+            if state in {"ARCHIVED_THESIS", "REVALIDATED_AFTER_TTL"}
+            else SETUP_REVALIDATION_RISK_MULT_STALE
+        )
     else:
         entry_timing = "ARMED_WAIT_FRESH_ARGUMENT"
-        risk_mult = SETUP_REVALIDATION_RISK_MULT_EXTREME if state == "ARCHIVED_THESIS" else SETUP_REVALIDATION_RISK_MULT_STALE
+        risk_mult = (
+            SETUP_REVALIDATION_RISK_MULT_EXTREME
+            if state in {"ARCHIVED_THESIS", "REVALIDATED_AFTER_TTL"}
+            else SETUP_REVALIDATION_RISK_MULT_STALE
+        )
 
     return {
         "enabled": True,
-        "version": "v6.16_adaptive_execution",
+        "version": "v6.20_hard_thesis_ttl",
         "state": state,
         "source": source,
         "age_min": round(age, 1),
+        "hard_ttl_min": THESIS_HARD_TTL_MIN,
+        "hard_expired": False,
         "needs_revalidation": needs_revalidation,
         "revalidated": revalidated,
         "entry_supported": entry_supported,
@@ -3906,6 +4145,10 @@ def compute_learning_status(journal: dict) -> dict[str, Any]:
             "learned_weight": round(_learned_model_weight(len(rows), SCORING_MODEL_MIN_FAMILY_TRADES, SCORING_MODEL_FULL_FAMILY_TRADES), 4),
         }
     global_ready = len(global_rows) >= SCORING_MODEL_MIN_TRADES
+    latest_signal = next(
+        (s for s in reversed(journal.get("signals", []) or []) if isinstance(s, dict)),
+        {},
+    )
     return {
         "updated_at": iso_now(),
         "journal_file": str(JOURNAL_FILE),
@@ -3922,8 +4165,9 @@ def compute_learning_status(journal: dict) -> dict[str, Any]:
         "validation": _validation_metrics(global_rows, DEFAULT_QUALITY_COEFFICIENTS["_global"]),
         "github_actions": bool(os.getenv("GITHUB_ACTIONS")),
         "journal_persistence_confirmed": JOURNAL_PERSISTENCE_CONFIRMED,
-        "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
-        "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY",
+        "flow_quality": str(latest_signal.get("flow_quality") or "UNKNOWN_NOT_RECORDED"),
+        "cvd_quality": str(latest_signal.get("cvd_quality") or "UNKNOWN_NOT_RECORDED"),
+        "calendar_statistics": journal.get("calendar_statistics") or compute_calendar_statistics(journal),
     }
 
 
@@ -4074,7 +4318,8 @@ def _build_quality_features(
 
 
 def _multiplicative_quality_gates(features: dict[str, float], setup_family: str, trigger_ready: bool,
-                                  is_limit_armed: bool, has_forward_zone: bool) -> dict[str, float]:
+                                  is_limit_armed: bool, has_forward_zone: bool,
+                                  flow_reliable: bool = False) -> dict[str, Any]:
     family_is_reversal = setup_family in {
         SetupFamily.LIQUIDITY_RECOVERY.value,
         SetupFamily.STRUCTURAL_TRANSITION.value,
@@ -4087,7 +4332,13 @@ def _multiplicative_quality_gates(features: dict[str, float], setup_family: str,
     forward_zone_gate = 1.0 if has_forward_zone else 0.90
     exhaustion_gate = 1.0 - (0.45 * features["exhaustion"])
     liquidity_gate = 0.58 + 0.42 * features["liquidity"] if family_is_reversal else 1.0
-    trend_gate = 0.55 + 0.45 * max(features["flow"], features["htf"]) if family_is_trend else 1.0
+    if family_is_trend:
+        trend_signal = max(features["flow"], features["htf"]) if flow_reliable else features["htf"]
+        trend_gate = 0.55 + 0.45 * trend_signal
+        trend_gate_source = "REAL_FLOW_PLUS_HTF" if flow_reliable else "HTF_ONLY_FLOW_UNAVAILABLE"
+    else:
+        trend_gate = 1.0
+        trend_gate_source = "NOT_APPLICABLE"
     htf_late_gate = 1.0
     if family_is_reversal and features["htf"] > 0.85 and features["smt"] <= 0:
         htf_late_gate = 0.82
@@ -4103,6 +4354,7 @@ def _multiplicative_quality_gates(features: dict[str, float], setup_family: str,
         "exhaustion_gate": round(exhaustion_gate, 3),
         "liquidity_gate": round(liquidity_gate, 3),
         "trend_gate": round(trend_gate, 3),
+        "trend_gate_source": trend_gate_source,
         "htf_late_gate": round(htf_late_gate, 3),
         "product": round(clamp(product, 0.0, 1.0), 3),
     }
@@ -4110,11 +4362,13 @@ def _multiplicative_quality_gates(features: dict[str, float], setup_family: str,
 
 def calibrate_candidate_quality(journal: dict, features: dict[str, float], setup_family: str,
                                 trigger_ready: bool, is_limit_armed: bool,
-                                has_forward_zone: bool) -> dict[str, Any]:
+                                has_forward_zone: bool, flow_reliable: bool = False) -> dict[str, Any]:
     coef, model_source, sample_size, learned_weight = _quality_coefficients(journal, setup_family)
     logit = coef.get("bias", 0.0) + sum(coef.get(key, 0.0) * features.get(key, 0.0) for key in QUALITY_FEATURE_KEYS)
     base_probability = _sigmoid(logit)
-    gates = _multiplicative_quality_gates(features, setup_family, trigger_ready, is_limit_armed, has_forward_zone)
+    gates = _multiplicative_quality_gates(
+        features, setup_family, trigger_ready, is_limit_armed, has_forward_zone, flow_reliable
+    )
     gated_probability = clamp(base_probability * gates["product"], 0.02, 0.98)
     score = int(round(100.0 * gated_probability))
     return {
@@ -4426,7 +4680,10 @@ def rescore_reentry_candidate(candidate: Candidate, context: dict, journal: dict
     str_score = 19 if context.get("tf15", {}).get("bias") == side else 10
     htf_score = 20 if context.get("tf4h", {}).get("bias") == side else 6
     cvd = context.get("cvd", {}) or {}
-    flw_score = float(cvd.get("score", 0)) if cvd.get("bias") == side else 0.0
+    flw_score = (
+        float(cvd.get("score", 0)) * SYNTHETIC_CVD_SCORE_MULTIPLIER
+        if cvd.get("bias") == side else 0.0
+    )
     trig_score = 18 if candidate.trigger_ready else 7
     liq_score = 12 if "ICT_LOCATION" in (candidate.evidence_families or []) else 6
     setup_family = candidate.setup_family or SETUP_FAMILY_MAP.get(candidate.setup_type, SetupFamily.CONTINUATION.value)
@@ -4448,7 +4705,10 @@ def rescore_reentry_candidate(candidate: Candidate, context: dict, journal: dict
         exhaustion_multiplier=1.0,
         pattern_family=setup_family,
     )
-    calibration = calibrate_candidate_quality(journal, quality_features, setup_family, candidate.trigger_ready, False, True)
+    calibration = calibrate_candidate_quality(
+        journal, quality_features, setup_family, candidate.trigger_ready, False, True,
+        bool((context.get("flow") or {}).get("reliable")),
+    )
     direction_perf = direction_recent_performance(journal, side)
     layers = score_hypothesis_layers(
         loc_score=loc_score,
@@ -4815,6 +5075,11 @@ def detect_time_of_day_adaptive_execution(session_profile: dict, side: str, tf15
 def explain_candidate_gate_failure(context: dict, candidate: Candidate, gate: Optional[dict] = None) -> str:
     gate = gate or candidate.professional_gate or evaluate_professional_gate(context, candidate)
     reasons: list[str] = []
+    revalidation = getattr(candidate, "revalidation_profile", {}) or {}
+    if revalidation.get("hard_expired") or revalidation.get("state") == "DEAD":
+        reasons.append(
+            f"THESIS_HARD_TTL_EXPIRED age={revalidation.get('age_min')}min ttl={revalidation.get('hard_ttl_min')}min"
+        )
     if candidate.final_score < PRO_RISKY_MIN:
         reasons.append(f"score {candidate.final_score} < risky_min {PRO_RISKY_MIN}")
     if len(candidate.evidence_families or []) < max(3, MIN_PRO_LAYERS_ENTRY - 1):
@@ -4849,6 +5114,72 @@ def rejected_hypotheses_audit(context: dict, candidates: list[Candidate], limit:
         rows.append(row)
     return rows
 
+
+
+def best_candidate_per_side_audit(
+    context: dict,
+    candidates: list[Candidate],
+    selected: Optional[Candidate] = None,
+) -> dict[str, Any]:
+    """Always emit one audit row for LONG and SHORT.
+
+    A side can be selected, rejected by a gate/TTL, lose to a higher-ranked side,
+    or fail to create any candidate. All four outcomes are explicit.
+    """
+    rows: dict[str, Any] = {}
+    ranked = finalize_hypothesis_ranking(list(candidates or [])) if candidates else []
+    selected_side = str(getattr(selected, "side", "") or "")
+    selected_score = float(getattr(selected, "hypothesis_score", 0.0) or getattr(selected, "final_score", 0.0) or 0.0)
+    armed_score = get_adaptive_params(context.get("adaptive_regime", context.get("regime", Regime.NORMAL.value)))["armed_score"]
+
+    for side in (Side.LONG.value, Side.SHORT.value):
+        side_candidates = [c for c in ranked if c.side == side]
+        if not side_candidates:
+            rows[side] = {
+                "side": side,
+                "candidate_created": False,
+                "selected": False,
+                "final_score": None,
+                "hypothesis_score": None,
+                "top_rejection_reason": "NO_CANDIDATE_CREATED",
+            }
+            continue
+
+        best = side_candidates[0]
+        gate = best.professional_gate or evaluate_professional_gate(context, best)
+        row = hypothesis_audit_row(best)
+        hard_expired = bool((getattr(best, "revalidation_profile", {}) or {}).get("hard_expired"))
+        eligible = bool(
+            not hard_expired
+            and (
+                gate.get("advisory_advisory_allow_entry")
+                or gate.get("advisory_advisory_allow_risky")
+                or best.final_score >= armed_score
+            )
+        )
+        is_selected = bool(selected is best or (selected_side == side and abs(float(best.hypothesis_score or best.final_score) - selected_score) < 1e-9))
+        if is_selected:
+            rejection = ""
+            status = "SELECTED"
+        elif not eligible:
+            rejection = explain_candidate_gate_failure(context, best, gate)
+            status = "REJECTED"
+        elif selected is not None:
+            rejection = f"LOST_TO_SELECTED_{selected_side}: {float(best.hypothesis_score or best.final_score):.2f} < {selected_score:.2f}"
+            status = "VALID_BUT_NOT_SELECTED"
+        else:
+            rejection = "ELIGIBLE_BUT_NO_EXECUTIVE_SELECTION"
+            status = "VALID_BUT_NOT_SELECTED"
+
+        row.update({
+            "candidate_created": True,
+            "selected": is_selected,
+            "eligible": eligible,
+            "status": status,
+            "top_rejection_reason": rejection,
+        })
+        rows[side] = row
+    return rows
 
 def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candidate]:
     price = context["price"]
@@ -4997,7 +5328,12 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
             if regime in (Regime.RANGE.value, Regime.TRANSITION.value) or in_chop:
                 # У боковику звичайна тінь не працює — свіп повинен мати підтвердження.
                 smt_mult = 1.4 if has_smt_support else 0.7
-                cvd_mult = 1.25 if has_cvd_absorption else 0.8
+                # Candle-pressure CVD is a low-confidence proxy, so its positive
+                # and negative multipliers remain deliberately close to neutral.
+                cvd_mult = (
+                    SYNTHETIC_CVD_ABSORPTION_POS_MULT
+                    if has_cvd_absorption else SYNTHETIC_CVD_ABSORPTION_NEG_MULT
+                )
 
                 footprint_score = smt_mult * cvd_mult
                 sweep_quality_multiplier = topology_weight * footprint_score
@@ -5214,7 +5550,10 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
             str_score = (19 if tf15.get("bias") == side else 10) * str_weight
             liq_base = 16 if is_sweep and live_3m_trigger_ready else 6
             liq_score = liq_base * liq_weight * sweep_quality_multiplier
-            flw_score = float(cvd.get("score", 0)) * flw_weight if cvd.get("bias") == side else 0.0
+            flw_score = (
+                float(cvd.get("score", 0)) * flw_weight * SYNTHETIC_CVD_SCORE_MULTIPLIER
+                if cvd.get("bias") == side else 0.0
+            )
             trig_score = (22 if live_3m_trigger_ready else 8) * trig_weight
             htf_score = (20 if tf4h.get("bias") == side else 6) * htf_weight
 
@@ -5329,7 +5668,7 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
 
             evidence = ["ICT_LOCATION", "PRICE_STRUCTURE", f"ICT_MODEL_{model_id}"]
             if flw_score > 0:
-                evidence.append("ORDER_FLOW_CVD")
+                evidence.append("SYNTHETIC_CVD_PROXY_LOW_WEIGHT")
             if live_3m_trigger_ready:
                 evidence.append("EXECUTION_TRIGGER_LIVE_3M")
             if limit_armed_ready:
@@ -5358,7 +5697,8 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
                 pattern_family=setup_family,
             )
             calibration = calibrate_candidate_quality(
-                journal, quality_features, setup_family, actionable_trigger_ready, limit_armed_ready, has_forward_zone
+                journal, quality_features, setup_family, actionable_trigger_ready, limit_armed_ready,
+                has_forward_zone, bool((context.get("flow") or {}).get("reliable"))
             )
             layers = score_hypothesis_layers(
                 loc_score=loc_score,
@@ -5430,6 +5770,11 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
                     "active_model_count": len(active_patterns),
                     "execution_source": execution_source,
                     "execution_freshness_multiplier": freshness_mult,
+                    "flow_feature_source": (
+                        "REAL_FLOW" if (context.get("flow") or {}).get("reliable")
+                        else "SYNTHETIC_CVD_PROXY"
+                    ),
+                    "synthetic_cvd_score_multiplier": SYNTHETIC_CVD_SCORE_MULTIPLIER,
                     "live_3m_trigger_ready": live_3m_trigger_ready,
                     "limit_armed_ready": limit_armed_ready,
                     "time_warp_ready": time_warp_ready,
@@ -5968,6 +6313,93 @@ def _atr_guard_buffer(context: dict, atr15: float, price: float) -> float:
     return effective_atr * _session_stop_buffer_mult(context)
 
 
+def fresh_probe_candidate_profile(candidate: Optional[Candidate]) -> dict[str, Any]:
+    """Score-independent execution facts for the smallest staged entry.
+
+    The score is only a low evidence floor (ARMED_SCORE_BASE), not a proxy for
+    full-size conviction. Freshness, trigger source and thesis validity carry
+    the actual admission decision.
+    """
+    if candidate is None:
+        return {
+            "eligible": False,
+            "score": 0,
+            "score_floor": ARMED_SCORE_BASE,
+            "live_3m_trigger_ready": False,
+            "fresh_age": False,
+            "revalidation_state": "MISSING",
+            "entry_supported": False,
+            "reasons": ["missing candidate"],
+        }
+
+    score = int(getattr(candidate, "final_score", 0) or 0)
+    live_ready = bool(getattr(candidate, "live_3m_trigger_ready", False))
+    trigger_age = max(safe_float(getattr(candidate, "trigger_age_minutes", 0.0), 0.0), 0.0)
+    fresh_age = bool(trigger_age <= float(TRIGGER_MAX_AGE_MINUTES))
+    revalidation = getattr(candidate, "revalidation_profile", {}) or {}
+    revalidation_state = str(revalidation.get("state") or "UNKNOWN").upper()
+    hard_expired = bool(revalidation.get("hard_expired") or revalidation_state == "DEAD")
+    entry_supported = bool(revalidation.get("entry_supported", True))
+    archived_unrevalidated = bool(
+        revalidation_state == "ARCHIVED_THESIS"
+        and not revalidation.get("revalidated")
+    )
+
+    checks = {
+        "score_floor": score >= ARMED_SCORE_BASE,
+        "live_3m_trigger": live_ready,
+        "fresh_age": fresh_age,
+        "not_hard_expired": not hard_expired,
+        "entry_supported": entry_supported,
+        "not_archived_unrevalidated": not archived_unrevalidated,
+    }
+    reasons = [name for name, passed in checks.items() if not passed]
+    return {
+        "eligible": all(checks.values()),
+        "score": score,
+        "score_floor": ARMED_SCORE_BASE,
+        "live_3m_trigger_ready": live_ready,
+        "trigger_age_minutes": round(trigger_age, 2),
+        "fresh_age": fresh_age,
+        "revalidation_state": revalidation_state,
+        "entry_supported": entry_supported,
+        "checks": checks,
+        "reasons": reasons,
+    }
+
+
+def probe_entry_eligibility(
+    candidate: Optional[Candidate],
+    plan: Optional[TradePlan],
+    *,
+    hard_conflict: bool,
+    risk_blocked: bool,
+    philosophy_accepts: bool,
+) -> dict[str, Any]:
+    """Final Executive gate for Action.PROBE_ENTRY.
+
+    Unlike ENTRY/RISKY_ENTRY, this gate does not use the 75/68 conviction
+    thresholds. It requires a fresh live trigger, a valid executable plan,
+    no analytical hard conflict and available risk budget. Capital-at-risk is
+    capped separately at PROBE_RISK_PCT.
+    """
+    profile = fresh_probe_candidate_profile(candidate)
+    checks = dict(profile.get("checks") or {})
+    checks.update({
+        "plan_valid": bool(plan and getattr(plan, "valid", False)),
+        "plan_execution_ready": bool(plan and getattr(plan, "execution_ready", False)),
+        "no_hard_conflict": not bool(hard_conflict),
+        "risk_not_blocked": not bool(risk_blocked),
+        "philosophy_accepts": bool(philosophy_accepts),
+    })
+    return {
+        **profile,
+        "eligible": all(checks.values()),
+        "checks": checks,
+        "reasons": [name for name, passed in checks.items() if not passed],
+    }
+
+
 def build_trade_plan(context: dict, candidate: Candidate) -> TradePlan:
     price = safe_float(getattr(candidate, "execution_anchor", 0.0), 0.0) or safe_float(context.get("price"), 0.0)
     atr15 = context["atr15"] or 0.6
@@ -6130,15 +6562,37 @@ def build_trade_plan(context: dict, candidate: Candidate) -> TradePlan:
     
     rr1 = abs(tp1 - price) / abs(stop - price) if abs(stop - price) > 1e-9 else 2.1
     regime_action = str(profile.get("entry_action", "ALLOW")).upper()
-    execution_ready = candidate.trigger_ready and candidate.final_score >= ENTRY_SCORE_BASE and not profile.get("hard_block") and regime_action in {"ALLOW", "RISKY_ONLY"}
-    # v6.15: старий trigger не відкриває late-entry сам. Це не hard block:
-    # thesis лишається ARMED, але entry_ready зʼявляється тільки після нового
-    # сетапного доказу на 3M/15M або якщо execution справді fresh.
+    common_execution_ok = bool(
+        not profile.get("hard_block")
+        and regime_action in {"ALLOW", "RISKY_ONLY"}
+    )
     reval_profile = getattr(candidate, "revalidation_profile", {}) or ((candidate.stage_plan or {}).get("innovation_profile", {}) or {}).get("trigger_revalidation", {}) or {}
-    if reval_profile.get("needs_revalidation") and not reval_profile.get("entry_supported"):
-        execution_ready = False
-    elif reval_profile.get("needs_revalidation") and reval_profile.get("entry_supported"):
-        execution_ready = bool(candidate.final_score >= RISKY_ENTRY_SCORE_BASE and not profile.get("hard_block") and regime_action in {"ALLOW", "RISKY_ONLY"})
+    revalidation_ok = bool(
+        not reval_profile.get("hard_expired")
+        and str(reval_profile.get("state") or "").upper() != "DEAD"
+        and (
+            not reval_profile.get("needs_revalidation")
+            or reval_profile.get("entry_supported")
+        )
+    )
+
+    # Full/risky entries preserve the existing 75/68 score gates.
+    standard_execution_ready = bool(
+        candidate.trigger_ready
+        and candidate.final_score >= RISKY_ENTRY_SCORE_BASE
+        and common_execution_ok
+        and revalidation_ok
+    )
+
+    # PROBE is a separate trust dimension: fresh live execution evidence plus
+    # a low ARMED floor. It is not a disguised lowering of the 68 threshold.
+    fresh_probe_profile = fresh_probe_candidate_profile(candidate)
+    probe_execution_ready = bool(
+        fresh_probe_profile.get("eligible")
+        and common_execution_ok
+        and revalidation_ok
+    )
+    execution_ready = bool(standard_execution_ready or probe_execution_ready)
 
     # Будь-який нестандартний (ризикований) лейн виконання — раннє тактичне входження
     # АБО re-entry з пропущеного імпульсу — повинен отримувати зменшений розмір позиції.
@@ -6184,6 +6638,19 @@ def build_trade_plan(context: dict, candidate: Candidate) -> TradePlan:
         candidate = apply_setup_innovation_overlay(candidate, context)
     position_risk_pct = adaptive_position_risk_pct(candidate, context, default_risk)
     position_risk_pct = round(clamp(position_risk_pct * float(breathing.get("risk_size_multiplier", 1.0)), 0.02, CORE_RISK_PCT), 4)
+
+    # A fresh sub-68 probe must reach the Risk Manager already capped. Capping
+    # only after the executive vote can create a false daily-budget veto based
+    # on exposure that would never actually be opened.
+    if fresh_probe_profile.get("eligible") and candidate.final_score < RISKY_ENTRY_SCORE_BASE:
+        candidate.entry_stage = EntryStage.PROBE.value
+        candidate.stage_plan["stage"] = EntryStage.PROBE.value
+        candidate.stage_plan["base_risk_pct"] = min(
+            safe_float(candidate.stage_plan.get("base_risk_pct"), PROBE_RISK_PCT),
+            PROBE_RISK_PCT,
+        )
+        position_risk_pct = round(min(position_risk_pct, PROBE_RISK_PCT), 4)
+
     candidate.stage_plan.setdefault("breathing_geometry", breathing)
     candidate.stage_plan.setdefault("scale_plan", []).append(
         f"v6.13 breathing: hard stop ширший за noise envelope; sizing x{breathing.get('risk_size_multiplier')}"
@@ -6280,6 +6747,17 @@ def executive_finalize_decision(
 ) -> Decision:
     return executive_authority_decision(decision, state=state, journal=journal)
 
+
+def canonical_decision_quality(decision: Decision) -> int:
+    """Single source of truth for signal quality.
+
+    Candidate.final_score is authoritative whenever a candidate exists. NO_SETUP
+    without a candidate keeps the explicit decision quality sentinel.
+    """
+    if decision.candidate is not None:
+        return int(clamp(safe_float(decision.candidate.final_score, 0.0), 0, 100))
+    return int(clamp(safe_float(decision.quality, 0.0), 0, 100))
+
 def evaluate_new_setup(context: dict, state: dict, journal: dict) -> Decision:
     """
     v8.5 EXECUTIVE AUTHORITY PIPELINE.
@@ -6293,7 +6771,7 @@ def evaluate_new_setup(context: dict, state: dict, journal: dict) -> Decision:
 
     10% Executive Decision Layer:
         - the only component allowed to publish:
-          ENTRY / RISKY_ENTRY / NO_SETUP (opportunity states are separate)
+          ENTRY / RISKY_ENTRY / PROBE_ENTRY / NO_SETUP (opportunity states are separate)
 
     Legacy evaluator is preserved as an analytical generator only.
     Its proposed action is stored for audit, but it has no authority.
@@ -6315,7 +6793,9 @@ def evaluate_new_setup(context: dict, state: dict, journal: dict) -> Decision:
     # Executive receives the evidence package, not a pre-approved trade action.
     draft.action = Action.NO_SETUP.value
 
-    return executive_authority_decision(draft, state=state, journal=journal)
+    final_decision = executive_authority_decision(draft, state=state, journal=journal)
+    final_decision.quality = canonical_decision_quality(final_decision)
+    return final_decision
 
 
 def _legacy_evaluate_new_setup(context: dict, state: dict, journal: dict) -> Decision:
@@ -6329,7 +6809,7 @@ def _legacy_evaluate_new_setup(context: dict, state: dict, journal: dict) -> Dec
         if missed_cand:
             missed_cand = rescore_reentry_candidate(missed_cand, context, journal)
             guard = event_driven_reentry_guard(state, context, missed_cand)
-            if not guard["blocked"] and missed_cand.final_score >= MISSED_REENTRY_SCORE * get_adaptive_params(context["regime"])["reentry_aggressiveness"]:
+            if not guard["blocked"] and missed_cand.final_score >= MISSED_REENTRY_SCORE * get_adaptive_params(context.get("adaptive_regime", context["regime"]))["reentry_aggressiveness"]:
                 plan = build_trade_plan(context, missed_cand)
                 proposed_action = (
                     Action.ENTRY.value
@@ -6347,6 +6827,9 @@ def _legacy_evaluate_new_setup(context: dict, state: dict, journal: dict) -> Dec
                     current_price=current_price,
                     audit={
                         "selected": hypothesis_audit_row(missed_cand),
+                        "best_candidate_per_side": best_candidate_per_side_audit(
+                            context, list(cands) + [missed_cand], selected=missed_cand
+                        ),
                         "reentry_rescored": True,
                         "legacy_opportunity_status": proposed_action,
                     },
@@ -6356,8 +6839,14 @@ def _legacy_evaluate_new_setup(context: dict, state: dict, journal: dict) -> Dec
     valid_candidates = []
     for cand in cands:
         gate = cand.professional_gate or evaluate_professional_gate(context, cand)
-        # Додаємо кандидата, якщо він проходить хоча б один Gate
-        if gate.get("advisory_advisory_allow_entry") or gate.get("advisory_advisory_allow_risky") or cand.final_score >= get_adaptive_params(context["regime"])["armed_score"]:
+        revalidation = getattr(cand, "revalidation_profile", {}) or {}
+        hard_expired = bool(revalidation.get("hard_expired") or revalidation.get("state") == "DEAD")
+        # A hard-expired thesis is an audit record, not an ARMED opportunity.
+        if not hard_expired and (
+            gate.get("advisory_advisory_allow_entry")
+            or gate.get("advisory_advisory_allow_risky")
+            or cand.final_score >= get_adaptive_params(context.get("adaptive_regime", context["regime"]))["armed_score"]
+        ):
             valid_candidates.append(cand)
 
     if not valid_candidates:
@@ -6365,7 +6854,12 @@ def _legacy_evaluate_new_setup(context: dict, state: dict, journal: dict) -> Dec
         return Decision(
             id=uuid.uuid4().hex[:10], time=iso_now(), action=Action.NO_SETUP.value, side=Side.NEUTRAL.value, setup_type=SetupType.NONE.value,
             quality=12, reason="Ринок не сформував професійного ICT + 3M execution-package", regime=context["regime"], current_price=current_price,
-            audit={"rejected_hypotheses": rejected, "candidate_count": len(cands), "audit_note": "NO_SETUP now stores why hypotheses failed"}
+            audit={
+                "rejected_hypotheses": rejected,
+                "best_candidate_per_side": best_candidate_per_side_audit(context, cands),
+                "candidate_count": len(cands),
+                "audit_note": "Both LONG and SHORT are always audited",
+            }
         )
 
     # 3. Вибір переможця за hypothesis_score, а не лише за final_score.
@@ -6401,6 +6895,8 @@ def _legacy_evaluate_new_setup(context: dict, state: dict, journal: dict) -> Dec
         proposed_action = Action.ENTRY.value
     elif plan.valid and plan.execution_ready and quality >= RISKY_ENTRY_SCORE_BASE:
         proposed_action = Action.RISKY_ENTRY.value
+    elif plan.valid and plan.execution_ready and fresh_probe_candidate_profile(best).get("eligible"):
+        proposed_action = Action.PROBE_ENTRY.value
     else:
         proposed_action = Action.NO_SETUP.value
         proposed_opportunity_status = OpportunityStatus.ARMED.value
@@ -6413,6 +6909,7 @@ def _legacy_evaluate_new_setup(context: dict, state: dict, journal: dict) -> Dec
         current_price=current_price,
         audit={
             "selected": hypothesis_audit_row(best),
+            "best_candidate_per_side": best_candidate_per_side_audit(context, cands, selected=best),
             "trigger_revalidation": reval_profile,
             "hypothesis_matrix": [hypothesis_audit_row(c) for c in valid_candidates[:10]],
             "candidate_count": len(valid_candidates),
@@ -7647,7 +8144,7 @@ def run_bot() -> None:
     for warning in learning_warnings:
         print(f"[WARN] {warning}")
     data = collect_market_data()
-    context = build_context(data, state)
+    context = build_context(data, state, journal)
     context["learning_status"] = journal.get("learning_status", {})
     context["learning_warnings"] = learning_warnings
     if not context.get("price"):
@@ -7698,6 +8195,10 @@ def run_bot() -> None:
                 "partial_plan": {"tp0": getattr(active, "tp0_size_pct", TP0_SIZE_PCT), "tp1": getattr(active, "tp1_size_pct", TP1_SIZE_PCT), "tp2": getattr(active, "tp2_size_pct", TP2_SIZE_PCT), "tp3_runner": getattr(active, "tp3_runner_pct", TP3_RUNNER_PCT)},
                 "close_action": res.get("action"),
             })
+            journal["protected_signal_ids"] = [
+                sid for sid in (journal.get("protected_signal_ids") or [])
+                if str(sid) != str(active.signal_id)
+            ]
             store_active_trade(state, None)
             state["opportunity"] = None
         else:
@@ -7710,13 +8211,16 @@ def run_bot() -> None:
         return
 
     decision = evaluate_new_setup(context, state, journal)
-    payload = {"id": decision.id, "time": decision.time, "action": decision.action, "side": decision.side, "setup_type": decision.setup_type, "quality": decision.quality, "decision_quality": decision.quality, "reason": decision.reason, "regime": decision.regime, "news_bias": decision.news_bias, "macro_risk": decision.macro_risk, "instrument_label": context.get("instrument_label", INSTRUMENT_LABEL), "instrument_kind": context.get("instrument_kind", INSTRUMENT_KIND), "flow_quality": context.get("flow_quality", ""), "cvd_quality": context.get("cvd_quality", ""), "learning_status": journal.get("learning_status", {}), "learning_warnings": learning_warnings, "version": BOT_VERSION, "architecture_version": ARCHITECTURE_VERSION, "runtime_config_snapshot": runtime_config_snapshot(), "audit": decision.audit or {}}
+    canonical_quality = canonical_decision_quality(decision)
+    decision.quality = canonical_quality
+    quality_source = "candidate.final_score" if decision.candidate else "decision.quality"
+    payload = {"id": decision.id, "time": decision.time, "action": decision.action, "side": decision.side, "setup_type": decision.setup_type, "quality": canonical_quality, "decision_quality": canonical_quality, "quality_source": quality_source, "quality_contract": {"canonical_field": quality_source, "compatibility_aliases": ["quality", "decision_quality"], "validated_equal": True}, "reason": decision.reason, "regime": decision.regime, "news_bias": decision.news_bias, "macro_risk": decision.macro_risk, "instrument_label": context.get("instrument_label", INSTRUMENT_LABEL), "instrument_kind": context.get("instrument_kind", INSTRUMENT_KIND), "flow_quality": context.get("flow_quality", ""), "cvd_quality": context.get("cvd_quality", ""), "cvd_limitations": context.get("cvd_limitations", {}), "range_calendar_segment": context.get("range_calendar_segment", "UNKNOWN"), "range_calendar_statistics": context.get("range_calendar_statistics", {}), "learning_status": journal.get("learning_status", {}), "learning_warnings": learning_warnings, "version": BOT_VERSION, "architecture_version": ARCHITECTURE_VERSION, "runtime_config_snapshot": runtime_config_snapshot(), "audit": decision.audit or {}}
     if decision.candidate:
         components = decision.candidate.score_components or {}
         payload.update({
             "setup_family": decision.candidate.setup_family,
             "ict_model": decision.candidate.ict_model,
-            "candidate_final_score": decision.candidate.final_score,
+            "candidate_final_score": canonical_quality,
             "candidate_raw_score": decision.candidate.raw_score,
             "execution_lane": decision.candidate.execution_lane,
             "execution_source": decision.candidate.execution_source,
@@ -7736,6 +8240,8 @@ def run_bot() -> None:
             "innovation_profile": getattr(decision.candidate, "innovation_profile", {}) or components.get("innovation_profile", {}),
             "trigger_revalidation": getattr(decision.candidate, "revalidation_profile", {}) or components.get("trigger_revalidation", {}),
         })
+        if not (payload["quality"] == payload["decision_quality"] == payload["candidate_final_score"]):
+            raise ValueError("Signal quality invariant violated")
         if decision.plan:
             payload.update({
                 "plan_tp0": decision.plan.tp0,
@@ -7757,11 +8263,15 @@ def run_bot() -> None:
     if payload.get("score_features"):
         journal.setdefault("training_signals", []).append(payload)
 
-    if decision.action in (Action.ENTRY.value, Action.RISKY_ENTRY.value) and decision.candidate and decision.plan:
+    if decision.action in EXECUTABLE_ENTRY_ACTIONS and decision.candidate and decision.plan:
         # signal_id = decision.id: угода тепер завжди трасується до сигналу,
         # який її відкрив. trade.id лишається окремим (власним) ідентифікатором
         # угоди — це важливо для re-entry-сценаріїв, де одна Opportunity/сигнал
         # може породжувати кілька спроб входу.
+        protected_ids = journal.setdefault("protected_signal_ids", [])
+        if decision.id not in protected_ids:
+            protected_ids.append(decision.id)
+
         active = ActiveTrade(
             id=uuid.uuid4().hex[:10], signal_id=decision.id, side=decision.side,
             setup_type=decision.setup_type, setup_family=decision.candidate.setup_family,
@@ -7880,6 +8390,7 @@ def test_probe_reduced_on_hard_conflict() -> bool:
         rr2=3.0,
         rr3=5.0,
         position_risk_pct=0.3,
+        execution_ready=True,
     )
     # Force a market hard conflict while keeping philosophy edge valid.
     original = _ict_advisor
@@ -7889,12 +8400,84 @@ def test_probe_reduced_on_hard_conflict() -> bool:
         )
         result = build_executive_decision_object(candidate, plan=plan, journal={}, state={})
         return (
-            result["action"] == Action.RISKY_ENTRY.value
+            result["action"] == ExecutiveDecisionState.PROBE_REDUCED.value
             and result["conflict_resolution"]["hard_conflict"]
             and result.get("audit", {}).get("final_action_policy") == "conflict lowers risk, not automatically blocks execution"
         )
     finally:
         globals()["_ict_advisor"] = original
+
+def _probe_test_candidate(*, live: bool = True, score: int = 60) -> Candidate:
+    return Candidate(
+        side=Side.LONG.value,
+        setup_type=SetupType.SWEEP_RECLAIM.value,
+        setup_family=SetupFamily.LIQUIDITY_RECOVERY.value,
+        raw_score=score,
+        final_score=score,
+        score_components={
+            "htf_score": 24,
+            "str_score": 25,
+            "liq_score": 25,
+            "trig_score": 20,
+            "features": {"htf": 1.0},
+        },
+        trigger_ready=live,
+        live_3m_trigger_ready=live,
+        trigger_age_minutes=5.0 if live else 120.0,
+        execution_source=ExecutionSource.LIVE_3M.value if live else ExecutionSource.TIME_WARP.value,
+        entry_stage=EntryStage.PROBE.value,
+        execution_quality_score=72,
+        revalidation_profile={
+            "state": "FRESH" if live else "STALE",
+            "entry_supported": live,
+            "needs_revalidation": not live,
+            "hard_expired": False,
+        },
+    )
+
+
+def _probe_test_plan(*, execution_ready: bool = True) -> TradePlan:
+    return TradePlan(
+        entry=100,
+        stop=99,
+        tp1=102,
+        tp2=103,
+        tp3=105,
+        risk_pct=PROBE_RISK_PCT,
+        rr1=2.0,
+        rr2=3.0,
+        rr3=5.0,
+        position_risk_pct=PROBE_RISK_PCT,
+        execution_ready=execution_ready,
+        entry_stage=EntryStage.PROBE.value,
+        valid=True,
+    )
+
+
+def test_fresh_probe_entry_below_68() -> bool:
+    candidate = _probe_test_candidate(live=True, score=max(ARMED_SCORE_BASE, 60))
+    plan = _probe_test_plan(execution_ready=True)
+    report = executive_decision_engine(candidate, plan=plan, journal={}, state={})
+    return (
+        report["action"] == Action.PROBE_ENTRY.value
+        and candidate.entry_stage == EntryStage.PROBE.value
+        and plan.position_risk_pct <= PROBE_RISK_PCT
+    )
+
+
+def test_probe_requires_live_trigger() -> bool:
+    candidate = _probe_test_candidate(live=False, score=max(ARMED_SCORE_BASE, 60))
+    plan = _probe_test_plan(execution_ready=True)
+    report = executive_decision_engine(candidate, plan=plan, journal={}, state={})
+    return report["action"] == Action.NO_SETUP.value
+
+
+def test_probe_requires_execution_ready() -> bool:
+    candidate = _probe_test_candidate(live=True, score=max(ARMED_SCORE_BASE, 60))
+    plan = _probe_test_plan(execution_ready=False)
+    report = executive_decision_engine(candidate, plan=plan, journal={}, state={})
+    return report["action"] == Action.NO_SETUP.value
+
 
 def _run_self_test() -> bool:
     """Швидкі, детерміновані, БЕЗ мережевих запитів перевірки фінансово-
@@ -7913,6 +8496,9 @@ def _run_self_test() -> bool:
     checks.append(("test_philosophy_rejects_without_edge", test_philosophy_rejects_without_edge()))
     checks.append(("test_risk_manager_can_block", test_risk_manager_can_block()))
     checks.append(("test_probe_reduced_on_hard_conflict", test_probe_reduced_on_hard_conflict()))
+    checks.append(("test_fresh_probe_entry_below_68", test_fresh_probe_entry_below_68()))
+    checks.append(("test_probe_requires_live_trigger", test_probe_requires_live_trigger()))
+    checks.append(("test_probe_requires_execution_ready", test_probe_requires_execution_ready()))
 
     # --- RR floors ---
     _, tp1, tp2, tp3 = enforce_smart_money_rr(Side.LONG.value, 100.0, 99.0, 100.3, 100.6, 100.9, 0.6)
@@ -7950,9 +8536,12 @@ def _run_self_test() -> bool:
     # --- CVD/flow фікс: flw_score більше не гаситься мертвою flow-заглушкою ---
     flow = flow_snapshot([], {})
     cvd_long = {"bias": Side.LONG.value, "score": 15}
-    flw_score = float(cvd_long.get("score", 0)) * 1.0 if cvd_long.get("bias") == Side.LONG.value else 0.0
-    checks.append(("flow_snapshot лишається заглушкою (документує стан)", flow["bias"] == Side.NEUTRAL.value))
-    checks.append(("flw_score рахується від CVD, а не від мертвого flow", flw_score == 15.0))
+    flw_score = (
+        float(cvd_long.get("score", 0)) * SYNTHETIC_CVD_SCORE_MULTIPLIER
+        if cvd_long.get("bias") == Side.LONG.value else 0.0
+    )
+    checks.append(("flow_snapshot явно документує відсутність реального flow", flow["quality"] == "DISABLED_NO_TRADES_OR_BOOK"))
+    checks.append(("synthetic CVD має знижену вагу", abs(flw_score - 15.0 * SYNTHETIC_CVD_SCORE_MULTIPLIER) < 1e-9))
 
     # --- Executive layer: conflicts, real risk impact and independent edge ---
     advisors_bad = [
@@ -8292,35 +8881,64 @@ def build_executive_decision_object(
     # v8.7 Adaptive Conflict Resolver:
     # HTF/ICT disagreement is a risk modifier, not an absolute execution veto.
     # A valid execution setup with acceptable RR and no risk violation may still
-    # receive a reduced-risk entry instead of being silently discarded.
+    # receive a reduced-risk RISKY_ENTRY, but never a fresh PROBE_ENTRY.
     execution_score = safe_float(conflict.get("execution_score", 0.0), 0.0)
     rr1 = safe_float((philosophy or {}).get("rr1", 0.0), 0.0)
+    quality = int(getattr(candidate, "final_score", 0) or 0)
+    plan_executable = bool(
+        plan
+        and getattr(plan, "valid", False)
+        and getattr(plan, "execution_ready", False)
+    )
+    philosophy_accepts = philosophy.get("recommendation") == "ACCEPT"
     conflict_override = (
         has_hard_conflict
-        and philosophy.get("recommendation") == "ACCEPT"
+        and philosophy_accepts
+        and plan_executable
+        and quality >= RISKY_ENTRY_SCORE_BASE
         and execution_score >= 4.5
         and rr1 >= MIN_RR1
         and not risk_blocked
+    )
+    probe_profile = probe_entry_eligibility(
+        candidate,
+        plan,
+        hard_conflict=has_hard_conflict,
+        risk_blocked=risk_blocked,
+        philosophy_accepts=philosophy_accepts,
     )
 
     if risk_blocked:
         action = ExecutiveDecisionState.WAIT.value
         reason = "Risk budget exhausted; entry blocked"
     elif conflict_override:
-        # Adaptive conflict handling belongs here, before generic WAIT logic.
-        # HTF/ICT disagreement lowers confidence and sizing, but does not erase
-        # an execution edge when RR and risk conditions remain valid.
-        action = Action.RISKY_ENTRY.value
+        # Existing 68+ risky class remains separate from the new probe class.
+        action = ExecutiveDecisionState.PROBE_REDUCED.value
         reason = "Execution edge confirmed despite HTF/ICT conflict; reduced-risk entry allowed"
-    elif philosophy["recommendation"] == "ACCEPT" and confidence >= 75 and not has_hard_conflict:
+    elif (
+        philosophy_accepts
+        and plan_executable
+        and quality >= ENTRY_SCORE_BASE
+        and confidence >= 75
+        and not has_hard_conflict
+    ):
         action = ExecutiveDecisionState.ENTRY.value
-        reason = "Independent advisors and edge criteria support full entry"
-    elif philosophy["recommendation"] == "ACCEPT" and confidence >= 55 and not has_hard_conflict:
+        reason = "Independent advisors and 75+ conviction support full entry"
+    elif (
+        philosophy_accepts
+        and plan_executable
+        and quality >= RISKY_ENTRY_SCORE_BASE
+        and confidence >= 55
+        and not has_hard_conflict
+    ):
+        action = ExecutiveDecisionState.RISKY.value
+        reason = "Valid 68+ setup supports reduced-risk entry"
+    elif probe_profile.get("eligible"):
         action = ExecutiveDecisionState.PROBE.value
-        reason = "Edge is valid but conviction supports reduced exposure"
+        reason = "Fresh non-conflicting live trigger supports minimum-risk probe"
     else:
         action = ExecutiveDecisionState.WAIT.value
-        reason = "Edge, confidence or conflict conditions do not permit execution"
+        reason = "Edge, freshness, execution readiness or conflict conditions do not permit execution"
 
     return {
         "action": action,
@@ -8342,6 +8960,7 @@ def build_executive_decision_object(
                 "rr1": round(rr1, 2),
                 "override_allowed": conflict_override,
             },
+            "probe_entry_eligibility": probe_profile,
         },
     }
 
@@ -8359,7 +8978,8 @@ def build_executive_decision_object(
 # Therefore WAIT must resolve to NO_SETUP for external signal output.
 EXECUTIVE_ACTION_MAP = {
     ExecutiveDecisionState.ENTRY: Action.ENTRY.value,
-    ExecutiveDecisionState.PROBE: Action.RISKY_ENTRY.value,
+    ExecutiveDecisionState.RISKY: Action.RISKY_ENTRY.value,
+    ExecutiveDecisionState.PROBE: Action.PROBE_ENTRY.value,
     ExecutiveDecisionState.PROBE_REDUCED: Action.RISKY_ENTRY.value,
 
     # New setup decision: no open position exists.
@@ -8412,16 +9032,22 @@ def executive_decision_engine(
     internal_action = decision["action"]
     final_action = resolve_executive_action(internal_action)
 
-    if internal_action == "PROBE_REDUCED":
+    if internal_action in {ExecutiveDecisionState.PROBE.value, ExecutiveDecisionState.PROBE_REDUCED.value}:
         if candidate is not None:
             candidate.entry_stage = EntryStage.PROBE.value
         if plan is not None:
+            risk_cap = (
+                max(0.02, PROBE_RISK_PCT * 0.50)
+                if internal_action == ExecutiveDecisionState.PROBE_REDUCED.value
+                else PROBE_RISK_PCT
+            )
             reduced_risk = min(
-                safe_float(plan.position_risk_pct, PROBE_RISK_PCT),
-                max(0.02, PROBE_RISK_PCT * 0.50),
+                safe_float(plan.position_risk_pct, risk_cap),
+                risk_cap,
             )
             plan.position_risk_pct = round(reduced_risk, 4)
             plan.risk_pct = plan.position_risk_pct
+            plan.entry_stage = EntryStage.PROBE.value
 
     return {
         "action": final_action,
