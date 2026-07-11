@@ -32,9 +32,9 @@
     "signal_id": "c6a15045f1"
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1783812600000,
-    "last_run_processed": 5,
-    "processed_count": 925,
+    "last_scanned_3m_ts": 1783812960000,
+    "last_run_processed": 2,
+    "processed_count": 927,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -46,7 +46,7 @@
         "event_price": 76.36,
         "invalidation_level": 76.36,
         "sweep_level": 76.36,
-        "extreme": 77.59,
+        "extreme": 77.58,
         "displacement": true,
         "retest_ts": 1783648620000,
         "ready_ts": 1783648800000,
@@ -56,7 +56,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 80,
         "retest_quality": 80,
-        "processed_bars": 925,
+        "processed_bars": 927,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -79,7 +79,7 @@
         "event_price": 76.36,
         "invalidation_level": 76.36,
         "sweep_level": 76.36,
-        "extreme": 77.88,
+        "extreme": 77.71,
         "displacement": true,
         "retest_ts": 1783647180000,
         "ready_ts": 1783647360000,
@@ -89,7 +89,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 80,
         "retest_quality": 80,
-        "processed_bars": 925,
+        "processed_bars": 927,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -107,13 +107,13 @@
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 4,
+    "stable_count": 5,
     "pending_count": 0,
-    "updated_at": "2026-07-11T23:32:23.188116+00:00"
+    "updated_at": "2026-07-11T23:37:15.474594+00:00"
   },
   "latest_signal": {
-    "id": "fc970992e5",
-    "time": "2026-07-11T23:32:23.198410+00:00",
+    "id": "93968b54bc",
+    "time": "2026-07-11T23:37:15.481599+00:00",
     "action": "NO_SETUP",
     "side": "NEUTRAL",
     "setup_type": "NONE",
@@ -174,7 +174,7 @@
       "reason": "insufficient evidence for a separate weekend regime"
     },
     "learning_status": {
-      "updated_at": "2026-07-11T23:32:21.383830+00:00",
+      "updated_at": "2026-07-11T23:37:14.019154+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -327,14 +327,14 @@
           "plan_q": 46,
           "execution_source": "ACCEPTANCE_RETEST",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 2732.4,
+          "trigger_age_min": 2737.3,
           "target_magnet": 1.73,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.82,
           "revalidation_state": "DEAD",
           "revalidation_supported": false,
           "entry_timing": "DEAD_HARD_TTL",
-          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=2732.4min ttl=1440.0min; score 62 < risky_min 66; HTF не підтримує risky-entry",
+          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=2737.3min ttl=1440.0min; score 62 < risky_min 66; HTF не підтримує risky-entry",
           "evidence_layers": [
             "ICT_LOCATION",
             "PRICE_STRUCTURE",
@@ -359,7 +359,7 @@
           "plan_q": 46,
           "execution_source": "ACCEPTANCE_RETEST",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 2732.4,
+          "trigger_age_min": 2737.3,
           "target_magnet": 1.73,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.82,
@@ -370,7 +370,7 @@
           "selected": false,
           "eligible": false,
           "status": "REJECTED",
-          "top_rejection_reason": "THESIS_HARD_TTL_EXPIRED age=2732.4min ttl=1440.0min; score 62 < risky_min 66; HTF не підтримує risky-entry"
+          "top_rejection_reason": "THESIS_HARD_TTL_EXPIRED age=2737.3min ttl=1440.0min; score 62 < risky_min 66; HTF не підтримує risky-entry"
         },
         "SHORT": {
           "side": "SHORT",
@@ -412,9 +412,9 @@
       "authority_guard": {
         "validated": true,
         "executive_only_actions": [
-          "PROBE_ENTRY",
+          "RISKY_ENTRY",
           "ENTRY",
-          "RISKY_ENTRY"
+          "PROBE_ENTRY"
         ],
         "violations": []
       }
@@ -1683,7 +1683,15 @@
       "quality": 12,
       "price": 77.58,
       "time": "2026-07-11T23:32:23.198537+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 77.51,
+      "time": "2026-07-11T23:37:15.481715+00:00"
     }
   ],
-  "updated_at": "2026-07-11T23:32:23.640164+00:00"
+  "updated_at": "2026-07-11T23:37:15.982824+00:00"
 }
