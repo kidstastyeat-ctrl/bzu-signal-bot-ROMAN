@@ -32,9 +32,9 @@
     "signal_id": "c6a15045f1"
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1783809000000,
+    "last_scanned_3m_ts": 1783809900000,
     "last_run_processed": 5,
-    "processed_count": 905,
+    "processed_count": 910,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -46,7 +46,7 @@
         "event_price": 76.36,
         "invalidation_level": 76.36,
         "sweep_level": 76.36,
-        "extreme": 76.81,
+        "extreme": 77.26,
         "displacement": true,
         "retest_ts": 1783648620000,
         "ready_ts": 1783648800000,
@@ -56,7 +56,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 80,
         "retest_quality": 80,
-        "processed_bars": 905,
+        "processed_bars": 910,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -79,7 +79,7 @@
         "event_price": 76.36,
         "invalidation_level": 76.36,
         "sweep_level": 76.36,
-        "extreme": 77.23,
+        "extreme": 77.31,
         "displacement": true,
         "retest_ts": 1783647180000,
         "ready_ts": 1783647360000,
@@ -89,7 +89,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 80,
         "retest_quality": 80,
-        "processed_bars": 905,
+        "processed_bars": 910,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -105,15 +105,15 @@
     }
   },
   "regime_memory": {
-    "type": "RANGE_COMPRESSION",
-    "pending_type": "NORMAL",
-    "stable_count": 0,
-    "pending_count": 1,
-    "updated_at": "2026-07-11T22:31:53.175106+00:00"
+    "type": "NORMAL",
+    "pending_type": "",
+    "stable_count": 1,
+    "pending_count": 2,
+    "updated_at": "2026-07-11T22:45:50.077182+00:00"
   },
   "latest_signal": {
-    "id": "e5d4fd35e3",
-    "time": "2026-07-11T22:31:53.184426+00:00",
+    "id": "d42082ab5c",
+    "time": "2026-07-11T22:45:50.087696+00:00",
     "action": "NO_SETUP",
     "side": "NEUTRAL",
     "setup_type": "NONE",
@@ -174,7 +174,7 @@
       "reason": "insufficient evidence for a separate weekend regime"
     },
     "learning_status": {
-      "updated_at": "2026-07-11T22:31:51.158429+00:00",
+      "updated_at": "2026-07-11T22:45:48.741213+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -364,9 +364,9 @@
       "authority_guard": {
         "validated": true,
         "executive_only_actions": [
+          "RISKY_ENTRY",
           "PROBE_ENTRY",
-          "ENTRY",
-          "RISKY_ENTRY"
+          "ENTRY"
         ],
         "violations": []
       }
@@ -1603,7 +1603,15 @@
       "quality": 12,
       "price": 76.78,
       "time": "2026-07-11T22:31:53.184506+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 77.17,
+      "time": "2026-07-11T22:45:50.087766+00:00"
     }
   ],
-  "updated_at": "2026-07-11T22:31:53.511467+00:00"
+  "updated_at": "2026-07-11T22:45:50.623279+00:00"
 }
