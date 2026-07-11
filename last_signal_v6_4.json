@@ -34,9 +34,9 @@
     "signal_id": "e0e49c0d84"
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1783787400000,
+    "last_scanned_3m_ts": 1783788300000,
     "last_run_processed": 5,
-    "processed_count": 785,
+    "processed_count": 790,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -48,7 +48,7 @@
         "event_price": 76.36,
         "invalidation_level": 76.36,
         "sweep_level": 76.36,
-        "extreme": 75.98,
+        "extreme": 76.0,
         "displacement": true,
         "retest_ts": 1783648620000,
         "ready_ts": 1783648800000,
@@ -58,7 +58,7 @@
         "confirmation_quality": 84,
         "acceptance_quality": 80,
         "retest_quality": 80,
-        "processed_bars": 785,
+        "processed_bars": 790,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -91,7 +91,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 80,
         "retest_quality": 80,
-        "processed_bars": 785,
+        "processed_bars": 790,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -109,13 +109,13 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 9,
+    "stable_count": 10,
     "pending_count": 0,
-    "updated_at": "2026-07-11T16:31:18.708070+00:00"
+    "updated_at": "2026-07-11T16:45:47.536167+00:00"
   },
   "latest_signal": {
-    "id": "bbe338ebd9",
-    "time": "2026-07-11T16:31:18.715589+00:00",
+    "id": "cfbe4fe028",
+    "time": "2026-07-11T16:45:47.547165+00:00",
     "action": "NO_SETUP",
     "side": "NEUTRAL",
     "setup_type": "NONE",
@@ -176,7 +176,7 @@
       "reason": "insufficient evidence for a separate weekend regime"
     },
     "learning_status": {
-      "updated_at": "2026-07-11T16:31:16.601040+00:00",
+      "updated_at": "2026-07-11T16:45:45.995997+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -329,14 +329,14 @@
           "plan_q": 75,
           "execution_source": "TIME_OF_DAY",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 2335.3,
+          "trigger_age_min": 2349.8,
           "target_magnet": 0.0,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 1.0,
           "revalidation_state": "DEAD",
           "revalidation_supported": false,
           "entry_timing": "DEAD_HARD_TTL",
-          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=2335.3min ttl=1440.0min; score 59 < risky_min 66; HTF не підтримує risky-entry",
+          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=2349.8min ttl=1440.0min; score 59 < risky_min 66; HTF не підтримує risky-entry",
           "evidence_layers": [
             "ICT_LOCATION",
             "PRICE_STRUCTURE",
@@ -345,8 +345,8 @@
             "EXECUTION_TIME_WARP_WAIT_RETEST",
             "EXECUTION_TIME_OF_DAY"
           ],
-          "entry_anchor": 75.9,
-          "invalidation": 76.3
+          "entry_anchor": 75.91,
+          "invalidation": 76.31
         }
       ],
       "best_candidate_per_side": {
@@ -370,7 +370,7 @@
           "plan_q": 75,
           "execution_source": "TIME_OF_DAY",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 2335.3,
+          "trigger_age_min": 2349.8,
           "target_magnet": 0.0,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 1.0,
@@ -381,7 +381,7 @@
           "selected": false,
           "eligible": false,
           "status": "REJECTED",
-          "top_rejection_reason": "THESIS_HARD_TTL_EXPIRED age=2335.3min ttl=1440.0min; score 59 < risky_min 66; HTF не підтримує risky-entry"
+          "top_rejection_reason": "THESIS_HARD_TTL_EXPIRED age=2349.8min ttl=1440.0min; score 59 < risky_min 66; HTF не підтримує risky-entry"
         }
       },
       "candidate_count": 1,
@@ -415,9 +415,9 @@
       "authority_guard": {
         "validated": true,
         "executive_only_actions": [
+          "PROBE_ENTRY",
           "RISKY_ENTRY",
-          "ENTRY",
-          "PROBE_ENTRY"
+          "ENTRY"
         ],
         "violations": []
       }
@@ -1430,7 +1430,15 @@
       "quality": 12,
       "price": 75.9,
       "time": "2026-07-11T16:31:18.715689+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 75.91,
+      "time": "2026-07-11T16:45:47.547265+00:00"
     }
   ],
-  "updated_at": "2026-07-11T16:31:19.158547+00:00"
+  "updated_at": "2026-07-11T16:45:48.074418+00:00"
 }
