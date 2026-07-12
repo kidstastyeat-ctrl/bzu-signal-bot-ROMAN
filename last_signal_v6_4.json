@@ -6,15 +6,15 @@
     "side": "SHORT",
     "setup_type": "LIQUIDITY_LADDER",
     "setup_family": "EXPANSION",
-    "created_at": "2026-07-12T15:01:29.791544+00:00",
-    "expires_at": "2026-07-13T09:01:29.791546+00:00",
-    "score": 68,
+    "created_at": "2026-07-12T15:15:47.457277+00:00",
+    "expires_at": "2026-07-13T09:15:47.457279+00:00",
+    "score": 69,
     "trigger_level": 77.91,
-    "invalidation_level": 78.61,
+    "invalidation_level": 78.52,
     "confirmations": [
       "Модель: Liquidity Ladder Model (LIQUIDITY_LADDER_MODEL)",
-      "🪜 Liquidity ladder: targets=4 | ladder_score=5.68 | [{'kind': 'ASIAN_LOW', 'level': 76.98, 'score': 2.01}, {'kind': 'PDL', 'level': 75.68, 'score': 1.38}, {'kind': 'MACRO_EQ', 'level': 77.18, 'score': 1.16}, {'kind': 'OB', 'level': 77.35, 'score': 1.13}]",
-      "📊 Hypothesis score: final=68 | setup=91 execution=57 plan=75 | model=bootstrap n=2 p=0.63",
+      "🪜 Liquidity ladder: targets=4 | ladder_score=6.19 | [{'kind': 'ASIAN_LOW', 'level': 76.98, 'score': 2.07}, {'kind': 'WEEKLY_OPEN', 'level': 76.43, 'score': 1.51}, {'kind': 'PDL', 'level': 75.68, 'score': 1.39}, {'kind': 'MACRO_EQ', 'level': 77.18, 'score': 1.21}]",
+      "📊 Hypothesis score: final=69 | setup=92 execution=57 plan=75 | model=bootstrap n=2 p=0.63",
       "🎯 Entry contract: Liquidity ladder current/retest anchor | invalidation: Liquidity ladder structural failure | target: ASIAN_LOW 1D magnet"
     ],
     "evidence_families": [
@@ -26,15 +26,15 @@
     ],
     "execution_lane": "LIMIT_ONLY",
     "status": "WAIT_PULLBACK",
-    "thesis_key": "SHORT|LIQUIDITY_LADDER_MODEL|LIQUIDITY_LADDER|782",
+    "thesis_key": "SHORT|LIQUIDITY_LADDER_MODEL|LIQUIDITY_LADDER|781",
     "thesis": "SHORT LIQUIDITY_LADDER_MODEL → LIQUIDITY_LADDER | src=LIQUIDITY_LADDER | stage=READY",
     "missed_at": "",
-    "signal_id": "8e2eab009b"
+    "signal_id": "cc1e16eb33"
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1783868400000,
+    "last_scanned_3m_ts": 1783869300000,
     "last_run_processed": 5,
-    "processed_count": 398,
+    "processed_count": 403,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -46,7 +46,7 @@
         "event_price": 77.91,
         "invalidation_level": 77.91,
         "sweep_level": 77.91,
-        "extreme": 78.29,
+        "extreme": 78.22,
         "displacement": true,
         "retest_ts": 1783814580000,
         "ready_ts": 1783814760000,
@@ -56,7 +56,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 87,
         "retest_quality": 68,
-        "processed_bars": 398,
+        "processed_bars": 403,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -79,7 +79,7 @@
         "event_price": 77.91,
         "invalidation_level": 77.91,
         "sweep_level": 77.91,
-        "extreme": 78.31,
+        "extreme": 78.23,
         "displacement": true,
         "retest_ts": 1783808640000,
         "ready_ts": 1783808820000,
@@ -89,7 +89,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 98,
         "retest_quality": 86,
-        "processed_bars": 398,
+        "processed_bars": 403,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -107,18 +107,18 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 2,
+    "stable_count": 3,
     "pending_count": 0,
-    "updated_at": "2026-07-12T15:01:29.780048+00:00"
+    "updated_at": "2026-07-12T15:15:47.441146+00:00"
   },
   "latest_signal": {
-    "id": "8e2eab009b",
-    "time": "2026-07-12T15:01:29.791187+00:00",
+    "id": "cc1e16eb33",
+    "time": "2026-07-12T15:15:47.456895+00:00",
     "action": "NO_SETUP",
     "side": "SHORT",
     "setup_type": "LIQUIDITY_LADDER",
-    "quality": 68,
-    "decision_quality": 68,
+    "quality": 69,
+    "decision_quality": 69,
     "quality_source": "candidate.final_score",
     "quality_contract": {
       "canonical_field": "candidate.final_score",
@@ -174,12 +174,12 @@
       "reason": "insufficient evidence for a separate weekend regime"
     },
     "learning_status": {
-      "updated_at": "2026-07-12T15:01:28.174228+00:00",
+      "updated_at": "2026-07-12T15:15:45.692629+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
       "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
-      "training_signals": 100,
+      "training_signals": 101,
       "signal_events": 35,
       "closed_trades": 2,
       "training_rows": 2,
@@ -347,18 +347,18 @@
         "side": "SHORT",
         "model": "LIQUIDITY_LADDER_MODEL",
         "setup_type": "LIQUIDITY_LADDER",
-        "final_score": 68,
-        "hypothesis_score": 69.49,
-        "setup_q": 91,
+        "final_score": 69,
+        "hypothesis_score": 70.49,
+        "setup_q": 92,
         "execution_q": 57,
         "plan_q": 75,
         "execution_source": "LIQUIDITY_LADDER",
         "entry_stage": "WAIT_RETEST",
-        "trigger_age_min": 994.5,
+        "trigger_age_min": 1008.8,
         "trigger_reanchored": false,
-        "original_trigger_age_min": 994.5,
-        "effective_trigger_age_min": 994.5,
-        "target_magnet": 2.01,
+        "original_trigger_age_min": 1008.8,
+        "effective_trigger_age_min": 1008.8,
+        "target_magnet": 2.07,
         "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
         "innovation_risk_mult": 0.55,
         "revalidation_state": "STALE",
@@ -379,18 +379,18 @@
           "side": "SHORT",
           "model": "LIQUIDITY_LADDER_MODEL",
           "setup_type": "LIQUIDITY_LADDER",
-          "final_score": 68,
-          "hypothesis_score": 69.49,
-          "setup_q": 91,
+          "final_score": 69,
+          "hypothesis_score": 70.49,
+          "setup_q": 92,
           "execution_q": 57,
           "plan_q": 75,
           "execution_source": "LIQUIDITY_LADDER",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 994.5,
+          "trigger_age_min": 1008.8,
           "trigger_reanchored": false,
-          "original_trigger_age_min": 994.5,
-          "effective_trigger_age_min": 994.5,
-          "target_magnet": 2.01,
+          "original_trigger_age_min": 1008.8,
+          "effective_trigger_age_min": 1008.8,
+          "target_magnet": 2.07,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.55,
           "revalidation_state": "STALE",
@@ -408,7 +408,7 @@
         "version": "v6.20_hard_thesis_ttl",
         "state": "STALE",
         "source": "LIQUIDITY_LADDER",
-        "age_min": 994.5,
+        "age_min": 1008.8,
         "hard_ttl_min": 1440.0,
         "hard_expired": false,
         "needs_revalidation": true,
@@ -429,7 +429,7 @@
             {
               "name": "strong_3m_body",
               "ok": false,
-              "body_atr": 0.11,
+              "body_atr": 0.056,
               "body_ratio": 1.0
             },
             {
@@ -458,18 +458,18 @@
           "side": "SHORT",
           "model": "LIQUIDITY_LADDER_MODEL",
           "setup_type": "LIQUIDITY_LADDER",
-          "final_score": 68,
-          "hypothesis_score": 69.49,
-          "setup_q": 91,
+          "final_score": 69,
+          "hypothesis_score": 70.49,
+          "setup_q": 92,
           "execution_q": 57,
           "plan_q": 75,
           "execution_source": "LIQUIDITY_LADDER",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 994.5,
+          "trigger_age_min": 1008.8,
           "trigger_reanchored": false,
-          "original_trigger_age_min": 994.5,
-          "effective_trigger_age_min": 994.5,
-          "target_magnet": 2.01,
+          "original_trigger_age_min": 1008.8,
+          "effective_trigger_age_min": 1008.8,
+          "target_magnet": 2.07,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.55,
           "revalidation_state": "STALE",
@@ -488,11 +488,11 @@
           "plan_q": 75,
           "execution_source": "TIME_OF_DAY",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 994.5,
+          "trigger_age_min": 1008.8,
           "trigger_reanchored": false,
-          "original_trigger_age_min": 994.5,
-          "effective_trigger_age_min": 994.5,
-          "target_magnet": 2.01,
+          "original_trigger_age_min": 1008.8,
+          "effective_trigger_age_min": 1008.8,
+          "target_magnet": 2.07,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.55,
           "revalidation_state": "STALE",
@@ -655,8 +655,8 @@
             },
             "trading_philosophy": {
               "recommendation": "ACCEPT",
-              "reason": "rr1=2.12, expectancy_r=-0.97 (n=1)",
-              "rr1": 2.12,
+              "reason": "rr1=2.91, expectancy_r=-0.97 (n=1)",
+              "rr1": 2.91,
               "expectancy_r": -0.9705,
               "sample": 1,
               "plan_valid": true,
@@ -674,13 +674,13 @@
                 "enabled": true,
                 "execution_quality_raw": 57.0,
                 "execution_impact": -0.19,
-                "adaptive_execution_threshold": 70.07,
-                "rr1": 2.12,
+                "adaptive_execution_threshold": 69.73,
+                "rr1": 2.91,
                 "score_profile": {
-                  "quality": 68,
+                  "quality": 69,
                   "base_threshold": 68,
                   "lower_bound": 66,
-                  "distance_to_base": 0,
+                  "distance_to_base": -1,
                   "full_threshold": true,
                   "in_gray_zone": false,
                   "gray_eligible": false,
@@ -688,7 +688,7 @@
                   "tier": "FULL",
                   "risk_cap": 0.3,
                   "execution_quality": 57.0,
-                  "setup_quality": 91.0,
+                  "setup_quality": 92.0,
                   "checks": {
                     "within_gray_zone": false,
                     "execution_quality": false,
@@ -710,10 +710,10 @@
               },
               "probe_entry_eligibility": {
                 "eligible": false,
-                "score": 68,
+                "score": 69,
                 "score_floor": 58,
                 "live_3m_trigger_ready": false,
-                "trigger_age_minutes": 994.5,
+                "trigger_age_minutes": 1008.79,
                 "fresh_age": false,
                 "revalidation_state": "STALE",
                 "entry_supported": false,
@@ -738,10 +738,10 @@
                 ]
               },
               "risky_entry_score_profile": {
-                "quality": 68,
+                "quality": 69,
                 "base_threshold": 68,
                 "lower_bound": 66,
-                "distance_to_base": 0,
+                "distance_to_base": -1,
                 "full_threshold": true,
                 "in_gray_zone": false,
                 "gray_eligible": false,
@@ -749,7 +749,7 @@
                 "tier": "FULL",
                 "risk_cap": 0.3,
                 "execution_quality": 57.0,
-                "setup_quality": 91.0,
+                "setup_quality": 92.0,
                 "checks": {
                   "within_gray_zone": false,
                   "execution_quality": false,
@@ -772,13 +772,13 @@
         "enabled": true,
         "execution_quality_raw": 57.0,
         "execution_impact": -0.19,
-        "adaptive_execution_threshold": 70.07,
-        "rr1": 2.12,
+        "adaptive_execution_threshold": 69.73,
+        "rr1": 2.91,
         "score_profile": {
-          "quality": 68,
+          "quality": 69,
           "base_threshold": 68,
           "lower_bound": 66,
-          "distance_to_base": 0,
+          "distance_to_base": -1,
           "full_threshold": true,
           "in_gray_zone": false,
           "gray_eligible": false,
@@ -786,7 +786,7 @@
           "tier": "FULL",
           "risk_cap": 0.3,
           "execution_quality": 57.0,
-          "setup_quality": 91.0,
+          "setup_quality": 92.0,
           "checks": {
             "within_gray_zone": false,
             "execution_quality": false,
@@ -807,10 +807,10 @@
         "after_fix_action": "WAIT"
       },
       "risky_entry_score_profile": {
-        "quality": 68,
+        "quality": 69,
         "base_threshold": 68,
         "lower_bound": 66,
-        "distance_to_base": 0,
+        "distance_to_base": -1,
         "full_threshold": true,
         "in_gray_zone": false,
         "gray_eligible": false,
@@ -818,7 +818,7 @@
         "tier": "FULL",
         "risk_cap": 0.3,
         "execution_quality": 57.0,
-        "setup_quality": 91.0,
+        "setup_quality": 92.0,
         "checks": {
           "within_gray_zone": false,
           "execution_quality": false,
@@ -841,18 +841,18 @@
         "selected_eligible_but_no_setup": false,
         "close_miss": true,
         "score_gap": 0,
-        "execution_gap": 13.07,
+        "execution_gap": 12.73,
         "reason_codes": [
-          "execution_gap=13.1",
+          "execution_gap=12.7",
           "weak_caution_only",
           "plan_not_executable"
         ],
         "alert": false,
         "score_profile": {
-          "quality": 68,
+          "quality": 69,
           "base_threshold": 68,
           "lower_bound": 66,
-          "distance_to_base": 0,
+          "distance_to_base": -1,
           "full_threshold": true,
           "in_gray_zone": false,
           "gray_eligible": false,
@@ -860,7 +860,7 @@
           "tier": "FULL",
           "risk_cap": 0.3,
           "execution_quality": 57.0,
-          "setup_quality": 91.0,
+          "setup_quality": 92.0,
           "checks": {
             "within_gray_zone": false,
             "execution_quality": false,
@@ -874,13 +874,13 @@
         },
         "shadow_plan": {
           "status": "OPEN",
-          "opened_at": "2026-07-12T15:01:29.791187+00:00",
-          "expires_at": "2026-07-13T15:01:29.791187+00:00",
+          "opened_at": "2026-07-12T15:15:47.456895+00:00",
+          "expires_at": "2026-07-13T15:15:47.456895+00:00",
           "side": "SHORT",
-          "entry": 78.21,
-          "stop": 78.79,
-          "tp0": 77.63,
-          "tp1": 76.98,
+          "entry": 78.12,
+          "stop": 78.7,
+          "tp0": 77.54,
+          "tp1": 76.43,
           "tp2": 75.68,
           "tp3": 75.3,
           "partial_plan": {
@@ -909,8 +909,8 @@
     },
     "setup_family": "EXPANSION",
     "ict_model": "LIQUIDITY_LADDER_MODEL",
-    "candidate_final_score": 68,
-    "candidate_raw_score": 104,
+    "candidate_final_score": 69,
+    "candidate_raw_score": 105,
     "execution_lane": "LIMIT_ONLY",
     "execution_source": "LIQUIDITY_LADDER",
     "entry_stage": "WAIT_RETEST",
@@ -936,36 +936,36 @@
         "target_router": {
           "mode": "WAIT_FRESH_SETUP_ARGUMENT",
           "ladder": {
-            "count": 10,
-            "score_sum": 7.28,
+            "count": 11,
+            "score_sum": 7.69,
             "nearest": [
               {
                 "kind": "OB",
                 "tf": "15m",
                 "level": 78.04,
-                "magnet": 2.13,
-                "dist_atr": 0.93
+                "magnet": 2.15,
+                "dist_atr": 0.45
               },
               {
                 "kind": "OB",
                 "tf": "15m",
                 "level": 77.91,
-                "magnet": 2.61,
-                "dist_atr": 1.65
+                "magnet": 2.86,
+                "dist_atr": 1.18
               },
               {
                 "kind": "RANGE_LOW",
                 "tf": "15m",
                 "level": 77.53,
-                "magnet": 0.92,
-                "dist_atr": 3.73
+                "magnet": 0.97,
+                "dist_atr": 3.32
               },
               {
                 "kind": "FVG",
                 "tf": "15m",
                 "level": 77.42,
-                "magnet": 0.49,
-                "dist_atr": 4.34
+                "magnet": 0.52,
+                "dist_atr": 3.94
               }
             ]
           }
@@ -975,7 +975,7 @@
           "version": "v6.20_hard_thesis_ttl",
           "state": "STALE",
           "source": "LIQUIDITY_LADDER",
-          "age_min": 994.5,
+          "age_min": 1008.8,
           "hard_ttl_min": 1440.0,
           "hard_expired": false,
           "needs_revalidation": true,
@@ -996,7 +996,7 @@
               {
                 "name": "strong_3m_body",
                 "ok": false,
-                "body_atr": 0.11,
+                "body_atr": 0.056,
                 "body_ratio": 1.0
               },
               {
@@ -1022,15 +1022,15 @@
         "entry_supported_now": false,
         "impulse": {
           "valid": true,
-          "impulse_atr": 2.03,
-          "body_efficiency": 0.45,
-          "direction_closes_5": 4,
-          "compression_ratio": 1.53,
-          "giveback_ratio": 0.54,
-          "last_range_atr": 0.11
+          "impulse_atr": 1.74,
+          "body_efficiency": 0.4,
+          "direction_closes_5": 5,
+          "compression_ratio": 1.6,
+          "giveback_ratio": 0.23,
+          "last_range_atr": 0.06
         },
-        "trigger_age_min": 994.5,
-        "target_magnet": 2.01,
+        "trigger_age_min": 1008.8,
+        "target_magnet": 2.07,
         "plan_q": 75,
         "notes": [
           "old trigger лишається thesis memory → чекаємо свіжий 3M/15M setup argument, без hard block"
@@ -1039,8 +1039,8 @@
         "quality_threshold_changed": false
       },
       "breathing_geometry": {
-        "decision_stop": 78.61,
-        "catastrophic_stop": 78.79,
+        "decision_stop": 78.52,
+        "catastrophic_stop": 78.7,
         "decision_distance": 0.4,
         "catastrophic_distance": 0.58,
         "conventional_distance": 0.4,
@@ -1061,16 +1061,16 @@
     "live_3m_trigger_ready": false,
     "limit_armed_ready": false,
     "time_warp_ready": true,
-    "trigger_age_minutes": 994.5,
+    "trigger_age_minutes": 1008.79,
     "score_components": {
-      "legacy_raw_score": 103.55,
+      "legacy_raw_score": 104.55,
       "loc_score": 45,
       "str_score": 21.85,
       "liq_score": 1.2,
       "flw_score": 0.0,
       "trig_score": 8.0,
       "htf_score": 7.5,
-      "pattern_bonus": 20.0,
+      "pattern_bonus": 21.0,
       "session_bonus": 0.0,
       "vector_bonus": 0.0,
       "features": {
@@ -1080,7 +1080,7 @@
         "flow": 0.0,
         "trigger": 1.0,
         "htf": 0.3125,
-        "pattern": 0.8095,
+        "pattern": 0.8333,
         "session": 0.0,
         "smt": 0.0,
         "regime_fit": 0.0,
@@ -1100,23 +1100,23 @@
         "htf_late_gate": 1.0,
         "product": 0.691
       },
-      "probability": 0.629,
-      "base_probability": 0.9103,
+      "probability": 0.6301,
+      "base_probability": 0.9119,
       "model_source": "bootstrap",
       "sample_size": 2,
       "learned_weight": 0.0,
-      "setup_quality": 91,
+      "setup_quality": 92,
       "execution_quality": 57,
       "trade_plan_quality": 75,
-      "organic_score": 75,
-      "hypothesis_score": 69.49,
+      "organic_score": 76,
+      "hypothesis_score": 70.49,
       "active_model_count": 4,
       "execution_source": "LIQUIDITY_LADDER",
       "trigger_reanchored": false,
       "original_trigger_level": 77.91,
-      "original_trigger_age_minutes": 994.5,
+      "original_trigger_age_minutes": 1008.79,
       "effective_trigger_level": 77.91,
-      "effective_trigger_age_minutes": 994.5,
+      "effective_trigger_age_minutes": 1008.79,
       "execution_freshness_multiplier": 0.82,
       "flow_feature_source": "SYNTHETIC_CVD_PROXY",
       "synthetic_cvd_score_multiplier": 0.35,
@@ -1134,13 +1134,13 @@
       },
       "direction_risk_multiplier": 1.0,
       "entry_contract": {
-        "entry_anchor": 78.21,
+        "entry_anchor": 78.12,
         "entry_basis": "Liquidity ladder current/retest anchor",
-        "invalidation_level": 78.61,
+        "invalidation_level": 78.52,
         "invalidation_basis": "Liquidity ladder structural failure",
         "target_level": 76.98,
         "target_basis": "ASIAN_LOW 1D magnet",
-        "target_magnet_score": 2.01
+        "target_magnet_score": 2.07
       },
       "acceptance_retest": {},
       "continuation_reanchor": {},
@@ -1156,36 +1156,36 @@
         "target_router": {
           "mode": "WAIT_FRESH_SETUP_ARGUMENT",
           "ladder": {
-            "count": 10,
-            "score_sum": 7.28,
+            "count": 11,
+            "score_sum": 7.69,
             "nearest": [
               {
                 "kind": "OB",
                 "tf": "15m",
                 "level": 78.04,
-                "magnet": 2.13,
-                "dist_atr": 0.93
+                "magnet": 2.15,
+                "dist_atr": 0.45
               },
               {
                 "kind": "OB",
                 "tf": "15m",
                 "level": 77.91,
-                "magnet": 2.61,
-                "dist_atr": 1.65
+                "magnet": 2.86,
+                "dist_atr": 1.18
               },
               {
                 "kind": "RANGE_LOW",
                 "tf": "15m",
                 "level": 77.53,
-                "magnet": 0.92,
-                "dist_atr": 3.73
+                "magnet": 0.97,
+                "dist_atr": 3.32
               },
               {
                 "kind": "FVG",
                 "tf": "15m",
                 "level": 77.42,
-                "magnet": 0.49,
-                "dist_atr": 4.34
+                "magnet": 0.52,
+                "dist_atr": 3.94
               }
             ]
           }
@@ -1195,7 +1195,7 @@
           "version": "v6.20_hard_thesis_ttl",
           "state": "STALE",
           "source": "LIQUIDITY_LADDER",
-          "age_min": 994.5,
+          "age_min": 1008.8,
           "hard_ttl_min": 1440.0,
           "hard_expired": false,
           "needs_revalidation": true,
@@ -1216,7 +1216,7 @@
               {
                 "name": "strong_3m_body",
                 "ok": false,
-                "body_atr": 0.11,
+                "body_atr": 0.056,
                 "body_ratio": 1.0
               },
               {
@@ -1242,15 +1242,15 @@
         "entry_supported_now": false,
         "impulse": {
           "valid": true,
-          "impulse_atr": 2.03,
-          "body_efficiency": 0.45,
-          "direction_closes_5": 4,
-          "compression_ratio": 1.53,
-          "giveback_ratio": 0.54,
-          "last_range_atr": 0.11
+          "impulse_atr": 1.74,
+          "body_efficiency": 0.4,
+          "direction_closes_5": 5,
+          "compression_ratio": 1.6,
+          "giveback_ratio": 0.23,
+          "last_range_atr": 0.06
         },
-        "trigger_age_min": 994.5,
-        "target_magnet": 2.01,
+        "trigger_age_min": 1008.8,
+        "target_magnet": 2.07,
         "plan_q": 75,
         "notes": [
           "old trigger лишається thesis memory → чекаємо свіжий 3M/15M setup argument, без hard block"
@@ -1263,7 +1263,7 @@
         "version": "v6.20_hard_thesis_ttl",
         "state": "STALE",
         "source": "LIQUIDITY_LADDER",
-        "age_min": 994.5,
+        "age_min": 1008.8,
         "hard_ttl_min": 1440.0,
         "hard_expired": false,
         "needs_revalidation": true,
@@ -1284,7 +1284,7 @@
             {
               "name": "strong_3m_body",
               "ok": false,
-              "body_atr": 0.11,
+              "body_atr": 0.056,
               "body_ratio": 1.0
             },
             {
@@ -1315,18 +1315,18 @@
           "side": "SHORT",
           "model": "LIQUIDITY_LADDER_MODEL",
           "setup_type": "LIQUIDITY_LADDER",
-          "final_score": 68,
-          "hypothesis_score": 69.49,
-          "setup_q": 91,
+          "final_score": 69,
+          "hypothesis_score": 70.49,
+          "setup_q": 92,
           "execution_q": 57,
           "plan_q": 75,
           "execution_source": "LIQUIDITY_LADDER",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 994.5,
+          "trigger_age_min": 1008.8,
           "trigger_reanchored": false,
-          "original_trigger_age_min": 994.5,
-          "effective_trigger_age_min": 994.5,
-          "target_magnet": 2.01,
+          "original_trigger_age_min": 1008.8,
+          "effective_trigger_age_min": 1008.8,
+          "target_magnet": 2.07,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.55,
           "revalidation_state": "STALE",
@@ -1345,11 +1345,11 @@
           "plan_q": 75,
           "execution_source": "TIME_OF_DAY",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 994.5,
+          "trigger_age_min": 1008.8,
           "trigger_reanchored": false,
-          "original_trigger_age_min": 994.5,
-          "effective_trigger_age_min": 994.5,
-          "target_magnet": 2.01,
+          "original_trigger_age_min": 1008.8,
+          "effective_trigger_age_min": 1008.8,
+          "target_magnet": 2.07,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.55,
           "revalidation_state": "STALE",
@@ -1374,7 +1374,7 @@
       "flow": 0.0,
       "trigger": 1.0,
       "htf": 0.3125,
-      "pattern": 0.8095,
+      "pattern": 0.8333,
       "session": 0.0,
       "smt": 0.0,
       "regime_fit": 0.0,
@@ -1407,36 +1407,36 @@
       "target_router": {
         "mode": "WAIT_FRESH_SETUP_ARGUMENT",
         "ladder": {
-          "count": 10,
-          "score_sum": 7.28,
+          "count": 11,
+          "score_sum": 7.69,
           "nearest": [
             {
               "kind": "OB",
               "tf": "15m",
               "level": 78.04,
-              "magnet": 2.13,
-              "dist_atr": 0.93
+              "magnet": 2.15,
+              "dist_atr": 0.45
             },
             {
               "kind": "OB",
               "tf": "15m",
               "level": 77.91,
-              "magnet": 2.61,
-              "dist_atr": 1.65
+              "magnet": 2.86,
+              "dist_atr": 1.18
             },
             {
               "kind": "RANGE_LOW",
               "tf": "15m",
               "level": 77.53,
-              "magnet": 0.92,
-              "dist_atr": 3.73
+              "magnet": 0.97,
+              "dist_atr": 3.32
             },
             {
               "kind": "FVG",
               "tf": "15m",
               "level": 77.42,
-              "magnet": 0.49,
-              "dist_atr": 4.34
+              "magnet": 0.52,
+              "dist_atr": 3.94
             }
           ]
         }
@@ -1446,7 +1446,7 @@
         "version": "v6.20_hard_thesis_ttl",
         "state": "STALE",
         "source": "LIQUIDITY_LADDER",
-        "age_min": 994.5,
+        "age_min": 1008.8,
         "hard_ttl_min": 1440.0,
         "hard_expired": false,
         "needs_revalidation": true,
@@ -1467,7 +1467,7 @@
             {
               "name": "strong_3m_body",
               "ok": false,
-              "body_atr": 0.11,
+              "body_atr": 0.056,
               "body_ratio": 1.0
             },
             {
@@ -1493,15 +1493,15 @@
       "entry_supported_now": false,
       "impulse": {
         "valid": true,
-        "impulse_atr": 2.03,
-        "body_efficiency": 0.45,
-        "direction_closes_5": 4,
-        "compression_ratio": 1.53,
-        "giveback_ratio": 0.54,
-        "last_range_atr": 0.11
+        "impulse_atr": 1.74,
+        "body_efficiency": 0.4,
+        "direction_closes_5": 5,
+        "compression_ratio": 1.6,
+        "giveback_ratio": 0.23,
+        "last_range_atr": 0.06
       },
-      "trigger_age_min": 994.5,
-      "target_magnet": 2.01,
+      "trigger_age_min": 1008.8,
+      "target_magnet": 2.07,
       "plan_q": 75,
       "notes": [
         "old trigger лишається thesis memory → чекаємо свіжий 3M/15M setup argument, без hard block"
@@ -1514,7 +1514,7 @@
       "version": "v6.20_hard_thesis_ttl",
       "state": "STALE",
       "source": "LIQUIDITY_LADDER",
-      "age_min": 994.5,
+      "age_min": 1008.8,
       "hard_ttl_min": 1440.0,
       "hard_expired": false,
       "needs_revalidation": true,
@@ -1535,7 +1535,7 @@
           {
             "name": "strong_3m_body",
             "ok": false,
-            "body_atr": 0.11,
+            "body_atr": 0.056,
             "body_ratio": 1.0
           },
           {
@@ -1558,12 +1558,12 @@
       "no_hard_block": true,
       "quality_threshold_changed": false
     },
-    "plan_tp0": 77.63,
-    "plan_tp1": 76.98,
+    "plan_tp0": 77.54,
+    "plan_tp1": 76.43,
     "plan_tp2": 75.68,
     "plan_tp3": 75.3,
     "plan_rr0": 1.0,
-    "plan_rr1": 2.12,
+    "plan_rr1": 2.91,
     "plan_position_risk_pct": 0.02,
     "partial_plan": {
       "tp0": 0.3,
@@ -1572,12 +1572,12 @@
       "tp3_runner": 0.13,
       "mode": "DEFENSIVE_TP0"
     },
-    "target_basis": "TP0: 1.0R/noise service fix | TP1: ASIAN_LOW (1D, magnet 2.0103) | TP2: PDL (1D, magnet 1.3818) | TP3: SSL_LIQUIDITY (15m, magnet 0.5872)",
-    "decision_stop": 78.61,
-    "catastrophic_stop": 78.79,
+    "target_basis": "TP0: 1.0R/noise service fix | TP1: WEEKLY_OPEN (1D, magnet 1.51) | TP2: PDL (1D, magnet 1.3948) | TP3: SSL_LIQUIDITY (15m, magnet 0.5906)",
+    "decision_stop": 78.52,
+    "catastrophic_stop": 78.7,
     "breathing_profile": {
-      "decision_stop": 78.61,
-      "catastrophic_stop": 78.79,
+      "decision_stop": 78.52,
+      "catastrophic_stop": 78.7,
       "decision_distance": 0.4,
       "catastrophic_distance": 0.58,
       "conventional_distance": 0.4,
@@ -1596,15 +1596,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 75.64,
-      "trade_id": "ffd1d898f9",
-      "signal_id": "ea014e47b6",
-      "time": "2026-07-10T15:45:48.314532+00:00"
-    },
     {
       "type": "CLOSE",
       "side": "LONG",
@@ -3209,7 +3200,15 @@
       "quality": 68,
       "price": 78.21,
       "time": "2026-07-12T15:01:29.791526+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "SHORT",
+      "setup_type": "LIQUIDITY_LADDER",
+      "quality": 69,
+      "price": 78.12,
+      "time": "2026-07-12T15:15:47.457260+00:00"
     }
   ],
-  "updated_at": "2026-07-12T15:01:30.183079+00:00"
+  "updated_at": "2026-07-12T15:15:47.893637+00:00"
 }
