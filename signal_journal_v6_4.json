@@ -128986,13 +128986,13 @@
     }
   },
   "learning_status": {
-    "updated_at": "2026-07-12T09:32:20.697275+00:00",
+    "updated_at": "2026-07-12T09:47:18.453172+00:00",
     "journal_file": "signal_journal_v6_4.json",
     "state_file": "last_signal_v6_4.json",
     "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
     "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
     "training_signals": 83,
-    "signal_events": 30,
+    "signal_events": 31,
     "closed_trades": 1,
     "training_rows": 1,
     "global_ready": false,
@@ -222463,6 +222463,15 @@
       "price": 78.56,
       "trade_id": "234756e3a7",
       "signal_id": "4273408e7e"
+    },
+    {
+      "time": "2026-07-12T09:47:18.443620+00:00",
+      "type": "FOLLOW",
+      "action": "HOLD",
+      "side": "LONG",
+      "price": 78.55,
+      "trade_id": "234756e3a7",
+      "signal_id": "4273408e7e"
     }
   ],
   "trades": [
@@ -222691,7 +222700,7 @@
       }
     }
   },
-  "updated_at": "2026-07-12T09:32:20.696593+00:00",
+  "updated_at": "2026-07-12T09:47:18.452454+00:00",
   "retention_audit": {
     "mode": "SIGNAL_ID_REFERENTIAL_RETENTION",
     "max_journal": 3000,
@@ -222798,7 +222807,7 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1783848600000,
+        "last_processed_ts": 1783849500000,
         "max_target_hit": "TP1",
         "mfe_r": 2.216,
         "mae_r": 0.0,
@@ -222806,7 +222815,7 @@
         "tp0_hit_at": "2026-07-12T07:09:00+00:00",
         "best_price": 78.73,
         "worst_price": 77.445,
-        "updated_at": "2026-07-12T09:32:19.970874+00:00",
+        "updated_at": "2026-07-12T09:47:17.759366+00:00",
         "tp1_hit_at": "2026-07-12T09:12:00+00:00"
       }
     },
@@ -222875,7 +222884,7 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1783848600000,
+        "last_processed_ts": 1783849500000,
         "max_target_hit": "TP1",
         "mfe_r": 2.216,
         "mae_r": 0.0,
@@ -222883,7 +222892,7 @@
         "tp0_hit_at": "2026-07-12T07:18:00+00:00",
         "best_price": 78.73,
         "worst_price": 77.445,
-        "updated_at": "2026-07-12T09:32:19.970874+00:00",
+        "updated_at": "2026-07-12T09:47:17.759366+00:00",
         "tp1_hit_at": "2026-07-12T09:12:00+00:00"
       }
     },
@@ -222951,7 +222960,7 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1783848600000,
+        "last_processed_ts": 1783849500000,
         "max_target_hit": "TP1",
         "mfe_r": 2.216,
         "mae_r": 0.0,
@@ -222959,7 +222968,7 @@
         "tp0_hit_at": "2026-07-12T07:33:00+00:00",
         "best_price": 78.73,
         "worst_price": 77.445,
-        "updated_at": "2026-07-12T09:32:19.970874+00:00",
+        "updated_at": "2026-07-12T09:47:17.759366+00:00",
         "tp1_hit_at": "2026-07-12T09:12:00+00:00"
       }
     },
@@ -223027,14 +223036,14 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1783848600000,
+        "last_processed_ts": 1783849500000,
         "max_target_hit": "TP0",
         "mfe_r": 1.086,
         "mae_r": 0.0,
         "note": "audit-only counterfactual; not executable PnL",
         "best_price": 78.73,
         "worst_price": 78.1,
-        "updated_at": "2026-07-12T09:32:19.970874+00:00",
+        "updated_at": "2026-07-12T09:47:17.759366+00:00",
         "tp0_hit_at": "2026-07-12T09:12:00+00:00"
       }
     },
