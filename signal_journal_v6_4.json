@@ -213319,13 +213319,13 @@
     }
   },
   "learning_status": {
-    "updated_at": "2026-07-13T05:31:22.806824+00:00",
+    "updated_at": "2026-07-13T05:45:50.142989+00:00",
     "journal_file": "signal_journal_v6_4.json",
     "state_file": "last_signal_v6_4.json",
     "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
     "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
     "training_signals": 135,
-    "signal_events": 55,
+    "signal_events": 56,
     "closed_trades": 2,
     "training_rows": 2,
     "global_ready": false,
@@ -388589,6 +388589,15 @@
       "price": 79.25,
       "trade_id": "8df21d9492",
       "signal_id": "e1f2d56644"
+    },
+    {
+      "time": "2026-07-13T05:45:50.133599+00:00",
+      "type": "FOLLOW",
+      "action": "HOLD",
+      "side": "LONG",
+      "price": 79.48,
+      "trade_id": "8df21d9492",
+      "signal_id": "e1f2d56644"
     }
   ],
   "trades": [
@@ -389070,7 +389079,7 @@
       }
     }
   },
-  "updated_at": "2026-07-13T05:31:22.805994+00:00",
+  "updated_at": "2026-07-13T05:45:50.142008+00:00",
   "retention_audit": {
     "mode": "SIGNAL_ID_REFERENTIAL_RETENTION",
     "max_journal": 3000,
@@ -389178,15 +389187,15 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1783920600000,
+        "last_processed_ts": 1783921500000,
         "max_target_hit": "TP2",
-        "mfe_r": 3.353,
+        "mfe_r": 3.767,
         "mae_r": 0.0,
         "note": "audit-only counterfactual; not executable PnL",
         "tp0_hit_at": "2026-07-12T07:09:00+00:00",
-        "best_price": 79.39,
+        "best_price": 79.63,
         "worst_price": 77.445,
-        "updated_at": "2026-07-13T05:31:22.340531+00:00",
+        "updated_at": "2026-07-13T05:45:49.680087+00:00",
         "tp1_hit_at": "2026-07-12T09:12:00+00:00",
         "tp2_hit_at": "2026-07-13T01:33:00+00:00"
       }
@@ -389256,15 +389265,15 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1783920600000,
+        "last_processed_ts": 1783921500000,
         "max_target_hit": "TP2",
-        "mfe_r": 3.353,
+        "mfe_r": 3.767,
         "mae_r": 0.0,
         "note": "audit-only counterfactual; not executable PnL",
         "tp0_hit_at": "2026-07-12T07:18:00+00:00",
-        "best_price": 79.39,
+        "best_price": 79.63,
         "worst_price": 77.445,
-        "updated_at": "2026-07-13T05:31:22.340531+00:00",
+        "updated_at": "2026-07-13T05:45:49.680087+00:00",
         "tp1_hit_at": "2026-07-12T09:12:00+00:00",
         "tp2_hit_at": "2026-07-13T01:33:00+00:00"
       }
@@ -389316,7 +389325,7 @@
         }
       },
       "shadow_plan": {
-        "status": "TP1_REACHED",
+        "status": "TP2_REACHED",
         "opened_at": "2026-07-12T07:31:16.653655+00:00",
         "expires_at": "2026-07-13T07:31:16.653655+00:00",
         "side": "LONG",
@@ -389333,16 +389342,17 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1783920600000,
-        "max_target_hit": "TP1",
-        "mfe_r": 3.353,
+        "last_processed_ts": 1783921500000,
+        "max_target_hit": "TP2",
+        "mfe_r": 3.767,
         "mae_r": 0.0,
         "note": "audit-only counterfactual; not executable PnL",
         "tp0_hit_at": "2026-07-12T07:33:00+00:00",
-        "best_price": 79.39,
+        "best_price": 79.63,
         "worst_price": 77.445,
-        "updated_at": "2026-07-13T05:31:22.340531+00:00",
-        "tp1_hit_at": "2026-07-12T09:12:00+00:00"
+        "updated_at": "2026-07-13T05:45:49.680087+00:00",
+        "tp1_hit_at": "2026-07-12T09:12:00+00:00",
+        "tp2_hit_at": "2026-07-13T05:42:00+00:00"
       }
     },
     {
@@ -389409,14 +389419,14 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1783920600000,
+        "last_processed_ts": 1783921500000,
         "max_target_hit": "TP1",
-        "mfe_r": 2.224,
+        "mfe_r": 2.638,
         "mae_r": 0.362,
         "note": "audit-only counterfactual; not executable PnL",
-        "best_price": 79.39,
+        "best_price": 79.63,
         "worst_price": 77.89,
-        "updated_at": "2026-07-13T05:31:22.340531+00:00",
+        "updated_at": "2026-07-13T05:45:49.680087+00:00",
         "tp0_hit_at": "2026-07-12T09:12:00+00:00",
         "tp1_hit_at": "2026-07-13T01:33:00+00:00"
       }
@@ -389516,7 +389526,7 @@
         }
       },
       "shadow_plan": {
-        "status": "TP0_REACHED",
+        "status": "TP1_REACHED",
         "opened_at": "2026-07-12T11:06:53.673729+00:00",
         "expires_at": "2026-07-13T11:06:53.673729+00:00",
         "side": "LONG",
@@ -389533,15 +389543,16 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1783920600000,
-        "max_target_hit": "TP0",
-        "mfe_r": 1.716,
+        "last_processed_ts": 1783921500000,
+        "max_target_hit": "TP1",
+        "mfe_r": 2.129,
         "mae_r": 0.871,
         "note": "audit-only counterfactual; not executable PnL",
-        "best_price": 79.39,
+        "best_price": 79.63,
         "worst_price": 77.89,
-        "updated_at": "2026-07-13T05:31:22.340531+00:00",
-        "tp0_hit_at": "2026-07-12T17:54:00+00:00"
+        "updated_at": "2026-07-13T05:45:49.680087+00:00",
+        "tp0_hit_at": "2026-07-12T17:54:00+00:00",
+        "tp1_hit_at": "2026-07-13T05:45:00+00:00"
       }
     },
     {
@@ -390365,14 +390376,14 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1783920600000,
+        "last_processed_ts": 1783921500000,
         "max_target_hit": "TP1",
-        "mfe_r": 2.164,
+        "mfe_r": 2.578,
         "mae_r": 0.371,
         "note": "audit-only counterfactual; not executable PnL",
-        "best_price": 79.39,
+        "best_price": 79.63,
         "worst_price": 77.92,
-        "updated_at": "2026-07-13T05:31:22.340531+00:00",
+        "updated_at": "2026-07-13T05:45:49.680087+00:00",
         "tp0_hit_at": "2026-07-12T17:06:00+00:00",
         "tp1_hit_at": "2026-07-13T05:06:00+00:00"
       }
@@ -390441,14 +390452,14 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1783920600000,
+        "last_processed_ts": 1783921500000,
         "max_target_hit": "TP1",
-        "mfe_r": 2.164,
+        "mfe_r": 2.578,
         "mae_r": 0.371,
         "note": "audit-only counterfactual; not executable PnL",
-        "best_price": 79.39,
+        "best_price": 79.63,
         "worst_price": 77.92,
-        "updated_at": "2026-07-13T05:31:22.340531+00:00",
+        "updated_at": "2026-07-13T05:45:49.680087+00:00",
         "tp0_hit_at": "2026-07-12T17:06:00+00:00",
         "tp1_hit_at": "2026-07-13T05:06:00+00:00"
       }
@@ -390517,14 +390528,14 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1783920600000,
+        "last_processed_ts": 1783921500000,
         "max_target_hit": "TP1",
-        "mfe_r": 2.164,
+        "mfe_r": 2.578,
         "mae_r": 0.371,
         "note": "audit-only counterfactual; not executable PnL",
-        "best_price": 79.39,
+        "best_price": 79.63,
         "worst_price": 77.92,
-        "updated_at": "2026-07-13T05:31:22.340531+00:00",
+        "updated_at": "2026-07-13T05:45:49.680087+00:00",
         "tp0_hit_at": "2026-07-12T17:06:00+00:00",
         "tp1_hit_at": "2026-07-13T05:06:00+00:00"
       }
@@ -390593,14 +390604,14 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1783920600000,
+        "last_processed_ts": 1783921500000,
         "max_target_hit": "TP1",
-        "mfe_r": 2.164,
+        "mfe_r": 2.578,
         "mae_r": 0.371,
         "note": "audit-only counterfactual; not executable PnL",
-        "best_price": 79.39,
+        "best_price": 79.63,
         "worst_price": 77.92,
-        "updated_at": "2026-07-13T05:31:22.340531+00:00",
+        "updated_at": "2026-07-13T05:45:49.680087+00:00",
         "tp0_hit_at": "2026-07-12T17:06:00+00:00",
         "tp1_hit_at": "2026-07-13T05:06:00+00:00"
       }
@@ -390669,14 +390680,14 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1783920600000,
+        "last_processed_ts": 1783921500000,
         "max_target_hit": "TP1",
-        "mfe_r": 2.164,
+        "mfe_r": 2.578,
         "mae_r": 0.371,
         "note": "audit-only counterfactual; not executable PnL",
-        "best_price": 79.39,
+        "best_price": 79.63,
         "worst_price": 77.92,
-        "updated_at": "2026-07-13T05:31:22.340531+00:00",
+        "updated_at": "2026-07-13T05:45:49.680087+00:00",
         "tp0_hit_at": "2026-07-12T17:06:00+00:00",
         "tp1_hit_at": "2026-07-13T05:06:00+00:00"
       }
@@ -391199,14 +391210,14 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1783920600000,
+        "last_processed_ts": 1783921500000,
         "max_target_hit": "TP1",
-        "mfe_r": 2.0,
+        "mfe_r": 2.414,
         "mae_r": 0.534,
         "note": "audit-only counterfactual; not executable PnL",
-        "best_price": 79.39,
+        "best_price": 79.63,
         "worst_price": 77.92,
-        "updated_at": "2026-07-13T05:31:22.340531+00:00",
+        "updated_at": "2026-07-13T05:45:49.680087+00:00",
         "tp0_hit_at": "2026-07-12T17:09:00+00:00",
         "tp1_hit_at": "2026-07-13T05:30:00+00:00"
       }
@@ -391275,14 +391286,14 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1783920600000,
+        "last_processed_ts": 1783921500000,
         "max_target_hit": "TP1",
-        "mfe_r": 2.0,
+        "mfe_r": 2.414,
         "mae_r": 0.534,
         "note": "audit-only counterfactual; not executable PnL",
-        "best_price": 79.39,
+        "best_price": 79.63,
         "worst_price": 77.92,
-        "updated_at": "2026-07-13T05:31:22.340531+00:00",
+        "updated_at": "2026-07-13T05:45:49.680087+00:00",
         "tp0_hit_at": "2026-07-12T17:09:00+00:00",
         "tp1_hit_at": "2026-07-13T05:30:00+00:00"
       }
@@ -391351,14 +391362,14 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1783920600000,
+        "last_processed_ts": 1783921500000,
         "max_target_hit": "TP1",
-        "mfe_r": 2.0,
+        "mfe_r": 2.414,
         "mae_r": 0.534,
         "note": "audit-only counterfactual; not executable PnL",
-        "best_price": 79.39,
+        "best_price": 79.63,
         "worst_price": 77.92,
-        "updated_at": "2026-07-13T05:31:22.340531+00:00",
+        "updated_at": "2026-07-13T05:45:49.680087+00:00",
         "tp0_hit_at": "2026-07-12T17:09:00+00:00",
         "tp1_hit_at": "2026-07-13T05:30:00+00:00"
       }
@@ -391427,14 +391438,14 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1783920600000,
+        "last_processed_ts": 1783921500000,
         "max_target_hit": "TP1",
-        "mfe_r": 2.0,
+        "mfe_r": 2.414,
         "mae_r": 0.534,
         "note": "audit-only counterfactual; not executable PnL",
-        "best_price": 79.39,
+        "best_price": 79.63,
         "worst_price": 77.92,
-        "updated_at": "2026-07-13T05:31:22.340531+00:00",
+        "updated_at": "2026-07-13T05:45:49.680087+00:00",
         "tp0_hit_at": "2026-07-12T17:09:00+00:00",
         "tp1_hit_at": "2026-07-13T05:30:00+00:00"
       }
@@ -391486,7 +391497,7 @@
         }
       },
       "shadow_plan": {
-        "status": "TP0_REACHED",
+        "status": "TP1_REACHED",
         "opened_at": "2026-07-12T17:01:31.788333+00:00",
         "expires_at": "2026-07-13T17:01:31.788333+00:00",
         "side": "LONG",
@@ -391503,15 +391514,16 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1783920600000,
-        "max_target_hit": "TP0",
-        "mfe_r": 1.681,
+        "last_processed_ts": 1783921500000,
+        "max_target_hit": "TP1",
+        "mfe_r": 2.095,
         "mae_r": 0.853,
         "note": "audit-only counterfactual; not executable PnL",
-        "best_price": 79.39,
+        "best_price": 79.63,
         "worst_price": 77.92,
-        "updated_at": "2026-07-13T05:31:22.340531+00:00",
-        "tp0_hit_at": "2026-07-12T17:57:00+00:00"
+        "updated_at": "2026-07-13T05:45:49.680087+00:00",
+        "tp0_hit_at": "2026-07-12T17:57:00+00:00",
+        "tp1_hit_at": "2026-07-13T05:45:00+00:00"
       }
     },
     {
@@ -393445,7 +393457,7 @@
         }
       },
       "shadow_plan": {
-        "status": "TP0_REACHED",
+        "status": "TP1_REACHED",
         "opened_at": "2026-07-13T00:01:32.964640+00:00",
         "expires_at": "2026-07-14T00:01:32.964640+00:00",
         "side": "LONG",
@@ -393462,15 +393474,16 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1783920600000,
-        "max_target_hit": "TP0",
-        "mfe_r": 1.659,
+        "last_processed_ts": 1783921500000,
+        "max_target_hit": "TP1",
+        "mfe_r": 2.073,
         "mae_r": 0.0,
         "note": "audit-only counterfactual; not executable PnL",
-        "best_price": 79.39,
+        "best_price": 79.63,
         "worst_price": 78.4278,
-        "updated_at": "2026-07-13T05:31:22.340531+00:00",
-        "tp0_hit_at": "2026-07-13T00:42:00+00:00"
+        "updated_at": "2026-07-13T05:45:49.680087+00:00",
+        "tp0_hit_at": "2026-07-13T00:42:00+00:00",
+        "tp1_hit_at": "2026-07-13T05:45:00+00:00"
       }
     },
     {
