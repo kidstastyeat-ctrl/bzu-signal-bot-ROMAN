@@ -222695,13 +222695,13 @@
     }
   },
   "learning_status": {
-    "updated_at": "2026-07-13T16:31:25.474778+00:00",
+    "updated_at": "2026-07-13T16:37:32.309627+00:00",
     "journal_file": "signal_journal_v6_4.json",
     "state_file": "last_signal_v6_4.json",
     "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
     "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
     "training_signals": 139,
-    "signal_events": 88,
+    "signal_events": 89,
     "closed_trades": 3,
     "training_rows": 3,
     "global_ready": false,
@@ -404484,6 +404484,15 @@
       "price": 79.83,
       "trade_id": "54744b01c6",
       "signal_id": "d39155b179"
+    },
+    {
+      "time": "2026-07-13T16:37:32.300107+00:00",
+      "type": "FOLLOW",
+      "action": "HOLD",
+      "side": "LONG",
+      "price": 79.72,
+      "trade_id": "54744b01c6",
+      "signal_id": "d39155b179"
     }
   ],
   "trades": [
@@ -405208,7 +405217,7 @@
       }
     }
   },
-  "updated_at": "2026-07-13T16:31:25.473701+00:00",
+  "updated_at": "2026-07-13T16:37:32.308581+00:00",
   "retention_audit": {
     "mode": "SIGNAL_ID_REFERENTIAL_RETENTION",
     "max_journal": 3000,
@@ -410018,14 +410027,14 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1783960200000,
+        "last_processed_ts": 1783960560000,
         "max_target_hit": "TP0",
         "mfe_r": 1.102,
         "mae_r": 0.131,
         "note": "audit-only counterfactual; not executable PnL",
         "best_price": 79.94,
         "worst_price": 78.15,
-        "updated_at": "2026-07-13T16:31:25.121035+00:00",
+        "updated_at": "2026-07-13T16:37:31.751264+00:00",
         "tp0_hit_at": "2026-07-13T14:21:00+00:00"
       }
     },
@@ -410094,14 +410103,14 @@
           "tp3_runner": 0.3,
           "mode": "RUNNER_EXPANSION"
         },
-        "last_processed_ts": 1783960200000,
+        "last_processed_ts": 1783960560000,
         "max_target_hit": "TP1",
         "mfe_r": 3.212,
         "mae_r": 0.036,
         "note": "audit-only counterfactual; not executable PnL",
         "best_price": 79.94,
         "worst_price": 78.15,
-        "updated_at": "2026-07-13T16:31:25.121035+00:00",
+        "updated_at": "2026-07-13T16:37:31.751264+00:00",
         "tp0_hit_at": "2026-07-13T12:12:00+00:00",
         "tp1_hit_at": "2026-07-13T14:15:00+00:00"
       }
