@@ -222695,13 +222695,13 @@
     }
   },
   "learning_status": {
-    "updated_at": "2026-07-13T16:46:03.704339+00:00",
+    "updated_at": "2026-07-13T17:01:39.932866+00:00",
     "journal_file": "signal_journal_v6_4.json",
     "state_file": "last_signal_v6_4.json",
     "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
     "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
     "training_signals": 139,
-    "signal_events": 90,
+    "signal_events": 91,
     "closed_trades": 3,
     "training_rows": 3,
     "global_ready": false,
@@ -404502,6 +404502,15 @@
       "price": 79.74,
       "trade_id": "54744b01c6",
       "signal_id": "d39155b179"
+    },
+    {
+      "time": "2026-07-13T17:01:39.923418+00:00",
+      "type": "FOLLOW",
+      "action": "HOLD",
+      "side": "LONG",
+      "price": 80.21,
+      "trade_id": "54744b01c6",
+      "signal_id": "d39155b179"
     }
   ],
   "trades": [
@@ -405226,7 +405235,7 @@
       }
     }
   },
-  "updated_at": "2026-07-13T16:46:03.703267+00:00",
+  "updated_at": "2026-07-13T17:01:39.931847+00:00",
   "retention_audit": {
     "mode": "SIGNAL_ID_REFERENTIAL_RETENTION",
     "max_journal": 3000,
@@ -410036,14 +410045,14 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1783961100000,
+        "last_processed_ts": 1783962000000,
         "max_target_hit": "TP0",
-        "mfe_r": 1.123,
+        "mfe_r": 1.57,
         "mae_r": 0.131,
         "note": "audit-only counterfactual; not executable PnL",
-        "best_price": 79.97,
+        "best_price": 80.62,
         "worst_price": 78.15,
-        "updated_at": "2026-07-13T16:46:03.355925+00:00",
+        "updated_at": "2026-07-13T17:01:39.358598+00:00",
         "tp0_hit_at": "2026-07-13T14:21:00+00:00"
       }
     },
@@ -410095,7 +410104,7 @@
         }
       },
       "shadow_plan": {
-        "status": "TP1_REACHED",
+        "status": "TP2_REACHED",
         "opened_at": "2026-07-13T10:45:51.280580+00:00",
         "expires_at": "2026-07-14T10:45:51.280580+00:00",
         "side": "LONG",
@@ -410112,16 +410121,17 @@
           "tp3_runner": 0.3,
           "mode": "RUNNER_EXPANSION"
         },
-        "last_processed_ts": 1783961100000,
-        "max_target_hit": "TP1",
-        "mfe_r": 3.267,
+        "last_processed_ts": 1783962000000,
+        "max_target_hit": "TP2",
+        "mfe_r": 4.446,
         "mae_r": 0.036,
         "note": "audit-only counterfactual; not executable PnL",
-        "best_price": 79.97,
+        "best_price": 80.62,
         "worst_price": 78.15,
-        "updated_at": "2026-07-13T16:46:03.355925+00:00",
+        "updated_at": "2026-07-13T17:01:39.358598+00:00",
         "tp0_hit_at": "2026-07-13T12:12:00+00:00",
-        "tp1_hit_at": "2026-07-13T14:15:00+00:00"
+        "tp1_hit_at": "2026-07-13T14:15:00+00:00",
+        "tp2_hit_at": "2026-07-13T16:48:00+00:00"
       }
     },
     {
