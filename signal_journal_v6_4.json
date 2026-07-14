@@ -247890,13 +247890,13 @@
     }
   },
   "learning_status": {
-    "updated_at": "2026-07-14T10:31:28.459042+00:00",
+    "updated_at": "2026-07-14T10:45:55.878152+00:00",
     "journal_file": "signal_journal_v6_4.json",
     "state_file": "last_signal_v6_4.json",
     "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
     "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
     "training_signals": 145,
-    "signal_events": 126,
+    "signal_events": 127,
     "closed_trades": 5,
     "training_rows": 5,
     "global_ready": false,
@@ -439356,6 +439356,15 @@
       "price": 85.34,
       "trade_id": "e13b32e3b3",
       "signal_id": "dca9e25cb8"
+    },
+    {
+      "time": "2026-07-14T10:45:55.870635+00:00",
+      "type": "FOLLOW",
+      "action": "HOLD",
+      "side": "LONG",
+      "price": 85.15,
+      "trade_id": "e13b32e3b3",
+      "signal_id": "dca9e25cb8"
     }
   ],
   "trades": [
@@ -440566,7 +440575,7 @@
       }
     }
   },
-  "updated_at": "2026-07-14T10:31:28.457858+00:00",
+  "updated_at": "2026-07-14T10:45:55.877176+00:00",
   "retention_audit": {
     "mode": "SIGNAL_ID_REFERENTIAL_RETENTION",
     "max_journal": 3000,
@@ -445441,7 +445450,7 @@
         }
       },
       "shadow_plan": {
-        "status": "TP3_REACHED",
+        "status": "EXPIRED_TP3",
         "opened_at": "2026-07-13T10:45:51.280580+00:00",
         "expires_at": "2026-07-14T10:45:51.280580+00:00",
         "side": "LONG",
@@ -445458,18 +445467,19 @@
           "tp3_runner": 0.3,
           "mode": "RUNNER_EXPANSION"
         },
-        "last_processed_ts": 1784025000000,
+        "last_processed_ts": 1784025900000,
         "max_target_hit": "TP3",
         "mfe_r": 13.63,
         "mae_r": 0.036,
         "note": "audit-only counterfactual; not executable PnL",
         "best_price": 85.68,
         "worst_price": 78.15,
-        "updated_at": "2026-07-14T10:31:28.117122+00:00",
+        "updated_at": "2026-07-14T10:45:55.276847+00:00",
         "tp0_hit_at": "2026-07-13T12:12:00+00:00",
         "tp1_hit_at": "2026-07-13T14:15:00+00:00",
         "tp2_hit_at": "2026-07-13T16:48:00+00:00",
-        "tp3_hit_at": "2026-07-13T17:33:00+00:00"
+        "tp3_hit_at": "2026-07-13T17:33:00+00:00",
+        "closed_at": "2026-07-14T10:45:55.276847+00:00"
       }
     },
     {
@@ -445659,14 +445669,14 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1784025000000,
+        "last_processed_ts": 1784025900000,
         "max_target_hit": "TP2",
         "mfe_r": 4.557,
         "mae_r": 0.0,
         "note": "audit-only counterfactual; not executable PnL",
         "best_price": 85.68,
         "worst_price": 81.795,
-        "updated_at": "2026-07-14T10:31:28.117122+00:00",
+        "updated_at": "2026-07-14T10:45:55.276847+00:00",
         "tp0_hit_at": "2026-07-13T19:30:00+00:00",
         "tp1_hit_at": "2026-07-13T22:57:00+00:00",
         "tp2_hit_at": "2026-07-14T00:18:00+00:00"
@@ -446287,7 +446297,7 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1784025000000,
+        "last_processed_ts": 1784025900000,
         "max_target_hit": "TP2",
         "mfe_r": 4.483,
         "mae_r": 0.241,
@@ -446295,7 +446305,7 @@
         "tp0_hit_at": "2026-07-13T23:33:00+00:00",
         "best_price": 85.68,
         "worst_price": 82.94,
-        "updated_at": "2026-07-14T10:31:28.117122+00:00",
+        "updated_at": "2026-07-14T10:45:55.276847+00:00",
         "tp1_hit_at": "2026-07-14T00:06:00+00:00",
         "tp2_hit_at": "2026-07-14T08:03:00+00:00"
       }
@@ -446838,14 +446848,14 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1784025000000,
+        "last_processed_ts": 1784025900000,
         "max_target_hit": "NONE",
-        "mfe_r": 0.424,
+        "mfe_r": 0.552,
         "mae_r": 0.437,
         "note": "audit-only counterfactual; not executable PnL",
-        "best_price": 84.9,
+        "best_price": 84.8,
         "worst_price": 85.57,
-        "updated_at": "2026-07-14T10:31:28.117122+00:00"
+        "updated_at": "2026-07-14T10:45:55.276847+00:00"
       }
     },
     {
