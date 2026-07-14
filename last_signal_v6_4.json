@@ -20,7 +20,7 @@
     "worst_price": 84.0,
     "thesis_key": "SHORT|VWAP_SESSION_MEAN_RECLAIM|SESSION_MEAN_RECLAIM|840",
     "thesis": "SHORT VWAP_SESSION_MEAN_RECLAIM → SESSION_MEAN_RECLAIM | src=SESSION_MEAN | stage=READY",
-    "last_checked_3m_ts": 1784003478294,
+    "last_checked_3m_ts": 1784004350522,
     "tp1_hit": false,
     "tp2_hit": false,
     "tp3_hit": false,
@@ -315,9 +315,9 @@
   },
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1784003400000,
+    "last_scanned_3m_ts": 1784004300000,
     "last_run_processed": 5,
-    "processed_count": 1148,
+    "processed_count": 1153,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -329,7 +329,7 @@
         "event_price": 77.91,
         "invalidation_level": 77.91,
         "sweep_level": 77.91,
-        "extreme": 83.74,
+        "extreme": 83.92,
         "displacement": true,
         "retest_ts": 1783814580000,
         "ready_ts": 1783814760000,
@@ -339,7 +339,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 87,
         "retest_quality": 68,
-        "processed_bars": 1148,
+        "processed_bars": 1153,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -362,7 +362,7 @@
         "event_price": 77.91,
         "invalidation_level": 77.91,
         "sweep_level": 77.91,
-        "extreme": 83.78,
+        "extreme": 83.97,
         "displacement": true,
         "retest_ts": 1783808640000,
         "ready_ts": 1783808820000,
@@ -372,7 +372,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 98,
         "retest_quality": 86,
-        "processed_bars": 1148,
+        "processed_bars": 1153,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -388,11 +388,11 @@
     }
   },
   "regime_memory": {
-    "type": "NORMAL",
-    "pending_type": "RANGE_COMPRESSION",
-    "stable_count": 0,
-    "pending_count": 1,
-    "updated_at": "2026-07-14T04:31:18.292080+00:00"
+    "type": "RANGE_COMPRESSION",
+    "pending_type": "",
+    "stable_count": 1,
+    "pending_count": 2,
+    "updated_at": "2026-07-14T04:45:50.515536+00:00"
   },
   "latest_signal": {
     "id": "d18e5da32c",
@@ -1948,14 +1948,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "NO_SETUP",
-      "side": "NEUTRAL",
-      "setup_type": "NONE",
-      "quality": 12,
-      "price": 77.85,
-      "time": "2026-07-12T06:32:54.932060+00:00"
-    },
     {
       "type": "NO_SETUP",
       "side": "NEUTRAL",
@@ -3634,7 +3626,16 @@
       "trade_id": "af8914f134",
       "signal_id": "d18e5da32c",
       "time": "2026-07-14T04:31:18.650031+00:00"
+    },
+    {
+      "type": "FOLLOW",
+      "side": "SHORT",
+      "action": "HOLD",
+      "price": 83.87,
+      "trade_id": "af8914f134",
+      "signal_id": "d18e5da32c",
+      "time": "2026-07-14T04:45:50.894980+00:00"
     }
   ],
-  "updated_at": "2026-07-14T04:31:18.650058+00:00"
+  "updated_at": "2026-07-14T04:45:50.895005+00:00"
 }
