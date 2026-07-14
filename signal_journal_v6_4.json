@@ -243411,6 +243411,372 @@
           "violations": []
         }
       }
+    },
+    {
+      "id": "bf3d65f371",
+      "time": "2026-07-14T09:01:37.129069+00:00",
+      "action": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "decision_quality": 12,
+      "quality_source": "decision.quality",
+      "quality_contract": {
+        "canonical_field": "decision.quality",
+        "compatibility_aliases": [
+          "quality",
+          "decision_quality"
+        ],
+        "validated_equal": true
+      },
+      "reason": "missing candidate",
+      "regime": "TRANSITION",
+      "news_bias": "NEUTRAL",
+      "macro_risk": "NORMAL",
+      "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
+      "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
+      "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
+      "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY_LOW_WEIGHT",
+      "cvd_limitations": {
+        "is_real_cvd": false,
+        "source": "15m candle pressure approximation",
+        "score_multiplier": 0.35,
+        "permanent_limitation_until_trade_feed": true
+      },
+      "range_calendar_segment": "WEEKDAY",
+      "range_calendar_statistics": {
+        "weekend": {
+          "closed_trades": 0,
+          "wins": 0,
+          "net_result": 0.0,
+          "win_rate_pct": 0.0,
+          "expectancy": 0.0,
+          "win_rate_wilson_95": [
+            0.0,
+            100.0
+          ]
+        },
+        "weekday": {
+          "closed_trades": 0,
+          "wins": 0,
+          "net_result": 0.0,
+          "win_rate_pct": 0.0,
+          "expectancy": 0.0,
+          "win_rate_wilson_95": [
+            0.0,
+            100.0
+          ]
+        },
+        "minimum_trades_per_bucket": 20,
+        "enough_samples": false,
+        "wilson_intervals_separate": false,
+        "split_supported": false,
+        "decision": "KEEP_SHARED_RANGE",
+        "reason": "insufficient evidence for a separate weekend regime"
+      },
+      "learning_status": {
+        "updated_at": "2026-07-14T09:01:35.345520+00:00",
+        "journal_file": "signal_journal_v6_4.json",
+        "state_file": "last_signal_v6_4.json",
+        "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
+        "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
+        "training_signals": 143,
+        "signal_events": 123,
+        "closed_trades": 5,
+        "training_rows": 5,
+        "global_ready": false,
+        "global_learned_weight": 0.0,
+        "by_family": {
+          "CONTINUATION": {
+            "rows": 3,
+            "ready": false,
+            "learned_weight": 0.0
+          },
+          "EXPANSION": {
+            "rows": 2,
+            "ready": false,
+            "learned_weight": 0.0
+          }
+        },
+        "validation": {
+          "enabled": false,
+          "reason": "not_enough_rows"
+        },
+        "github_actions": true,
+        "journal_persistence_confirmed": true,
+        "flow_quality": "DISABLED_NO_TRADES_OR_BOOK",
+        "cvd_quality": "SYNTHETIC_CANDLE_PRESSURE_PROXY_LOW_WEIGHT",
+        "calendar_statistics": {
+          "range_weekend_vs_weekday": {
+            "weekend": {
+              "closed_trades": 0,
+              "wins": 0,
+              "net_result": 0.0,
+              "win_rate_pct": 0.0,
+              "expectancy": 0.0,
+              "win_rate_wilson_95": [
+                0.0,
+                100.0
+              ]
+            },
+            "weekday": {
+              "closed_trades": 0,
+              "wins": 0,
+              "net_result": 0.0,
+              "win_rate_pct": 0.0,
+              "expectancy": 0.0,
+              "win_rate_wilson_95": [
+                0.0,
+                100.0
+              ]
+            },
+            "minimum_trades_per_bucket": 20,
+            "enough_samples": false,
+            "wilson_intervals_separate": false,
+            "split_supported": false,
+            "decision": "KEEP_SHARED_RANGE",
+            "reason": "insufficient evidence for a separate weekend regime"
+          }
+        }
+      },
+      "learning_warnings": [
+        "ML ще в bootstrap: 5/60 training rows."
+      ],
+      "version": "pro-hybrid-confluence-v8.8-continuation-resilience",
+      "architecture_version": "TRADING_DESK_EXECUTIVE_V8_8_CONFIDENCE_AWARE",
+      "runtime_config_snapshot": {
+        "bot_version": "pro-hybrid-confluence-v8.8-continuation-resilience",
+        "architecture_version": "TRADING_DESK_EXECUTIVE_V8_8_CONFIDENCE_AWARE",
+        "leverage": 5.0,
+        "normal_risk_pct": 0.5,
+        "risky_risk_pct": 0.3,
+        "daily_risk_cap": 1.0,
+        "risk_budget_min_buffer": 0.3,
+        "probe_risk_pct": 0.12,
+        "acceptance_risk_pct": 0.22,
+        "retest_add_risk_pct": 0.3,
+        "core_risk_pct": 0.5,
+        "entry_score_base": 75,
+        "risky_entry_score_base": 68,
+        "risky_score_gray_zone": 2,
+        "risky_gray_min_execution_quality": 72.0,
+        "risky_gray_min_setup_quality": 78.0,
+        "risky_gray_risk_pct": 0.1,
+        "conflict_override_execution_base": 70.0,
+        "conflict_override_execution_min": 68.0,
+        "conflict_override_execution_max": 74.0,
+        "conflict_min_effective_confidence": 45.0,
+        "conflict_caution_weight": 0.45,
+        "conflict_hard_margin": 1.75,
+        "probe_entry_score_base": 58,
+        "tp0_rr": 0.75,
+        "tp0_size_pct": 0.2,
+        "tp1_size_pct": 0.35,
+        "tp2_size_pct": 0.25,
+        "tp3_runner_pct": 0.20000000000000007,
+        "abs_min_stop_dollars": 0.4,
+        "abs_min_tp1_dollars": 0.65,
+        "commission_buffer_dollars": 0.02,
+        "min_rr1": 1.5,
+        "preferred_rr1": 1.6,
+        "min_rr2": 2.5,
+        "min_rr3": 4.0,
+        "trigger_max_age_minutes": 35,
+        "time_warp_score_multiplier": 0.7,
+        "stale_trigger_score_multiplier": 0.62,
+        "limit_armed_score_multiplier": 0.88,
+        "session_mean_max_dist_atr": 1.15,
+        "open_reclaim_max_dist_atr": 1.25,
+        "orb_break_buffer_atr": 0.16,
+        "failed_auction_min_tail_ratio": 0.54,
+        "liquidity_ladder_min_targets": 3,
+        "liquidity_ladder_min_score": 3.2,
+        "bootstrap_risk_multiplier": 0.75,
+        "weak_direction_risk_multiplier": 0.55,
+        "stop_noise_percentile": 0.7,
+        "tp_noise_percentile": 0.85,
+        "min_stop_true_range_mult": 1.1,
+        "min_tp1_true_range_mult": 1.25,
+        "current_candle_stop_mult": 0.85,
+        "tp0_min_rr": 1.0,
+        "tp1_min_rr_pro": 2.0,
+        "tp1_min_atr_pro": 3.0,
+        "be_delay_bars_after_tp1": 2,
+        "be_delay_min_mfe_r": 1.8,
+        "be_lock_r_mult": 0.1,
+        "catastrophic_stop_mult": 1.45,
+        "decision_stop_close_confirm": true,
+        "min_breathing_risk_multiplier": 0.35,
+        "setup_innovation_engine": true,
+        "innovation_stale_trigger_min": 240.0,
+        "innovation_extreme_stale_trigger_min": 1440.0,
+        "innovation_min_risk_mult": 0.35,
+        "innovation_max_risk_mult": 1.05,
+        "innovation_weak_magnet_level": 2.05,
+        "innovation_strong_magnet_level": 3.0,
+        "innovation_giveback_warn_ratio": 0.62,
+        "setup_revalidation_engine": true,
+        "setup_revalidation_stale_min": 240.0,
+        "setup_revalidation_extreme_min": 1440.0,
+        "setup_revalidation_max_late_dist_atr": 1.35,
+        "setup_revalidation_body_atr_min": 0.16,
+        "setup_revalidation_body_ratio_min": 0.52,
+        "setup_revalidation_acceptance_atr": 0.42,
+        "thesis_hard_ttl_min": 1440.0,
+        "continuation_reanchor_enabled": true,
+        "continuation_reanchor_max_zone_age_min": 180.0,
+        "continuation_reanchor_max_distance_atr": 0.95,
+        "continuation_reanchor_min_net_move_atr": 0.45,
+        "continuation_reanchor_max_pullback_atr": 0.6,
+        "no_pullback_min_move_atr": 1.1,
+        "no_pullback_max_giveback_ratio": 0.32,
+        "no_pullback_min_body_efficiency": 0.46,
+        "no_pullback_max_anchor_distance_atr": 1.05,
+        "no_pullback_risk_pct": 0.1,
+        "near_miss_score_gap": 2,
+        "near_miss_execution_gap": 5.0,
+        "executive_shadow_horizon_hours": 24.0,
+        "synthetic_cvd_score_multiplier": 0.35,
+        "synthetic_cvd_absorption_pos_mult": 1.08,
+        "synthetic_cvd_absorption_neg_mult": 0.95,
+        "weekend_range_min_trades_per_bucket": 20,
+        "weekend_range_wilson_z": 1.96
+      },
+      "audit": {
+        "rejected_hypotheses": [
+          {
+            "rank": 1,
+            "side": "LONG",
+            "model": "TIME_OF_DAY_ADAPTIVE",
+            "setup_type": "TIME_OF_DAY_ADAPTIVE",
+            "final_score": 51,
+            "hypothesis_score": 52.2,
+            "setup_q": 86,
+            "execution_q": 58,
+            "plan_q": 46,
+            "execution_source": "TIME_OF_DAY",
+            "entry_stage": "WAIT_RETEST",
+            "trigger_age_min": 3415.6,
+            "trigger_reanchored": false,
+            "original_trigger_age_min": 3415.6,
+            "effective_trigger_age_min": 3415.6,
+            "target_magnet": 0.0,
+            "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
+            "innovation_risk_mult": 0.82,
+            "revalidation_state": "DEAD",
+            "revalidation_supported": false,
+            "entry_timing": "DEAD_HARD_TTL",
+            "failed_gate": "THESIS_HARD_TTL_EXPIRED age=3415.6min ttl=1440.0min; score 51 < risky_min 66; gate_product 0.43 < 0.46; HTF не підтримує risky-entry",
+            "evidence_layers": [
+              "ICT_LOCATION",
+              "PRICE_STRUCTURE",
+              "ICT_MODEL_TIME_OF_DAY_ADAPTIVE",
+              "SYNTHETIC_CVD_PROXY_LOW_WEIGHT",
+              "EXECUTION_TIME_WARP_WAIT_RETEST",
+              "EXECUTION_TIME_OF_DAY"
+            ],
+            "entry_anchor": 85.51,
+            "invalidation": 84.9449
+          }
+        ],
+        "best_candidate_per_side": {
+          "LONG": {
+            "rank": 1,
+            "side": "LONG",
+            "model": "TIME_OF_DAY_ADAPTIVE",
+            "setup_type": "TIME_OF_DAY_ADAPTIVE",
+            "final_score": 51,
+            "hypothesis_score": 52.2,
+            "setup_q": 86,
+            "execution_q": 58,
+            "plan_q": 46,
+            "execution_source": "TIME_OF_DAY",
+            "entry_stage": "WAIT_RETEST",
+            "trigger_age_min": 3415.6,
+            "trigger_reanchored": false,
+            "original_trigger_age_min": 3415.6,
+            "effective_trigger_age_min": 3415.6,
+            "target_magnet": 0.0,
+            "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
+            "innovation_risk_mult": 0.82,
+            "revalidation_state": "DEAD",
+            "revalidation_supported": false,
+            "entry_timing": "DEAD_HARD_TTL",
+            "candidate_created": true,
+            "selected": false,
+            "eligible": false,
+            "status": "REJECTED",
+            "top_rejection_reason": "THESIS_HARD_TTL_EXPIRED age=3415.6min ttl=1440.0min; score 51 < risky_min 66; gate_product 0.43 < 0.46; HTF не підтримує risky-entry"
+          },
+          "SHORT": {
+            "side": "SHORT",
+            "candidate_created": false,
+            "selected": false,
+            "final_score": null,
+            "hypothesis_score": null,
+            "top_rejection_reason": "NO_CANDIDATE_CREATED"
+          }
+        },
+        "candidate_count": 1,
+        "audit_note": "Both LONG and SHORT are always audited",
+        "architecture": {
+          "pipeline": "ANALYTICAL_DEPARTMENTS -> CONFLICT_ANALYSIS -> TRADING_PHILOSOPHY -> EXECUTIVE_DECISION_LAYER",
+          "legacy_mode": "ADVISORY_ONLY",
+          "legacy_proposed_action": "NO_SETUP",
+          "legacy_action_overridden": true,
+          "final_authority": "EXECUTIVE_DECISION_LAYER"
+        },
+        "executive_director": {
+          "authority": "100%",
+          "previous_action": "NO_SETUP",
+          "final_action": "NO_SETUP",
+          "report": {
+            "action": "NO_SETUP",
+            "executive_decision": {
+              "action": "NO_SETUP",
+              "confidence": 0,
+              "advisors": [],
+              "reason": "missing candidate",
+              "audit": {
+                "reason": "missing candidate"
+              }
+            },
+            "legacy_action_ignored": "NO_SETUP"
+          },
+          "statement": "Only Executive Decision Layer can publish trading actions"
+        },
+        "adaptive_conflict_resolver": {},
+        "risky_entry_score_profile": {},
+        "executive_divergence": {
+          "legacy_recommendation": "NO_SETUP",
+          "final_action": "NO_SETUP",
+          "legacy_vs_final": false,
+          "selected": false,
+          "eligible_pre_conflict": false,
+          "execution_eligible_pre_conflict": false,
+          "probe_eligible": false,
+          "selected_eligible_but_no_setup": false,
+          "close_miss": false,
+          "score_gap": null,
+          "execution_gap": 70.0,
+          "reason_codes": [
+            "execution_gap=70.0",
+            "plan_not_executable"
+          ],
+          "alert": false,
+          "score_profile": {},
+          "shadow_plan": {}
+        },
+        "authority_guard": {
+          "validated": true,
+          "executive_only_actions": [
+            "PROBE_ENTRY",
+            "ENTRY",
+            "RISKY_ENTRY"
+          ],
+          "violations": []
+        }
+      }
     }
   ],
   "closed_trades": [],
@@ -243466,7 +243832,7 @@
     }
   },
   "learning_status": {
-    "updated_at": "2026-07-14T08:45:52.063071+00:00",
+    "updated_at": "2026-07-14T09:01:37.455958+00:00",
     "journal_file": "signal_journal_v6_4.json",
     "state_file": "last_signal_v6_4.json",
     "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -432988,7 +433354,7 @@
       }
     }
   },
-  "updated_at": "2026-07-14T08:45:52.061851+00:00",
+  "updated_at": "2026-07-14T09:01:37.454754+00:00",
   "retention_audit": {
     "mode": "SIGNAL_ID_REFERENTIAL_RETENTION",
     "max_journal": 3000,
@@ -437782,7 +438148,7 @@
         }
       },
       "shadow_plan": {
-        "status": "TP2_REACHED",
+        "status": "TP3_REACHED",
         "opened_at": "2026-07-13T10:31:24.885157+00:00",
         "expires_at": "2026-07-14T10:31:24.885157+00:00",
         "side": "LONG",
@@ -437799,17 +438165,18 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1784018700000,
-        "max_target_hit": "TP2",
-        "mfe_r": 4.732,
+        "last_processed_ts": 1784019600000,
+        "max_target_hit": "TP3",
+        "mfe_r": 5.049,
         "mae_r": 0.131,
         "note": "audit-only counterfactual; not executable PnL",
-        "best_price": 85.21,
+        "best_price": 85.67,
         "worst_price": 78.15,
-        "updated_at": "2026-07-14T08:45:51.640866+00:00",
+        "updated_at": "2026-07-14T09:01:37.120082+00:00",
         "tp0_hit_at": "2026-07-13T14:21:00+00:00",
         "tp1_hit_at": "2026-07-13T17:36:00+00:00",
-        "tp2_hit_at": "2026-07-13T22:54:00+00:00"
+        "tp2_hit_at": "2026-07-13T22:54:00+00:00",
+        "tp3_hit_at": "2026-07-14T08:48:00+00:00"
       }
     },
     {
@@ -437877,14 +438244,14 @@
           "tp3_runner": 0.3,
           "mode": "RUNNER_EXPANSION"
         },
-        "last_processed_ts": 1784018700000,
+        "last_processed_ts": 1784019600000,
         "max_target_hit": "TP3",
-        "mfe_r": 12.777,
+        "mfe_r": 13.612,
         "mae_r": 0.036,
         "note": "audit-only counterfactual; not executable PnL",
-        "best_price": 85.21,
+        "best_price": 85.67,
         "worst_price": 78.15,
-        "updated_at": "2026-07-14T08:45:51.640866+00:00",
+        "updated_at": "2026-07-14T09:01:37.120082+00:00",
         "tp0_hit_at": "2026-07-13T12:12:00+00:00",
         "tp1_hit_at": "2026-07-13T14:15:00+00:00",
         "tp2_hit_at": "2026-07-13T16:48:00+00:00",
@@ -438078,14 +438445,14 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1784018700000,
+        "last_processed_ts": 1784019600000,
         "max_target_hit": "TP2",
-        "mfe_r": 4.005,
+        "mfe_r": 4.545,
         "mae_r": 0.0,
         "note": "audit-only counterfactual; not executable PnL",
-        "best_price": 85.21,
+        "best_price": 85.67,
         "worst_price": 81.795,
-        "updated_at": "2026-07-14T08:45:51.640866+00:00",
+        "updated_at": "2026-07-14T09:01:37.120082+00:00",
         "tp0_hit_at": "2026-07-13T19:30:00+00:00",
         "tp1_hit_at": "2026-07-13T22:57:00+00:00",
         "tp2_hit_at": "2026-07-14T00:18:00+00:00"
@@ -438706,15 +439073,15 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1784018700000,
+        "last_processed_ts": 1784019600000,
         "max_target_hit": "TP2",
-        "mfe_r": 3.672,
+        "mfe_r": 4.466,
         "mae_r": 0.241,
         "note": "audit-only counterfactual; not executable PnL",
         "tp0_hit_at": "2026-07-13T23:33:00+00:00",
-        "best_price": 85.21,
+        "best_price": 85.67,
         "worst_price": 82.94,
-        "updated_at": "2026-07-14T08:45:51.640866+00:00",
+        "updated_at": "2026-07-14T09:01:37.120082+00:00",
         "tp1_hit_at": "2026-07-14T00:06:00+00:00",
         "tp2_hit_at": "2026-07-14T08:03:00+00:00"
       }
@@ -439096,6 +439463,31 @@
     {
       "id": "0637735e26",
       "time": "2026-07-14T08:45:51.651394+00:00",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "legacy_recommendation": "NO_SETUP",
+      "final_action": "NO_SETUP",
+      "legacy_vs_final": false,
+      "selected": false,
+      "eligible_pre_conflict": false,
+      "execution_eligible_pre_conflict": false,
+      "probe_eligible": false,
+      "selected_eligible_but_no_setup": false,
+      "close_miss": false,
+      "score_gap": null,
+      "execution_gap": 70.0,
+      "reason_codes": [
+        "execution_gap=70.0",
+        "plan_not_executable"
+      ],
+      "alert": false,
+      "score_profile": {},
+      "shadow_plan": {}
+    },
+    {
+      "id": "bf3d65f371",
+      "time": "2026-07-14T09:01:37.129069+00:00",
       "side": "NEUTRAL",
       "setup_type": "NONE",
       "quality": 12,
