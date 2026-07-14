@@ -254585,13 +254585,13 @@
     }
   },
   "learning_status": {
-    "updated_at": "2026-07-14T16:31:32.163905+00:00",
+    "updated_at": "2026-07-14T16:45:54.858850+00:00",
     "journal_file": "signal_journal_v6_4.json",
     "state_file": "last_signal_v6_4.json",
     "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
     "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
     "training_signals": 146,
-    "signal_events": 142,
+    "signal_events": 143,
     "closed_trades": 6,
     "training_rows": 6,
     "global_ready": false,
@@ -447701,6 +447701,15 @@
       "price": 83.5,
       "trade_id": "767bc148a6",
       "signal_id": "43cee1d654"
+    },
+    {
+      "time": "2026-07-14T16:45:54.849435+00:00",
+      "type": "FOLLOW",
+      "action": "HOLD",
+      "side": "SHORT",
+      "price": 83.27,
+      "trade_id": "767bc148a6",
+      "signal_id": "43cee1d654"
     }
   ],
   "trades": [
@@ -449134,7 +449143,7 @@
       }
     }
   },
-  "updated_at": "2026-07-14T16:31:32.162599+00:00",
+  "updated_at": "2026-07-14T16:45:54.857637+00:00",
   "retention_audit": {
     "mode": "SIGNAL_ID_REFERENTIAL_RETENTION",
     "max_journal": 3000,
@@ -454229,14 +454238,14 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1784046600000,
+        "last_processed_ts": 1784047500000,
         "max_target_hit": "TP2",
         "mfe_r": 4.557,
         "mae_r": 0.0,
         "note": "audit-only counterfactual; not executable PnL",
         "best_price": 85.68,
         "worst_price": 81.795,
-        "updated_at": "2026-07-14T16:31:31.387841+00:00",
+        "updated_at": "2026-07-14T16:45:54.349615+00:00",
         "tp0_hit_at": "2026-07-13T19:30:00+00:00",
         "tp1_hit_at": "2026-07-13T22:57:00+00:00",
         "tp2_hit_at": "2026-07-14T00:18:00+00:00"
@@ -455409,14 +455418,14 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1784046600000,
+        "last_processed_ts": 1784047500000,
         "max_target_hit": "TP2",
         "mfe_r": 3.815,
         "mae_r": 0.488,
         "note": "audit-only counterfactual; not executable PnL",
         "best_price": 82.26,
         "worst_price": 85.61,
-        "updated_at": "2026-07-14T16:31:31.387841+00:00",
+        "updated_at": "2026-07-14T16:45:54.349615+00:00",
         "tp0_hit_at": "2026-07-14T11:30:00+00:00",
         "tp2_hit_at": "2026-07-14T14:33:00+00:00"
       }
