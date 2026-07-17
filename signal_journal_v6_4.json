@@ -266230,13 +266230,13 @@
     }
   },
   "learning_status": {
-    "updated_at": "2026-07-17T22:45:51.429550+00:00",
+    "updated_at": "2026-07-17T23:01:29.723233+00:00",
     "journal_file": "signal_journal_v6_4.json",
     "state_file": "last_signal_v6_4.json",
     "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
     "instrument_kind": "OKX crypto perpetual swap proxy, not ICE/CME oil futures",
     "training_signals": 150,
-    "signal_events": 484,
+    "signal_events": 485,
     "closed_trades": 9,
     "training_rows": 9,
     "global_ready": false,
@@ -468359,6 +468359,15 @@
       "price": 86.99,
       "trade_id": "a8f4c68894",
       "signal_id": "3a0c1b9777"
+    },
+    {
+      "time": "2026-07-17T23:01:29.714832+00:00",
+      "type": "FOLLOW",
+      "action": "HOLD",
+      "side": "LONG",
+      "price": 86.94,
+      "trade_id": "a8f4c68894",
+      "signal_id": "3a0c1b9777"
     }
   ],
   "trades": [
@@ -470502,7 +470511,7 @@
       }
     }
   },
-  "updated_at": "2026-07-17T22:45:51.428465+00:00",
+  "updated_at": "2026-07-17T23:01:29.721827+00:00",
   "retention_audit": {
     "mode": "SIGNAL_ID_REFERENTIAL_RETENTION",
     "max_journal": 3000,
@@ -477649,14 +477658,14 @@
           "tp3_runner": 0.13,
           "mode": "DEFENSIVE_TP0"
         },
-        "last_processed_ts": 1784328300000,
+        "last_processed_ts": 1784329200000,
         "max_target_hit": "TP0",
         "mfe_r": 1.207,
         "mae_r": 0.017,
         "note": "audit-only counterfactual; not executable PnL",
         "best_price": 87.08,
         "worst_price": 86.37,
-        "updated_at": "2026-07-17T22:45:50.921494+00:00",
+        "updated_at": "2026-07-17T23:01:29.247116+00:00",
         "tp0_hit_at": "2026-07-17T22:39:00+00:00"
       }
     },
