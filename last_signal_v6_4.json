@@ -4,9 +4,9 @@
   "active_trade": null,
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1784385900000,
-    "last_run_processed": 4,
-    "processed_count": 3273,
+    "last_scanned_3m_ts": 1784386800000,
+    "last_run_processed": 5,
+    "processed_count": 3278,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -18,7 +18,7 @@
         "event_price": 77.91,
         "invalidation_level": 77.91,
         "sweep_level": 77.91,
-        "extreme": 87.22,
+        "extreme": 87.21,
         "displacement": true,
         "retest_ts": 1783814580000,
         "ready_ts": 1783814760000,
@@ -28,7 +28,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 87,
         "retest_quality": 68,
-        "processed_bars": 3273,
+        "processed_bars": 3278,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -51,7 +51,7 @@
         "event_price": 77.91,
         "invalidation_level": 77.91,
         "sweep_level": 77.91,
-        "extreme": 87.25,
+        "extreme": 87.21,
         "displacement": true,
         "retest_ts": 1783808640000,
         "ready_ts": 1783808820000,
@@ -61,7 +61,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 98,
         "retest_quality": 86,
-        "processed_bars": 3273,
+        "processed_bars": 3278,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -79,13 +79,13 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 15,
+    "stable_count": 16,
     "pending_count": 0,
-    "updated_at": "2026-07-18T14:46:01.401436+00:00"
+    "updated_at": "2026-07-18T15:01:16.585365+00:00"
   },
   "latest_signal": {
-    "id": "6dcae86774",
-    "time": "2026-07-18T14:46:01.419635+00:00",
+    "id": "211cf5fcad",
+    "time": "2026-07-18T15:01:16.597514+00:00",
     "action": "NO_SETUP",
     "side": "NEUTRAL",
     "setup_type": "NONE",
@@ -146,7 +146,7 @@
       "reason": "insufficient evidence for a separate weekend regime"
     },
     "learning_status": {
-      "updated_at": "2026-07-18T14:45:59.393606+00:00",
+      "updated_at": "2026-07-18T15:01:14.686298+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -396,15 +396,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "SHORT",
-      "action": "HOLD",
-      "price": 83.16,
-      "trade_id": "767bc148a6",
-      "signal_id": "43cee1d654",
-      "time": "2026-07-16T19:45:58.665862+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "SHORT",
@@ -2173,7 +2164,15 @@
       "quality": 12,
       "price": 87.19,
       "time": "2026-07-18T14:46:01.419741+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 87.16,
+      "time": "2026-07-18T15:01:16.597590+00:00"
     }
   ],
-  "updated_at": "2026-07-18T14:46:01.744414+00:00"
+  "updated_at": "2026-07-18T15:01:17.006233+00:00"
 }
