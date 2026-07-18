@@ -4,9 +4,9 @@
   "active_trade": null,
   "opportunity": null,
   "scan_3m": {
-    "last_scanned_3m_ts": 1784385180000,
-    "last_run_processed": 1,
-    "processed_count": 3269,
+    "last_scanned_3m_ts": 1784385900000,
+    "last_run_processed": 4,
+    "processed_count": 3273,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -18,7 +18,7 @@
         "event_price": 77.91,
         "invalidation_level": 77.91,
         "sweep_level": 77.91,
-        "extreme": 87.33,
+        "extreme": 87.22,
         "displacement": true,
         "retest_ts": 1783814580000,
         "ready_ts": 1783814760000,
@@ -28,7 +28,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 87,
         "retest_quality": 68,
-        "processed_bars": 3269,
+        "processed_bars": 3273,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -51,7 +51,7 @@
         "event_price": 77.91,
         "invalidation_level": 77.91,
         "sweep_level": 77.91,
-        "extreme": 87.36,
+        "extreme": 87.25,
         "displacement": true,
         "retest_ts": 1783808640000,
         "ready_ts": 1783808820000,
@@ -61,15 +61,15 @@
         "confirmation_quality": 98,
         "acceptance_quality": 98,
         "retest_quality": 86,
-        "processed_bars": 3269,
+        "processed_bars": 3273,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
         "impulse_strength": {
           "score": 3,
           "level": "EXTREME",
-          "body_strength": 0.82,
-          "consecutive": 0
+          "body_strength": 0.79,
+          "consecutive": 2
         },
         "chase_risk": false,
         "time_warp_opportunity": true
@@ -79,13 +79,13 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 14,
+    "stable_count": 15,
     "pending_count": 0,
-    "updated_at": "2026-07-18T14:35:08.111656+00:00"
+    "updated_at": "2026-07-18T14:46:01.401436+00:00"
   },
   "latest_signal": {
-    "id": "1b5cce12f1",
-    "time": "2026-07-18T14:35:08.126160+00:00",
+    "id": "6dcae86774",
+    "time": "2026-07-18T14:46:01.419635+00:00",
     "action": "NO_SETUP",
     "side": "NEUTRAL",
     "setup_type": "NONE",
@@ -146,7 +146,7 @@
       "reason": "insufficient evidence for a separate weekend regime"
     },
     "learning_status": {
-      "updated_at": "2026-07-18T14:35:05.736771+00:00",
+      "updated_at": "2026-07-18T14:45:59.393606+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -314,74 +314,7 @@
       "weekend_range_wilson_z": 1.96
     },
     "audit": {
-      "rejected_hypotheses": [
-        {
-          "rank": 1,
-          "side": "SHORT",
-          "model": "LIQUIDITY_LADDER_MODEL",
-          "setup_type": "LIQUIDITY_LADDER",
-          "final_score": 58,
-          "hypothesis_score": 59.48,
-          "setup_q": 90,
-          "execution_q": 57,
-          "plan_q": 49,
-          "execution_source": "LIQUIDITY_LADDER",
-          "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 9608.1,
-          "trigger_reanchored": false,
-          "original_trigger_age_min": 9608.1,
-          "effective_trigger_age_min": 9608.1,
-          "target_magnet": 1.67,
-          "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
-          "innovation_risk_mult": 0.82,
-          "revalidation_state": "DEAD",
-          "revalidation_supported": false,
-          "entry_timing": "DEAD_HARD_TTL",
-          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=9608.1min ttl=1440.0min; score 58 < risky_min 66; HTF не підтримує risky-entry",
-          "evidence_layers": [
-            "ICT_LOCATION",
-            "PRICE_STRUCTURE",
-            "ICT_MODEL_LIQUIDITY_LADDER_MODEL",
-            "EXECUTION_TIME_WARP_WAIT_RETEST",
-            "EXECUTION_LIQUIDITY_LADDER"
-          ],
-          "entry_anchor": 87.25,
-          "invalidation": 87.65
-        },
-        {
-          "rank": 2,
-          "side": "SHORT",
-          "model": "TIME_OF_DAY_ADAPTIVE",
-          "setup_type": "TIME_OF_DAY_ADAPTIVE",
-          "final_score": 48,
-          "hypothesis_score": 49.24,
-          "setup_q": 63,
-          "execution_q": 55,
-          "plan_q": 49,
-          "execution_source": "TIME_OF_DAY",
-          "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 9608.1,
-          "trigger_reanchored": false,
-          "original_trigger_age_min": 9608.1,
-          "effective_trigger_age_min": 9608.1,
-          "target_magnet": 1.67,
-          "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
-          "innovation_risk_mult": 0.82,
-          "revalidation_state": "DEAD",
-          "revalidation_supported": false,
-          "entry_timing": "DEAD_HARD_TTL",
-          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=9608.1min ttl=1440.0min; score 48 < risky_min 66; HTF не підтримує risky-entry",
-          "evidence_layers": [
-            "ICT_LOCATION",
-            "PRICE_STRUCTURE",
-            "ICT_MODEL_TIME_OF_DAY_ADAPTIVE",
-            "EXECUTION_TIME_WARP_WAIT_RETEST",
-            "EXECUTION_TIME_OF_DAY"
-          ],
-          "entry_anchor": 87.25,
-          "invalidation": 87.65
-        }
-      ],
+      "rejected_hypotheses": [],
       "best_candidate_per_side": {
         "LONG": {
           "side": "LONG",
@@ -392,35 +325,15 @@
           "top_rejection_reason": "NO_CANDIDATE_CREATED"
         },
         "SHORT": {
-          "rank": 1,
           "side": "SHORT",
-          "model": "LIQUIDITY_LADDER_MODEL",
-          "setup_type": "LIQUIDITY_LADDER",
-          "final_score": 58,
-          "hypothesis_score": 59.48,
-          "setup_q": 90,
-          "execution_q": 57,
-          "plan_q": 49,
-          "execution_source": "LIQUIDITY_LADDER",
-          "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 9608.1,
-          "trigger_reanchored": false,
-          "original_trigger_age_min": 9608.1,
-          "effective_trigger_age_min": 9608.1,
-          "target_magnet": 1.67,
-          "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
-          "innovation_risk_mult": 0.82,
-          "revalidation_state": "DEAD",
-          "revalidation_supported": false,
-          "entry_timing": "DEAD_HARD_TTL",
-          "candidate_created": true,
+          "candidate_created": false,
           "selected": false,
-          "eligible": false,
-          "status": "REJECTED",
-          "top_rejection_reason": "THESIS_HARD_TTL_EXPIRED age=9608.1min ttl=1440.0min; score 58 < risky_min 66; HTF не підтримує risky-entry"
+          "final_score": null,
+          "hypothesis_score": null,
+          "top_rejection_reason": "NO_CANDIDATE_CREATED"
         }
       },
-      "candidate_count": 2,
+      "candidate_count": 0,
       "audit_note": "Both LONG and SHORT are always audited",
       "architecture": {
         "pipeline": "ANALYTICAL_DEPARTMENTS -> CONFLICT_ANALYSIS -> TRADING_PHILOSOPHY -> EXECUTIVE_DECISION_LAYER",
@@ -473,9 +386,9 @@
       "authority_guard": {
         "validated": true,
         "executive_only_actions": [
-          "ENTRY",
           "PROBE_ENTRY",
-          "RISKY_ENTRY"
+          "RISKY_ENTRY",
+          "ENTRY"
         ],
         "violations": []
       }
@@ -483,15 +396,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "SHORT",
-      "action": "HOLD",
-      "price": 83.09,
-      "trade_id": "767bc148a6",
-      "signal_id": "43cee1d654",
-      "time": "2026-07-16T19:31:24.503433+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "SHORT",
@@ -2261,7 +2165,15 @@
       "quality": 12,
       "price": 87.25,
       "time": "2026-07-18T14:35:08.126305+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 87.19,
+      "time": "2026-07-18T14:46:01.419741+00:00"
     }
   ],
-  "updated_at": "2026-07-18T14:35:08.507101+00:00"
+  "updated_at": "2026-07-18T14:46:01.744414+00:00"
 }
