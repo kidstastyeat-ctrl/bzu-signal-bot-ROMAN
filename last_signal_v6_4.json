@@ -34,9 +34,9 @@
     "signal_id": "f27986c02b"
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1784414700000,
-    "last_run_processed": 5,
-    "processed_count": 3433,
+    "last_scanned_3m_ts": 1784415240000,
+    "last_run_processed": 3,
+    "processed_count": 3436,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -48,7 +48,7 @@
         "event_price": 77.91,
         "invalidation_level": 77.91,
         "sweep_level": 77.91,
-        "extreme": 88.63,
+        "extreme": 88.72,
         "displacement": true,
         "retest_ts": 1783814580000,
         "ready_ts": 1783814760000,
@@ -58,7 +58,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 87,
         "retest_quality": 68,
-        "processed_bars": 3433,
+        "processed_bars": 3436,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -81,7 +81,7 @@
         "event_price": 77.91,
         "invalidation_level": 77.91,
         "sweep_level": 77.91,
-        "extreme": 88.67,
+        "extreme": 88.72,
         "displacement": true,
         "retest_ts": 1783808640000,
         "ready_ts": 1783808820000,
@@ -91,7 +91,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 98,
         "retest_quality": 86,
-        "processed_bars": 3433,
+        "processed_bars": 3436,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -109,13 +109,13 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 1,
+    "stable_count": 2,
     "pending_count": 0,
-    "updated_at": "2026-07-18T22:46:07.020812+00:00"
+    "updated_at": "2026-07-18T22:54:11.502941+00:00"
   },
   "latest_signal": {
-    "id": "7c11de1b18",
-    "time": "2026-07-18T22:46:07.036293+00:00",
+    "id": "3701b40c16",
+    "time": "2026-07-18T22:54:11.511999+00:00",
     "action": "NO_SETUP",
     "side": "NEUTRAL",
     "setup_type": "NONE",
@@ -176,7 +176,7 @@
       "reason": "insufficient evidence for a separate weekend regime"
     },
     "learning_status": {
-      "updated_at": "2026-07-18T22:46:05.421952+00:00",
+      "updated_at": "2026-07-18T22:54:10.070204+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -357,17 +357,17 @@
           "plan_q": 49,
           "execution_source": "ACCEPTANCE_RETEST",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 10000.1,
+          "trigger_age_min": 10008.2,
           "trigger_reanchored": false,
-          "original_trigger_age_min": 10000.1,
-          "effective_trigger_age_min": 10000.1,
+          "original_trigger_age_min": 10008.2,
+          "effective_trigger_age_min": 10008.2,
           "target_magnet": 0.0,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.82,
           "revalidation_state": "DEAD",
           "revalidation_supported": false,
           "entry_timing": "DEAD_HARD_TTL",
-          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=10000.1min ttl=1440.0min; HTF не підтримує risky-entry",
+          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=10008.2min ttl=1440.0min; HTF не підтримує risky-entry",
           "evidence_layers": [
             "ICT_LOCATION",
             "PRICE_STRUCTURE",
@@ -392,17 +392,17 @@
           "plan_q": 50,
           "execution_source": "LIMIT_ARMED",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 10000.1,
+          "trigger_age_min": 10008.2,
           "trigger_reanchored": false,
-          "original_trigger_age_min": 10000.1,
-          "effective_trigger_age_min": 10000.1,
-          "target_magnet": 3.73,
+          "original_trigger_age_min": 10008.2,
+          "effective_trigger_age_min": 10008.2,
+          "target_magnet": 3.75,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.82,
           "revalidation_state": "DEAD",
           "revalidation_supported": false,
           "entry_timing": "DEAD_HARD_TTL",
-          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=10000.1min ttl=1440.0min; score 63 < risky_min 66; HTF не підтримує risky-entry",
+          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=10008.2min ttl=1440.0min; score 63 < risky_min 66; HTF не підтримує risky-entry",
           "evidence_layers": [
             "ICT_LOCATION",
             "PRICE_STRUCTURE",
@@ -412,7 +412,7 @@
             "EXECUTION_TIME_WARP_WAIT_RETEST"
           ],
           "entry_anchor": 88.655,
-          "invalidation": 88.4174
+          "invalidation": 88.4162
         },
         {
           "rank": 3,
@@ -426,17 +426,17 @@
           "plan_q": 50,
           "execution_source": "OPEN_RECLAIM",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 10000.1,
+          "trigger_age_min": 10008.2,
           "trigger_reanchored": false,
-          "original_trigger_age_min": 10000.1,
-          "effective_trigger_age_min": 10000.1,
-          "target_magnet": 3.33,
+          "original_trigger_age_min": 10008.2,
+          "effective_trigger_age_min": 10008.2,
+          "target_magnet": 3.35,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.82,
           "revalidation_state": "DEAD",
           "revalidation_supported": false,
           "entry_timing": "DEAD_HARD_TTL",
-          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=10000.1min ttl=1440.0min; score 61 < risky_min 66; HTF не підтримує risky-entry",
+          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=10008.2min ttl=1440.0min; score 61 < risky_min 66; HTF не підтримує risky-entry",
           "evidence_layers": [
             "ICT_LOCATION",
             "PRICE_STRUCTURE",
@@ -461,17 +461,17 @@
           "plan_q": 50,
           "execution_source": "LIMIT_ARMED",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 10000.1,
+          "trigger_age_min": 10008.2,
           "trigger_reanchored": false,
-          "original_trigger_age_min": 10000.1,
-          "effective_trigger_age_min": 10000.1,
-          "target_magnet": 3.73,
+          "original_trigger_age_min": 10008.2,
+          "effective_trigger_age_min": 10008.2,
+          "target_magnet": 3.75,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.82,
           "revalidation_state": "DEAD",
           "revalidation_supported": false,
           "entry_timing": "DEAD_HARD_TTL",
-          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=10000.1min ttl=1440.0min; score 56 < risky_min 66; HTF не підтримує risky-entry",
+          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=10008.2min ttl=1440.0min; score 56 < risky_min 66; HTF не підтримує risky-entry",
           "evidence_layers": [
             "ICT_LOCATION",
             "PRICE_STRUCTURE",
@@ -481,7 +481,7 @@
             "EXECUTION_TIME_WARP_WAIT_RETEST"
           ],
           "entry_anchor": 88.655,
-          "invalidation": 88.4174
+          "invalidation": 88.4162
         },
         {
           "rank": 5,
@@ -489,23 +489,23 @@
           "model": "BMS_RETEST",
           "setup_type": "BREAKOUT_RETEST",
           "final_score": 56,
-          "hypothesis_score": 57.48,
+          "hypothesis_score": 57.49,
           "setup_q": 60,
           "execution_q": 68,
           "plan_q": 50,
           "execution_source": "LIMIT_ARMED",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 10000.1,
+          "trigger_age_min": 10008.2,
           "trigger_reanchored": false,
-          "original_trigger_age_min": 10000.1,
-          "effective_trigger_age_min": 10000.1,
-          "target_magnet": 3.38,
+          "original_trigger_age_min": 10008.2,
+          "effective_trigger_age_min": 10008.2,
+          "target_magnet": 3.41,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.82,
           "revalidation_state": "DEAD",
           "revalidation_supported": false,
           "entry_timing": "DEAD_HARD_TTL",
-          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=10000.1min ttl=1440.0min; score 56 < risky_min 66; HTF не підтримує risky-entry",
+          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=10008.2min ttl=1440.0min; score 56 < risky_min 66; HTF не підтримує risky-entry",
           "evidence_layers": [
             "ICT_LOCATION",
             "PRICE_STRUCTURE",
@@ -515,7 +515,7 @@
             "EXECUTION_TIME_WARP_WAIT_RETEST"
           ],
           "entry_anchor": 88.415,
-          "invalidation": 88.2874
+          "invalidation": 88.2862
         }
       ],
       "best_candidate_per_side": {
@@ -531,10 +531,10 @@
           "plan_q": 49,
           "execution_source": "ACCEPTANCE_RETEST",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 10000.1,
+          "trigger_age_min": 10008.2,
           "trigger_reanchored": false,
-          "original_trigger_age_min": 10000.1,
-          "effective_trigger_age_min": 10000.1,
+          "original_trigger_age_min": 10008.2,
+          "effective_trigger_age_min": 10008.2,
           "target_magnet": 0.0,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.82,
@@ -545,7 +545,7 @@
           "selected": false,
           "eligible": false,
           "status": "REJECTED",
-          "top_rejection_reason": "THESIS_HARD_TTL_EXPIRED age=10000.1min ttl=1440.0min; HTF не підтримує risky-entry"
+          "top_rejection_reason": "THESIS_HARD_TTL_EXPIRED age=10008.2min ttl=1440.0min; HTF не підтримує risky-entry"
         },
         "SHORT": {
           "side": "SHORT",
@@ -609,8 +609,8 @@
       "authority_guard": {
         "validated": true,
         "executive_only_actions": [
-          "ENTRY",
           "RISKY_ENTRY",
+          "ENTRY",
           "PROBE_ENTRY"
         ],
         "violations": []
@@ -619,15 +619,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "SHORT",
-      "action": "HOLD",
-      "price": 83.82,
-      "trade_id": "767bc148a6",
-      "signal_id": "43cee1d654",
-      "time": "2026-07-17T04:16:00.619716+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "SHORT",
@@ -2357,7 +2348,15 @@
       "quality": 12,
       "price": 88.58,
       "time": "2026-07-18T22:46:07.036450+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 88.63,
+      "time": "2026-07-18T22:54:11.512109+00:00"
     }
   ],
-  "updated_at": "2026-07-18T22:46:07.441446+00:00"
+  "updated_at": "2026-07-18T22:54:11.976787+00:00"
 }
