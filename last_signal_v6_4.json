@@ -33,9 +33,9 @@
     "signal_id": "f7751ee96f"
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1784450700000,
-    "last_run_processed": 5,
-    "processed_count": 3633,
+    "last_scanned_3m_ts": 1784451240000,
+    "last_run_processed": 3,
+    "processed_count": 3636,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -47,7 +47,7 @@
         "event_price": 77.91,
         "invalidation_level": 77.91,
         "sweep_level": 77.91,
-        "extreme": 88.42,
+        "extreme": 88.5,
         "displacement": true,
         "retest_ts": 1783814580000,
         "ready_ts": 1783814760000,
@@ -57,7 +57,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 87,
         "retest_quality": 68,
-        "processed_bars": 3633,
+        "processed_bars": 3636,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -80,7 +80,7 @@
         "event_price": 77.91,
         "invalidation_level": 77.91,
         "sweep_level": 77.91,
-        "extreme": 88.43,
+        "extreme": 88.53,
         "displacement": true,
         "retest_ts": 1783808640000,
         "ready_ts": 1783808820000,
@@ -90,7 +90,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 98,
         "retest_quality": 86,
-        "processed_bars": 3633,
+        "processed_bars": 3636,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -108,13 +108,13 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 19,
+    "stable_count": 20,
     "pending_count": 0,
-    "updated_at": "2026-07-19T08:46:05.090882+00:00"
+    "updated_at": "2026-07-19T08:54:29.866840+00:00"
   },
   "latest_signal": {
-    "id": "e5eba52bf4",
-    "time": "2026-07-19T08:46:05.115559+00:00",
+    "id": "c818521426",
+    "time": "2026-07-19T08:54:29.879642+00:00",
     "action": "NO_SETUP",
     "side": "NEUTRAL",
     "setup_type": "NONE",
@@ -175,7 +175,7 @@
       "reason": "insufficient evidence for a separate weekend regime"
     },
     "learning_status": {
-      "updated_at": "2026-07-19T08:46:03.339033+00:00",
+      "updated_at": "2026-07-19T08:54:28.428325+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -349,24 +349,24 @@
           "side": "LONG",
           "model": "ACCEPTANCE_RETEST_CONTINUATION",
           "setup_type": "ACCEPTANCE_RETEST_CONTINUATION",
-          "final_score": 72,
-          "hypothesis_score": 73.68,
-          "setup_q": 92,
+          "final_score": 71,
+          "hypothesis_score": 72.68,
+          "setup_q": 87,
           "execution_q": 75,
           "plan_q": 75,
           "execution_source": "ACCEPTANCE_RETEST",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 10600.1,
+          "trigger_age_min": 10608.5,
           "trigger_reanchored": false,
-          "original_trigger_age_min": 10600.1,
-          "effective_trigger_age_min": 10600.1,
+          "original_trigger_age_min": 10608.5,
+          "effective_trigger_age_min": 10608.5,
           "target_magnet": 0.0,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 1.0,
           "revalidation_state": "DEAD",
           "revalidation_supported": false,
           "entry_timing": "DEAD_HARD_TTL",
-          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=10600.1min ttl=1440.0min; HTF override available: risky-entry тільки зі зниженим ризиком",
+          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=10608.5min ttl=1440.0min; HTF не підтримує risky-entry",
           "evidence_layers": [
             "ICT_LOCATION",
             "PRICE_STRUCTURE",
@@ -385,17 +385,17 @@
           "side": "LONG",
           "model": "ACCEPTANCE_RETEST_CONTINUATION",
           "setup_type": "ACCEPTANCE_RETEST_CONTINUATION",
-          "final_score": 72,
-          "hypothesis_score": 73.68,
-          "setup_q": 92,
+          "final_score": 71,
+          "hypothesis_score": 72.68,
+          "setup_q": 87,
           "execution_q": 75,
           "plan_q": 75,
           "execution_source": "ACCEPTANCE_RETEST",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 10600.1,
+          "trigger_age_min": 10608.5,
           "trigger_reanchored": false,
-          "original_trigger_age_min": 10600.1,
-          "effective_trigger_age_min": 10600.1,
+          "original_trigger_age_min": 10608.5,
+          "effective_trigger_age_min": 10608.5,
           "target_magnet": 0.0,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 1.0,
@@ -406,7 +406,7 @@
           "selected": false,
           "eligible": false,
           "status": "REJECTED",
-          "top_rejection_reason": "THESIS_HARD_TTL_EXPIRED age=10600.1min ttl=1440.0min; HTF override available: risky-entry тільки зі зниженим ризиком"
+          "top_rejection_reason": "THESIS_HARD_TTL_EXPIRED age=10608.5min ttl=1440.0min; HTF не підтримує risky-entry"
         },
         "SHORT": {
           "side": "SHORT",
@@ -470,9 +470,9 @@
       "authority_guard": {
         "validated": true,
         "executive_only_actions": [
-          "ENTRY",
           "PROBE_ENTRY",
-          "RISKY_ENTRY"
+          "RISKY_ENTRY",
+          "ENTRY"
         ],
         "violations": []
       }
@@ -480,14 +480,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "NO_SETUP",
-      "side": "NEUTRAL",
-      "setup_type": "NONE",
-      "quality": 12,
-      "price": 85.42,
-      "time": "2026-07-17T14:01:31.334653+00:00"
-    },
     {
       "type": "NO_SETUP",
       "side": "NEUTRAL",
@@ -2175,7 +2167,15 @@
       "quality": 12,
       "price": 88.34,
       "time": "2026-07-19T08:46:05.115712+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 88.4,
+      "time": "2026-07-19T08:54:29.879767+00:00"
     }
   ],
-  "updated_at": "2026-07-19T08:46:05.439659+00:00"
+  "updated_at": "2026-07-19T08:54:30.374765+00:00"
 }
