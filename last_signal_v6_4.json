@@ -108,13 +108,13 @@
   "regime_memory": {
     "type": "NORMAL",
     "pending_type": "",
-    "stable_count": 3,
+    "stable_count": 4,
     "pending_count": 0,
-    "updated_at": "2026-07-19T23:00:24.230459+00:00"
+    "updated_at": "2026-07-19T23:01:21.660343+00:00"
   },
   "latest_signal": {
-    "id": "a146656dd8",
-    "time": "2026-07-19T23:00:24.239893+00:00",
+    "id": "97e12b3516",
+    "time": "2026-07-19T23:01:21.674261+00:00",
     "action": "NO_SETUP",
     "side": "NEUTRAL",
     "setup_type": "NONE",
@@ -175,7 +175,7 @@
       "reason": "insufficient evidence for a separate weekend regime"
     },
     "learning_status": {
-      "updated_at": "2026-07-19T23:00:22.311493+00:00",
+      "updated_at": "2026-07-19T23:01:19.724647+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -356,17 +356,17 @@
           "plan_q": 50,
           "execution_source": "ACCEPTANCE_RETEST",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 11454.4,
+          "trigger_age_min": 11455.4,
           "trigger_reanchored": false,
-          "original_trigger_age_min": 11454.4,
-          "effective_trigger_age_min": 11454.4,
+          "original_trigger_age_min": 11455.4,
+          "effective_trigger_age_min": 11455.4,
           "target_magnet": 3.21,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.82,
           "revalidation_state": "DEAD",
           "revalidation_supported": false,
           "entry_timing": "DEAD_HARD_TTL",
-          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=11454.4min ttl=1440.0min; HTF не підтримує risky-entry",
+          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=11455.4min ttl=1440.0min; HTF не підтримує risky-entry",
           "evidence_layers": [
             "ICT_LOCATION",
             "PRICE_STRUCTURE",
@@ -390,17 +390,17 @@
           "plan_q": 50,
           "execution_source": "OPEN_RECLAIM",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 11454.4,
+          "trigger_age_min": 11455.4,
           "trigger_reanchored": false,
-          "original_trigger_age_min": 11454.4,
-          "effective_trigger_age_min": 11454.4,
+          "original_trigger_age_min": 11455.4,
+          "effective_trigger_age_min": 11455.4,
           "target_magnet": 3.31,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.82,
           "revalidation_state": "DEAD",
           "revalidation_supported": false,
           "entry_timing": "DEAD_HARD_TTL",
-          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=11454.4min ttl=1440.0min; score 64 < risky_min 66; HTF не підтримує risky-entry",
+          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=11455.4min ttl=1440.0min; score 64 < risky_min 66; HTF не підтримує risky-entry",
           "evidence_layers": [
             "ICT_LOCATION",
             "PRICE_STRUCTURE",
@@ -426,10 +426,10 @@
           "plan_q": 50,
           "execution_source": "ACCEPTANCE_RETEST",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 11454.4,
+          "trigger_age_min": 11455.4,
           "trigger_reanchored": false,
-          "original_trigger_age_min": 11454.4,
-          "effective_trigger_age_min": 11454.4,
+          "original_trigger_age_min": 11455.4,
+          "effective_trigger_age_min": 11455.4,
           "target_magnet": 3.21,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 0.82,
@@ -440,7 +440,7 @@
           "selected": false,
           "eligible": false,
           "status": "REJECTED",
-          "top_rejection_reason": "THESIS_HARD_TTL_EXPIRED age=11454.4min ttl=1440.0min; HTF не підтримує risky-entry"
+          "top_rejection_reason": "THESIS_HARD_TTL_EXPIRED age=11455.4min ttl=1440.0min; HTF не підтримує risky-entry"
         },
         "SHORT": {
           "side": "SHORT",
@@ -514,15 +514,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "LONG",
-      "action": "HOLD",
-      "price": 86.32,
-      "trade_id": "a8f4c68894",
-      "signal_id": "3a0c1b9777",
-      "time": "2026-07-18T04:31:13.518759+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "LONG",
@@ -2158,7 +2149,15 @@
       "quality": 12,
       "price": 88.55,
       "time": "2026-07-19T23:00:24.240059+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 88.57,
+      "time": "2026-07-19T23:01:21.674416+00:00"
     }
   ],
-  "updated_at": "2026-07-19T23:00:24.669768+00:00"
+  "updated_at": "2026-07-19T23:01:22.023414+00:00"
 }
