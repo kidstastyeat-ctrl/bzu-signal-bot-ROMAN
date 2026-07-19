@@ -33,9 +33,9 @@
     "signal_id": "f7751ee96f"
   },
   "scan_3m": {
-    "last_scanned_3m_ts": 1784454300000,
+    "last_scanned_3m_ts": 1784455200000,
     "last_run_processed": 5,
-    "processed_count": 3653,
+    "processed_count": 3658,
     "events": {
       "LONG": {
         "side": "LONG",
@@ -47,7 +47,7 @@
         "event_price": 77.91,
         "invalidation_level": 77.91,
         "sweep_level": 77.91,
-        "extreme": 88.46,
+        "extreme": 88.44,
         "displacement": true,
         "retest_ts": 1783814580000,
         "ready_ts": 1783814760000,
@@ -57,7 +57,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 87,
         "retest_quality": 68,
-        "processed_bars": 3653,
+        "processed_bars": 3658,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -80,7 +80,7 @@
         "event_price": 77.91,
         "invalidation_level": 77.91,
         "sweep_level": 77.91,
-        "extreme": 88.48,
+        "extreme": 88.44,
         "displacement": true,
         "retest_ts": 1783808640000,
         "ready_ts": 1783808820000,
@@ -90,7 +90,7 @@
         "confirmation_quality": 98,
         "acceptance_quality": 98,
         "retest_quality": 86,
-        "processed_bars": 3653,
+        "processed_bars": 3658,
         "strong_displacement": true,
         "retest": true,
         "mitigation": true,
@@ -108,13 +108,13 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 24,
+    "stable_count": 25,
     "pending_count": 0,
-    "updated_at": "2026-07-19T09:46:09.529017+00:00"
+    "updated_at": "2026-07-19T10:01:39.460834+00:00"
   },
   "latest_signal": {
-    "id": "dcfb5abbe8",
-    "time": "2026-07-19T09:46:09.543869+00:00",
+    "id": "04f231d636",
+    "time": "2026-07-19T10:01:39.473668+00:00",
     "action": "NO_SETUP",
     "side": "NEUTRAL",
     "setup_type": "NONE",
@@ -175,7 +175,7 @@
       "reason": "insufficient evidence for a separate weekend regime"
     },
     "learning_status": {
-      "updated_at": "2026-07-19T09:46:07.696418+00:00",
+      "updated_at": "2026-07-19T10:01:37.962121+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -351,22 +351,22 @@
           "setup_type": "LIQUIDITY_LADDER",
           "final_score": 60,
           "hypothesis_score": 61.48,
-          "setup_q": 71,
+          "setup_q": 74,
           "execution_q": 57,
           "plan_q": 75,
           "execution_source": "LIQUIDITY_LADDER",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 10759.2,
+          "trigger_age_min": 10774.7,
           "trigger_reanchored": false,
-          "original_trigger_age_min": 10759.2,
-          "effective_trigger_age_min": 10759.2,
-          "target_magnet": 1.68,
+          "original_trigger_age_min": 10774.7,
+          "effective_trigger_age_min": 10774.7,
+          "target_magnet": 1.57,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 1.0,
           "revalidation_state": "DEAD",
           "revalidation_supported": false,
           "entry_timing": "DEAD_HARD_TTL",
-          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=10759.2min ttl=1440.0min; score 60 < risky_min 66; HTF не підтримує risky-entry",
+          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=10774.7min ttl=1440.0min; score 60 < risky_min 66; HTF не підтримує risky-entry",
           "evidence_layers": [
             "ICT_LOCATION",
             "PRICE_STRUCTURE",
@@ -374,8 +374,8 @@
             "EXECUTION_TIME_WARP_WAIT_RETEST",
             "EXECUTION_LIQUIDITY_LADDER"
           ],
-          "entry_anchor": 88.39,
-          "invalidation": 88.79
+          "entry_anchor": 88.36,
+          "invalidation": 88.76
         }
       ],
       "best_candidate_per_side": {
@@ -394,16 +394,16 @@
           "setup_type": "LIQUIDITY_LADDER",
           "final_score": 60,
           "hypothesis_score": 61.48,
-          "setup_q": 71,
+          "setup_q": 74,
           "execution_q": 57,
           "plan_q": 75,
           "execution_source": "LIQUIDITY_LADDER",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 10759.2,
+          "trigger_age_min": 10774.7,
           "trigger_reanchored": false,
-          "original_trigger_age_min": 10759.2,
-          "effective_trigger_age_min": 10759.2,
-          "target_magnet": 1.68,
+          "original_trigger_age_min": 10774.7,
+          "effective_trigger_age_min": 10774.7,
+          "target_magnet": 1.57,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 1.0,
           "revalidation_state": "DEAD",
@@ -413,7 +413,7 @@
           "selected": false,
           "eligible": false,
           "status": "REJECTED",
-          "top_rejection_reason": "THESIS_HARD_TTL_EXPIRED age=10759.2min ttl=1440.0min; score 60 < risky_min 66; HTF не підтримує risky-entry"
+          "top_rejection_reason": "THESIS_HARD_TTL_EXPIRED age=10774.7min ttl=1440.0min; score 60 < risky_min 66; HTF не підтримує risky-entry"
         }
       },
       "candidate_count": 1,
@@ -469,8 +469,8 @@
       "authority_guard": {
         "validated": true,
         "executive_only_actions": [
-          "PROBE_ENTRY",
           "ENTRY",
+          "PROBE_ENTRY",
           "RISKY_ENTRY"
         ],
         "violations": []
@@ -479,15 +479,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "FOLLOW",
-      "side": "SHORT",
-      "action": "TP0",
-      "price": 84.92,
-      "trade_id": "c04daa1f39",
-      "signal_id": "2aaa92ef8d",
-      "time": "2026-07-17T15:01:31.534607+00:00"
-    },
     {
       "type": "FOLLOW",
       "side": "SHORT",
@@ -2173,7 +2164,15 @@
       "quality": 12,
       "price": 88.39,
       "time": "2026-07-19T09:46:09.544007+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 88.36,
+      "time": "2026-07-19T10:01:39.473796+00:00"
     }
   ],
-  "updated_at": "2026-07-19T09:46:10.034643+00:00"
+  "updated_at": "2026-07-19T10:01:39.965156+00:00"
 }
