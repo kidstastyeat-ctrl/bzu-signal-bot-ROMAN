@@ -108,13 +108,13 @@
   "regime_memory": {
     "type": "RANGE_COMPRESSION",
     "pending_type": "",
-    "stable_count": 20,
+    "stable_count": 21,
     "pending_count": 0,
-    "updated_at": "2026-07-19T15:15:57.137017+00:00"
+    "updated_at": "2026-07-19T15:17:59.832077+00:00"
   },
   "latest_signal": {
-    "id": "a08bb38512",
-    "time": "2026-07-19T15:15:57.149898+00:00",
+    "id": "d5cc1207c0",
+    "time": "2026-07-19T15:17:59.862359+00:00",
     "action": "NO_SETUP",
     "side": "NEUTRAL",
     "setup_type": "NONE",
@@ -175,7 +175,7 @@
       "reason": "insufficient evidence for a separate weekend regime"
     },
     "learning_status": {
-      "updated_at": "2026-07-19T15:15:55.529679+00:00",
+      "updated_at": "2026-07-19T15:17:57.907563+00:00",
       "journal_file": "signal_journal_v6_4.json",
       "state_file": "last_signal_v6_4.json",
       "instrument_label": "BZ-USDT-SWAP crypto Brent proxy",
@@ -351,22 +351,22 @@
           "setup_type": "ACCEPTANCE_RETEST_CONTINUATION",
           "final_score": 70,
           "hypothesis_score": 71.72,
-          "setup_q": 86,
+          "setup_q": 88,
           "execution_q": 73,
           "plan_q": 75,
           "execution_source": "ACCEPTANCE_RETEST",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 10990.0,
+          "trigger_age_min": 10992.0,
           "trigger_reanchored": false,
-          "original_trigger_age_min": 10990.0,
-          "effective_trigger_age_min": 10990.0,
-          "target_magnet": 1.73,
+          "original_trigger_age_min": 10992.0,
+          "effective_trigger_age_min": 10992.0,
+          "target_magnet": 1.66,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 1.0,
           "revalidation_state": "DEAD",
           "revalidation_supported": false,
           "entry_timing": "DEAD_HARD_TTL",
-          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=10990.0min ttl=1440.0min; HTF не підтримує risky-entry",
+          "failed_gate": "THESIS_HARD_TTL_EXPIRED age=10992.0min ttl=1440.0min; HTF не підтримує risky-entry",
           "evidence_layers": [
             "ICT_LOCATION",
             "PRICE_STRUCTURE",
@@ -374,8 +374,8 @@
             "EXECUTION_TIME_WARP_WAIT_RETEST",
             "EXECUTION_ACCEPTANCE_RETEST"
           ],
-          "entry_anchor": 88.485,
-          "invalidation": 88.085
+          "entry_anchor": 88.38,
+          "invalidation": 87.98
         }
       ],
       "best_candidate_per_side": {
@@ -386,16 +386,16 @@
           "setup_type": "ACCEPTANCE_RETEST_CONTINUATION",
           "final_score": 70,
           "hypothesis_score": 71.72,
-          "setup_q": 86,
+          "setup_q": 88,
           "execution_q": 73,
           "plan_q": 75,
           "execution_source": "ACCEPTANCE_RETEST",
           "entry_stage": "WAIT_RETEST",
-          "trigger_age_min": 10990.0,
+          "trigger_age_min": 10992.0,
           "trigger_reanchored": false,
-          "original_trigger_age_min": 10990.0,
-          "effective_trigger_age_min": 10990.0,
-          "target_magnet": 1.73,
+          "original_trigger_age_min": 10992.0,
+          "effective_trigger_age_min": 10992.0,
+          "target_magnet": 1.66,
           "innovation_model": "STALE_THESIS_WAIT_SETUP_ARGUMENT",
           "innovation_risk_mult": 1.0,
           "revalidation_state": "DEAD",
@@ -405,7 +405,7 @@
           "selected": false,
           "eligible": false,
           "status": "REJECTED",
-          "top_rejection_reason": "THESIS_HARD_TTL_EXPIRED age=10990.0min ttl=1440.0min; HTF не підтримує risky-entry"
+          "top_rejection_reason": "THESIS_HARD_TTL_EXPIRED age=10992.0min ttl=1440.0min; HTF не підтримує risky-entry"
         },
         "SHORT": {
           "side": "SHORT",
@@ -469,8 +469,8 @@
       "authority_guard": {
         "validated": true,
         "executive_only_actions": [
-          "PROBE_ENTRY",
           "ENTRY",
+          "PROBE_ENTRY",
           "RISKY_ENTRY"
         ],
         "violations": []
@@ -479,14 +479,6 @@
   },
   "last_message_key": "",
   "history": [
-    {
-      "type": "NO_SETUP",
-      "side": "NEUTRAL",
-      "setup_type": "NONE",
-      "quality": 12,
-      "price": 86.33,
-      "time": "2026-07-17T20:31:27.071201+00:00"
-    },
     {
       "type": "NO_SETUP",
       "side": "NEUTRAL",
@@ -2155,7 +2147,15 @@
       "quality": 12,
       "price": 88.38,
       "time": "2026-07-19T15:15:57.150012+00:00"
+    },
+    {
+      "type": "NO_SETUP",
+      "side": "NEUTRAL",
+      "setup_type": "NONE",
+      "quality": 12,
+      "price": 88.36,
+      "time": "2026-07-19T15:17:59.862467+00:00"
     }
   ],
-  "updated_at": "2026-07-19T15:15:57.508458+00:00"
+  "updated_at": "2026-07-19T15:18:00.333573+00:00"
 }
