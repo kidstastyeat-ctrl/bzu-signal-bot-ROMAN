@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """
-BZU Professional Hybrid Confluence Signal Bot v9.5.5 (Split-Thesis Consistency Fix)
+BZU Professional Hybrid Confluence Signal Bot v9.5.6 (Preconfirmation Contract Guard)
 =============================================================================================
-Оновлення v9.5.5:
+Оновлення v9.5.6:
+- PRECONFIRM_EXPIRED_LABEL_MODE жорстко захищено: production-контракт дозволяє лише NEGATIVE; SEPARATE зупиняє runtime audit.
+- Zone retest без acceptance тепер отримує confirmation_pending=True та EXPLICIT_PENDING_CONFIRMATION lifecycle.
+- Усі зміни v9.5.5 збережені:
 - Sentinel model_thesis_age=-1 більше не перетворюється на фальшиві 0 хвилин.
 - Zone retest і підтверджений acceptance розділено; лише acceptance є execution-ready.
 - Fresh zone-retest отримує MODEL_LOCAL_ZONE_RETEST thesis clock, але execution_source=NONE до acceptance.
@@ -144,8 +147,8 @@ def get_htf_state(candidate: Any) -> str:
 # CONFIGURATION
 # ==========================================================
 
-BOT_VERSION = "pro-hybrid-confluence-v9.5.5-split-thesis-consistency"
-ARCHITECTURE_VERSION = "TRADING_DESK_EXECUTIVE_V9_5_5_SPLIT_THESIS_CONSISTENCY"
+BOT_VERSION = "pro-hybrid-confluence-v9.5.6-preconfirmation-contract-guard"
+ARCHITECTURE_VERSION = "TRADING_DESK_EXECUTIVE_V9_5_6_PRECONFIRMATION_CONTRACT_GUARD"
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
@@ -200,6 +203,7 @@ PRECONFIRM_EMBEDDED_LEDGER_ENABLED = os.getenv("PRECONFIRM_EMBEDDED_LEDGER_ENABL
 PRECONFIRM_AUC_GATE = min(0.95, max(0.50, float(os.getenv("PRECONFIRM_AUC_GATE", "0.55") or 0.55)))
 PRECONFIRM_BRIER_WARN = min(0.50, max(0.05, float(os.getenv("PRECONFIRM_BRIER_WARN", "0.25") or 0.25)))
 PRECONFIRM_EXPIRED_LABEL_MODE = str(os.getenv("PRECONFIRM_EXPIRED_LABEL_MODE", "NEGATIVE") or "NEGATIVE").strip().upper()
+PRECONFIRM_PROBABILITY_CONTRACT = "P(CONFIRMED_WITHIN_45M); FAILED_OR_EXPIRED=0"
 PRECONFIRM_LOCAL_NEIGHBORS = max(10, int(os.getenv("PRECONFIRM_LOCAL_NEIGHBORS", "30") or 30))
 PRECONFIRM_PROBE_MIN_PROBABILITY = min(0.95, max(0.50, float(os.getenv("PRECONFIRM_PROBE_MIN_PROBABILITY", "0.62") or 0.62)))
 PRECONFIRM_PROBE_WAIT_PROBABILITY = min(PRECONFIRM_PROBE_MIN_PROBABILITY - 0.01, max(0.05, float(os.getenv("PRECONFIRM_PROBE_WAIT_PROBABILITY", "0.42") or 0.42)))
@@ -575,8 +579,11 @@ def validate_runtime_configuration() -> dict[str, Any]:
         errors.append("Reclaim revalidation score floor must be between 0 and 100")
     if not (2 <= RELAXED_CONTINUATION_MIN_DIRECTIONAL_CLOSES <= 6):
         errors.append("RELAXED_CONTINUATION_MIN_DIRECTIONAL_CLOSES must be between 2 and 6")
-    if PRECONFIRM_EXPIRED_LABEL_MODE not in {"SEPARATE", "NEGATIVE"}:
-        errors.append("PRECONFIRM_EXPIRED_LABEL_MODE must be SEPARATE or NEGATIVE")
+    if PRECONFIRM_EXPIRED_LABEL_MODE != "NEGATIVE":
+        errors.append(
+            "v9.5.6 probability contract requires PRECONFIRM_EXPIRED_LABEL_MODE=NEGATIVE; "
+            "SEPARATE/other modes are forbidden because EXPIRED must be label 0"
+        )
     if not (0.50 <= PRECONFIRM_AUC_GATE <= 0.95):
         errors.append("PRECONFIRM_AUC_GATE must be between 0.50 and 0.95")
     if not (0.0 < PRECONFIRM_PROBE_WAIT_PROBABILITY < PRECONFIRM_PROBE_MIN_PROBABILITY < 1.0):
@@ -2419,7 +2426,7 @@ def _preconfirm_estimate(
         "precursor_active": precursor_active,
         "decision_authority": "AUDIT_AND_FRESH_PROBE_GATE_ONLY",
         "can_initiate_entry": False,
-        "probability_contract": "P(CONFIRMED_WITHIN_45M); FAILED_OR_EXPIRED=0",
+        "probability_contract": PRECONFIRM_PROBABILITY_CONTRACT,
         "expired_label_mode": PRECONFIRM_EXPIRED_LABEL_MODE,
         "features": dict(features),
         "excluded_feature": "pattern",
@@ -2430,7 +2437,7 @@ def _preconfirm_estimate(
             "added_to_final_score": False,
             "single_decision_use": "_preconfirm_stage_gate",
         },
-        "schema_version": "preconfirmation_probability_v9.5.5_expiry_aware",
+        "schema_version": "preconfirmation_probability_v9.5.6_contract_guard",
     }
 
 def _merge_preconfirmation_events(*event_lists: list[Any]) -> list[dict[str, Any]]:
@@ -3559,7 +3566,7 @@ def runtime_config_snapshot() -> dict[str, Any]:
         "preconfirm_promotion_min_exact_rows": PRECONFIRM_PROMOTION_MIN_EXACT_ROWS,
         "preconfirm_embedded_ledger_enabled": PRECONFIRM_EMBEDDED_LEDGER_ENABLED,
         "preconfirm_expired_label_mode": PRECONFIRM_EXPIRED_LABEL_MODE,
-        "preconfirm_probability_contract": "P(CONFIRMED_WITHIN_45M); FAILED_OR_EXPIRED=0",
+        "preconfirm_probability_contract": PRECONFIRM_PROBABILITY_CONTRACT,
         "preconfirm_auc_gate": PRECONFIRM_AUC_GATE,
         "preconfirm_probe_min_probability": PRECONFIRM_PROBE_MIN_PROBABILITY,
         "preconfirm_probe_wait_probability": PRECONFIRM_PROBE_WAIT_PROBABILITY,
@@ -9652,14 +9659,21 @@ def detect_acceptance_retest_continuation(c15: list[Candle], side: str, price: f
         score_bonus += 5
         score_bonus += 3 if tf_ok else 0
         score_bonus += 4 if acceptance_confirmed else 0
+    confirmation_pending = bool(zone_retest_detected and not execution_ready)
     return {
         # ``active`` is retained as the execution-ready compatibility alias.
-        # A zone touch alone is exposed via ``zone_retest_detected``.
+        # A zone touch alone is exposed via ``zone_retest_detected`` and becomes
+        # an explicit confirmation-pending lifecycle state, never an entry path.
         "active": execution_ready,
         "detected": zone_retest_detected,
         "zone_retest_detected": zone_retest_detected,
         "acceptance_confirmed": acceptance_confirmed,
         "execution_ready": execution_ready,
+        "pre_confirmation_ready": confirmation_pending,
+        "confirmation_pending": confirmation_pending,
+        "needs_acceptance_confirmation": confirmation_pending,
+        "required_next_event": "DIRECTIONAL_ACCEPTANCE" if confirmation_pending else None,
+        "anchor": round_price(zone_mid) if zone_mid else round_price(price),
         "state": state,
         "execution_role": "EXECUTION_CONFIRMATION" if execution_ready else "ZONE_RETEST_ONLY",
         "score_bonus": score_bonus,
@@ -9672,6 +9686,46 @@ def detect_acceptance_retest_continuation(c15: list[Candle], side: str, price: f
         "tf_ok": tf_ok,
         "no_break": no_break,
     }
+
+
+def resolve_candidate_confirmation_state(
+    model_id: str,
+    acceptance_retest: Optional[dict[str, Any]],
+    continuation_reanchor: Optional[dict[str, Any]],
+    session_mean_reclaim: Optional[dict[str, Any]],
+    *,
+    actionable_trigger_ready: bool,
+) -> tuple[dict[str, Any], bool]:
+    """Resolve the one canonical confirmation-pending state for a candidate.
+
+    Zone retest is a model-local thesis event, not execution. It must remain
+    visible to Opportunity/Telegram/preconfirmation lifecycle until directional
+    acceptance arrives. A stricter continuation-reanchor pending state keeps
+    priority when both profiles are present.
+    """
+    model = str(model_id or "").upper()
+    acceptance = dict(acceptance_retest or {})
+    reanchor = dict(continuation_reanchor or {})
+    session_mean = dict(session_mean_reclaim or {})
+
+    state: dict[str, Any] = {}
+    if model == "ACCEPTANCE_RETEST_CONTINUATION":
+        if reanchor.get("pre_confirmation_ready"):
+            state = reanchor
+        elif (
+            acceptance.get("zone_retest_detected")
+            and not acceptance.get("execution_ready")
+        ):
+            state = acceptance
+    elif model == "VWAP_SESSION_MEAN_RECLAIM" and session_mean.get("pre_confirmation_ready"):
+        state = session_mean
+
+    pending = bool(state and not actionable_trigger_ready)
+    if pending:
+        state.setdefault("confirmation_pending", True)
+        state.setdefault("pre_confirmation_ready", True)
+        state.setdefault("required_next_event", "DIRECTIONAL_ACCEPTANCE")
+    return state, pending
 
 
 def continuation_reanchor_profile(
@@ -12091,14 +12145,13 @@ def detect_candidates(context: dict, state: dict, journal: dict) -> list[Candida
             if lane == ExecutionLane.EARLY_TACTICAL.value and not bool(p_data.get("allow_early", False)):
                 lane = ExecutionLane.STANDARD_CONFIRMED.value
 
-            confirmation_state = (
-                continuation_reanchor
-                if model_id == "ACCEPTANCE_RETEST_CONTINUATION" and continuation_reanchor.get("pre_confirmation_ready")
-                else session_mean_reclaim
-                if model_id == "VWAP_SESSION_MEAN_RECLAIM" and session_mean_reclaim.get("pre_confirmation_ready")
-                else {}
+            confirmation_state, confirmation_pending = resolve_candidate_confirmation_state(
+                model_id,
+                acceptance_retest,
+                continuation_reanchor,
+                session_mean_reclaim,
+                actionable_trigger_ready=actionable_trigger_ready,
             )
-            confirmation_pending = bool(confirmation_state and not actionable_trigger_ready)
 
             cand = Candidate(
                 side=side,
@@ -18417,12 +18470,72 @@ def test_zone_retest_requires_acceptance_for_execution() -> bool:
             and not profile.get("acceptance_confirmed")
             and not profile.get("execution_ready")
             and not profile.get("active")
+            and profile.get("confirmation_pending")
+            and profile.get("pre_confirmation_ready")
+            and profile.get("required_next_event") == "DIRECTIONAL_ACCEPTANCE"
             and profile.get("state") == "ZONE_RETEST_DETECTED"
             and profile.get("execution_role") == "ZONE_RETEST_ONLY"
         )
     finally:
         if original is not None:
             globals()["_same_side_zone_support"] = original
+
+
+def test_zone_retest_maps_to_candidate_confirmation_pending() -> bool:
+    acceptance = {
+        "zone_retest_detected": True,
+        "acceptance_confirmed": False,
+        "execution_ready": False,
+        "state": "ZONE_RETEST_DETECTED",
+        "zone_mid": 100.25,
+    }
+    state, pending = resolve_candidate_confirmation_state(
+        "ACCEPTANCE_RETEST_CONTINUATION",
+        acceptance,
+        {},
+        {},
+        actionable_trigger_ready=False,
+    )
+    candidate = Candidate(
+        side=Side.SHORT.value,
+        setup_type=SetupType.ACCEPTANCE_RETEST_CONTINUATION.value,
+        setup_family=SetupFamily.CONTINUATION.value,
+        raw_score=70,
+        final_score=70,
+        trigger_ready=False,
+        execution_source=ExecutionSource.NONE.value,
+        confirmation_pending=pending,
+        confirmation_state=state,
+        opportunity_status=(
+            OpportunityStatus.CONFIRMATION_PENDING.value if pending else ""
+        ),
+    )
+    return bool(
+        candidate.confirmation_pending
+        and candidate.opportunity_status == OpportunityStatus.CONFIRMATION_PENDING.value
+        and candidate.confirmation_state.get("state") == "ZONE_RETEST_DETECTED"
+        and candidate.confirmation_state.get("required_next_event") == "DIRECTIONAL_ACCEPTANCE"
+        and _preconfirm_event_kind(candidate) == "EXPLICIT_PENDING_CONFIRMATION"
+        and not candidate.trigger_ready
+        and candidate.execution_source == ExecutionSource.NONE.value
+    )
+
+
+def test_runtime_rejects_separate_expiry_mode() -> bool:
+    global PRECONFIRM_EXPIRED_LABEL_MODE
+    original = PRECONFIRM_EXPIRED_LABEL_MODE
+    try:
+        PRECONFIRM_EXPIRED_LABEL_MODE = "SEPARATE"
+        result = validate_runtime_configuration()
+        return bool(
+            not result.get("valid")
+            and any(
+                "requires PRECONFIRM_EXPIRED_LABEL_MODE=NEGATIVE" in str(error)
+                for error in result.get("errors", [])
+            )
+        )
+    finally:
+        PRECONFIRM_EXPIRED_LABEL_MODE = original
 
 
 def test_pending_zone_retest_uses_model_local_clock_without_execution_source() -> bool:
@@ -18666,7 +18779,9 @@ def _run_self_test() -> bool:
         ("model-local thesis age overrides stale market thesis", test_model_local_thesis_age_overrides_stale_market_age),
         ("unknown model thesis sentinel stays unknown", test_unknown_model_thesis_age_sentinel_is_preserved),
         ("zone retest needs acceptance before execution", test_zone_retest_requires_acceptance_for_execution),
+        ("zone retest maps to candidate confirmation-pending", test_zone_retest_maps_to_candidate_confirmation_pending),
         ("pending zone retest uses model-local clock only", test_pending_zone_retest_uses_model_local_clock_without_execution_source),
+        ("runtime rejects SEPARATE expiry labeling", test_runtime_rejects_separate_expiry_mode),
         ("expired preconfirmation is negative for 45m probability", test_preconfirmation_expired_is_negative_for_45m_probability),
         ("liquidity ladder is route-only without confirmation", test_liquidity_ladder_is_route_only_without_confirmation),
         ("liquidity ladder trigger matches entry contract", test_liquidity_ladder_trigger_matches_entry_contract),
@@ -20939,7 +21054,7 @@ def run_audit_journal(path: str) -> dict[str, Any]:
     return result
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="BZU Professional Hybrid Confluence Signal Bot v9.5.5")
+    parser = argparse.ArgumentParser(description="BZU Professional Hybrid Confluence Signal Bot v9.5.6")
     parser.add_argument("--self-test", action="store_true")
     parser.add_argument("--audit-journal", type=str, help="Replay journal decisions without trading")
     args = parser.parse_args()
